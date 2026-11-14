@@ -1,0 +1,79 @@
+/* ============================================================================
+ * 06-responsive.css
+ * Hero Kai · Pythonia: Responsive Breakpoints & Reduced-Motion Overrides
+ * ============================================================================
+ * Breakpoints:
+ *   - <= 1360px (compact desktop)
+ *   - <= 1024px (tablet landscape)
+ *   - <= 860px  (tablet portrait / mobile nav adaptation)
+ *   - <= 640px  (mobile handset)
+ *   - <= 520px  (compact mobile)
+ *   - <= 700px height (short landscape viewports)
+ *   - prefers-reduced-motion: reduce
+ * ============================================================================ */
+
+/* ---- Responsive Rules --------------------------------------------------- */
+@media (max-width: 1360px) and (min-width: 1025px) {
+  #act-registry .sc-wrap { max-width: calc(100vw - 148px); }
+}
+@media (max-width: 1024px) {
+  .kc-scrollmap { display: none; }
+}
+@media (max-width: 860px) {
+  .kc-seal__sub { display: none; }
+  .kc-seal { max-width: calc(100vw - 230px); }
+  .kc-seal__title { font-size: 0.8rem; }
+  .kc-ctrl-btn { padding: 6px 9px; font-size: 0.68rem; }
+  .kc-lang-btn { padding: 4px 8px; font-size: 0.68rem; }
+  .kc-rail__stage {
+    justify-content: flex-start;
+    padding-top: 74px;
+    padding-bottom: 18px;
+  }
+  .kc-rail__head { margin-bottom: 14px; }
+  .kc-rail__head p { font-size: 0.86rem; }
+  .kc-story-card,
+  .kc-chapter-spread,
+  .kc-spread {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kc-scene-thumbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kc-rail__card {
+    flex: 0 0 min(82vw, 330px);
+    height: min(52svh, 380px);
+  }
+  .kc-rail__body { padding: 11px 13px 12px; }
+  .kc-rail__body h3 { font-size: 1.08rem; }
+  .kc-rail__desc { font-size: 0.78rem; }
+  .kc-seal-card {
+    bottom: 0.9rem;
+    padding: 13px 14px;
+  }
+  .kc-seal-inputs { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+  .sc-scrim--lead {
+    background: linear-gradient(to top,
+      color-mix(in oklab, var(--sc-canvas) 97%, transparent) 0%,
+      color-mix(in oklab, var(--sc-canvas) 91%, transparent) 52%,
+      color-mix(in oklab, var(--sc-canvas) 70%, transparent) 74%,
+      transparent 92%);
+  }
+}
+@media (max-width: 640px) {
+  .kc-music-vol,
+  #kc-music-track-btn { display: none; }
+}
+@media (max-width: 520px) {
+  .kc-seal { display: none; }
+}
+@media (max-height: 700px) and (max-width: 860px) {
+  .kc-seal-card h2 { font-size: 1.25rem; }
+  .kc-seal-card p { font-size: 0.8rem; margin-bottom: 8px; }
+  .kc-seal-aphorism { font-size: 0.76rem; padding: 6px 10px; margin-bottom: 8px; }
+  .kc-seal-preview { width: 144px; height: 81px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kc-circuit-trace { stroke-dashoffset: 0; }
+  .kc-stage-canvas { display: none; }
+}

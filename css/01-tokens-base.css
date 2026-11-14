@@ -1,0 +1,46 @@
+/* ============================================================================
+ * 01-tokens-base.css
+ * Hero Kai · Pythonia: Brand Tokens, Reset & Base Surface Rules
+ * ============================================================================
+ * Contains root CSS variables (--sc-*, --kc-*), box-sizing reset, body defaults,
+ * and base lead scrim gradients. Edit this file to adjust site-wide colors or fonts.
+ * ============================================================================ */
+
+:root {
+  --sc-canvas: #0b1612;
+  --sc-surface: #12211b;
+  --sc-ink: #f4efe4;
+  --sc-ink-soft: #c0d3c8;
+  --sc-accent: #8cf0bd;
+  --sc-accent-ink: #07120e;
+  --sc-font-display: "Palatino Linotype", "Book Antiqua", "Noto Serif TC", Georgia, serif;
+  --sc-font-text: "Segoe UI", "Microsoft JhengHei", "PingFang TC", system-ui, -apple-system, sans-serif;
+  --sc-font-mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+  --kc-gold: #ffd285;
+  --kc-cyan: #79d8e6;
+  --kc-crimson: #c24b3a;
+  --kc-panel: rgba(11, 22, 18, 0.92);
+  --kc-border: rgba(140, 240, 189, 0.25);
+  --kc-border-warm: rgba(255, 210, 133, 0.30);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--sc-canvas);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-text);
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+a { color: inherit; }
+
+.sc-scrim--lead {
+  background: linear-gradient(to top right,
+    color-mix(in oklab, var(--sc-canvas) 97%, transparent) 0%,
+    color-mix(in oklab, var(--sc-canvas) 88%, transparent) 40%,
+    color-mix(in oklab, var(--sc-canvas) 62%, transparent) 64%,
+    transparent 88%);
+}

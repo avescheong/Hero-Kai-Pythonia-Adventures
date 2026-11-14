@@ -1,0 +1,450 @@
+/* ============================================================================
+ * 03-stages-acts.css
+ * Hero Kai · Pythonia: Scrollytelling Stages, Act 1 Hero, Act 2 Rail, Act 4 & Act 5
+ * ============================================================================
+ * Covers:
+ *   1. Stage Poster Wrapper, Parallax Planes & Act 4 Battle Camera Variables
+ *   2. Editorial Copy Typography & Action Buttons Inside Stages (.sc-copy--lead)
+ *   3. Act 2: Horizontal Realm Pan Rail (.kc-rail*)
+ *   4. Act 4: Citadel Morph & Spell Attunement Console (.kc-console-*)
+ *   5. Act 5: Pinned Dawn Sanctuary & Interactive Seal Exporter (.kc-seal-card*)
+ * ============================================================================ */
+
+/* ---- Stage Poster Wrapper & Layers -------------------------------------- */
+.sc-stage__poster-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+.kc-plane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.kc-plane--arch { z-index: 1; transform-origin: center center; }
+.kc-stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+#act-canopy #kc-dawn-canvas { z-index: 2; }
+#act-canopy .kc-canopy-scrim { z-index: 3; }
+.kc-citadel-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background:
+    radial-gradient(
+      circle at 66% 47%,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 253, 240, 0.98) 42%,
+      rgba(232, 255, 244, 0.96) 100%
+    );
+  opacity: var(--kc-citadel-flash, 0);
+  will-change: opacity;
+}
+#act-canopy .sc-stage video[data-sc-scrub],
+#act-canopy .sc-stage .sc-stage__poster {
+  transform-origin: 42% 62%;
+  transform: translate3d(var(--kc-citadel-tx, 0px), var(--kc-citadel-ty, 0px), 0)
+    scale(var(--kc-citadel-scale, 1));
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  #act-canopy .sc-stage video[data-sc-scrub],
+  #act-canopy .sc-stage .sc-stage__poster {
+    transform: none !important;
+  }
+  .kc-citadel-flash {
+    display: none;
+  }
+}
+.sc-stage > .sc-scrim { z-index: 2; }
+.sc-stage > .sc-copy { z-index: 5; }
+.kc-canopy-scrim { opacity: var(--kc-canopy-scrim-op, 1); }
+
+/* ---- Editorial Copy Typography Inside Stages ---------------------------- */
+.kc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kc-gold);
+}
+.kc-eyebrow::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+}
+.kc-hero-title {
+  margin: 0 0 12px;
+  font-family: var(--sc-font-display);
+  font-size: clamp(2.05rem, 4.9vw, 4.1rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: #fbf7ef;
+  max-width: 17ch;
+  text-shadow: 0 2px 18px rgba(4, 10, 8, 0.7);
+}
+.kc-stage-title {
+  margin: 0 0 10px;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fbf7ef;
+  max-width: 20ch;
+  text-shadow: 0 2px 14px rgba(4, 10, 8, 0.65);
+}
+.kc-stage-lead {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: #eaf3ee;
+  text-shadow: 0 1px 10px rgba(4, 10, 8, 0.6);
+}
+.kc-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.kc-btn-primary {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 234, 194, 0.68);
+  background: linear-gradient(135deg, #ffd285, #e6aa54);
+  color: #161006;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+.kc-btn-advance {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 240, 189, 0.72);
+  background: linear-gradient(135deg, #98f5c7, #46c893);
+  color: #091811;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+.kc-btn-secondary {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 240, 189, 0.42);
+  background: rgba(11, 22, 18, 0.90);
+  color: var(--sc-ink);
+  font-weight: 600;
+  font-size: 0.86rem;
+  text-decoration: none;
+}
+.kc-code-pill {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(11, 22, 18, 0.94);
+  border: 1px solid rgba(140, 240, 189, 0.36);
+  font-family: var(--sc-font-mono);
+  font-size: 0.82rem;
+  color: var(--sc-accent);
+}
+
+/* ---- Act 2: Horizontal Realm Pan Rail ----------------------------------- */
+#act-rail { background: #111d17; }
+.kc-rail__stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 56px;
+  padding-bottom: 24px;
+}
+.kc-rail__head {
+  padding-inline: var(--sc-gutter);
+  margin-bottom: clamp(14px, 2.4vh, 24px);
+  max-width: 58rem;
+}
+.kc-rail__head h2 {
+  margin: 0 0 6px;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.6rem, 3.1vw, 2.65rem);
+  line-height: 1.1;
+  color: #faf5ea;
+}
+.kc-rail__head p {
+  margin: 0;
+  max-width: 54ch;
+  font-size: 0.95rem;
+  color: var(--sc-ink-soft);
+}
+.kc-rail__track {
+  gap: clamp(16px, 2.4vw, 28px);
+  padding-inline: var(--sc-gutter);
+  align-items: stretch;
+}
+.kc-rail__card {
+  flex: 0 0 clamp(280px, 34vw, 430px);
+  height: clamp(340px, 56vh, 490px);
+  display: grid;
+  grid-template-rows: minmax(11rem, 1fr) auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0e1914;
+  border: 1px solid rgba(140, 240, 189, 0.22);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.48);
+  cursor: pointer;
+}
+.kc-rail__media {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #09120e;
+}
+.kc-rail__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.kc-rail__tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(8, 16, 13, 0.90);
+  border: 1px solid rgba(255, 210, 133, 0.36);
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--kc-gold);
+}
+.kc-rail__body {
+  position: relative;
+  z-index: 2;
+  padding: 14px 16px 16px;
+  background: #0e1914;
+  border-top: 1px solid rgba(140, 240, 189, 0.14);
+}
+.kc-rail__body h3 {
+  margin: 0 0 4px;
+  font-family: var(--sc-font-display);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #faf6ed;
+}
+.kc-rail__spell {
+  margin: 0 0 6px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  color: var(--sc-accent);
+}
+.kc-rail__desc {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--sc-ink-soft);
+  line-height: 1.45;
+}
+.kc-rail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.kc-rail__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+  text-decoration: none;
+}
+.kc-rail__open--adv { color: #8cf0bd; }
+.kc-rail__open:hover { text-decoration: underline; }
+
+/* ---- Act 4: Citadel Morph & Spell Attunement Console -------------------- */
+.kc-console-panel {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(10, 20, 16, 0.92);
+  border: 1px solid var(--kc-border);
+  max-width: 34rem;
+  backdrop-filter: blur(10px);
+}
+.kc-console-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.kc-attune-btn {
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 240, 189, 0.36);
+  background: #12241c;
+  color: var(--sc-ink);
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+.kc-attune-btn[aria-pressed="true"] {
+  background: var(--kc-gold);
+  color: #161108;
+  border-color: #fff3da;
+  font-weight: 700;
+}
+.kc-console-readout { margin: 0; font-size: 0.86rem; color: #dcebe3; }
+
+/* ---- Act 5: Pinned Dawn Sanctuary & Interactive Seal Exporter ----------- */
+.kc-finale-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.kc-seal-card {
+  padding: clamp(16px, 2.4vw, 24px);
+  border-radius: 18px;
+  background: rgba(10, 20, 16, 0.94);
+  border: 1px solid var(--kc-border-warm);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.58);
+  max-width: 45rem;
+  backdrop-filter: blur(12px);
+}
+.kc-seal-card h2 {
+  margin: 0 0 6px;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+  line-height: 1.08;
+  color: #faf6ed;
+}
+.kc-seal-card p { margin: 0 0 11px; font-size: 0.88rem; color: #dcebe3; }
+.kc-seal-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.kc-seal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.kc-seal-input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(140, 240, 189, 0.34);
+  background: #0b1612;
+  color: #faf6ed;
+  font-family: var(--sc-font-text);
+  font-size: 0.88rem;
+}
+.kc-seal-btn {
+  appearance: none;
+  cursor: pointer;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 232, 188, 0.6);
+  background: linear-gradient(135deg, #ffd285, #e3a857);
+  color: #161006;
+  font-family: var(--sc-font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.kc-seal-btn--ghost {
+  background: #13251d;
+  color: var(--sc-accent);
+  border-color: rgba(140, 240, 189, 0.44);
+}
+.kc-seal-btn--ghost:hover {
+  background: rgba(140, 240, 189, 0.14);
+}
+.kc-seal-aphorism {
+  margin: 0 0 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(18, 36, 28, 0.85);
+  border-left: 3px solid var(--kc-gold);
+  font-size: 0.82rem;
+  color: #f8f1e1;
+  line-height: 1.45;
+}
+.kc-seal-aphorism__tag {
+  display: block;
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--kc-gold);
+  margin-bottom: 2px;
+}
+.kc-seal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.kc-seal-status {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-accent);
+}
+.kc-seal-preview {
+  width: 224px;
+  height: 126px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 210, 133, 0.42);
+  background: #0b1612;
+  display: block;
+  cursor: zoom-in;
+}

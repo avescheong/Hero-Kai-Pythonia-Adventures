@@ -60,21 +60,29 @@ Pure static HTML / CSS / JavaScript — **no Node.js, no bundler, no backend dat
 
 ```text
 Hero_Kai_Story_Website/
-├── index.html                  # 5-act scrollytelling experience, 52-scene reader, Realm modal, Spellkeeper Certificate
-├── scrollcraft.css             # Scrollytelling visual styles, responsive layout & reduced-motion support
-├── scrollcraft.js              # Scroll-driven video scrubbing, pan rails, cue reveals & motion engine
-├── .nojekyll                   # Ready for direct static hosting on GitHub Pages
+├── index.html                      # Clean semantic HTML (5-act handscroll, reader, Realm modal & Certificate)
+├── scrollcraft.css                 # Scrollytelling visual styles, responsive layout & reduced-motion support
+├── scrollcraft.js                  # Scroll-driven video scrubbing, pan rails, cue reveals & motion engine
+├── MODULAR_ARCHITECTURE_PLAN.md    # Modular CSS/JS architecture & maintenance reference
+├── .nojekyll                       # Ready for direct static hosting on GitHub Pages
+├── css/
+│   └── 01-tokens-base.css .. 06-responsive.css     # Standalone domain-scoped stylesheets
+├── js/
+│   ├── main.js                                     # Application bootstrapper
+│   ├── core/                                       # Bilingual i18n dictionary, app state store & module registry
+│   ├── data/                                       # Offline file:// safe fallbacks (world & Jing Si)
+│   └── modules/                                    # Audio, scrollmap, Citadel VFX, reader, codex & PNG seal exporter
 ├── chapters/
 │   ├── chapter-01.html .. chapter-13.html          # Beginner chapter readers (4 scenes + spell box each)
 │   └── chapter-01-advance.html .. -13-advance.html # Advance chapter readers (scroll-unfolding full story)
 ├── data/
-│   ├── world.json              # Canonical story, cast, 12 realms, 52 scenes & 11 Python spells
-│   └── jingsi_aphorisms.json   # Bilingual Jing Si Aphorisms (EN / 繁體中文) for the take-home certificate
+│   ├── world.json                  # Canonical story, cast, 12 realms, 52 scenes & 11 Python spells
+│   └── jingsi_aphorisms.json       # Bilingual Jing Si Aphorisms (EN / 繁體中文) for the take-home certificate
 └── assets/
-    ├── scenes/                 # 52 illustrated WebP storybook panels (01_PRO_S01.webp .. 52_CH11_S04.webp)
-    ├── cast/                   # 8 character portraits (used in chapters, codex & certificate)
-    ├── audio/                  # peaceful.mp3 & spell-chime.mp3
-    └── *.mp4 / *.webp / *.png  # Hero scrub clips, Citadel charge battle clip, posters & rail cards
+    ├── scenes/                     # 52 illustrated WebP storybook panels (01_PRO_S01.webp .. 52_CH11_S04.webp)
+    ├── cast/                       # 8 character portraits (used in chapters, codex & certificate)
+    ├── audio/                      # peaceful.mp3 & spell-chime.mp3
+    └── *.mp4 / *.webp / *.png      # Hero scrub clips, Citadel charge battle clip, posters & rail cards
 ```
 
 ---

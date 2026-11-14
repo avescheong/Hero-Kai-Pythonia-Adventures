@@ -1,0 +1,423 @@
+/* ============================================================================
+ * 05-codex-modals.css
+ * Hero Kai · Pythonia: Three Pillars Spread, Cast/Realm/Spell Codex & Realm Modal
+ * ============================================================================
+ * Covers:
+ *   1. Three Pillars Supporting Spread & Self-Drawing SVG Constellation (.kc-spread*)
+ *   2. Interactive Codex Sanctuary Header & Kindness Filter Pills (.kc-sanctuary*)
+ *   3. 8 Storybook Cast Cards (.kc-cast-grid, .kc-cast-card*)
+ *   4. 12 Kingdom Realm Cards (.kc-district-grid, .kc-district-card*)
+ *   5. 11 Ancient Spells Lesson Cards (.kc-chapter-group, .kc-lesson-card*)
+ *   6. Interactive Realm Explorer Modal Dialog (.kc-realm-modal, .kc-realm-dialog*)
+ * ============================================================================ */
+
+/* ---- Codex & Cast Cards ------------------------------------------------- */
+.kc-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: center;
+  margin-bottom: clamp(44px, 7vh, 76px);
+}
+.kc-spread__copy h2 {
+  margin: 0 0 12px;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.8rem, 3.3vw, 2.9rem);
+  line-height: 1.1;
+  color: #faf6ed;
+}
+.kc-spread__copy p {
+  margin: 0 0 12px;
+  color: var(--sc-ink-soft);
+  max-width: 54ch;
+}
+.kc-circuit-card {
+  padding: 20px;
+  border-radius: 18px;
+  background: #101f19;
+  border: 1px solid var(--kc-border);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.42);
+}
+.kc-circuit-svg { width: 100%; height: auto; display: block; }
+.kc-circuit-trace {
+  stroke-dasharray: 920;
+  stroke-dashoffset: calc(920 * (1 - clamp(0, var(--kc-circuit-p, 1), 1)));
+}
+
+.kc-sanctuary { display: grid; gap: clamp(32px, 5vh, 52px); }
+.kc-sanctuary__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(140, 240, 189, 0.16);
+}
+.kc-sanctuary__head h2 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.6rem, 2.9vw, 2.4rem);
+  color: #faf6ed;
+}
+.kc-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.kc-pill {
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 240, 189, 0.28);
+  background: #102019;
+  color: var(--sc-ink);
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+.kc-pill[aria-pressed="true"] {
+  background: var(--sc-accent);
+  color: var(--sc-accent-ink);
+  border-color: var(--sc-accent);
+  font-weight: 700;
+}
+
+.kc-block-title {
+  margin: 0 0 14px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kc-gold);
+}
+
+.kc-cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 16px;
+}
+.kc-cast-card {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #101e18;
+  border: 1px solid rgba(140, 240, 189, 0.2);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.kc-cast-card:hover,
+.kc-cast-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(255, 210, 133, 0.56);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+  outline: none;
+}
+.kc-cast-card__banner {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #09130f;
+}
+.kc-cast-card__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 360ms ease;
+}
+.kc-cast-card:hover .kc-cast-card__banner img {
+  transform: scale(1.06);
+}
+.kc-cast-card__banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 30, 24, 0.04) 28%, rgba(16, 30, 24, 0.97) 100%);
+  pointer-events: none;
+}
+.kc-cast-card__badge {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--sc-accent);
+  letter-spacing: 0.04em;
+}
+.kc-cast-card__body {
+  padding: 0 16px 16px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 5px;
+  flex: 1;
+}
+.kc-cast-card h4 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.18rem;
+  color: #faf6ed;
+}
+.kc-cast-card__debut {
+  font-family: var(--sc-font-mono);
+  font-size: 0.7rem;
+  color: var(--kc-gold);
+}
+.kc-cast-card p {
+  margin: 2px 0 0;
+  font-size: 0.84rem;
+  color: var(--sc-ink-soft);
+  line-height: 1.5;
+}
+
+.kc-district-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 16px;
+}
+.kc-district-card {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #101d18;
+  border: 1px solid rgba(255, 210, 133, 0.22);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.kc-district-card:hover,
+.kc-district-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 210, 133, 0.65);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+  outline: none;
+}
+.kc-district-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #08120e;
+}
+.kc-district-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 340ms ease;
+}
+.kc-district-card:hover .kc-district-card__thumb img {
+  transform: scale(1.06);
+}
+.kc-district-card__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 29, 24, 0.1) 20%, rgba(16, 29, 24, 0.96) 100%);
+  pointer-events: none;
+}
+.kc-district-card__zone {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.84);
+  border: 1px solid rgba(255, 210, 133, 0.4);
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  color: var(--kc-gold);
+  letter-spacing: 0.04em;
+}
+.kc-district-card__body {
+  padding: 0 15px 15px;
+  margin-top: -16px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.kc-district-card h4 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.14rem;
+  color: #faf6ed;
+}
+.kc-district-card__concept {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-accent);
+  margin-bottom: 4px;
+}
+.kc-district-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--sc-ink-soft);
+  line-height: 1.48;
+}
+.kc-district-card__cta {
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--kc-gold);
+  font-weight: 700;
+}
+
+/* ---- Interactive Realm Explorer Modal --------------------------------- */
+.kc-realm-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 230;
+  background: rgba(4, 9, 7, 0.92);
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 28px);
+  backdrop-filter: blur(8px);
+}
+.kc-realm-modal[hidden] { display: none; }
+.kc-realm-dialog {
+  width: min(860px, 95vw);
+  max-height: 91vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  background: #0f1e18;
+  border: 1px solid rgba(255, 210, 133, 0.42);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.65);
+}
+.kc-realm-dialog__hero {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #08120e;
+}
+.kc-realm-dialog__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.kc-realm-dialog__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.88);
+  border: 1px solid rgba(255, 210, 133, 0.48);
+  color: #faf6ed;
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.kc-realm-dialog__body {
+  padding: clamp(16px, 3vw, 24px);
+  display: grid;
+  gap: 12px;
+}
+.kc-realm-dialog__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  color: var(--kc-gold);
+}
+.kc-realm-dialog h3 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  color: #faf6ed;
+}
+.kc-realm-dialog__spell {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #0a1510;
+  border: 1px solid rgba(140, 240, 189, 0.28);
+  display: grid;
+  gap: 8px;
+}
+.kc-realm-dialog__spell code {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #060f0b;
+  color: #ffd285;
+  font-family: var(--sc-font-mono);
+  font-size: 0.86rem;
+  overflow-x: auto;
+}
+.kc-realm-dialog__out {
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(140, 240, 189, 0.12);
+  border: 1px solid rgba(140, 240, 189, 0.34);
+  color: #dff8ea;
+  font-family: var(--sc-font-mono);
+  font-size: 0.8rem;
+}
+.kc-realm-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.kc-chapters { display: grid; gap: 22px; }
+.kc-chapter-group {
+  padding: 18px;
+  border-radius: 16px;
+  background: #0f1c17;
+  border: 1px solid rgba(140, 240, 189, 0.16);
+}
+.kc-chapter-group__head { margin-bottom: 14px; }
+.kc-chapter-group__head h4 {
+  margin: 0 0 4px;
+  font-family: var(--sc-font-display);
+  font-size: 1.32rem;
+  color: #faf6ed;
+}
+.kc-chapter-group__head p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--sc-ink-soft);
+}
+.kc-lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.kc-lesson-card {
+  padding: 13px 14px;
+  border-radius: 12px;
+  background: #14251e;
+  border: 1px solid rgba(140, 240, 189, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.kc-lesson-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.67rem;
+  color: var(--kc-gold);
+}
+.kc-lesson-card h5 {
+  margin: 0;
+  font-family: var(--sc-font-mono);
+  font-size: 0.84rem;
+  color: #faf6ed;
+  line-height: 1.35;
+}
+.kc-lesson-card__concept { margin: 0; font-size: 0.8rem; color: var(--sc-accent); }
+.kc-lesson-card__habit { margin: 0; font-size: 0.8rem; color: var(--sc-ink-soft); }
