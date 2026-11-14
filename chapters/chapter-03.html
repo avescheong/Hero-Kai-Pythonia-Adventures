@@ -1,0 +1,1606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 2: WEAVE — Grandma Looma&#x27;s Cottage &amp; the Friendly Pup — Full Scene Story (Beginner) | Hero Kai Pythonia</title>
+  <style>
+    :root {
+      --bg: #08120e;
+      --surface: #0f1e18;
+      --card: #0c1813;
+      --ink: #f6f2e8;
+      --ink-soft: #cadad1;
+      --accent: #8cf0bd;
+      --gold: #ffd285;
+      --cyan: #79d8e6;
+      --border: rgba(140, 240, 189, 0.24);
+      --border-warm: rgba(255, 210, 133, 0.36);
+      --font-display: "Palatino Linotype", "Book Antiqua", "Noto Serif TC", Georgia, serif;
+      --font-text: "Segoe UI", "Microsoft JhengHei", "PingFang TC", system-ui, -apple-system, sans-serif;
+      --font-mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-text);
+      line-height: 1.65;
+      overflow-x: clip;
+    }
+    a { color: inherit; }
+
+    /* ---- Scroll Progress Ribbon ------------------------------------------ */
+    .ch-scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      z-index: 120;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      pointer-events: none;
+    }
+
+    /* ---- Floating Translucent Top Bar ------------------------------------ */
+    .ch-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(6, 15, 11, 0.90) 0%, rgba(6, 15, 11, 0.62) 100%);
+      border-bottom: 1px solid rgba(140, 240, 189, 0.16);
+    }
+    .ch-topbar__inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 8px clamp(12px, 3vw, 28px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .ch-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ch-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.92);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: border-color 160ms ease, color 160ms ease;
+    }
+    .ch-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .ch-select {
+      appearance: none;
+      padding: 6px 28px 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-warm);
+      background: #102019 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffd285' d='M2 4l4 4 4-4z'/%3E%3C/svg%3E") no-repeat right 10px center;
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-family: var(--font-text);
+      cursor: pointer;
+      max-width: min(290px, 56vw);
+    }
+
+    .ch-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ch-mode-switch,
+    .ch-level-switch,
+    .ch-lang-group {
+      display: inline-flex;
+      padding: 2px;
+      border-radius: 999px;
+      background: rgba(10, 21, 16, 0.88);
+      border: 1px solid var(--border);
+    }
+    .ch-mode-pill,
+    .ch-level-pill,
+    .ch-lang-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      transition: background 150ms ease, color 150ms ease;
+    }
+    .ch-mode-pill[aria-pressed="true"],
+    .ch-level-pill[aria-pressed="true"],
+    .ch-lang-btn[aria-pressed="true"] {
+      background: var(--gold);
+      color: #161005;
+    }
+    .ch-level-pill[data-level="advance"][aria-pressed="true"] {
+      background: linear-gradient(135deg, #ffd285, #8cf0bd);
+      color: #0b1611;
+    }
+
+    /* ---- Soothing Music Pill --------------------------------------------- */
+    .ch-music-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px 3px 4px;
+      border-radius: 999px;
+      background: rgba(14, 28, 22, 0.90);
+      border: 1px solid var(--border);
+      font-size: 0.72rem;
+    }
+    .ch-music-toggle {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(140, 240, 189, 0.16);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .ch-music-toggle[data-playing="false"] {
+      background: #172720;
+      color: var(--ink-soft);
+    }
+    .ch-track-btn {
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 210, 133, 0.28);
+      background: transparent;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+    .ch-vol {
+      width: 56px;
+      accent-color: #8cf0bd;
+      cursor: pointer;
+    }
+
+    /* ---- Right-Edge Hanging Scene Progress Spine ------------------------- */
+    .ch-spine {
+      position: fixed;
+      right: clamp(10px, 1.8vw, 24px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 80;
+      display: grid;
+      gap: 10px;
+      padding: 10px 6px;
+      border-radius: 999px;
+      background: rgba(7, 16, 12, 0.62);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.18);
+    }
+    .ch-spine[hidden] { display: none; }
+    .ch-spine__node {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+    }
+    .ch-spine__label {
+      opacity: 0;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(7, 16, 12, 0.92);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 150ms ease;
+    }
+    .ch-spine__node:hover .ch-spine__label,
+    .ch-spine__node[data-active="true"] .ch-spine__label {
+      opacity: 1;
+      color: var(--gold);
+    }
+    .ch-spine__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #172b22;
+      border: 1.5px solid rgba(140, 240, 189, 0.52);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+    .ch-spine__node[data-active="true"] .ch-spine__dot {
+      background: var(--gold);
+      border-color: #fff4da;
+      transform: scale(1.3);
+    }
+
+    /* ---- Full-Screen Scroll-Unfolding Scene Sections --------------------- */
+    .ch-story-flow {
+      width: 100%;
+    }
+    .ch-scroll-scene {
+      position: relative;
+      height: 235vh;
+      width: 100%;
+    }
+    .ch-stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #060f0b;
+    }
+    .ch-stage__media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .ch-stage__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transform-origin: center center;
+      transform: scale(calc(1 + var(--scene-p, 0) * 0.065));
+      will-change: transform;
+    }
+    .ch-stage__scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(102deg,
+          rgba(7, 15, 12, 0.92) 0%,
+          rgba(7, 15, 12, 0.78) 38%,
+          rgba(7, 15, 12, 0.28) 68%,
+          rgba(7, 15, 12, 0.06) 92%),
+        linear-gradient(180deg,
+          rgba(7, 15, 12, 0.56) 0%,
+          transparent 24%,
+          transparent 64%,
+          rgba(7, 15, 12, 0.88) 100%);
+    }
+
+    /* Top-left floating page indicator inside the full-screen stage */
+    .ch-stage__topmeta {
+      position: absolute;
+      top: calc(var(--topbar-h, 64px) + 14px);
+      left: clamp(20px, 5vw, 72px);
+      z-index: 6;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .ch-glass-pill {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(7, 16, 12, 0.78);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-warm);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .ch-glass-pill--mint {
+      border-color: var(--border);
+      color: var(--accent);
+    }
+
+    /* Hero-Banner Copy Zone & Unfolding Beats */
+    .ch-stage__copy-zone {
+      position: absolute;
+      left: clamp(20px, 5vw, 72px);
+      bottom: clamp(32px, 7vh, 78px);
+      width: min(680px, calc(100vw - clamp(40px, 10vw, 144px)));
+      z-index: 5;
+      pointer-events: none;
+    }
+    body.is-advance .ch-stage__copy-zone {
+      width: min(760px, calc(100vw - clamp(40px, 10vw, 144px)));
+    }
+    .ch-beat {
+      position: relative;
+      will-change: opacity, transform;
+    }
+    .ch-beat--story-adv {
+      width: min(740px, 100%);
+      max-height: calc(100vh - var(--topbar-h, 64px) - 110px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 18px 22px;
+      border-radius: 18px;
+      background: rgba(7, 15, 12, 0.84);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(140, 240, 189, 0.34);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.56);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(140, 240, 189, 0.45) transparent;
+    }
+    .ch-beat--story-adv .ch-hero-scene-title {
+      font-size: clamp(1.45rem, 2.7vw, 2.35rem);
+      margin-bottom: 10px;
+    }
+    .ch-beat--story-adv .ch-hero-narration {
+      max-width: 64ch;
+      font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+      line-height: 1.68;
+      text-shadow: none;
+      white-space: pre-wrap;
+    }
+    .ch-beat--dialogue {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .ch-chapter-banner-pill,
+    .ch-subsection-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: rgba(255, 210, 133, 0.14);
+      border: 1px solid rgba(255, 210, 133, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .ch-subsection-pill {
+      margin-right: 6px;
+      background: rgba(140, 240, 189, 0.14);
+      border-color: rgba(140, 240, 189, 0.45);
+      color: var(--accent);
+    }
+    .ch-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .ch-eyebrow::before {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.75;
+    }
+    .ch-hero-scene-title {
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.8vw, 3.15rem);
+      font-weight: 700;
+      line-height: 1.09;
+      letter-spacing: -0.01em;
+      color: #fbf7ef;
+      text-shadow: 0 2px 18px rgba(4, 10, 8, 0.85);
+    }
+    .ch-hero-narration {
+      margin: 0 0 10px;
+      max-width: 54ch;
+      font-size: clamp(1.02rem, 1.32vw, 1.18rem);
+      line-height: 1.72;
+      color: #f0f6f2;
+      text-shadow: 0 1px 12px rgba(4, 10, 8, 0.85);
+    }
+    .ch-hero-narration--zh {
+      color: #ffe3ae;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255, 210, 133, 0.28);
+    }
+    .ch-scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(11, 22, 18, 0.72);
+      border: 1px solid rgba(140, 240, 189, 0.28);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+    }
+
+    /* Beat 2 Elements: Cast, Dialogue Bubble, Spell Pill & Actions */
+    .ch-cast-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .ch-cast-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px 4px 5px;
+      border-radius: 999px;
+      background: rgba(12, 24, 19, 0.88);
+      border: 1px solid rgba(140, 240, 189, 0.25);
+      font-size: 0.78rem;
+      color: var(--ink);
+    }
+    .ch-cast-chip img {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+    .ch-hero-dialogue {
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(10, 20, 16, 0.88);
+      backdrop-filter: blur(8px);
+      border-left: 4px solid var(--gold);
+      border-top: 1px solid rgba(255, 210, 133, 0.24);
+      border-right: 1px solid rgba(255, 210, 133, 0.14);
+      border-bottom: 1px solid rgba(255, 210, 133, 0.14);
+      margin-bottom: 12px;
+      font-size: clamp(1rem, 1.25vw, 1.12rem);
+      color: #fbf4e4;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+    }
+    .ch-hero-spell-pill {
+      display: inline-block;
+      margin: 0 0 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(8, 17, 13, 0.92);
+      border: 1px solid rgba(140, 240, 189, 0.42);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: #ffe2a8;
+      white-space: pre-wrap;
+      max-width: 100%;
+    }
+    .ch-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .ch-btn {
+      appearance: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(16, 33, 26, 0.92);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.86rem;
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+    .ch-btn:hover { border-color: var(--gold); transform: translateY(-1px); }
+    .ch-btn--gold {
+      background: linear-gradient(135deg, #ffd285, #e3a857);
+      color: #161005;
+      border-color: rgba(255, 232, 188, 0.82);
+      font-weight: 700;
+    }
+
+    /* ---- 4-Scene Grid View Mode (Optional Alternate Toggle) --------------- */
+    .ch-grid-wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 88px clamp(14px, 3vw, 28px) 32px;
+    }
+    .ch-storyboard {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .ch-board-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0d1a15;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .ch-board-card__img {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #07100c;
+      cursor: zoom-in;
+    }
+    .ch-board-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .ch-board-card__body {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 9px;
+    }
+    .ch-board-card__body h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: #fbf7ee;
+    }
+
+    /* ---- Chapter Finale Sanctuary & Interactive Spell Sandbox ------------ */
+    .ch-finale {
+      position: relative;
+      z-index: 10;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(140, 240, 189, 0.12), transparent 44%),
+        radial-gradient(circle at 84% 12%, rgba(255, 210, 133, 0.12), transparent 46%),
+        #091410;
+      border-top: 1px solid var(--border-warm);
+      padding: clamp(48px, 7vh, 80px) clamp(16px, 3vw, 32px) clamp(56px, 8vh, 92px);
+    }
+    .ch-finale__inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+    .ch-finale__head h2 {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      color: #fbf7ef;
+    }
+    .ch-lower-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+    .ch-panel {
+      padding: clamp(18px, 2.5vw, 26px);
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .ch-panel h3 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fbf7ee;
+    }
+    .ch-spell-code {
+      margin: 0 0 10px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      background: #07100c;
+      border: 1px solid rgba(140, 240, 189, 0.24);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: #ffe2a8;
+      white-space: pre-wrap;
+    }
+    .ch-spell-input {
+      flex: 1 1 180px;
+      padding: 8px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: #0f2019;
+      color: #fff;
+      font-size: 0.92rem;
+    }
+    .ch-spell-output {
+      margin-top: 10px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      background: rgba(140, 240, 189, 0.12);
+      border: 1px dashed rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      color: #d9ffeb;
+    }
+    .ch-recap-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .ch-recap-thumb {
+      appearance: none;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #08120d;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink);
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+    .ch-recap-thumb:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .ch-recap-thumb img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+    .ch-recap-thumb__cap {
+      padding: 7px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ch-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #10211a 0%, #15281f 100%);
+      border: 1px solid var(--border-warm);
+    }
+
+    /* ---- Fullscreen Lightbox --------------------------------------------- */
+    .ch-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 220;
+      background: rgba(4, 9, 7, 0.94);
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 32px);
+    }
+    .ch-lightbox[hidden] { display: none; }
+    .ch-lightbox__dialog {
+      max-width: min(1160px, 95vw);
+      max-height: 92vh;
+      display: grid;
+      gap: 12px;
+    }
+    .ch-lightbox__dialog img {
+      max-width: 100%;
+      max-height: 76vh;
+      width: auto;
+      margin: 0 auto;
+      border-radius: 14px;
+      border: 1px solid var(--border-warm);
+    }
+    .ch-lightbox__bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+    }
+
+    /* ---- Responsive & Reduced Motion ------------------------------------- */
+    @media (max-width: 860px) {
+      .ch-storyboard,
+      .ch-lower-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .ch-recap-thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .ch-vol, .ch-track-btn { display: none; }
+      .ch-stage__scrim {
+        background:
+          linear-gradient(180deg,
+            rgba(7, 15, 12, 0.62) 0%,
+            rgba(7, 15, 12, 0.25) 26%,
+            rgba(7, 15, 12, 0.80) 56%,
+            rgba(7, 15, 12, 0.95) 100%);
+      }
+    }
+    @media (max-width: 640px) {
+      .ch-spine { display: none; }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 16px;
+        right: 16px;
+        width: auto;
+        bottom: 20px;
+      }
+      .ch-beat--story-adv {
+        padding: 14px 16px;
+        max-height: calc(100vh - var(--topbar-h, 110px) - 76px);
+      }
+      .ch-stage__topmeta { left: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ch-scroll-scene {
+        height: auto;
+        min-height: 100vh;
+      }
+      .ch-stage {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 96px 0 42px;
+      }
+      .ch-stage__img { transform: none !important; }
+      .ch-stage__copy-zone {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin: 0 clamp(20px, 5vw, 72px);
+        display: grid;
+        gap: 18px;
+      }
+      .ch-beat--story-adv {
+        max-height: none;
+      }
+      .ch-beat--story,
+      .ch-beat--dialogue {
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+      }
+      .ch-scroll-cue { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="kc-bgm-audio" src="../assets/audio/peaceful.mp3" loop preload="auto"></audio>
+  <audio id="kc-chime-audio" src="../assets/audio/spell-chime.mp3" preload="auto"></audio>
+  <div class="ch-scroll-progress" id="ch-scroll-progress" aria-hidden="true"></div>
+
+  <header class="ch-topbar">
+    <div class="ch-topbar__inner">
+      <div class="ch-brand">
+        <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
+        <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
+        <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
+      </div>
+
+      <div class="ch-controls">
+        <div class="ch-level-switch" role="group" aria-label="Story depth level">
+          <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
+          <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
+        </div>
+
+        <div class="ch-mode-switch" role="group" aria-label="Reading mode">
+          <button class="ch-mode-pill" type="button" id="ch-mode-scroll" aria-pressed="true">✨ Scroll Story</button>
+          <button class="ch-mode-pill" type="button" id="ch-mode-board" aria-pressed="false">🖼️ 4-Scene Grid</button>
+        </div>
+
+        <div class="ch-lang-group" role="group" aria-label="Language mode">
+          <button class="ch-lang-btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="ch-lang-btn" type="button" data-lang="zh-Hant" aria-pressed="false">繁體中文</button>
+          <button class="ch-lang-btn" type="button" data-lang="dual" aria-pressed="false">雙語 Dual</button>
+        </div>
+
+        <div class="ch-music-pill">
+          <button class="ch-music-toggle" type="button" id="ch-music-btn" data-playing="false">♪ Peaceful Music</button>
+          <button class="ch-track-btn" type="button" id="ch-track-btn" title="Switch soothing instrument">🌿 MP3</button>
+          <input class="ch-vol" type="range" id="ch-vol-slider" min="0" max="100" value="35" aria-label="Music volume" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="ch-spine" id="ch-spine" aria-label="Chapter scene progress"></aside>
+
+  <main>
+    <div class="ch-story-flow" id="ch-story-flow"></div>
+
+    <section class="ch-finale" id="ch-finale">
+      <div class="ch-finale__inner">
+        <header class="ch-finale__head">
+          <p class="ch-eyebrow" id="ch-eyebrow"></p>
+          <h2 id="ch-title"></h2>
+          <p style="margin:0;color:var(--accent);font-family:var(--font-mono);font-size:0.86rem;" id="ch-subtitle"></p>
+        </header>
+
+        <div class="ch-lower-grid">
+          <article class="ch-panel" id="ch-spell-sandbox"></article>
+          <article class="ch-panel" id="ch-story-summary"></article>
+        </div>
+
+        <div>
+          <p class="ch-eyebrow" id="ch-recap-label" style="margin-bottom:10px;">4 Illustrated Scenes in This Chapter (Click to Zoom Fullscreen)</p>
+          <div class="ch-recap-thumbs" id="ch-recap-thumbs"></div>
+        </div>
+
+        <footer class="ch-footer-nav" id="ch-footer-nav"></footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="ch-lightbox" id="ch-lightbox" hidden role="dialog" aria-modal="true" aria-label="Fullscreen illustration viewer">
+    <div class="ch-lightbox__dialog">
+      <img id="ch-lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" />
+      <div class="ch-lightbox__bar">
+        <button class="ch-btn" type="button" id="ch-lb-prev">&larr; Prev Scene</button>
+        <span id="ch-lb-caption" style="font-size:0.9rem;text-align:center;"></span>
+        <div style="display:flex;gap:8px;">
+          <button class="ch-btn" type="button" id="ch-lb-next">Next Scene &rarr;</button>
+          <button class="ch-btn ch-btn--gold" type="button" id="ch-lb-close">Close &times;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-03","partNumber":3,"code":"SPELL 2 · WEAVE","zone":"ENV_R02","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗","subtitleEn":"Spell 2: print(\"Hello\", \"Pythonia!\") · Join words with neat space","subtitleZh":"第二咒：print(\"Hello\", \"Pythonia!\") · 用逗號留下剛好的呼吸空間","valueId":"love-others","valueEn":"Love Others","valueZh":"愛人","image":"assets/scenes/11_CH02_S03.webp","imageAltEn":"Grandma Looma smiling warmly beside her giant wooden tapestry loom lit by a glowing hanging lantern","imageAltZh":"魯瑪奶奶在掛著暖光燈籠的巨大木頭織布機旁露出慈祥的笑容","castIds":["hero-kai","grandma-looma","string"],"paragraphsEn":["Kai walked down the winding dirt path beneath tall whispering pines. Tied to every branch were thousands of colorful silk ribbons swaying in the breeze like living rainbows.","Following the fluttering trail, Kai reached a cozy wooden cottage draped in woven banners. Inside, kind Grandma Looma worked at a giant oak loom—and a scruffy, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","\"Hello.\" ... \"Name.\" ... \"Kai.\" he blurted out slowly. Grandma Looma laughed gently and held up her carved wooden shuttle. She showed him that weaving a comma , between words stitches them into one warm sentence with a neat, friendly space between every neighbor.","Kai held up the glowing green thread and cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed smoothly! He thanked Grandma Looma, gave the cheerful golden puppy a gentle pat on the head, and set off down the sunny trail with his new furry friend trotting beside him."],"paragraphsZh":["凱沿著彎曲的泥土小路走進高聳的松林，枝頭上繫著成千上萬條彩色絲帶，在微風中像會跳舞的彩虹一樣飄揚。","順著絲帶，凱來到一間掛滿手工掛毯的溫暖木屋。屋裡慈祥的魯瑪奶奶正操作著巨大的橡木織布機，還有一隻毛茸茸、尚未取名的金黃色小狗搖著尾巴跑來聞凱的靴子！","「你好。」……「名字。」……「凱。」他結結巴巴地說。魯瑪奶奶溫柔地笑著拿起木梭告訴他：只要在詞語之間放進「逗號 ,」，魔法就會自動留下剛剛好又舒服的間隔，把話織成一塊完整的暖布。","凱舉起發光的綠色絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，句子流暢地說出口了！他向魯瑪奶奶道謝，摸摸小黃狗的頭，和小夥伴一起踏上新的旅程。"],"dialogue":[{"speakerEn":"Grandma Looma","speakerZh":"魯瑪奶奶","lineEn":"\"A single thread cannot keep anyone warm, young apprentice. Weave your words with a comma, and every neighbor gets comfortable breathing room!\"","lineZh":"「單獨一條線沒辦法讓人保暖喔，小法師。用逗號把字詞織在一起，每個字之間都會有舒服的空間！」"}],"spell":{"nameEn":"Spell 2: WEAVE — Comma (,)","nameZh":"第二咒：WEAVE 編織魔法 — 逗號 (,)","code":"print(\"Hello\", \"Pythonia!\")","explainEn":"A comma (,) inside print() joins multiple strings and automatically puts one neat space between them.","explainZh":"在 print() 裡放進逗號 (,)，就能把好幾段文字連在一起說，而且會自動加上一個空格喔！","demoBtnEn":"Weave Words Together 🧶","demoBtnZh":"編織完整句子 🧶","demoOutputEn":"Hello Pythonia!  ✨ (Smooth, warm, and neatly spaced!)","demoOutputZh":"Hello Pythonia!  ✨（流暢、溫暖，間隔剛剛好！）"},"scenes":[{"pageNumber":9,"sceneIndex":1,"sceneId":"CH02_S01","image":"assets/scenes/09_CH02_S01.webp","titleEn":"Entering the Ribbon-Draped Loom Forest","titleZh":"走進彩虹絲帶的織錦森林","narrationEn":"Tightening his backpack, Kai followed the winding dirt trail beneath tall whispering pines, where thousands of silk ribbons swayed like living rainbows leading to the Weaver's Cottage.","narrationZh":"凱拉緊背包走進高聳的松林，枝頭上繫著成千上萬條像活彩虹般飄揚的絲帶，一路指引他來到溫馨的織布木屋。","dialogueEn":"Kai: \"So many living rainbows!\"","dialogueZh":"小英雄凱：「好多會跳舞的彩虹絲帶！」","spellCode":"# Follow the fluttering ribbons","spellLabelEn":"Loom Forest Trail","spellLabelZh":"織錦森林小徑","zone":"ENV_R02","mood":"enchanted woodland wonder","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"2. WEAVE — The Weaver's Loom in Loom Forest (Thread = ,)","advanceSectionZh":"二、WEAVE 編織咒 — 織錦森林的織布機（絲線逗號：,）","advanceNarrationEn":"Following the fluttering trail of colorful ribbons deeper into Loom Forest, Kai walked beneath ancient pines draped in silk banners of crimson, emerald, and gold.\n\nEvery gentle breeze carried soft chimes from the woven streamers overhead, guiding Kai step by step into a warm, sunlit clearing.","advanceNarrationZh":"順著空中飄揚的七彩絲帶一路深入織錦森林，凱走進了掛滿翠綠、金黃與緋紅綢緞的古老松林。\n\n微風拂過時，枝頭上的絲帶輕輕搖曳作響，一步一步將凱引向森林深處一座灑滿陽光的溫暖林間空地。","advanceDialogueEn":"Kai: \"Thousands of ribbons... the Great Wizard was right. The trail is leading straight ahead!\"","advanceDialogueZh":"小英雄凱：「好幾千條彩色絲帶……大法師說得沒錯，這條路就在前方引領著我！」"},{"pageNumber":10,"sceneIndex":2,"sceneId":"CH02_S02","image":"assets/scenes/10_CH02_S02.webp","titleEn":"Grandma Looma's Loom & The Unnamed Pup","titleZh":"魯瑪奶奶的織布機與無名小黃狗","narrationEn":"Inside the cozy cottage, Grandma Looma sat working quietly at her giant oak loom—while a friendly, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","narrationZh":"木屋裡，慈祥的魯瑪奶奶正在巨大的橡木織布機前安靜工作——還有一隻友善、還沒取名字的金黃色小狗跑來聞凱的靴子！","dialogueEn":"Grandma Looma: \"A single thread cannot keep anyone warm.\"","dialogueZh":"魯瑪奶奶：「單獨一條線是沒辦法讓人保暖的喔。」","spellCode":"# \"Hello.\" ... \"Name.\" ... \"Kai.\"","spellLabelEn":"Meeting Grandma Looma","spellLabelZh":"遇見魯瑪奶奶與小狗","zone":"ENV_R02","mood":"cozy heartwarming hospitality","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"At the end of the ribbon trail stood a cozy wooden cottage draped in woven banners, where old Grandma Looma sat working calmly at a giant oak loom—while a friendly, unnamed golden-tan pup trotted right up to sniff Kai's boots.\n\n\"Hello.\" ... \"Name.\" ... \"Kai.\" Kai blurted out, stumbling one word at a time. Grandma Looma smiled gently: \"A single thread cannot keep anyone warm, young apprentice. Words are just like thread—weave them together with a comma ,, and Pythonia leaves a neat, comfortable space between them so they become a whole cloth!\"","advanceNarrationZh":"絲帶盡頭是一座掛滿織錦旗幟的溫馨木屋。慈祥的魯瑪奶奶正坐在巨大的橡木織布機前專心紡織，而一隻友善卻還沒取名的小黃狗，立刻搖著尾巴跑上前聞了聞凱的靴子。\n\n「你好。」……「名字。」……「凱。」凱還是只能一字一頓地說。魯瑪奶奶溫柔地笑了：「單獨一根線無法替任何人保暖。話語就像織線一樣——用逗號 , 把它們編織在一起，蟒蛇王國就會自動留出剛剛好、舒舒服服的空隙，讓字句變成一塊完整的暖布！」","advanceDialogueEn":"Grandma Looma: \"Weave words together with a comma , and Pythonia leaves a neat space between them!\"","advanceDialogueZh":"魯瑪奶奶：「用逗號 , 把詞語編織起來，蟒蛇王國就會貼心地在詞語之間留出舒適的空格！」"},{"pageNumber":11,"sceneIndex":3,"sceneId":"CH02_S03","image":"assets/scenes/11_CH02_S03.webp","titleEn":"Stitching Words: print(\"Hello\", \"Pythonia!\")","titleZh":"逗號編織：print(\"Hello\", \"Pythonia!\")","narrationEn":"Holding up the glowing green comma thread, Kai cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed together in one smooth, warm sentence!","narrationZh":"凱舉起發光的綠色逗號絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，詞語順暢地織成一句溫暖又完整的話！","dialogueEn":"Kai: \"Hello, Pythonia! My words flowed together!\"","dialogueZh":"小英雄凱：「Hello, Pythonia！我的話順利織在一起了！」","spellCode":"Spell: print(\"Hello\", \"Pythonia!\")","spellLabelEn":"Spell 2: WEAVE (,)","spellLabelZh":"第二咒：WEAVE 編織魔法 (,)","zone":"ENV_R02","mood":"delighted breakthrough","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Holding up the glowing green thread between his fingers, Kai linked his greetings smoothly with Grandma Looma's comma rune and cast: print(\"Hello\", \"Pythonia!\").\n\nAt last, his words flowed together in one smooth, warm sentence—each word connected yet resting comfortably side by side without crowding!","advanceNarrationZh":"凱舉起指尖閃耀微光的綠色織線，運用魯瑪奶奶教導的逗號魔法將詞彙串連起來，念出咒語：print(\"Hello\", \"Pythonia!\")。\n\n終於，他的話語像順滑的錦緞般一口氣流淌出來——兩個詞既緊密相連，中間又保留了乾淨溫暖的呼吸距離！","advanceDialogueEn":"Kai: \"print('Hello', 'Pythonia!') — It worked! My words flow smoothly together!\"","advanceDialogueZh":"小英雄凱：「print('Hello', 'Pythonia!') ——成功了！我的話語終於能流暢地連成一句溫暖的話！」"},{"pageNumber":12,"sceneIndex":4,"sceneId":"CH02_S04","image":"assets/scenes/12_CH02_S04.webp","titleEn":"Setting Off Toward the Rocky Valley","titleZh":"告別魯瑪奶奶出發","narrationEn":"Kai thanked Grandma Looma, gave the cheerful pup an affectionate pat on the head, and waved goodbye as the two of them stepped back out onto the sunlit trail.","narrationZh":"凱向魯瑪奶奶道謝，溫柔摸摸小黃狗的頭，揮手告別後和小夥伴一起走回陽光燦爛的林間小路。","dialogueEn":"Grandma Looma: \"Weave your words like warm cloth!\"","dialogueZh":"魯瑪奶奶：「把話語像暖布一樣好好織起來喔！」","spellCode":"# Off toward the rocky valley","spellLabelEn":"New Companion","spellLabelZh":"結伴啟程","zone":"ENV_R02","mood":"warmhearted farewell and companionship","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Glowing with pride, Kai thanked Grandma Looma warmly, knelt to give the friendly unnamed pup a cheerful pat on the head, and waved goodbye.\n\nAs the two of them stepped back out onto the sunlit forest trail, the little golden-tan pup stayed right at Kai's heels—already eager for their next horizon toward the distant rocky valley.","advanceNarrationZh":"凱開懷地向魯瑪奶奶道謝，蹲下身輕輕拍拍這隻還沒取名的小黃狗的腦袋，笑著揮手道別。\n\n當一人一狗重新踏上陽光燦爛的林間小路時，小黃狗已經一步也不離開凱的腳邊，精神抖擻地準備一起迎向遠方充滿迴音的岩石山谷。","advanceDialogueEn":"Kai: \"Thank you, Grandma Looma! Come on, little buddy—let's see where the sunlit trail goes!\"","advanceDialogueZh":"小英雄凱：「謝謝您，魯瑪奶奶！走吧，小夥伴，我們一起去看看陽光小路的盡頭有什麼！」"}],"chapterUrl":"chapters/chapter-03.html","chapterAdvanceUrl":"chapters/chapter-03-advance.html","paragraphsAdvanceEn":["Following fluttering rainbow ribbons beneath whispering pines, Kai reached Grandma Looma's cozy cottage, where an unnamed golden-tan pup trotted warmly up to greet his boots.","Teaching him that single threads can keep nobody warm, Grandma Looma showed Kai how the Comma Weave (,) gives words comfortable breathing room: print(\"Hello\", \"Pythonia!\")—and with smooth speech restored, Kai and the faithful pup marched onward together."],"paragraphsAdvanceZh":["順著飄揚的彩虹絲帶走進森林深處，凱來到魯瑪奶奶掛滿布幔的小木屋，還遇見一隻親切討喜、尚未取名的小黃狗。","魯瑪奶奶溫柔教導凱「單線難成暖衣」，學會用逗號編織咒 , 留出舒服的詞距後，凱順暢唸出 print(\"Hello\", \"Pythonia!\")，帶著緊跟在身邊的小黃狗歡喜朝下一站邁進。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script>
+    (() => {
+      const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
+      const part = payload.part;
+      const castList = payload.cast;
+      const navList = payload.navChapters;
+      const totalParts = navList.length;
+      const partIndex = part.partNumber - 1;
+      const scenes = Array.isArray(part.scenes) ? part.scenes : [];
+      const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const clamp01 = (v) => Math.max(0, Math.min(1, v));
+
+      let lang = localStorage.getItem("pythonia_lang") || "en";
+      if (!["en", "zh-Hant", "dual"].includes(lang)) lang = "en";
+      const urlLevelParam = new URLSearchParams(location.search).get("level");
+      let storyLevel = ["beginner", "advance"].includes(urlLevelParam) ? urlLevelParam : "beginner";
+      if (!["beginner", "advance"].includes(storyLevel)) storyLevel = "beginner";
+      let viewMode = "scroll"; // "scroll" (full-screen unfolding) | "board" (4-card grid)
+      let activeSceneIdx = 0;
+
+      const navFileFor = (navItem) => (storyLevel === "advance" && navItem.advanceFile ? navItem.advanceFile : navItem.file);
+
+      /* ---- Shared Soothing Music Controller ------------------------------ */
+      const bgmAudio = document.getElementById("kc-bgm-audio");
+      const chimeAudio = document.getElementById("kc-chime-audio");
+      const musicBtn = document.getElementById("ch-music-btn");
+      const trackBtn = document.getElementById("ch-track-btn");
+      const volSlider = document.getElementById("ch-vol-slider");
+
+      const Music = (() => {
+        let enabled = localStorage.getItem("pythonia_music_on") !== "false";
+        let mode = localStorage.getItem("pythonia_music_mode") || "mp3";
+        let vol = Math.min(1, Math.max(0, Number(localStorage.getItem("pythonia_music_vol") || 35) / 100));
+        let playing = false;
+        let ctx = null;
+        let timer = null;
+        let step = 0;
+
+        if (volSlider) volSlider.value = String(Math.round(vol * 100));
+        if (bgmAudio) bgmAudio.volume = vol;
+        if (chimeAudio) chimeAudio.volume = Math.min(0.45, vol + 0.1);
+
+        const savedTime = Number(sessionStorage.getItem("pythonia_bgm_time") || "0");
+        if (bgmAudio && Number.isFinite(savedTime) && savedTime > 0) {
+          bgmAudio.addEventListener("loadedmetadata", () => {
+            if (savedTime < bgmAudio.duration) bgmAudio.currentTime = savedTime;
+          }, { once: true });
+        }
+        window.addEventListener("pagehide", () => {
+          if (bgmAudio) sessionStorage.setItem("pythonia_bgm_time", String(bgmAudio.currentTime || 0));
+        });
+
+        const pluck = (freq, v = 0.04) => {
+          if (!ctx || ctx.state !== "running") return;
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, now);
+          g.gain.setValueAtTime(0.0001, now);
+          g.gain.linearRampToValueAtTime(v * Math.max(0.15, vol), now + 0.05);
+          g.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+          osc.connect(g);
+          g.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 2.45);
+        };
+
+        const startHarp = () => {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return;
+          if (!ctx) ctx = new AC();
+          if (ctx.state === "suspended") ctx.resume().catch(() => {});
+          if (!timer) {
+            const notes = [261.63, 329.63, 392.00, 440.00, 523.25, 392.00, 329.63, 293.66];
+            timer = window.setInterval(() => {
+              if (!playing || mode !== "harp") return;
+              pluck(notes[step++ % notes.length], 0.09);
+            }, 1350);
+          }
+        };
+
+        const syncUI = () => {
+          if (musicBtn) {
+            musicBtn.setAttribute("data-playing", String(enabled && playing));
+            musicBtn.textContent = !enabled
+              ? (lang === "zh-Hant" ? "♪ 音樂：暫停" : "♪ Music: Off")
+              : playing
+                ? (lang === "zh-Hant" ? "♪ 舒緩音樂中" : "♪ Soothing On")
+                : (lang === "zh-Hant" ? "♪ 滑動或點擊播音樂" : "♪ Tap / Scroll Music");
+          }
+          if (trackBtn) {
+            trackBtn.textContent = mode === "mp3"
+              ? (lang === "zh-Hant" ? "🌿 柔美樂章" : "🌿 Peaceful MP3")
+              : (lang === "zh-Hant" ? "✨ 水晶豎琴" : "✨ Crystal Harp");
+          }
+        };
+
+        const start = () => {
+          if (!enabled) { syncUI(); return; }
+          if (mode === "mp3" && bgmAudio) {
+            bgmAudio.volume = vol;
+            bgmAudio.play().then(() => {
+              playing = true;
+              syncUI();
+            }).catch(() => {
+              playing = false;
+              syncUI();
+            });
+          } else {
+            if (bgmAudio) bgmAudio.pause();
+            startHarp();
+            playing = true;
+            syncUI();
+          }
+        };
+
+        const pause = () => {
+          if (bgmAudio) bgmAudio.pause();
+          playing = false;
+          syncUI();
+        };
+
+        const toggle = () => {
+          enabled = !enabled;
+          localStorage.setItem("pythonia_music_on", String(enabled));
+          if (enabled) start(); else pause();
+        };
+
+        const switchTrack = () => {
+          mode = mode === "mp3" ? "harp" : "mp3";
+          localStorage.setItem("pythonia_music_mode", mode);
+          if (enabled) start(); else syncUI();
+        };
+
+        const setVolume = (pct) => {
+          vol = Math.min(1, Math.max(0, Number(pct) / 100));
+          localStorage.setItem("pythonia_music_vol", String(pct));
+          if (bgmAudio) bgmAudio.volume = vol;
+          if (chimeAudio) chimeAudio.volume = Math.min(0.45, vol + 0.1);
+        };
+
+        const playChime = () => {
+          if (!enabled) return;
+          if (chimeAudio) {
+            chimeAudio.currentTime = 0;
+            chimeAudio.play().catch(() => {});
+          }
+        };
+
+        return { start, toggle, switchTrack, setVolume, playChime, syncUI };
+      })();
+
+      if (musicBtn) musicBtn.addEventListener("click", Music.toggle);
+      if (trackBtn) trackBtn.addEventListener("click", Music.switchTrack);
+      if (volSlider) volSlider.addEventListener("input", (e) => Music.setVolume(e.target.value));
+      const armAudio = () => {
+        Music.start();
+        window.removeEventListener("pointerdown", armAudio);
+        window.removeEventListener("keydown", armAudio);
+        window.removeEventListener("wheel", armAudio);
+        window.removeEventListener("touchstart", armAudio);
+      };
+      window.addEventListener("pointerdown", armAudio, { passive: true });
+      window.addEventListener("keydown", armAudio, { passive: true });
+      window.addEventListener("wheel", armAudio, { passive: true });
+      window.addEventListener("touchstart", armAudio, { passive: true });
+
+      /* ---- Populate Chapter Select & Text Helpers ------------------------ */
+      const selectEl = document.getElementById("ch-chapter-select");
+      const populateSelect = () => {
+        if (!selectEl) return;
+        selectEl.innerHTML = navList.map((n) => `
+          <option value="${navFileFor(n)}" ${n.partNumber === part.partNumber ? "selected" : ""}>
+            ${lang === "zh-Hant" ? n.titleZh : n.titleEn}
+          </option>
+        `).join("");
+      };
+      if (selectEl) {
+        selectEl.addEventListener("change", () => {
+          window.location.href = selectEl.value;
+        });
+      }
+
+      const txt = (en, zh) => {
+        if (lang === "zh-Hant") return zh || en || "";
+        if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
+        return en || zh || "";
+      };
+
+      const renderParagraphBlock = (raw, extraCls = "", isCard = false) => {
+        const cls = isCard ? "" : `ch-hero-narration ${extraCls}`;
+        const styleAttr = isCard
+          ? `style="margin:0 0 8px;white-space:pre-wrap;${extraCls ? "color:#ffe3ae;" : "color:#eaf2ed;"}"`
+          : "";
+        return String(raw || "")
+          .split(/\n\s*\n/)
+          .map((p) => p.trimEnd())
+          .filter(Boolean)
+          .map((p) => `<p${cls ? ` class="${cls.trim()}"` : ""}${styleAttr}>${p}</p>`)
+          .join("");
+      };
+
+      const sceneCopyForLevel = (s) => {
+        const isAdv = storyLevel === "advance";
+        return {
+          isAdv,
+          sectionEn: isAdv ? (s.advanceSectionEn || "") : "",
+          sectionZh: isAdv ? (s.advanceSectionZh || "") : "",
+          narEn: isAdv ? (s.advanceNarrationEn || s.narrationEn) : s.narrationEn,
+          narZh: isAdv ? (s.advanceNarrationZh || s.narrationZh) : s.narrationZh,
+          dlgEn: isAdv ? (s.advanceDialogueEn || s.dialogueEn) : s.dialogueEn,
+          dlgZh: isAdv ? (s.advanceDialogueZh || s.dialogueZh) : s.dialogueZh,
+        };
+      };
+
+      const renderSceneNarration = (copy, isCard = false) => {
+        if (copy.isAdv) {
+          if (lang === "dual") {
+            return renderParagraphBlock(copy.narEn, "", isCard) + renderParagraphBlock(copy.narZh, "ch-hero-narration--zh", isCard);
+          }
+          return renderParagraphBlock(lang === "zh-Hant" ? copy.narZh : copy.narEn, "", isCard);
+        }
+        if (isCard) {
+          return `<p style="margin:0;color:#eaf2ed;">${txt(copy.narEn, copy.narZh)}</p>`;
+        }
+        if (lang === "dual") {
+          return `<p class="ch-hero-narration">${copy.narEn}</p><p class="ch-hero-narration ch-hero-narration--zh">${copy.narZh}</p>`;
+        }
+        return `<p class="ch-hero-narration">${lang === "zh-Hant" ? copy.narZh : copy.narEn}</p>`;
+      };
+
+      const renderCastChips = () => {
+        const castMap = new Map(castList.map((c) => [c.id, c]));
+        return (part.castIds || []).map((cid) => {
+          const c = castMap.get(cid);
+          if (!c) return "";
+          const cname = lang === "zh-Hant" ? c.nameZh : c.nameEn;
+          const img = c.portrait.startsWith("assets/") ? `<img src="../${c.portrait}" alt="${cname}" />` : "";
+          return `<span class="ch-cast-chip">${img}<span>${cname}</span></span>`;
+        }).join("");
+      };
+
+      /* ---- Lightbox ------------------------------------------------------ */
+      const openLightbox = (idx) => {
+        const s = scenes[idx];
+        const lb = document.getElementById("ch-lightbox");
+        const lbImg = document.getElementById("ch-lightbox-img");
+        const lbCap = document.getElementById("ch-lb-caption");
+        if (!lb || !lbImg || !s) return;
+        activeSceneIdx = idx;
+        lbImg.src = `../${s.image}`;
+        lbImg.alt = s.titleEn;
+        if (lbCap) {
+          lbCap.textContent = lang === "zh-Hant"
+            ? `第 ${s.pageNumber} 頁 / 共 52 頁 · ${s.titleZh}`
+            : `Page ${s.pageNumber} of 52 · ${s.titleEn}`;
+        }
+        lb.hidden = false;
+      };
+
+      /* ---- Jump Smoothly Into a Scene's Readable Beat -------------------- */
+      const scrollToScene = (idx) => {
+        const el = document.getElementById(`scene-${idx + 1}`);
+        if (!el) return;
+        const vh = window.innerHeight || 900;
+        const travel = Math.max(0, el.offsetHeight - vh);
+        const offsetInside = idx === 0 || reducedMotion ? 0 : Math.round(travel * 0.20);
+        window.scrollTo({
+          top: el.offsetTop + offsetInside,
+          behavior: reducedMotion ? "auto" : "smooth"
+        });
+      };
+
+      /* ---- Render Full-Screen Scroll Story OR 4-Scene Grid --------------- */
+      const flowEl = document.getElementById("ch-story-flow");
+      const spineEl = document.getElementById("ch-spine");
+      let sceneEls = [];
+
+      const renderSpine = () => {
+        if (!spineEl) return;
+        spineEl.hidden = viewMode !== "scroll";
+        const labels = scenes.map((s, i) => `S0${i + 1}`);
+        labels.push(lang === "zh-Hant" ? "施咒" : "Spell");
+        spineEl.innerHTML = labels.map((lbl, i) => `
+          <button class="ch-spine__node" type="button" data-spine-idx="${i}" data-active="${i === 0 ? "true" : "false"}" aria-label="Jump to ${lbl}">
+            <span class="ch-spine__label">${lbl}</span>
+            <span class="ch-spine__dot"></span>
+          </button>
+        `).join("");
+
+        spineEl.querySelectorAll("[data-spine-idx]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const i = Number(btn.getAttribute("data-spine-idx"));
+            if (i < scenes.length) {
+              scrollToScene(i);
+            } else {
+              const fin = document.getElementById("ch-finale");
+              if (fin) fin.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+            }
+          });
+        });
+      };
+
+      const renderStoryFlow = () => {
+        if (!flowEl) return;
+        const castHTML = renderCastChips();
+
+        if (viewMode === "board") {
+          flowEl.innerHTML = `
+            <div class="ch-grid-wrap">
+              <div class="ch-storyboard">
+                ${scenes.map((s, i) => {
+                  const cp = sceneCopyForLevel(s);
+                  const secHtml = cp.isAdv && (cp.sectionEn || cp.sectionZh)
+                    ? `<div class="ch-subsection-pill" style="margin:0 0 4px;">📖 ${txt(cp.sectionEn, cp.sectionZh)}</div>`
+                    : "";
+                  return `
+                  <article class="ch-board-card">
+                    <div class="ch-board-card__img" data-open-lb="${i}">
+                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
+                    </div>
+                    <div class="ch-board-card__body">
+                      ${secHtml}
+                      <span class="ch-eyebrow" style="margin-bottom:2px;">${lang === "zh-Hant" ? `第 ${i + 1} 幕 · ${s.zone}` : `Scene ${i + 1} of ${scenes.length} · ${s.zone}`}</span>
+                      <h3>${txt(s.titleEn, s.titleZh)}</h3>
+                      ${renderSceneNarration(cp, true)}
+                      ${(cp.dlgEn || cp.dlgZh) ? `<div class="ch-hero-dialogue" style="margin:4px 0 0;padding:10px 14px;font-size:0.95rem;">${txt(cp.dlgEn, cp.dlgZh)}</div>` : ""}
+                      ${s.spellCode ? `<pre class="ch-hero-spell-pill" style="margin:4px 0 0;">${s.spellCode}</pre>` : ""}
+                    </div>
+                  </article>
+                  `;
+                }).join("")}
+              </div>
+            </div>
+          `;
+          flowEl.querySelectorAll("[data-open-lb]").forEach((el) => {
+            el.addEventListener("click", () => openLightbox(Number(el.getAttribute("data-open-lb")) || 0));
+          });
+          sceneEls = [];
+          renderSpine();
+          return;
+        }
+
+        /* Default: Immersive Full-Screen Scroll-Unfolding Hero Scenes */
+        flowEl.innerHTML = scenes.map((s, i) => {
+          const isLast = i === scenes.length - 1;
+          const cp = sceneCopyForLevel(s);
+          const chapterHeadline = i === 0
+            ? `<div class="ch-chapter-banner-pill">${lang === "zh-Hant" ? `第 ${part.partNumber} 章 · ${part.titleZh}` : `Chapter ${part.partNumber} of ${totalParts} · ${part.titleEn}`}</div>`
+            : "";
+          const subSectionPill = cp.isAdv && (cp.sectionEn || cp.sectionZh)
+            ? `<div class="ch-subsection-pill">📖 ${txt(cp.sectionEn, cp.sectionZh)}</div>`
+            : "";
+          const nextTargetLabel = isLast
+            ? (lang === "zh-Hant" ? "↓ 往下捲動施展本章咒語" : "↓ Keep scrolling for dialogue & chapter spell")
+            : (lang === "zh-Hant" ? `↓ 繼續捲動展開對話與第 ${i + 2} 幕` : `↓ Keep scrolling for dialogue & Scene ${i + 2}`);
+
+          return `
+            <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
+              <div class="ch-stage">
+                <div class="ch-stage__media">
+                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                </div>
+                <div class="ch-stage__scrim" aria-hidden="true"></div>
+
+                <div class="ch-stage__topmeta">
+                  <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
+                  <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                </div>
+
+                <div class="ch-stage__copy-zone">
+                  <!-- Beat 1: Hero Title & Story Narration fading in over Fullscreen Art -->
+                  <div class="ch-beat ch-beat--story${cp.isAdv ? " ch-beat--story-adv" : ""}">
+                    ${chapterHeadline}
+                    ${subSectionPill}
+                    <p class="ch-eyebrow">${lang === "zh-Hant" ? `全書第 ${s.pageNumber} 頁 · 第 ${i + 1} 幕` : `Page ${s.pageNumber} of 52 · Scene ${i + 1}`}${cp.isAdv ? (lang === "zh-Hant" ? " · 完整進階故事" : " · Complete Story (Advance)") : ""}</p>
+                    <h1 class="ch-hero-scene-title">${txt(s.titleEn, s.titleZh)}</h1>
+                    ${renderSceneNarration(cp, false)}
+                    <div class="ch-scroll-cue">${nextTargetLabel}</div>
+                  </div>
+
+                  <!-- Beat 2: Character Dialogue, Cast & Python Spell fading in as you scroll deeper -->
+                  <div class="ch-beat ch-beat--dialogue">
+                    <p class="ch-eyebrow">${txt(s.titleEn, s.titleZh)}</p>
+                    <div class="ch-cast-row">${castHTML}</div>
+                    ${(cp.dlgEn || cp.dlgZh) ? `<div class="ch-hero-dialogue">${txt(cp.dlgEn, cp.dlgZh)}</div>` : ""}
+                    ${s.spellCode ? `<pre class="ch-hero-spell-pill">${s.spellLabelEn || s.spellLabelZh ? `✨ ${txt(s.spellLabelEn, s.spellLabelZh)}\n` : ""}${s.spellCode}</pre>` : ""}
+                    <div class="ch-hero-actions">
+                      <button class="ch-btn" type="button" data-zoom-scene="${i}">${lang === "zh-Hant" ? "🔍 欣賞完整插畫" : "🔍 View Pure Artwork"}</button>
+                      <button class="ch-btn ch-btn--gold" type="button" data-advance-scene="${i}">
+                        ${isLast ? (lang === "zh-Hant" ? "✨ 前往本章咒語終站 ↓" : "✨ Cast Chapter Spell ↓") : (lang === "zh-Hant" ? `繼續下一幕 (S0${i + 2}) ↓` : `Next Scene (S0${i + 2}) ↓`)}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          `;
+        }).join("");
+
+        flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
+          btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const idx = Number(btn.getAttribute("data-advance-scene")) || 0;
+            if (idx < scenes.length - 1) {
+              scrollToScene(idx + 1);
+            } else {
+              const fin = document.getElementById("ch-finale");
+              if (fin) fin.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+            }
+          });
+        });
+
+        sceneEls = [...flowEl.querySelectorAll(".ch-scroll-scene")];
+        renderSpine();
+        updateScrollAnimations();
+      };
+
+      /* ---- Hero-Banner Scroll Unfolding Engine (60fps rAF) --------------- */
+      const progressBar = document.getElementById("ch-scroll-progress");
+
+      const applyBeatStyle = (el, op, ty) => {
+        if (!el) return;
+        const clampedOp = clamp01(op);
+        el.style.opacity = clampedOp.toFixed(3);
+        el.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0)`;
+        el.style.pointerEvents = clampedOp > 0.35 ? "auto" : "none";
+      };
+
+      const updateScrollAnimations = () => {
+        const topbarEl = document.querySelector(".ch-topbar");
+        if (topbarEl) {
+          document.documentElement.style.setProperty("--topbar-h", `${topbarEl.offsetHeight}px`);
+        }
+        const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const globalP = clamp01(window.scrollY / docH);
+        if (progressBar) progressBar.style.width = `${(globalP * 100).toFixed(2)}%`;
+
+        if (viewMode !== "scroll" || reducedMotion) return;
+        const vh = window.innerHeight || 900;
+        let currentActiveNode = 0;
+
+        sceneEls.forEach((sec, idx) => {
+          const rect = sec.getBoundingClientRect();
+          const travel = Math.max(1, sec.offsetHeight - vh);
+          const p = clamp01(-rect.top / travel);
+          sec.style.setProperty("--scene-p", p.toFixed(4));
+
+          if (rect.top <= vh * 0.45) {
+            currentActiveNode = idx;
+          }
+
+          const beat1 = sec.querySelector(".ch-beat--story");
+          const beat2 = sec.querySelector(".ch-beat--dialogue");
+
+          // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          let b1Op = 1;
+          let b1Ty = 0;
+          if (idx > 0 && p < 0.16) {
+            const tin = clamp01(p / 0.16);
+            b1Op = tin;
+            b1Ty = (1 - tin) * 28;
+          } else if (p > 0.38) {
+            const tout = clamp01((p - 0.38) / 0.14);
+            b1Op = 1 - tout;
+            b1Ty = -tout * 18;
+          }
+          applyBeatStyle(beat1, b1Op, b1Ty);
+
+          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          let b2Op = 0;
+          let b2Ty = 28;
+          if (p >= 0.46 && p < 0.60) {
+            const tin = clamp01((p - 0.46) / 0.14);
+            b2Op = tin;
+            b2Ty = (1 - tin) * 28;
+          } else if (p >= 0.60 && p <= 0.90) {
+            b2Op = 1;
+            b2Ty = 0;
+          } else if (p > 0.90) {
+            const tout = clamp01((p - 0.90) / 0.10);
+            b2Op = 1 - tout * 0.72;
+            b2Ty = -tout * 14;
+          }
+          applyBeatStyle(beat2, b2Op, b2Ty);
+        });
+
+        const fin = document.getElementById("ch-finale");
+        if (fin && fin.getBoundingClientRect().top <= vh * 0.55) {
+          currentActiveNode = scenes.length;
+        }
+        if (spineEl) {
+          spineEl.querySelectorAll("[data-spine-idx]").forEach((btn, i) => {
+            btn.setAttribute("data-active", String(i === currentActiveNode));
+          });
+        }
+      };
+
+      let rafId = 0;
+      const onScrollOrResize = () => {
+        if (rafId) return;
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          updateScrollAnimations();
+        });
+      };
+      window.addEventListener("scroll", onScrollOrResize, { passive: true });
+      window.addEventListener("resize", onScrollOrResize, { passive: true });
+
+      /* ---- Render Finale Sanctuary, Spell Sandbox & Chapter Navigation --- */
+      const renderFinaleAndChrome = () => {
+        document.documentElement.lang = lang === "zh-Hant" ? "zh-Hant" : "en";
+        const isAdv = storyLevel === "advance";
+        document.body.classList.toggle("is-advance", isAdv);
+        const backEl = document.getElementById("ch-back-link");
+        if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
+        populateSelect();
+
+        const begBtn = document.getElementById("ch-level-beginner");
+        const advBtn = document.getElementById("ch-level-advance");
+        if (begBtn) {
+          begBtn.textContent = lang === "zh-Hant" ? "🌱 精簡入門" : "🌱 Beginner";
+          begBtn.setAttribute("aria-pressed", String(!isAdv));
+        }
+        if (advBtn) {
+          advBtn.textContent = lang === "zh-Hant" ? "📚 完整進階" : "📚 Advance";
+          advBtn.setAttribute("aria-pressed", String(isAdv));
+        }
+
+        const scrollModeBtn = document.getElementById("ch-mode-scroll");
+        const boardModeBtn = document.getElementById("ch-mode-board");
+        if (scrollModeBtn) {
+          scrollModeBtn.textContent = lang === "zh-Hant" ? "✨ 全螢幕捲軸故事" : "✨ Scroll Story";
+          scrollModeBtn.setAttribute("aria-pressed", String(viewMode === "scroll"));
+        }
+        if (boardModeBtn) {
+          boardModeBtn.textContent = lang === "zh-Hant" ? "🖼️ 瀏覽 4 幕圖卡" : "🖼️ 4-Scene Grid";
+          boardModeBtn.setAttribute("aria-pressed", String(viewMode === "board"));
+        }
+
+        const eyebrowEl = document.getElementById("ch-eyebrow");
+        const titleEl = document.getElementById("ch-title");
+        const subEl = document.getElementById("ch-subtitle");
+        if (eyebrowEl) {
+          eyebrowEl.textContent = lang === "zh-Hant"
+            ? `第 ${part.partNumber} 章結尾總覽（共 ${totalParts} 章）· ${part.code} · ${part.zone}`
+            : `Chapter ${part.partNumber} of ${totalParts} Summary & Spell · ${part.code} · ${part.zone}`;
+        }
+        if (titleEl) titleEl.innerHTML = txt(part.titleEn, part.titleZh);
+        if (subEl) subEl.innerHTML = txt(part.subtitleEn, part.subtitleZh);
+
+        const sp = part.spell || {};
+        const sandboxEl = document.getElementById("ch-spell-sandbox");
+        if (sandboxEl) {
+          const sTitle = lang === "zh-Hant" ? sp.nameZh : sp.nameEn;
+          const sExp = txt(sp.explainEn, sp.explainZh);
+          const sBtn = lang === "zh-Hant" ? sp.demoBtnZh : sp.demoBtnEn;
+          const sOut = lang === "zh-Hant" ? sp.demoOutputZh : sp.demoOutputEn;
+          const ph = lang === "zh-Hant" ? (sp.demoInputPlaceholderZh || "") : (sp.demoInputPlaceholderEn || "");
+          sandboxEl.innerHTML = `
+            <p class="ch-eyebrow">${lang === "zh-Hant" ? "動手試試看本章 Python 魔法" : "Try This Chapter's Python Spell"}</p>
+            <h3>${sTitle || ""}</h3>
+            <pre class="ch-spell-code">${sp.code || ""}</pre>
+            <p style="margin:0 0 12px;color:var(--ink-soft);font-size:0.94rem;">${sExp}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+              ${sp.interactiveInput ? `<input class="ch-spell-input" id="ch-spell-in" type="text" maxlength="20" value="String" placeholder="${ph}" />` : ""}
+              <button class="ch-btn ch-btn--gold" type="button" id="ch-cast-btn">${sBtn || "Cast Spell"}</button>
+            </div>
+            <div class="ch-spell-output" id="ch-spell-out" hidden>${sOut || ""}</div>
+          `;
+          const castBtn = document.getElementById("ch-cast-btn");
+          const outEl = document.getElementById("ch-spell-out");
+          const inEl = document.getElementById("ch-spell-in");
+          if (castBtn && outEl) {
+            castBtn.addEventListener("click", () => {
+              if (inEl) {
+                const nm = inEl.value.trim() || "String";
+                outEl.textContent = lang === "zh-Hant"
+                  ? `歡迎你，${nm}！前方的森林荊棘溫柔地分開了道路。`
+                  : `Welcome, ${nm}! The forest brambles part cleanly before you.`;
+              }
+              outEl.hidden = false;
+              Music.playChime();
+            });
+          }
+        }
+
+        const sumEl = document.getElementById("ch-story-summary");
+        if (sumEl) {
+          const isAdv = storyLevel === "advance";
+          const parasEn = isAdv && part.paragraphsAdvanceEn ? part.paragraphsAdvanceEn : part.paragraphsEn;
+          const parasZh = isAdv && part.paragraphsAdvanceZh ? part.paragraphsAdvanceZh : part.paragraphsZh;
+          const parasHtml = lang === "dual"
+            ? parasEn.map((p, idx) => `<p style="margin:0 0 8px;color:#e6efe9;font-size:0.95rem;">${p}</p>${parasZh[idx] ? `<p style="margin:0 0 12px;color:#ffe3ae;font-size:0.93rem;">${parasZh[idx]}</p>` : ""}`).join("")
+            : (lang === "zh-Hant" ? parasZh : parasEn).map((p) => `<p style="margin:0 0 10px;color:#e6efe9;font-size:0.95rem;">${p}</p>`).join("");
+          sumEl.innerHTML = `
+            <p class="ch-eyebrow">${isAdv ? (lang === "zh-Hant" ? "📚 完整進階故事回顧與登場夥伴" : "📚 Complete Advance Story Recap &amp; Cast") : (lang === "zh-Hant" ? "🌱 本章文字回顧與登場夥伴" : "🌱 Beginner Chapter Recap &amp; Cast")}</p>
+            <h3>${lang === "zh-Hant" ? "章節故事回顧" : "Chapter Story Recap"}</h3>
+            <div class="ch-cast-row">${renderCastChips()}</div>
+            ${parasHtml}
+          `;
+        }
+
+        const recapLbl = document.getElementById("ch-recap-label");
+        if (recapLbl) {
+          recapLbl.textContent = lang === "zh-Hant"
+            ? "本章 4 幅插畫快速點選（點擊放大欣賞或跳回那一幕）"
+            : "4 Illustrated Scenes in This Chapter (Click to Zoom Fullscreen)";
+        }
+        const recapEl = document.getElementById("ch-recap-thumbs");
+        if (recapEl) {
+          recapEl.innerHTML = scenes.map((s, i) => `
+            <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
+              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
+            </button>
+          `).join("");
+          recapEl.querySelectorAll("[data-recap-lb]").forEach((btn) => {
+            btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-recap-lb")) || 0));
+          });
+        }
+
+        const footerEl = document.getElementById("ch-footer-nav");
+        if (footerEl) {
+          const prevHref = partIndex > 0 ? navFileFor(navList[partIndex - 1]) : "../index.html#story-reader";
+          const nextHref = partIndex < totalParts - 1 ? navFileFor(navList[partIndex + 1]) : "../index.html#act-finale";
+          const levelTag = storyLevel === "advance"
+            ? (lang === "zh-Hant" ? "完整進階版" : "Advance Edition")
+            : (lang === "zh-Hant" ? "精簡入門版" : "Beginner Edition");
+          const prevLabel = partIndex > 0
+            ? (lang === "zh-Hant" ? `← 上一章：第 ${partIndex} 章` : `← Prev: Chapter ${partIndex}`)
+            : (lang === "zh-Hant" ? "← 返回故事首頁" : "← Back to Story World");
+          const nextLabel = partIndex < totalParts - 1
+            ? (lang === "zh-Hant" ? `繼續閱讀第 ${partIndex + 2} 章 →` : `Next Chapter (${partIndex + 2} / ${totalParts}) →`)
+            : (lang === "zh-Hant" ? "前往領取守咒人證書 🏆" : "Stamp Spellkeeper Certificate 🏆");
+          footerEl.innerHTML = `
+            <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
+            <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
+              ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
+            </span>
+            <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
+          `;
+        }
+      };
+
+      /* ---- Language, Story Level, View Mode & Lightbox Listeners --------- */
+      const langBtns = [...document.querySelectorAll(".ch-lang-btn")];
+      const levelBtns = [...document.querySelectorAll(".ch-level-pill")];
+
+      const setLevel = (nextLevel, syncHistory = true) => {
+        storyLevel = nextLevel === "advance" ? "advance" : "beginner";
+        if (syncHistory && location.protocol.startsWith("http")) {
+          const curNav = navList[partIndex];
+          if (curNav) {
+            try {
+              const targetFile = navFileFor(curNav);
+              window.history.replaceState(null, "", targetFile + (location.hash || ""));
+            } catch (_) {}
+          }
+        }
+        renderFinaleAndChrome();
+        renderStoryFlow();
+        updateScrollAnimations();
+      };
+
+      levelBtns.forEach((b) => b.addEventListener("click", () => setLevel(b.getAttribute("data-level"))));
+
+      const setLang = (next) => {
+        lang = ["en", "zh-Hant", "dual"].includes(next) ? next : "en";
+        localStorage.setItem("pythonia_lang", lang);
+        langBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)));
+        Music.syncUI();
+        renderFinaleAndChrome();
+        renderStoryFlow();
+        updateScrollAnimations();
+      };
+      langBtns.forEach((b) => b.addEventListener("click", () => setLang(b.getAttribute("data-lang"))));
+
+      const scrollModeBtn = document.getElementById("ch-mode-scroll");
+      const boardModeBtn = document.getElementById("ch-mode-board");
+      if (scrollModeBtn) {
+        scrollModeBtn.addEventListener("click", () => {
+          viewMode = "scroll";
+          renderStoryFlow();
+          renderFinaleAndChrome();
+          window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        });
+      }
+      if (boardModeBtn) {
+        boardModeBtn.addEventListener("click", () => {
+          viewMode = "board";
+          renderStoryFlow();
+          renderFinaleAndChrome();
+          window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        });
+      }
+
+      const lb = document.getElementById("ch-lightbox");
+      const lbClose = document.getElementById("ch-lb-close");
+      const lbPrev = document.getElementById("ch-lb-prev");
+      const lbNext = document.getElementById("ch-lb-next");
+      if (lbClose) lbClose.addEventListener("click", () => { lb.hidden = true; });
+      if (lb) lb.addEventListener("click", (e) => { if (e.target === lb) lb.hidden = true; });
+      if (lbPrev) lbPrev.addEventListener("click", () => {
+        if (activeSceneIdx > 0) openLightbox(activeSceneIdx - 1);
+      });
+      if (lbNext) lbNext.addEventListener("click", () => {
+        if (activeSceneIdx < scenes.length - 1) openLightbox(activeSceneIdx + 1);
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lb && !lb.hidden) lb.hidden = true;
+        if (lb && !lb.hidden) {
+          if (e.key === "ArrowRight" && activeSceneIdx < scenes.length - 1) openLightbox(activeSceneIdx + 1);
+          if (e.key === "ArrowLeft" && activeSceneIdx > 0) openLightbox(activeSceneIdx - 1);
+        }
+      });
+
+      setLang(lang);
+
+      const startSceneParam = Number(new URLSearchParams(location.search).get("scene"));
+      if (startSceneParam >= 2 && startSceneParam <= scenes.length) {
+        window.requestAnimationFrame(() => scrollToScene(startSceneParam - 1));
+      }
+    })();
+  </script>
+</body>
+</html>
