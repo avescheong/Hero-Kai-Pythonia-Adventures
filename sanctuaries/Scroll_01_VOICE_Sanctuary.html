@@ -75,6 +75,7 @@
   </style>
 </head>
 <body class="antialiased selection:bg-emerald-400/30 selection:text-amber-200">
+  <audio id="sanc-bgm-audio" src="../assets/audio/spinning-in-three.mp3" loop preload="auto"></audio>
 
   <!-- Top Header -->
   <header class="sticky top-0 z-40 border-b border-emerald-400/20 bg-[#07110d]/95 px-4 py-2.5 backdrop-blur-md">
@@ -106,7 +107,7 @@
         <button id="bMap" type="button" class="rounded-lg border border-cyan-300/40 bg-cyan-400/15 px-3 py-1.5 text-xs font-bold text-cyan-200 hover:bg-cyan-400/25">🗺️ 12 Scrolls</button>
         <button id="bStick" type="button" class="rounded-lg border border-amber-300/40 bg-amber-300/15 px-3 py-1.5 text-xs font-bold text-amber-200 hover:bg-amber-300/25">🏆 Stickers (<span id="sc">0</span>/7)</button>
         <button id="bProj" type="button" class="rounded-lg border border-emerald-400/30 bg-[#132920] px-2.5 py-1.5 text-xs font-bold text-emerald-100 hover:border-amber-300">📽️ Projector</button>
-        <button id="bPiano" type="button" aria-pressed="true" class="rounded-lg border border-emerald-400/40 bg-emerald-400/15 px-2.5 py-1.5 font-code text-xs font-bold text-emerald-200 hover:border-amber-300">🎹 Piano: ON</button>
+        <button id="bPiano" type="button" aria-pressed="true" class="rounded-lg border border-emerald-400/40 bg-emerald-400/15 px-2.5 py-1.5 font-code text-xs font-bold text-emerald-200 hover:border-amber-300">🎵 Music: ON</button>
         <button id="bSnd" type="button" class="rounded-lg border border-emerald-400/30 bg-[#132920] px-2.5 py-1.5 text-xs font-bold text-emerald-100 hover:border-amber-300">🔊 SFX: ON</button>
       </div>
     </div>
@@ -731,119 +732,53 @@
       stats();
     })();
 
-      /* Bright Calming Acoustic Piano Engine (Synced with Hub via pythonia_piano_on) */
-      (function initPythoniaPiano() {
-        const pianoBtn = document.getElementById("bPiano");
-        let pianoOn = true;
+      /* Background Music Controller (Spinning in Three.mp3, synced via pythonia_piano_on) */
+      (function initPythoniaMusic() {
+        const musicBtn = document.getElementById("bPiano");
+        const bgmAudio = document.getElementById("sanc-bgm-audio");
+        let musicOn = true;
         try {
-          if (localStorage.getItem("pythonia_piano_on") === "false") pianoOn = false;
+          if (localStorage.getItem("pythonia_piano_on") === "false") musicOn = false;
         } catch (e) {}
-        let pCtx = null;
-        let pMaster = null;
-        let pStarted = false;
+        if (bgmAudio) bgmAudio.volume = 0.35;
 
-        function syncPianoBtn() {
-          if (!pianoBtn) return;
-          pianoBtn.setAttribute("aria-pressed", String(pianoOn));
-          pianoBtn.textContent = pianoOn ? "🎹 Piano: ON" : "🎹 Piano: OFF";
-          pianoBtn.className = pianoOn
+        function syncMusicBtn() {
+          if (!musicBtn) return;
+          musicBtn.setAttribute("aria-pressed", String(musicOn));
+          musicBtn.textContent = musicOn ? "🎵 Music: ON" : "🎵 Music: OFF";
+          musicBtn.className = musicOn
             ? "rounded-lg border border-emerald-400/40 bg-emerald-400/15 px-2.5 py-1.5 font-code text-xs font-bold text-emerald-200 hover:border-amber-300"
             : "rounded-lg border border-white/20 bg-[#0d1f18] px-2.5 py-1.5 font-code text-xs font-bold text-emerald-200/60 hover:border-amber-300";
         }
 
-        function playNote(freq, vol, dur) {
-          if (!pianoOn || !pCtx || !pMaster) return;
+        function tryStartMusic() {
+          if (!musicOn || !bgmAudio) return;
           try {
-            const now = pCtx.currentTime;
-            const filter = pCtx.createBiquadFilter();
-            filter.type = "lowpass";
-            filter.frequency.setValueAtTime(Math.min(freq * 6, 4200), now);
-            filter.frequency.exponentialRampToValueAtTime(Math.max(freq * 1.8, 700), now + dur * 0.75);
-            const env = pCtx.createGain();
-            env.gain.setValueAtTime(0.0001, now);
-            env.gain.linearRampToValueAtTime(vol, now + 0.018);
-            env.gain.exponentialRampToValueAtTime(vol * 0.35, now + 0.35);
-            env.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-            filter.connect(env);
-            env.connect(pMaster);
-            [
-              { mult: 1.0, type: "triangle", g: 0.72 },
-              { mult: 2.0, type: "sine", g: 0.24 },
-              { mult: 3.0, type: "sine", g: 0.07 }
-            ].forEach((h) => {
-              const osc = pCtx.createOscillator();
-              const hg = pCtx.createGain();
-              osc.type = h.type;
-              osc.frequency.setValueAtTime(freq * h.mult, now);
-              hg.gain.value = h.g;
-              osc.connect(hg);
-              hg.connect(filter);
-              osc.start(now);
-              osc.stop(now + dur + 0.08);
-            });
+            if (bgmAudio.paused) {
+              const p = bgmAudio.play();
+              if (p && typeof p.catch === "function") p.catch(() => {});
+            }
           } catch (e) {}
         }
 
-        const PROG = [
-          { lh: 261.63, rh: 659.25 }, { lh: 392.00, rh: 783.99 },
-          { lh: 493.88, rh: 880.00 }, { lh: 392.00, rh: 783.99 },
-          { lh: 246.94, rh: 659.25 }, { lh: 392.00, rh: 587.33 },
-          { lh: 493.88, rh: 659.25 }, { lh: 392.00, rh: 783.99 },
-          { lh: 220.00, rh: 880.00 }, { lh: 329.63, rh: 783.99 },
-          { lh: 440.00, rh: 659.25 }, { lh: 329.63, rh: 587.33 },
-          { lh: 174.61, rh: 523.25 }, { lh: 261.63, rh: 659.25 },
-          { lh: 196.00, rh: 587.33 }, { lh: 392.00, rh: 659.25 }
-        ];
-
-        function startPiano() {
-          if (pStarted || !pianoOn) return;
-          try {
-            const AC = window.AudioContext || window.webkitAudioContext;
-            if (!AC) return;
-            pCtx = pCtx || new AC();
-            if (pCtx.state === "suspended") pCtx.resume();
-            pMaster = pCtx.createGain();
-            pMaster.gain.value = 0.55;
-            pMaster.connect(pCtx.destination);
-            pStarted = true;
-            let step = 0;
-            const beat = () => {
-              if (!pianoOn) return;
-              const n = PROG[step % PROG.length];
-              playNote(n.lh, 0.042, 2.2);
-              if (step % 2 === 0 || step % 4 === 3) {
-                setTimeout(() => playNote(n.rh, 0.058, 2.4), 40);
-              }
-              step++;
-            };
-            beat();
-            setInterval(beat, 680);
-          } catch (e) {}
-        }
-
-        syncPianoBtn();
-        ["pointerdown", "keydown"].forEach((evt) => {
+        syncMusicBtn();
+        tryStartMusic();
+        ["pointerdown", "keydown", "touchstart"].forEach((evt) => {
           window.addEventListener(evt, () => {
-            if (pianoOn && !pStarted) startPiano();
-            else if (pianoOn && pCtx && pCtx.state === "suspended") pCtx.resume();
+            if (musicOn && bgmAudio && bgmAudio.paused) tryStartMusic();
           }, { passive: true });
         });
 
-        if (pianoBtn) {
-          pianoBtn.addEventListener("click", () => {
-            pianoOn = !pianoOn;
-            try { localStorage.setItem("pythonia_piano_on", String(pianoOn)); } catch (e) {}
-            syncPianoBtn();
-            if (pianoOn) {
-              if (!pStarted) startPiano();
-              else if (pMaster && pCtx) pMaster.gain.setTargetAtTime(0.55, pCtx.currentTime, 0.2);
-            } else {
-              if (pMaster && pCtx) pMaster.gain.setTargetAtTime(0.0, pCtx.currentTime, 0.2);
-            }
+        if (musicBtn) {
+          musicBtn.addEventListener("click", () => {
+            musicOn = !musicOn;
+            try { localStorage.setItem("pythonia_piano_on", String(musicOn)); } catch (e) {}
+            syncMusicBtn();
+            if (musicOn) tryStartMusic();
+            else if (bgmAudio) bgmAudio.pause();
           });
         }
       })();
-
   </script>
 </body>
 </html>
