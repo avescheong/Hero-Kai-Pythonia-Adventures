@@ -87,6 +87,22 @@
       transition: border-color 160ms ease, color 160ms ease;
     }
     .ch-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .ch-hub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(16, 52, 37, 0.96), rgba(32, 46, 23, 0.96));
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: filter 160ms ease, transform 160ms ease;
+    }
+    .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -528,6 +544,17 @@
       border-color: rgba(255, 232, 188, 0.82);
       font-weight: 700;
     }
+    .ch-btn--sanctuary {
+      background: linear-gradient(135deg, #ffd285, #8cf0bd);
+      color: #0b1611;
+      border-color: #ffe7b8;
+      font-weight: 800;
+      box-shadow: 0 0 22px rgba(255, 210, 133, 0.32);
+    }
+    .ch-btn--sanctuary:hover {
+      filter: brightness(1.06);
+      border-color: #fff3d6;
+    }
 
     /* ---- 4-Scene Grid View Mode (Optional Alternate Toggle) --------------- */
     .ch-grid-wrap {
@@ -740,6 +767,16 @@
     }
     @media (max-width: 640px) {
       .ch-spine { display: none; }
+      .ch-back-btn,
+      .ch-hub-btn {
+        padding: 5px 8px;
+        font-size: 0.72rem;
+      }
+      .ch-select {
+        max-width: min(170px, 42vw);
+        padding: 5px 24px 5px 9px;
+        font-size: 0.74rem;
+      }
       .ch-stage__copy-zone,
       body.is-advance .ch-stage__copy-zone {
         left: 16px;
@@ -799,6 +836,7 @@
     <div class="ch-topbar__inner">
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
+        <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
@@ -893,6 +931,21 @@
       let activeSceneIdx = 0;
 
       const navFileFor = (navItem) => (storyLevel === "advance" && navItem.advanceFile ? navItem.advanceFile : navItem.file);
+
+      const SANCTUARY_BY_PART = {
+        2:  { file: "Scroll_01_VOICE_Sanctuary.html",       en: "✨ Practice Scroll 01: VOICE",        zh: "✨ 練習卷軸 01：VOICE" },
+        3:  { file: "Scroll_02_WEAVE_Sanctuary.html",       en: "✨ Practice Scroll 02: WEAVE",        zh: "✨ 練習卷軸 02：WEAVE" },
+        4:  { file: "Scroll_03_FUSE_Sanctuary.html",        en: "✨ Practice Scroll 03: FUSE",         zh: "✨ 練習卷軸 03：FUSE" },
+        5:  { file: "Scroll_04_LISTEN_Sanctuary.html",      en: "✨ Practice Scroll 04: LISTEN",       zh: "✨ 練習卷軸 04：LISTEN" },
+        6:  { file: "Scroll_05_VAULT_Sanctuary.html",       en: "✨ Practice Scroll 05: VAULT",        zh: "✨ 練習卷軸 05：VAULT" },
+        7:  { file: "Scroll_05A_MULTIVAULT_Sanctuary.html", en: "✨ Practice Scroll 05A: MULTI-VAULT", zh: "✨ 練習卷軸 05A：MULTI-VAULT" },
+        8:  { file: "Scroll_06_WHISPER_Sanctuary.html",     en: "✨ Practice Scroll 06: WHISPER",      zh: "✨ 練習卷軸 06：WHISPER" },
+        9:  { file: "Scroll_07_SHAPESHIFT_Sanctuary.html",  en: "✨ Practice Scroll 07: SHAPESHIFT",   zh: "✨ 練習卷軸 07：SHAPESHIFT" },
+        10: { file: "Scroll_08_FORGE_Sanctuary.html",       en: "✨ Practice Scroll 08: FORGE",        zh: "✨ 練習卷軸 08：FORGE" },
+        11: { file: "Scroll_09_SIGHT_Sanctuary.html",       en: "✨ Practice Scroll 09: SIGHT",        zh: "✨ 練習卷軸 09：SIGHT" },
+        12: { file: "Scroll_10_FATE_Sanctuary.html",        en: "✨ Practice Scroll 10: FATE",         zh: "✨ 練習卷軸 10：FATE" },
+        13: { file: "Scroll_11_EPILOGUE_Sanctuary.html",    en: "✨ Play Scroll 11: Final Boss Finale",zh: "✨ 挑戰卷軸 11：終章大決戰" }
+      };
 
       /* ---- Shared Soothing Music Controller ------------------------------ */
       const bgmAudio = document.getElementById("kc-bgm-audio");
@@ -1393,6 +1446,8 @@
         document.body.classList.toggle("is-advance", isAdv);
         const backEl = document.getElementById("ch-back-link");
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
+        const hubEl = document.getElementById("ch-hub-link");
+        if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1429,6 +1484,8 @@
         if (subEl) subEl.innerHTML = txt(part.subtitleEn, part.subtitleZh);
 
         const sp = part.spell || {};
+        const sanctInfo = SANCTUARY_BY_PART[part.partNumber] || null;
+        const sanctLabel = sanctInfo ? (lang === "zh-Hant" ? sanctInfo.zh : sanctInfo.en) : "";
         const sandboxEl = document.getElementById("ch-spell-sandbox");
         if (sandboxEl) {
           const sTitle = lang === "zh-Hant" ? sp.nameZh : sp.nameEn;
@@ -1444,6 +1501,7 @@
             <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
               ${sp.interactiveInput ? `<input class="ch-spell-input" id="ch-spell-in" type="text" maxlength="20" value="String" placeholder="${ph}" />` : ""}
               <button class="ch-btn ch-btn--gold" type="button" id="ch-cast-btn">${sBtn || "Cast Spell"}</button>
+              ${sanctInfo ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>` : ""}
             </div>
             <div class="ch-spell-output" id="ch-spell-out" hidden>${sOut || ""}</div>
           `;
@@ -1512,12 +1570,18 @@
           const nextLabel = partIndex < totalParts - 1
             ? (lang === "zh-Hant" ? `繼續閱讀第 ${partIndex + 2} 章 →` : `Next Chapter (${partIndex + 2} / ${totalParts}) →`)
             : (lang === "zh-Hant" ? "前往領取守咒人證書 🏆" : "Stamp Spellkeeper Certificate 🏆");
+          const sanctFooterCta = sanctInfo
+            ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
+            : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
-            <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${sanctFooterCta}
+              <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
+            </div>
           `;
         }
       };

@@ -60,11 +60,13 @@ Pure static HTML / CSS / JavaScript — **no Node.js, no bundler, no backend dat
 
 ```text
 Hero_Kai_Story_Website/
-├── index.html                      # Clean semantic HTML (5-act handscroll, reader, Realm modal & Certificate)
+├── index.html                      # Storybook Home (5-act handscroll, 52-scene reader, Codex & Certificate)
+├── hub.html                        # Learning Hub (Hero Spell Console, 12 NPC Cards, 12 Sanctuaries, Cinema, Teacher Mode)
+├── netlify.toml                    # Netlify static publish & cache headers for /assets/* and /sanctuaries/*
 ├── scrollcraft.css                 # Scrollytelling visual styles, responsive layout & reduced-motion support
 ├── scrollcraft.js                  # Scroll-driven video scrubbing, pan rails, cue reveals & motion engine
 ├── MODULAR_ARCHITECTURE_PLAN.md    # Modular CSS/JS architecture & maintenance reference
-├── .nojekyll                       # Ready for direct static hosting on GitHub Pages
+├── .nojekyll                       # Clean static hosting compatibility
 ├── css/
 │   └── 01-tokens-base.css .. 06-responsive.css     # Standalone domain-scoped stylesheets
 ├── js/
@@ -73,32 +75,39 @@ Hero_Kai_Story_Website/
 │   ├── data/                                       # Offline file:// safe fallbacks (world & Jing Si)
 │   └── modules/                                    # Audio, scrollmap, Citadel VFX, reader, codex & PNG seal exporter
 ├── chapters/
-│   ├── chapter-01.html .. chapter-13.html          # Beginner chapter readers (4 scenes + spell box each)
-│   └── chapter-01-advance.html .. -13-advance.html # Advance chapter readers (scroll-unfolding full story)
+│   ├── chapter-01.html .. chapter-13.html          # Beginner chapter readers (4 scenes + spell box + Sanctuary CTA)
+│   └── chapter-01-advance.html .. -13-advance.html # Advance chapter readers (scroll-unfolding full story + Sanctuary CTA)
+├── sanctuaries/
+│   └── Scroll_01_VOICE_Sanctuary.html .. Scroll_11_EPILOGUE_Sanctuary.html # 12 Dual-Mode interactive Python sanctuaries
 ├── data/
 │   ├── world.json                  # Canonical story, cast, 12 realms, 52 scenes & 11 Python spells
 │   └── jingsi_aphorisms.json       # Bilingual Jing Si Aphorisms (EN / 繁體中文) for the take-home certificate
 └── assets/
     ├── scenes/                     # 52 illustrated WebP storybook panels (01_PRO_S01.webp .. 52_CH11_S04.webp)
     ├── cast/                       # 8 character portraits (used in chapters, codex & certificate)
+    ├── hub/                        # Cohesive painterly NPC portraits, exercise covers & spellbook banner
+    ├── animations/                 # 5 Full HD MP4 story clips linked from Story Cinema in hub.html
     ├── audio/                      # peaceful.mp3 & spell-chime.mp3
     └── *.mp4 / *.webp / *.png      # Hero scrub clips, Citadel charge battle clip, posters & rail cards
 ```
 
 ---
 
-## Local Preview & GitHub Pages Hosting
+## Local Preview & Netlify Hosting (Option B)
 
 ### Run Locally
-Serve from any static HTTP server (recommended so `fetch("data/...")` and video range scrubbing work seamlessly in every browser):
+Serve from any static HTTP server (recommended so `fetch("data/...")`, same-origin `localStorage` progress sync, and video scrubbing work seamlessly in every browser):
 
 ```bash
-python -m http.server 8000
+python -m http.server 8080
 ```
 
-Then open `http://localhost:8000/index.html`.
+Then open:
+- Storybook Home: `http://localhost:8080/index.html`
+- Learning Hub: `http://localhost:8080/hub.html`
 
-### Host on GitHub Pages
-1. Open the repository **Settings → Pages** on GitHub.
-2. Under **Build and deployment**, select **Deploy from a branch**, branch **`main`**, folder **`/ (root)`**, and click **Save**.
-3. Your interactive storybook will be live at `https://avescheong.github.io/Hero-Kai-Pythonia-Adventures/`.
+### Live Deployment on Netlify
+Connected to `Hero-Kai-Pythonia-Adventures` and published at `https://kaipy.netlify.app/`:
+- Storybook Home: `https://kaipy.netlify.app/`
+- Learning Hub: `https://kaipy.netlify.app/hub.html`
+- Interactive Sanctuaries: `https://kaipy.netlify.app/sanctuaries/Scroll_01_VOICE_Sanctuary.html` .. `Scroll_11_EPILOGUE_Sanctuary.html`

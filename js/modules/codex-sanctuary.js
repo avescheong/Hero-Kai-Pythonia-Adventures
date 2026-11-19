@@ -46,6 +46,7 @@
       const realmSpellBtn = document.getElementById("kc-realm-spell-btn");
       const realmBegLink = document.getElementById("kc-realm-beg-link");
       const realmAdvLink = document.getElementById("kc-realm-adv-link");
+      const realmSanctuaryLink = document.getElementById("kc-realm-sanctuary-link");
       const realmReadBtn = document.getElementById("kc-realm-read-btn");
       const realmCloseBtn = document.getElementById("kc-realm-close");
       let activeRealmTrigger = null;
@@ -108,6 +109,17 @@
         realmAdvLink.href = (part && part.chapterAdvanceUrl) || `chapters/chapter-${padCh}-advance.html`;
         realmBegLink.textContent = isZh ? `🌱 第 ${chIdx} 章（精簡入門）↗` : `🌱 Ch ${chIdx} Beginner ↗`;
         realmAdvLink.textContent = isZh ? `📚 第 ${chIdx} 章（完整進階）↗` : `📚 Ch ${chIdx} Advance ↗`;
+        if (realmSanctuaryLink) {
+          const sanctMap = (window.PythoniaI18n && window.PythoniaI18n.SANCTUARY_BY_PART) || {};
+          const sanctInfo = sanctMap[chIdx] || null;
+          if (sanctInfo) {
+            realmSanctuaryLink.href = `sanctuaries/${sanctInfo.file}`;
+            realmSanctuaryLink.textContent = `${isZh ? sanctInfo.labelZh : sanctInfo.labelEn} →`;
+            realmSanctuaryLink.hidden = false;
+          } else {
+            realmSanctuaryLink.hidden = true;
+          }
+        }
         realmReadBtn.textContent = isZh ? "📖 跳轉至繪本閱讀器" : "📖 Jump to Story Reader";
         realmReadBtn.onclick = () => {
           closeRealmModal();

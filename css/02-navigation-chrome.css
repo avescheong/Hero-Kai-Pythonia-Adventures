@@ -149,6 +149,35 @@
   transition: background 180ms ease;
 }
 .kc-nav__link:hover { background: rgba(140, 240, 189, 0.14); }
+.kc-nav__link--hub {
+  border: 1px solid rgba(255, 210, 133, 0.45);
+  background: linear-gradient(135deg, rgba(18, 49, 36, 0.92), rgba(34, 46, 22, 0.92));
+  color: var(--kc-gold);
+  font-weight: 700;
+}
+.kc-nav__link--hub:hover { background: linear-gradient(135deg, rgba(24, 65, 48, 0.98), rgba(45, 58, 28, 0.98)); }
+.kc-hub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(16, 52, 37, 0.96), rgba(32, 46, 23, 0.96));
+  border: 1px solid var(--kc-gold);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.42);
+  transition: transform 160ms ease, filter 160ms ease;
+}
+.kc-hub-pill:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
 .kc-nav__idx {
   font-family: var(--sc-font-mono);
   font-size: 0.68rem;

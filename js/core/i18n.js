@@ -15,6 +15,8 @@
           pageTitle: "Hero Kai · Pythonia: The Eleven Spells of Kindness",
           sealTitle: "Hero Kai Storybook",
           sealSub: "Pythonia · 52 Scenes",
+          hubBtn: "🏰 Learning Hub",
+          navHub: "🏰 Learning Hub & 12 Sanctuaries",
           navToggle: "Chapters",
           navAct1: "Act I · The Emerald Glitch",
           navAct2: "Act II · Realms Trail",
@@ -38,6 +40,7 @@
           heroCta: "Explore All 13 Chapters ↓",
           heroChapterBtn: "🌱 Start Ch 1 (Beginner) →",
           heroAdvanceBtn: "📚 Complete Story (Advance) →",
+          heroHubBtn: "🏰 Learning Hub & Sanctuaries →",
           beat2Eyebrow: "Chapter 01 · Silent Village",
           beat2Title: "One Kind Word Wakes the Village",
           beat2Lead: "Kai kneels to comfort a frightened child instead of drawing his sword, and his golden Spellbook glows with the very first spell: print(\"Hello!\").",
@@ -112,6 +115,8 @@
           pageTitle: "小英雄凱 · 蟒蛇王國：十一道善良魔法繪本",
           sealTitle: "小英雄凱故事書",
           sealSub: "蟒蛇王國 · 全 52 幕繪本",
+          hubBtn: "🏰 學習中心",
+          navHub: "🏰 學習互動中心與 12 咒語聖殿",
           navToggle: "章節目錄",
           navAct1: "第一幕 · 翠綠螢幕入口",
           navAct2: "第二幕 · 王國旅途巡禮",
@@ -135,6 +140,7 @@
           heroCta: "先在下方預覽全 13 章 ↓",
           heroChapterBtn: "🌱 第 1 章・精簡入門故事 →",
           heroAdvanceBtn: "📚 第 1 章・完整進階故事 →",
+          heroHubBtn: "🏰 進入學習中心與 12 聖殿 →",
           beat2Eyebrow: "第一章 · 靜默村莊",
           beat2Title: "一句溫柔的問候喚醒村莊",
           beat2Lead: "凱沒有拔劍，而是蹲下來安慰害怕的小女孩，古老咒語書隨即亮起第一道魔法：print(\"Hello!\")。",
@@ -222,9 +228,26 @@
       };
 
 
+  /* ---- Canonical Chapter Part (2..13) -> Interactive Sanctuary Lookup ---- */
+  const SANCTUARY_BY_PART = {
+    2:  { file: "Scroll_01_VOICE_Sanctuary.html",      labelEn: "✨ Practice Scroll 01: VOICE",       labelZh: "✨ 練習卷軸 01：VOICE" },
+    3:  { file: "Scroll_02_WEAVE_Sanctuary.html",      labelEn: "✨ Practice Scroll 02: WEAVE",       labelZh: "✨ 練習卷軸 02：WEAVE" },
+    4:  { file: "Scroll_03_FUSE_Sanctuary.html",       labelEn: "✨ Practice Scroll 03: FUSE",        labelZh: "✨ 練習卷軸 03：FUSE" },
+    5:  { file: "Scroll_04_LISTEN_Sanctuary.html",     labelEn: "✨ Practice Scroll 04: LISTEN",      labelZh: "✨ 練習卷軸 04：LISTEN" },
+    6:  { file: "Scroll_05_VAULT_Sanctuary.html",      labelEn: "✨ Practice Scroll 05: VAULT",       labelZh: "✨ 練習卷軸 05：VAULT" },
+    7:  { file: "Scroll_05A_MULTIVAULT_Sanctuary.html",labelEn: "✨ Practice Scroll 05A: MULTI-VAULT",labelZh: "✨ 練習卷軸 05A：MULTI-VAULT" },
+    8:  { file: "Scroll_06_WHISPER_Sanctuary.html",    labelEn: "✨ Practice Scroll 06: WHISPER",     labelZh: "✨ 練習卷軸 06：WHISPER" },
+    9:  { file: "Scroll_07_SHAPESHIFT_Sanctuary.html", labelEn: "✨ Practice Scroll 07: SHAPESHIFT",  labelZh: "✨ 練習卷軸 07：SHAPESHIFT" },
+    10: { file: "Scroll_08_FORGE_Sanctuary.html",      labelEn: "✨ Practice Scroll 08: FORGE",       labelZh: "✨ 練習卷軸 08：FORGE" },
+    11: { file: "Scroll_09_SIGHT_Sanctuary.html",      labelEn: "✨ Practice Scroll 09: SIGHT",       labelZh: "✨ 練習卷軸 09：SIGHT" },
+    12: { file: "Scroll_10_FATE_Sanctuary.html",       labelEn: "✨ Practice Scroll 10: FATE",        labelZh: "✨ 練習卷軸 10：FATE" },
+    13: { file: "Scroll_11_EPILOGUE_Sanctuary.html",   labelEn: "✨ Play Scroll 11: Final Boss Finale",labelZh: "✨ 挑戰卷軸 11：終章大決戰" }
+  };
+
   window.PythoniaI18n = {
     UI,
     INLINE_PORTRAITS,
-    renderPortraitMarkup
+    renderPortraitMarkup,
+    SANCTUARY_BY_PART
   };
 })();

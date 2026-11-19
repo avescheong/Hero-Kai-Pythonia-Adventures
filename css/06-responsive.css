@@ -25,6 +25,7 @@
   .kc-seal__title { font-size: 0.8rem; }
   .kc-ctrl-btn { padding: 6px 9px; font-size: 0.68rem; }
   .kc-lang-btn { padding: 4px 8px; font-size: 0.68rem; }
+  .kc-hub-pill { padding: 5px 9px; font-size: 0.68rem; }
   .kc-rail__stage {
     justify-content: flex-start;
     padding-top: 74px;

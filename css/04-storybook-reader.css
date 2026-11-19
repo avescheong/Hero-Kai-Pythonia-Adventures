@@ -450,6 +450,18 @@
   font-weight: 700;
 }
 .kc-chapter-link:hover { background: rgba(255, 210, 133, 0.14); }
+.kc-sanctuary-link {
+  background: linear-gradient(135deg, #ffd285, #8cf0bd);
+  border-color: #ffe8bc;
+  color: #091811;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(255, 210, 133, 0.26);
+}
+.kc-sanctuary-link:hover {
+  background: linear-gradient(135deg, #ffe0a3, #a3f5cb);
+  filter: brightness(1.05);
+}
+.kc-sanctuary-link[hidden] { display: none; }
 .kc-open-chapter-main {
   padding: 9px 18px;
   font-size: 0.84rem;

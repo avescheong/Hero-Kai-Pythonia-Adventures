@@ -100,6 +100,11 @@
         const placeholder = isZh ? (sp.demoInputPlaceholderZh || "") : (sp.demoInputPlaceholderEn || "");
         const chapHref = part.chapterUrl || `chapters/chapter-${String(part.partNumber).padStart(2, "0")}.html`;
         const advHref = part.chapterAdvanceUrl || `chapters/chapter-${String(part.partNumber).padStart(2, "0")}-advance.html`;
+        const sanctMap = (window.PythoniaI18n && window.PythoniaI18n.SANCTUARY_BY_PART) || {};
+        const sanctInfo = sanctMap[part.partNumber] || null;
+        const sanctBtnHTML = sanctInfo
+          ? `<a class="kc-chapter-link kc-sanctuary-link" href="sanctuaries/${sanctInfo.file}">${isZh ? sanctInfo.labelZh : sanctInfo.labelEn} →</a>`
+          : "";
 
         const spellBlockHTML = `
           <div class="kc-spell-box">
@@ -111,6 +116,7 @@
               <button class="kc-spell-cast-btn" type="button" data-cast-spell="${part.id}">${spellBtn}</button>
               <a class="kc-chapter-link" href="${chapHref}">${isZh ? "精簡版章節 ↗" : "Beginner Page ↗"}</a>
               <a class="kc-chapter-link" style="color:#8cf0bd;border-color:rgba(140,240,189,0.4);" href="${advHref}">${isZh ? "完整進階版 ↗" : "Advance Full ↗"}</a>
+              ${sanctBtnHTML}
             </div>
             <div class="kc-spell-output" data-spell-out="${part.id}" data-default-out="${spellOut}" hidden>${spellOut}</div>
           </div>
