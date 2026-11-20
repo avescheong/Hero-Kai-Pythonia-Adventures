@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-09","partNumber":9,"code":"SPELL 8 · SHAPESHIFT","zone":"ENV_R07","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村","subtitleEn":"Spell 8: type() · str, int, float, bool & Telepathic String","subtitleZh":"第八咒：type() · 認識四種魔法形態並與晴溪村分享收成","valueId":"love-earth","valueEn":"Love the Earth","valueZh":"愛地球","image":"assets/scenes/35_CH07_S03.webp","imageAltEn":"Hero Kai overlooking bright Sunnybrook waterfalls and rainbow skies across the green mountain valley","imageAltZh":"小英雄凱望著晴溪山谷壯麗的瀑布與彩虹，翠綠大地充滿希望","castIds":["hero-kai","string"],"paragraphsEn":["Behind the library desk, a hidden spiral staircase led deep underground into a sparkling Crystal Cave holding four Shapeshift Crystals: a Scroll for words (str), a Stone Golem for whole numbers (int), a Water Droplet for decimals (float), and a Flashing Gem for True/False (bool).","First, the golden str Scroll bonded right with String's collar—upgrading him so glowing ribbons of text could flash telepathically straight into Kai's Spellbook! Meanwhile, the chunky int Golem did energetic push-ups, the float Droplet bounced shimmering bubbles, and the bool Gem flashed green TRUE or red FALSE.","Climbing back up to Sunnybrook Village, they saw a fierce storm had knocked down houses and dried out crops. Working together, the int Golem lifted heavy logs to rebuild homes, and the float Droplet watered every thirsty field!","Suddenly String's new telepathic text flashed on Kai's Spellbook: \"Kai! Someone is sneaking away with food sacks near the eastern shed!\" The bool Gem flashed crimson \"FALSE!\" to expose a hungry little goblin's excuse—and instead of scolding him, Kai kindly shared a warm loaf from the restored harvest."],"paragraphsZh":["書庫書桌後方藏著一座螺旋樓梯，通往地底閃耀的水晶洞窟，裡面住著四位形變水晶精靈：代表文字的捲軸精靈（str）、整數石頭人（int）、小數點水滴（float）以及判斷真假的閃耀寶石（bool）。","捲軸精靈 str 的光芒融進了 String 的項圈——讓他獲得與凱的咒語書心電感應、傳送發光文字的超能力！石頭人 int 開心地做起伏地挺身，水滴 float 彈跳著水珠，寶石 bool 則會閃出綠色的「TRUE」或紅色的「FALSE」。","爬出地面來到「晴溪村」，他們發現暴風雨剛吹倒了木屋、沖壞了農田。大家齊心合力，int 石頭人一口氣做了二十下伏地挺身並扛起大木頭重建家園，float 水滴仔細灌溉每一片農田！","突然，String 透過項圈傳來緊急文字：「凱！東邊穀倉有人偷抱走剩下的食物袋！」bool 寶石閃出紅光「FALSE！」揭穿了一隻飢餓小哥布林的藉口——但凱沒有生氣，反而溫柔地把重建好的收成分一半送給他。"],"dialogue":[{"speakerEn":"String (Telepathic str Ribbon)","speakerZh":"String（心電感應文字）","lineEn":"\"Kai! Someone is sneaking away with food sacks near the eastern shed!\"","lineZh":"「凱！東邊棚屋那裡有人正抱著剩下的食物袋偷溜！」"},{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"True magic helps those in need. Let's share our harvest together.\"","lineZh":"「真正的魔法是用來幫助需要的人。這份食物，我們一起分享吧。」"}],"spell":{"nameEn":"Spell 8: SHAPESHIFT — type()","nameZh":"第八咒：SHAPESHIFT 辨形魔法 — type()","code":"print(type(\"Dragon\"))","explainEn":"type() acts like a magnifying glass to reveal whether data is text (str), whole number (int), decimal (float), or True/False (bool).","explainZh":"type() 就像魔法放大鏡，能看出資料是文字（str）、整數（int）、小數（float），還是是非對錯（bool）。","demoBtnEn":"Inspect Crystal Shapes 💎","demoBtnZh":"觀察四種水晶形態 💎","demoOutputEn":"<class 'str'> (Words!) · <class 'int'> (100) · <class 'float'> (3.5) · <class 'bool'> (True)","demoOutputZh":"<class 'str'>（文字）· <class 'int'>（整數）· <class 'float'>（小數）· <class 'bool'>（真假）"},"scenes":[{"pageNumber":33,"sceneIndex":1,"sceneId":"CH07_S01","image":"assets/scenes/33_CH07_S01.webp","titleEn":"Four Shapeshift Crystals & String's str Upgrade","titleZh":"四大水晶與 String 的心電感應升級","narrationEn":"Deep underground, Kai and String found four glowing Shapeshift Crystals! The Scroll crystal (str) resonated straight with String—upgrading him with luminous text ribbons flowing directly into Kai's Spellbook!","narrationZh":"沿著階梯來到地底水晶洞窟，裡面飄浮著四顆形變水晶！其中代表文字的卷軸水晶（str）飛進了 String 身上——替他開啟了把文字直接傳進凱咒語書的心電感應連結！","dialogueEn":"Kai: \"print(type('String'))! It's <class 'str'>!\"","dialogueZh":"小英雄凱：「print(type('String'))！是文字型態 <class 'str'>！」","spellCode":"Spell: print(type(\"String\"))","spellLabelEn":"Spell 8: SHAPESHIFT (type())","spellLabelZh":"第八咒：SHAPESHIFT 辨形魔法 (type())","zone":"ENV_R07","mood":"magical awakening and deeper bond","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"8. SHAPESHIFT — The Hidden Crystal Cave (type())","advanceSectionZh":"八、SHAPESHIFT 變形咒 — 隱藏的水晶洞窟（分辨型態：type()）","advanceNarrationEn":"Pulling open the iron ring, Kai and String descended a spiral stone staircase into a breathtaking underground cavern warmed by four floating Shapeshift Crystals.\n\nWhen Kai approached the luminous Scroll Crystal (str for words), it resonated straight with his pup! String leaped joyfully into the crystal light and officially upgraded—now glowing ribbons of text flashed directly into Kai's Spellbook and mind in a secret telepathic bond!","advanceNarrationZh":"拉開鐵環掀開暗門，凱和 String 沿著螺旋石梯往下走，來到一座由四枚飄浮「變形水晶」照亮的奇幻地下水晶洞窟。\n\n當凱走近象徵文字的卷軸水晶 str 時，水晶忽然與小狗產生了共鳴！String 開心地一躍而起吸納那束光影，正式完成升級——從此之後，發光的文字絲帶能透過心電感應，直接把 String 的心聲傳進凱的咒語書與腦海裡！","advanceDialogueEn":"String (telepathic str ribbon): \"Kai! Look—I can finally send real words right into your Spellbook!\"","advanceDialogueZh":"String（心電感應文字光帶）：「凱！快看——我終於可以把真正的心裡話傳進你的咒語書裡了！」"},{"pageNumber":34,"sceneIndex":2,"sceneId":"CH07_S02","image":"assets/scenes/34_CH07_S02.webp","titleEn":"int Push-Ups, float Bubbles & bool Truth Gem","titleZh":"整數石像俯臥撐、浮點水滴與真假寶石","narrationEn":"Around them, the Stone Block golem (int) dropped down to reel off energetic push-ups, the clear Water Droplet (float) bounced with shimmering decimal bubbles, and the Flashing Gem (bool) pulsed True and False!","narrationZh":"旁邊的整數小石像（int）立刻趴下做起精力充沛的伏地挺身，浮點小水滴（float）帶著小數點泡泡開心彈跳，布林寶石（bool）則閃耀著真假光芒！","dialogueEn":"String (telepathic): \"WHOA! LOOK AT INT GO!\"","dialogueZh":"String（心電感應文字）：「哇！你看整數小石像好有精神！」","spellCode":"type(20) -> int | type(3.5) -> float | type(True) -> bool","spellLabelEn":"Meet the Four Spirits","spellLabelZh":"認識四大資料精靈","zone":"ENV_R07","mood":"playful joyful discovery","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Beside newly telepathic String stood the three remaining spirit crystals waiting to reveal how every magical shape reveals itself under the type() magnifying glass:\n\nThe sturdy Stone Block golem (int for whole numbers), which immediately dropped down to do crisp push-ups; the clear Water Droplet (float for decimals), bouncing joyfully with shimmering bubbles; and the Flashing Gem (bool for True or False), a gleaming lie detector.","advanceNarrationZh":"在獲得文字天賦的 String 身旁，其餘三枚晶靈也一一顯現出在 type() 放大鏡下的真實樣貌：\n\n結實穩重的石塊小巨人（int 整數）立刻趴在地上示範標準伏地挺身；晶瑩剔透的小水滴（float 小數）快樂地彈跳起舞，冒出串串七彩泡泡；還有一閃一閃的閃耀寶石（bool 真假布林值），是一顆絕不說謊的測謊晶石。","advanceDialogueEn":"Kai: \"Four distinct shapes under type(): str for words, int for whole numbers, float for decimals, and bool for True/False!\"","advanceDialogueZh":"小英雄凱：「原來在 type() 下共有四種形狀：文字 str、整數 int、小數 float，還有真假 bool！」"},{"pageNumber":35,"sceneIndex":3,"sceneId":"CH07_S03","image":"assets/scenes/35_CH07_S03.webp","titleEn":"Rebuilding Storm-Battered Sunnybrook Village","titleZh":"重建晴溪村與抓包小哥布林","narrationEn":"Climbing out to storm-damaged Sunnybrook Village, int hoisted fallen logs, float watered dry crops, String flashed a telepathic warning, and bool beamed crimson \"FALSE!\" to expose a hungry little goblin's excuse!","narrationZh":"回到遭遇暴風雨的晴溪村，int 搬起倒塌的木頭修屋頂，float 替農田澆水，String 用心電感應文字發出警告，而 bool 閃出紅光「FALSE！」拆穿了偷拿糧食袋的小哥布林！","dialogueEn":"String (telepathic): \"Kai! Someone is sneaking food sacks by the east shed!\"","dialogueZh":"String（心電感應）：「凱！有人在東邊棚屋偷拿糧食袋！」","spellCode":"# bool flashes FALSE! on excuse","spellLabelEn":"Team Rescue","spellLabelZh":"齊心救災與真相","zone":"ENV_R07","mood":"energetic community rescue","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"Testing the Spirits in Sunnybrook Village","advanceSectionZh":"篇章插曲：在晴溪村考驗精靈夥伴","advanceNarrationEn":"Climbing back into daylight, Kai and String arrived at Sunnybrook Village, where a fierce storm had battered homes, snapped fences, and washed out dry crop plots. Kai immediately called upon his crystal spirits!\n\nThe sturdy int golem reeled off twenty rapid push-ups and hoisted heavy fallen logs back into place while the clear float droplet nourished parched farm soil with bubbling water—until String suddenly stiffened, flashing an urgent telepathic alert across Kai's Spellbook: \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"","advanceNarrationZh":"爬回地面陽光下，凱與 String 來到了晴溪村，發現一場猛烈暴風剛摧毀了這裡的屋簷、圍欄與農田。凱立刻喚出新結交的精靈夥伴前來相助！\n\n整數石巨人一口氣做了二十下伏地挺身，輕鬆扛起倒塌的圓木重建家園；小數水滴也湧出清澈氣泡泉水灌溉乾涸菜圃——就在此時，String 突然機警豎耳，立刻用心電感應把文字打在凱的書頁上：「凱！東邊穀倉旁有人鬼鬼祟祟地扛走了僅存的糧食袋！」","advanceDialogueEn":"String (telepathic): \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"","advanceDialogueZh":"String（心電感應）：「凱！東邊倉庫那邊有人想偷搬走剩下來的糧食袋！」"},{"pageNumber":36,"sceneIndex":4,"sceneId":"CH07_S04","image":"assets/scenes/36_CH07_S04.webp","titleEn":"Sharing Harvest with the Hungry Goblin","titleZh":"溫柔分享糧食給飢餓的小哥布林","narrationEn":"Instead of scolding the hungry goblin, Kai knelt down and kindly shared a generous basket of the restored harvest—showing that true magic heals hearts as well as villages.","narrationZh":"凱沒有責罰飢餓的小哥布林，而是溫柔蹲下身，將大家合力救回的麵包與收成大方地分給他。真正的魔法，不只是修好村莊，更是溫暖每一顆心。","dialogueEn":"Kai: \"True magic always helps those in need.\"","dialogueZh":"小英雄凱：「真正的魔法，是用來幫助需要幫助的人。」","spellCode":"# Compassion restores everyone","spellLabelEn":"Kindness Shared","spellLabelZh":"分享的溫暖","zone":"ENV_R07","mood":"deeply heartwarming compassion","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Kai sprinted around the wooden corner and caught a sneaky little goblin stammering frantic excuses. Holding up the bool Flashing Gem, it pulsed fierce crimson and chimed \"FALSE!\", exposing the trick at once!\n\nYet seeing how thin and hungry the trembling creature looked, Kai gently lowered the gem and shared a warm portion of the restored harvest with him—teaching everyone that true wizardry blends sharp awareness, justice, and compassion for those in need.","advanceNarrationZh":"凱飛奔轉過木屋牆角，當場抓到一隻正支支吾吾編藉口的小哥布林。凱舉起測謊 bool 晶石，寶石瞬間閃出鮮紅光芒並響亮宣告「FALSE！（說謊）」，當場拆穿謊言！\n\n但凱仔細一看，發現這隻小傢伙瘦得發抖、只是餓壞了。他收起寶石，溫柔地從恢復收成的食物裡分出一籃送給他——讓晴溪村所有人都明白，真正的魔法不只在於辨別對錯，更在於警惕、正義與幫助困苦之人的慈悲。","advanceDialogueEn":"Flashing Gem: \"FALSE!\" · Kai: \"No need to steal when you're hungry—come share part of the harvest with us.\"","advanceDialogueZh":"測謊寶石：「FALSE！」· 小英雄凱：「肚子餓不需要用偷的——來，這籃新鮮的食物分你一起吃吧。」"}],"chapterUrl":"chapters/chapter-09.html","chapterAdvanceUrl":"chapters/chapter-09-advance.html","paragraphsAdvanceEn":["Descending beneath the library into a crystal cavern, String leaped into the str Scroll Crystal—awakening a permanent telepathic ribbon bond! Alongside the int push-up golem, float water droplet, and bool flashing gem, Kai mastered all four type() shapes.","In storm-battered Sunnybrook Village, their crystal team rebuilt cottages and restored parched crops—until String flashed a telepathic warning that caught a hungry goblin red-handed with bool FALSE!. Choosing mercy alongside truth, Kai shared a warm basket of harvest with him."],"paragraphsAdvanceZh":["走進地底水晶洞窟，String 躍入文字水晶 str 覺醒了心電感應對話能力！凱同時認識了愛做伏地挺身的 int 石巨人、跳動氣泡的 float 水滴，以及測謊的 bool 晶石，掌握 type() 四大形狀。","來到剛經歷暴風的晴溪村，精靈夥伴們合力重建房屋與農田；String 更及時用心電文字揪出偷食物的小哥布林。在 bool 揭露真相後，凱依然溫柔分食給飢餓的小傢伙。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-09","partNumber":9,"code":"SPELL 8 · SHAPESHIFT","zone":"ENV_R07","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村","subtitleEn":"Spell 8: type() · str, int, float, bool & Telepathic String","subtitleZh":"第八咒：type() · 認識四種魔法形態並與晴溪村分享收成","valueId":"love-earth","valueEn":"Love the Earth","valueZh":"愛地球","image":"assets/scenes/35_CH07_S03.webp","imageAltEn":"Hero Kai overlooking bright Sunnybrook waterfalls and rainbow skies across the green mountain valley","imageAltZh":"小英雄凱望著晴溪山谷壯麗的瀑布與彩虹，翠綠大地充滿希望","castIds":["hero-kai","string"],"paragraphsEn":["Behind the library desk, a hidden spiral staircase led deep underground into a sparkling Crystal Cave holding four Shapeshift Crystals: a Scroll for words (str), a Stone Golem for whole numbers (int), a Water Droplet for decimals (float), and a Flashing Gem for True/False (bool).","First, the golden str Scroll bonded right with String's collar—upgrading him so glowing ribbons of text could flash telepathically straight into Kai's Spellbook! Meanwhile, the chunky int Golem did energetic push-ups, the float Droplet bounced shimmering bubbles, and the bool Gem flashed green TRUE or red FALSE.","Climbing back up to Sunnybrook Village, they saw a fierce storm had knocked down houses and dried out crops. Working together, the int Golem lifted heavy logs to rebuild homes, and the float Droplet watered every thirsty field!","Suddenly String's new telepathic text flashed on Kai's Spellbook: \"Kai! Someone is sneaking away with food sacks near the eastern shed!\" The bool Gem flashed crimson \"FALSE!\" to expose a hungry little goblin's excuse—and instead of scolding him, Kai kindly shared a warm loaf from the restored harvest."],"paragraphsZh":["書庫書桌後方藏著一座螺旋樓梯，通往地底閃耀的水晶洞窟，裡面住著四位形變水晶精靈：代表文字的捲軸精靈（str）、整數石頭人（int）、小數點水滴（float）以及判斷真假的閃耀寶石（bool）。","捲軸精靈 str 的光芒融進了 String 的項圈——讓他獲得與凱的咒語書心電感應、傳送發光文字的超能力！石頭人 int 開心地做起伏地挺身，水滴 float 彈跳著水珠，寶石 bool 則會閃出綠色的「TRUE」或紅色的「FALSE」。","爬出地面來到「晴溪村」，他們發現暴風雨剛吹倒了木屋、沖壞了農田。大家齊心合力，int 石頭人一口氣做了二十下伏地挺身並扛起大木頭重建家園，float 水滴仔細灌溉每一片農田！","突然，String 透過項圈傳來緊急文字：「凱！東邊穀倉有人偷抱走剩下的食物袋！」bool 寶石閃出紅光「FALSE！」揭穿了一隻飢餓小哥布林的藉口——但凱沒有生氣，反而溫柔地把重建好的收成分一半送給他。"],"dialogue":[{"speakerEn":"String (Telepathic str Ribbon)","speakerZh":"String（心電感應文字）","lineEn":"\"Kai! Someone is sneaking away with food sacks near the eastern shed!\"","lineZh":"「凱！東邊棚屋那裡有人正抱著剩下的食物袋偷溜！」"},{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"True magic helps those in need. Let's share our harvest together.\"","lineZh":"「真正的魔法是用來幫助需要的人。這份食物，我們一起分享吧。」"}],"spell":{"nameEn":"Spell 8: SHAPESHIFT — type()","nameZh":"第八咒：SHAPESHIFT 辨形魔法 — type()","code":"print(type(\"Dragon\"))","explainEn":"type() acts like a magnifying glass to reveal whether data is text (str), whole number (int), decimal (float), or True/False (bool).","explainZh":"type() 就像魔法放大鏡，能看出資料是文字（str）、整數（int）、小數（float），還是是非對錯（bool）。","demoBtnEn":"Inspect Crystal Shapes 💎","demoBtnZh":"觀察四種水晶形態 💎","demoOutputEn":"<class 'str'> (Words!) · <class 'int'> (100) · <class 'float'> (3.5) · <class 'bool'> (True)","demoOutputZh":"<class 'str'>（文字）· <class 'int'>（整數）· <class 'float'>（小數）· <class 'bool'>（真假）"},"scenes":[{"pageNumber":33,"sceneIndex":1,"sceneId":"CH07_S01","image":"assets/scenes/33_CH07_S01.webp","titleEn":"Four Shapeshift Crystals & String's str Upgrade","titleZh":"四大水晶與 String 的心電感應升級","narrationEn":"Deep underground, Kai and String found four glowing Shapeshift Crystals! The Scroll crystal (str) resonated straight with String—upgrading him with luminous text ribbons flowing directly into Kai's Spellbook!","narrationZh":"沿著階梯來到地底水晶洞窟，裡面飄浮著四顆形變水晶！其中代表文字的卷軸水晶（str）飛進了 String 身上——替他開啟了把文字直接傳進凱咒語書的心電感應連結！","dialogueEn":"Kai: \"print(type('String'))! It's <class 'str'>!\"","dialogueZh":"小英雄凱：「print(type('String'))！是文字型態 <class 'str'>！」","spellCode":"Spell: print(type(\"String\"))","spellLabelEn":"Spell 8: SHAPESHIFT (type())","spellLabelZh":"第八咒：SHAPESHIFT 辨形魔法 (type())","zone":"ENV_R07","mood":"magical awakening and deeper bond","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"8. SHAPESHIFT — The Hidden Crystal Cave (type())","advanceSectionZh":"八、SHAPESHIFT 變形咒 — 隱藏的水晶洞窟（分辨型態：type()）","advanceNarrationEn":"Pulling open the iron ring, Kai and String descended a spiral stone staircase into a breathtaking underground cavern warmed by four floating Shapeshift Crystals.\n\nWhen Kai approached the luminous Scroll Crystal (str for words), it resonated straight with his pup! String leaped joyfully into the crystal light and officially upgraded—now glowing ribbons of text flashed directly into Kai's Spellbook and mind in a secret telepathic bond!","advanceNarrationZh":"拉開鐵環掀開暗門，凱和 String 沿著螺旋石梯往下走，來到一座由四枚飄浮「變形水晶」照亮的奇幻地下水晶洞窟。\n\n當凱走近象徵文字的卷軸水晶 str 時，水晶忽然與小狗產生了共鳴！String 開心地一躍而起吸納那束光影，正式完成升級——從此之後，發光的文字絲帶能透過心電感應，直接把 String 的心聲傳進凱的咒語書與腦海裡！","advanceDialogueEn":"String (telepathic str ribbon): \"Kai! Look—I can finally send real words right into your Spellbook!\"","advanceDialogueZh":"String（心電感應文字光帶）：「凱！快看——我終於可以把真正的心裡話傳進你的咒語書裡了！」","imageMobile":"assets/scenes-mobile/33_CH07_S01.webp"},{"pageNumber":34,"sceneIndex":2,"sceneId":"CH07_S02","image":"assets/scenes/34_CH07_S02.webp","titleEn":"int Push-Ups, float Bubbles & bool Truth Gem","titleZh":"整數石像俯臥撐、浮點水滴與真假寶石","narrationEn":"Around them, the Stone Block golem (int) dropped down to reel off energetic push-ups, the clear Water Droplet (float) bounced with shimmering decimal bubbles, and the Flashing Gem (bool) pulsed True and False!","narrationZh":"旁邊的整數小石像（int）立刻趴下做起精力充沛的伏地挺身，浮點小水滴（float）帶著小數點泡泡開心彈跳，布林寶石（bool）則閃耀著真假光芒！","dialogueEn":"String (telepathic): \"WHOA! LOOK AT INT GO!\"","dialogueZh":"String（心電感應文字）：「哇！你看整數小石像好有精神！」","spellCode":"type(20) -> int | type(3.5) -> float | type(True) -> bool","spellLabelEn":"Meet the Four Spirits","spellLabelZh":"認識四大資料精靈","zone":"ENV_R07","mood":"playful joyful discovery","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Beside newly telepathic String stood the three remaining spirit crystals waiting to reveal how every magical shape reveals itself under the type() magnifying glass:\n\nThe sturdy Stone Block golem (int for whole numbers), which immediately dropped down to do crisp push-ups; the clear Water Droplet (float for decimals), bouncing joyfully with shimmering bubbles; and the Flashing Gem (bool for True or False), a gleaming lie detector.","advanceNarrationZh":"在獲得文字天賦的 String 身旁，其餘三枚晶靈也一一顯現出在 type() 放大鏡下的真實樣貌：\n\n結實穩重的石塊小巨人（int 整數）立刻趴在地上示範標準伏地挺身；晶瑩剔透的小水滴（float 小數）快樂地彈跳起舞，冒出串串七彩泡泡；還有一閃一閃的閃耀寶石（bool 真假布林值），是一顆絕不說謊的測謊晶石。","advanceDialogueEn":"Kai: \"Four distinct shapes under type(): str for words, int for whole numbers, float for decimals, and bool for True/False!\"","advanceDialogueZh":"小英雄凱：「原來在 type() 下共有四種形狀：文字 str、整數 int、小數 float，還有真假 bool！」","imageMobile":"assets/scenes-mobile/34_CH07_S02.webp"},{"pageNumber":35,"sceneIndex":3,"sceneId":"CH07_S03","image":"assets/scenes/35_CH07_S03.webp","titleEn":"Rebuilding Storm-Battered Sunnybrook Village","titleZh":"重建晴溪村與抓包小哥布林","narrationEn":"Climbing out to storm-damaged Sunnybrook Village, int hoisted fallen logs, float watered dry crops, String flashed a telepathic warning, and bool beamed crimson \"FALSE!\" to expose a hungry little goblin's excuse!","narrationZh":"回到遭遇暴風雨的晴溪村，int 搬起倒塌的木頭修屋頂，float 替農田澆水，String 用心電感應文字發出警告，而 bool 閃出紅光「FALSE！」拆穿了偷拿糧食袋的小哥布林！","dialogueEn":"String (telepathic): \"Kai! Someone is sneaking food sacks by the east shed!\"","dialogueZh":"String（心電感應）：「凱！有人在東邊棚屋偷拿糧食袋！」","spellCode":"# bool flashes FALSE! on excuse","spellLabelEn":"Team Rescue","spellLabelZh":"齊心救災與真相","zone":"ENV_R07","mood":"energetic community rescue","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"Testing the Spirits in Sunnybrook Village","advanceSectionZh":"篇章插曲：在晴溪村考驗精靈夥伴","advanceNarrationEn":"Climbing back into daylight, Kai and String arrived at Sunnybrook Village, where a fierce storm had battered homes, snapped fences, and washed out dry crop plots. Kai immediately called upon his crystal spirits!\n\nThe sturdy int golem reeled off twenty rapid push-ups and hoisted heavy fallen logs back into place while the clear float droplet nourished parched farm soil with bubbling water—until String suddenly stiffened, flashing an urgent telepathic alert across Kai's Spellbook: \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"","advanceNarrationZh":"爬回地面陽光下，凱與 String 來到了晴溪村，發現一場猛烈暴風剛摧毀了這裡的屋簷、圍欄與農田。凱立刻喚出新結交的精靈夥伴前來相助！\n\n整數石巨人一口氣做了二十下伏地挺身，輕鬆扛起倒塌的圓木重建家園；小數水滴也湧出清澈氣泡泉水灌溉乾涸菜圃——就在此時，String 突然機警豎耳，立刻用心電感應把文字打在凱的書頁上：「凱！東邊穀倉旁有人鬼鬼祟祟地扛走了僅存的糧食袋！」","advanceDialogueEn":"String (telepathic): \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"","advanceDialogueZh":"String（心電感應）：「凱！東邊倉庫那邊有人想偷搬走剩下來的糧食袋！」","imageMobile":"assets/scenes-mobile/35_CH07_S03.webp"},{"pageNumber":36,"sceneIndex":4,"sceneId":"CH07_S04","image":"assets/scenes/36_CH07_S04.webp","titleEn":"Sharing Harvest with the Hungry Goblin","titleZh":"溫柔分享糧食給飢餓的小哥布林","narrationEn":"Instead of scolding the hungry goblin, Kai knelt down and kindly shared a generous basket of the restored harvest—showing that true magic heals hearts as well as villages.","narrationZh":"凱沒有責罰飢餓的小哥布林，而是溫柔蹲下身，將大家合力救回的麵包與收成大方地分給他。真正的魔法，不只是修好村莊，更是溫暖每一顆心。","dialogueEn":"Kai: \"True magic always helps those in need.\"","dialogueZh":"小英雄凱：「真正的魔法，是用來幫助需要幫助的人。」","spellCode":"# Compassion restores everyone","spellLabelEn":"Kindness Shared","spellLabelZh":"分享的溫暖","zone":"ENV_R07","mood":"deeply heartwarming compassion","palette":["#3B8EA5","#F4D068","#D6CBB5","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Kai sprinted around the wooden corner and caught a sneaky little goblin stammering frantic excuses. Holding up the bool Flashing Gem, it pulsed fierce crimson and chimed \"FALSE!\", exposing the trick at once!\n\nYet seeing how thin and hungry the trembling creature looked, Kai gently lowered the gem and shared a warm portion of the restored harvest with him—teaching everyone that true wizardry blends sharp awareness, justice, and compassion for those in need.","advanceNarrationZh":"凱飛奔轉過木屋牆角，當場抓到一隻正支支吾吾編藉口的小哥布林。凱舉起測謊 bool 晶石，寶石瞬間閃出鮮紅光芒並響亮宣告「FALSE！（說謊）」，當場拆穿謊言！\n\n但凱仔細一看，發現這隻小傢伙瘦得發抖、只是餓壞了。他收起寶石，溫柔地從恢復收成的食物裡分出一籃送給他——讓晴溪村所有人都明白，真正的魔法不只在於辨別對錯，更在於警惕、正義與幫助困苦之人的慈悲。","advanceDialogueEn":"Flashing Gem: \"FALSE!\" · Kai: \"No need to steal when you're hungry—come share part of the harvest with us.\"","advanceDialogueZh":"測謊寶石：「FALSE！」· 小英雄凱：「肚子餓不需要用偷的——來，這籃新鮮的食物分你一起吃吧。」","imageMobile":"assets/scenes-mobile/36_CH07_S04.webp"}],"chapterUrl":"chapters/chapter-09.html","chapterAdvanceUrl":"chapters/chapter-09-advance.html","paragraphsAdvanceEn":["Descending beneath the library into a crystal cavern, String leaped into the str Scroll Crystal—awakening a permanent telepathic ribbon bond! Alongside the int push-up golem, float water droplet, and bool flashing gem, Kai mastered all four type() shapes.","In storm-battered Sunnybrook Village, their crystal team rebuilt cottages and restored parched crops—until String flashed a telepathic warning that caught a hungry goblin red-handed with bool FALSE!. Choosing mercy alongside truth, Kai shared a warm basket of harvest with him."],"paragraphsAdvanceZh":["走進地底水晶洞窟，String 躍入文字水晶 str 覺醒了心電感應對話能力！凱同時認識了愛做伏地挺身的 int 石巨人、跳動氣泡的 float 水滴，以及測謊的 bool 晶石，掌握 type() 四大形狀。","來到剛經歷暴風的晴溪村，精靈夥伴們合力重建房屋與農田；String 更及時用心電文字揪出偷食物的小哥布林。在 bool 揭露真相後，凱依然溫柔分食給飢餓的小傢伙。"],"imageMobile":"assets/scenes-mobile/35_CH07_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

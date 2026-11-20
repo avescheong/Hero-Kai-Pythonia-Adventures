@@ -53,6 +53,12 @@
     padding: 13px 14px;
   }
   .kc-seal-inputs { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+  .kc-plane--arch { display: none; }
+  #act-canopy .sc-stage video[data-sc-scrub],
+  #act-canopy .sc-stage .sc-stage__poster {
+    transform: scale(var(--kc-citadel-scale, 1));
+    transform-origin: 50% 54%;
+  }
   .sc-scrim--lead {
     background: linear-gradient(to top,
       color-mix(in oklab, var(--sc-canvas) 97%, transparent) 0%,
@@ -64,6 +70,7 @@
 @media (max-width: 640px) {
   .kc-music-vol,
   #kc-music-track-btn { display: none; }
+  .kc-reader { scroll-margin-top: 104px; }
 }
 @media (max-width: 520px) {
   .kc-seal { display: none; }
@@ -73,6 +80,23 @@
   .kc-seal-card p { font-size: 0.8rem; margin-bottom: 8px; }
   .kc-seal-aphorism { font-size: 0.76rem; padding: 6px 10px; margin-bottom: 8px; }
   .kc-seal-preview { width: 144px; height: 81px; }
+}
+@media (max-width: 768px) and (orientation: portrait) {
+  .kc-story-card__imgwrap {
+    aspect-ratio: 9 / 16;
+    max-height: 72svh;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .kc-spread-scene__media {
+    aspect-ratio: 9 / 16;
+    max-height: 68svh;
+  }
+  .kc-scene-thumb img {
+    aspect-ratio: 3 / 4;
+    object-position: center 60%;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .kc-circuit-trace { stroke-dashoffset: 0; }

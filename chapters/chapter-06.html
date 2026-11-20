@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-06","partNumber":6,"code":"SPELL 5 · VAULT","zone":"ENV_R05","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋","subtitleEn":"Spell 5: gold = 100 · Lock treasure inside a named vault","subtitleZh":"第五咒：gold = 100 · 用等號大鎖把寶物存進名字裡","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/23_CH05_S03.webp","imageAltEn":"Sparkling riverbank and silver-leafed tree beside glowing ruby, sapphire, and golden treasure chests","imageAltZh":"閃爍星光的河畔與銀葉大樹旁，閃耀著紅寶石、藍寶石與黃金三個魔法寶箱","castIds":["hero-kai","string","great-wizard"],"paragraphsEn":["Beyond the parted brambles, Kai and String happily reunited with the Great Wizard! Together they walked to the grey pebbles of the Cursed Riverbank, where thousands of golden coins glittered in the sand.","Eagerly, Kai scooped up a handful of coins—POOF! They turned into grey dust and blew away! The Wizard warned that any unnamed treasure disappears into the river's curse unless it is locked inside a named Vault using the Equals Padlock =.","Kai slammed a wooden chest shut and spun the lock: gold = 100, then checked inside with print(gold). CLACK! All 100 coins stayed shining safely inside, with String sitting proudly on top as guard!","Then the Great Wizard pulled out a shimmering silver pouch—a Spatial Dimensional Pocket! With a swirl of warm gold light, the heavy chest shrank right into Kai's belt so they could travel light toward the mountain foothills."],"paragraphsZh":["走出荊棘後，凱和 String 開心地與大法師重逢！他們一起來到布滿灰色鵝卵石的「詛咒河畔」，岸邊閃耀著成千上萬枚金幣。","凱興奮地抓起一把金幣——噗的一聲！金幣全化成了灰塵飛走！大法師提醒他：沒有被取名保護的寶藏會被河水的詛咒吹散，必須用「等號大鎖 =」鎖進有名字的保險箱裡。","凱用力關上木箱並轉動大鎖：gold = 100，接著用 print(gold) 檢查裡面。喀嚓！一百枚金幣閃閃發亮地安全躺在裡面，String 還驕傲地坐在箱子上當警衛！","大法師隨後取出一個銀色發光小袋子——「空間百寶袋」！笨重的木箱化成溫暖金光收進凱腰間的袋子裡，讓他們能輕裝出發前往山谷。"],"dialogue":[{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"Lock it inside a named Vault with =! Travel light, apprentice.\"","lineZh":"「用等號 = 把它鎖進有名字的保險箱裡！輕裝前進吧，我的學徒。」"}],"spell":{"nameEn":"Spell 5: VAULT — Equals (=)","nameZh":"第五咒：VAULT 儲存魔法 — 等號 (=)","code":"gold = 100\nprint(gold)","explainEn":"The single equals sign = stores a value inside a labeled variable name so nothing gets lost.","explainZh":"一個等號 = 就像大鎖，把右邊的寶藏穩穩鎖進左邊的變數名字裡，再也不會不見！","demoBtnEn":"Lock 100 Gold Coins 🔒","demoBtnZh":"鎖入 100 枚金幣 🔒","demoOutputEn":"CLACK! gold = 100 stored safely -> print(gold) outputs: 100","demoOutputZh":"喀嚓！gold = 100 已安全鎖好 -> print(gold) 顯示：100"},"scenes":[{"pageNumber":21,"sceneIndex":1,"sceneId":"CH05_S01","image":"assets/scenes/21_CH05_S01.webp","titleEn":"Reunion & The Vanishing Coins","titleZh":"重逢大法師與消失的金幣","narrationEn":"Reuniting with the Great Wizard, Kai and String reached the barren Cursed Riverbank. Thousands of gold coins glittered on the pebbles—but the moment Kai scooped a handful, POOF! Every coin vanished into grey dust!","narrationZh":"凱與 String 再次與大法師會合，來到光禿禿的詛咒河畔。卵石上閃耀著無數金幣，但凱才剛抓起一把——噗！金幣竟在指縫間化成灰煙消失了！","dialogueEn":"Kai: \"Hey! Where did all the gold go?!\"","dialogueZh":"小英雄凱：「咦！金幣怎麼全都不見了？！」","spellCode":"# Unnamed treasure vanishes","spellLabelEn":"Vanishing Coins","spellLabelZh":"消失的寶藏","zone":"ENV_R05","mood":"surprising magical mystery","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"5. VAULT — The Cursed Riverbank (Equals Sign = Padlock = =)","advanceSectionZh":"五、VAULT 寶庫咒 — 受詛咒的河岸（等號鎖：=）","advanceNarrationEn":"Waiting calmly along the scenic highway stood the Great Wizard, adjusting his starry blue cloak with a proud smile. Marching together toward the Bug King's distant dark mountain, lush green grass suddenly gave way to barren grey stones at the Cursed Riverbank.\n\nAcross the smooth pebbles glittered thousands of golden coins shining like fallen stars! Eagerly, Kai scooped up a huge double handful—POOF! In a puff of grey dust, every coin vanished right out of his fingers!","advanceNarrationZh":"在林外的景觀大道旁，大法師早已披著星辰藍披風微笑等候。一人一狗與大法師重新會合，並肩朝黑山前進；可走著走著，綠油油的草地卻變成了荒涼灰石，來到了令人不安的「受詛咒河岸」。\n\n圓潤的河畔鵝卵石上閃耀著成千上萬枚金幣，宛如墜落的星辰。凱興奮地雙手掬起滿滿一把金幣——「噗！」一陣灰色塵霧飄散，指縫裡的金幣竟在一眨眼間全數消失得無影無蹤！","advanceDialogueEn":"Kai: \"Wait—every single coin just vanished into grey dust right out of my fingers!\"","advanceDialogueZh":"小英雄凱：「咦——金幣剛拿到手裡，怎麼就變成一陣灰塵憑空消失了！？」"},{"pageNumber":22,"sceneIndex":2,"sceneId":"CH05_S02","image":"assets/scenes/22_CH05_S02.webp","titleEn":"The Wooden Chest & Equals Padlock (=)","titleZh":"木箱與等號大鎖 (=)","narrationEn":"\"Any treasure left unnamed disappears into the river's curse,\" the Wizard warned. \"Lock it inside a named Vault using the Equals Padlock =!\"","narrationZh":"大法師提醒道：「沒有名字保護的寶物都會被河水詛咒奪走。你必須用『等號大鎖 =』把它鎖進有名字的保險箱裡！」","dialogueEn":"Great Wizard: \"Lock it inside a named Vault with =!\"","dialogueZh":"大法師：「用等號大鎖 = 把它鎖進專屬的保險箱吧！」","spellCode":"# Lock value into a named variable","spellLabelEn":"The Equals Padlock","spellLabelZh":"等號魔法鎖","zone":"ENV_R05","mood":"focused teamwork","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Any treasure left unnamed disappears into the river's curse,\" the Great Wizard warned, pointing his glowing staff toward a sturdy, empty wooden chest resting on the grey stones.\n\n\"In Pythonia, you cannot just hold wealth loose in your hands—you must lock it inside a named Vault using the Equals Padlock =!\"","advanceNarrationZh":"「任何沒有被取名鎖好的財富，都會被河岸的詛咒吞噬。」大法師舉起魔杖指向岸邊一只厚實卻空蕩蕩的木頭寶箱，鄭重提醒道：\n\n「在蟒蛇王國裡，你不能只用手握著數值——你必須用『等號鎖 =』，把它安全鎖進有名字的寶庫變數裡！」","advanceDialogueEn":"Great Wizard: \"You must lock it inside a named Vault using the Equals Padlock =!\"","advanceDialogueZh":"大法師：「你必須運用『等號鎖 =』，把寶物穩穩鎖進屬於它名字的寶庫裡！」"},{"pageNumber":23,"sceneIndex":3,"sceneId":"CH05_S03","image":"assets/scenes/23_CH05_S03.webp","titleEn":"Locking gold = 100 & Guard Dog String","titleZh":"鎖住 gold = 100 與小守衛 String","narrationEn":"Kai spun the lock—gold = 100—and checked inside with print(gold). CLACK! All 100 coins shone safely inside, with String sitting proudly on top as guard!","narrationZh":"凱轉動大鎖寫下 gold = 100，再用 print(gold) 查看——喀嚓！一百枚金幣安穩地閃閃發光，String 驕傲地坐在箱子頂端當起了小小守衛！","dialogueEn":"Kai: \"gold = 100! Safe and sound!\"","dialogueZh":"小英雄凱：「gold = 100！全都安穩鎖好囉！」","spellCode":"Spell: gold = 100","spellLabelEn":"Spell 5: VAULT (=)","spellLabelZh":"第五咒：VAULT 儲存魔法 (=)","zone":"ENV_R05","mood":"warm proud comedy and relief","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Kai slammed the heavy wooden chest shut and spun the glowing rune padlock—gold = 100—securing his treasure safely inside the named Vault. Eager to verify that the magic held, he raised his Spellbook and cast: print(gold).\n\nCLACK! The lid shone with steady golden light, and all 100 coins gleamed safely inside—with loyal String sitting proudly on top as guard!","advanceNarrationZh":"凱用力蓋上沉重的木箱，轉動閃耀金光的等號寶鎖——gold = 100——把一百枚金幣穩穩封存進名為 gold 的寶庫裡。為了確認魔法生效，他舉起咒語書朗聲唸道：print(gold)。\n\n「喀噠！」一聲清脆，箱蓋綻放出穩定柔和的金光，裡頭整整一百枚金幣安然閃亮——而忠心的小狗 String 正威風凜凜地坐在箱蓋上負責看守！","advanceDialogueEn":"Kai: \"gold = 100 ... print(gold)! Look, String—all 100 coins stayed right where we locked them!\"","advanceDialogueZh":"小英雄凱：「gold = 100 …… print(gold)！快看 String，整整一百枚金幣全都安安全全地鎖住了！」"},{"pageNumber":24,"sceneIndex":4,"sceneId":"CH05_S04","image":"assets/scenes/24_CH05_S04.webp","titleEn":"The Spatial Dimensional Pocket & Foothill March","titleZh":"空間百寶袋與山麓行軍","narrationEn":"Seeing Kai's amazement, the Great Wizard gifted him a shimmering silver Spatial Dimensional Pocket. The heavy chest shrank into warm golden light flowing right into Kai's belt as they marched toward the mountains!","narrationZh":"大法師從袍中拿出閃亮的銀色「空間百寶袋」送給凱。沉重的木箱瞬間化作一道暖金光流收進凱的腰帶裡，三人一起朝高山邁進！","dialogueEn":"Great Wizard: \"Travel light, apprentice!\"","dialogueZh":"大法師：「輕裝前行吧，小法師！」","spellCode":"# Chest stored in Spatial Dimensional Pocket","spellLabelEn":"Spatial Dimensional Pocket","spellLabelZh":"空間百寶袋","zone":"ENV_R05","mood":"magical wonder on the march","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"The Spatial Dimensional Pocket & Journey to the Echoing Cavern","advanceSectionZh":"篇章插曲：空間百寶袋與前往迴音洞窟的旅程","advanceNarrationEn":"Seeing Kai's amazement, the Great Wizard pulled a shimmering silver pouch from his robes: a Spatial Dimensional Pocket. \"A true wizard of Pythonia cannot carry heavy wooden chests across the realm,\" he laughed. Watchful String tilted his head as the heavy wooden chest shrank gently into golden light streaming straight into Kai's belt!\n\nWith his vault carried weightlessly at his waist, Kai, String, and the Wizard resumed their march. String bounded ahead chasing luminous river-butterflies until rugged stone cliffs rose in deep purple twilight—leading straight to a shadowy fissure at the mountain base: the entrance to the echoing cavern.","advanceNarrationZh":"看見凱驚喜的神情，大法師微笑著從袍中取出一只閃爍銀光的錦囊——「空間百寶袋」。「真正的法師總不能扛著厚重木箱走遍天下吧。」在 String 好奇歪頭的注視下，大木箱化作一束溫暖金光縮小飛入凱的腰帶！\n\n身上輕巧無比、寶物卻隨時都在，一人一狗跟著大法師再次上路。String 一路追逐著灑落星塵的發光河蝶，直到暮色紫霧湧上山崖，引領他們來到山腳下一道幽深神祕的巨大岩縫——迴音洞窟的入口。","advanceDialogueEn":"Great Wizard: \"This Spatial Dimensional Pocket holds your Vault—now let us enter the echoing cavern.\"","advanceDialogueZh":"大法師：「這個空間百寶袋能為你收好寶庫——現在，我們一起走進前方的迴音洞窟吧。」"}],"chapterUrl":"chapters/chapter-06.html","chapterAdvanceUrl":"chapters/chapter-06-advance.html","paragraphsAdvanceEn":["Reunited with the Great Wizard on the barren Cursed Riverbank, Kai watched loose handfuls of golden coins vanish in puffs of dust (POOF!) until he locked them inside a sturdy chest with the Equals Padlock: gold = 100 and print(gold).","To spare Kai heavy burdens, the Wizard gifted a shimmering silver Spatial Dimensional Pocket that shrank the entire gold vault onto Kai's belt—and with String chasing glowing river-butterflies ahead, they marched into the twilight mountain fissure toward the echoing cavern."],"paragraphsAdvanceZh":["在受詛咒河岸與大法師重逢後，凱親眼看見抓在手心卻沒取名的金幣瞬間化為灰霧消失，直到學會用等號鎖鎖定「gold = 100」才順利守住一百枚金幣。","大法師接著贈予「空間百寶袋」，將沉重木箱縮小收進凱的腰帶！一路上 String 快樂追逐發光河蝶，陪伴凱與導師走進山腳下的迴音洞窟。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-06","partNumber":6,"code":"SPELL 5 · VAULT","zone":"ENV_R05","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋","subtitleEn":"Spell 5: gold = 100 · Lock treasure inside a named vault","subtitleZh":"第五咒：gold = 100 · 用等號大鎖把寶物存進名字裡","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/23_CH05_S03.webp","imageAltEn":"Sparkling riverbank and silver-leafed tree beside glowing ruby, sapphire, and golden treasure chests","imageAltZh":"閃爍星光的河畔與銀葉大樹旁，閃耀著紅寶石、藍寶石與黃金三個魔法寶箱","castIds":["hero-kai","string","great-wizard"],"paragraphsEn":["Beyond the parted brambles, Kai and String happily reunited with the Great Wizard! Together they walked to the grey pebbles of the Cursed Riverbank, where thousands of golden coins glittered in the sand.","Eagerly, Kai scooped up a handful of coins—POOF! They turned into grey dust and blew away! The Wizard warned that any unnamed treasure disappears into the river's curse unless it is locked inside a named Vault using the Equals Padlock =.","Kai slammed a wooden chest shut and spun the lock: gold = 100, then checked inside with print(gold). CLACK! All 100 coins stayed shining safely inside, with String sitting proudly on top as guard!","Then the Great Wizard pulled out a shimmering silver pouch—a Spatial Dimensional Pocket! With a swirl of warm gold light, the heavy chest shrank right into Kai's belt so they could travel light toward the mountain foothills."],"paragraphsZh":["走出荊棘後，凱和 String 開心地與大法師重逢！他們一起來到布滿灰色鵝卵石的「詛咒河畔」，岸邊閃耀著成千上萬枚金幣。","凱興奮地抓起一把金幣——噗的一聲！金幣全化成了灰塵飛走！大法師提醒他：沒有被取名保護的寶藏會被河水的詛咒吹散，必須用「等號大鎖 =」鎖進有名字的保險箱裡。","凱用力關上木箱並轉動大鎖：gold = 100，接著用 print(gold) 檢查裡面。喀嚓！一百枚金幣閃閃發亮地安全躺在裡面，String 還驕傲地坐在箱子上當警衛！","大法師隨後取出一個銀色發光小袋子——「空間百寶袋」！笨重的木箱化成溫暖金光收進凱腰間的袋子裡，讓他們能輕裝出發前往山谷。"],"dialogue":[{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"Lock it inside a named Vault with =! Travel light, apprentice.\"","lineZh":"「用等號 = 把它鎖進有名字的保險箱裡！輕裝前進吧，我的學徒。」"}],"spell":{"nameEn":"Spell 5: VAULT — Equals (=)","nameZh":"第五咒：VAULT 儲存魔法 — 等號 (=)","code":"gold = 100\nprint(gold)","explainEn":"The single equals sign = stores a value inside a labeled variable name so nothing gets lost.","explainZh":"一個等號 = 就像大鎖，把右邊的寶藏穩穩鎖進左邊的變數名字裡，再也不會不見！","demoBtnEn":"Lock 100 Gold Coins 🔒","demoBtnZh":"鎖入 100 枚金幣 🔒","demoOutputEn":"CLACK! gold = 100 stored safely -> print(gold) outputs: 100","demoOutputZh":"喀嚓！gold = 100 已安全鎖好 -> print(gold) 顯示：100"},"scenes":[{"pageNumber":21,"sceneIndex":1,"sceneId":"CH05_S01","image":"assets/scenes/21_CH05_S01.webp","titleEn":"Reunion & The Vanishing Coins","titleZh":"重逢大法師與消失的金幣","narrationEn":"Reuniting with the Great Wizard, Kai and String reached the barren Cursed Riverbank. Thousands of gold coins glittered on the pebbles—but the moment Kai scooped a handful, POOF! Every coin vanished into grey dust!","narrationZh":"凱與 String 再次與大法師會合，來到光禿禿的詛咒河畔。卵石上閃耀著無數金幣，但凱才剛抓起一把——噗！金幣竟在指縫間化成灰煙消失了！","dialogueEn":"Kai: \"Hey! Where did all the gold go?!\"","dialogueZh":"小英雄凱：「咦！金幣怎麼全都不見了？！」","spellCode":"# Unnamed treasure vanishes","spellLabelEn":"Vanishing Coins","spellLabelZh":"消失的寶藏","zone":"ENV_R05","mood":"surprising magical mystery","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"5. VAULT — The Cursed Riverbank (Equals Sign = Padlock = =)","advanceSectionZh":"五、VAULT 寶庫咒 — 受詛咒的河岸（等號鎖：=）","advanceNarrationEn":"Waiting calmly along the scenic highway stood the Great Wizard, adjusting his starry blue cloak with a proud smile. Marching together toward the Bug King's distant dark mountain, lush green grass suddenly gave way to barren grey stones at the Cursed Riverbank.\n\nAcross the smooth pebbles glittered thousands of golden coins shining like fallen stars! Eagerly, Kai scooped up a huge double handful—POOF! In a puff of grey dust, every coin vanished right out of his fingers!","advanceNarrationZh":"在林外的景觀大道旁，大法師早已披著星辰藍披風微笑等候。一人一狗與大法師重新會合，並肩朝黑山前進；可走著走著，綠油油的草地卻變成了荒涼灰石，來到了令人不安的「受詛咒河岸」。\n\n圓潤的河畔鵝卵石上閃耀著成千上萬枚金幣，宛如墜落的星辰。凱興奮地雙手掬起滿滿一把金幣——「噗！」一陣灰色塵霧飄散，指縫裡的金幣竟在一眨眼間全數消失得無影無蹤！","advanceDialogueEn":"Kai: \"Wait—every single coin just vanished into grey dust right out of my fingers!\"","advanceDialogueZh":"小英雄凱：「咦——金幣剛拿到手裡，怎麼就變成一陣灰塵憑空消失了！？」","imageMobile":"assets/scenes-mobile/21_CH05_S01.webp"},{"pageNumber":22,"sceneIndex":2,"sceneId":"CH05_S02","image":"assets/scenes/22_CH05_S02.webp","titleEn":"The Wooden Chest & Equals Padlock (=)","titleZh":"木箱與等號大鎖 (=)","narrationEn":"\"Any treasure left unnamed disappears into the river's curse,\" the Wizard warned. \"Lock it inside a named Vault using the Equals Padlock =!\"","narrationZh":"大法師提醒道：「沒有名字保護的寶物都會被河水詛咒奪走。你必須用『等號大鎖 =』把它鎖進有名字的保險箱裡！」","dialogueEn":"Great Wizard: \"Lock it inside a named Vault with =!\"","dialogueZh":"大法師：「用等號大鎖 = 把它鎖進專屬的保險箱吧！」","spellCode":"# Lock value into a named variable","spellLabelEn":"The Equals Padlock","spellLabelZh":"等號魔法鎖","zone":"ENV_R05","mood":"focused teamwork","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Any treasure left unnamed disappears into the river's curse,\" the Great Wizard warned, pointing his glowing staff toward a sturdy, empty wooden chest resting on the grey stones.\n\n\"In Pythonia, you cannot just hold wealth loose in your hands—you must lock it inside a named Vault using the Equals Padlock =!\"","advanceNarrationZh":"「任何沒有被取名鎖好的財富，都會被河岸的詛咒吞噬。」大法師舉起魔杖指向岸邊一只厚實卻空蕩蕩的木頭寶箱，鄭重提醒道：\n\n「在蟒蛇王國裡，你不能只用手握著數值——你必須用『等號鎖 =』，把它安全鎖進有名字的寶庫變數裡！」","advanceDialogueEn":"Great Wizard: \"You must lock it inside a named Vault using the Equals Padlock =!\"","advanceDialogueZh":"大法師：「你必須運用『等號鎖 =』，把寶物穩穩鎖進屬於它名字的寶庫裡！」","imageMobile":"assets/scenes-mobile/22_CH05_S02.webp"},{"pageNumber":23,"sceneIndex":3,"sceneId":"CH05_S03","image":"assets/scenes/23_CH05_S03.webp","titleEn":"Locking gold = 100 & Guard Dog String","titleZh":"鎖住 gold = 100 與小守衛 String","narrationEn":"Kai spun the lock—gold = 100—and checked inside with print(gold). CLACK! All 100 coins shone safely inside, with String sitting proudly on top as guard!","narrationZh":"凱轉動大鎖寫下 gold = 100，再用 print(gold) 查看——喀嚓！一百枚金幣安穩地閃閃發光，String 驕傲地坐在箱子頂端當起了小小守衛！","dialogueEn":"Kai: \"gold = 100! Safe and sound!\"","dialogueZh":"小英雄凱：「gold = 100！全都安穩鎖好囉！」","spellCode":"Spell: gold = 100","spellLabelEn":"Spell 5: VAULT (=)","spellLabelZh":"第五咒：VAULT 儲存魔法 (=)","zone":"ENV_R05","mood":"warm proud comedy and relief","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Kai slammed the heavy wooden chest shut and spun the glowing rune padlock—gold = 100—securing his treasure safely inside the named Vault. Eager to verify that the magic held, he raised his Spellbook and cast: print(gold).\n\nCLACK! The lid shone with steady golden light, and all 100 coins gleamed safely inside—with loyal String sitting proudly on top as guard!","advanceNarrationZh":"凱用力蓋上沉重的木箱，轉動閃耀金光的等號寶鎖——gold = 100——把一百枚金幣穩穩封存進名為 gold 的寶庫裡。為了確認魔法生效，他舉起咒語書朗聲唸道：print(gold)。\n\n「喀噠！」一聲清脆，箱蓋綻放出穩定柔和的金光，裡頭整整一百枚金幣安然閃亮——而忠心的小狗 String 正威風凜凜地坐在箱蓋上負責看守！","advanceDialogueEn":"Kai: \"gold = 100 ... print(gold)! Look, String—all 100 coins stayed right where we locked them!\"","advanceDialogueZh":"小英雄凱：「gold = 100 …… print(gold)！快看 String，整整一百枚金幣全都安安全全地鎖住了！」","imageMobile":"assets/scenes-mobile/23_CH05_S03.webp"},{"pageNumber":24,"sceneIndex":4,"sceneId":"CH05_S04","image":"assets/scenes/24_CH05_S04.webp","titleEn":"The Spatial Dimensional Pocket & Foothill March","titleZh":"空間百寶袋與山麓行軍","narrationEn":"Seeing Kai's amazement, the Great Wizard gifted him a shimmering silver Spatial Dimensional Pocket. The heavy chest shrank into warm golden light flowing right into Kai's belt as they marched toward the mountains!","narrationZh":"大法師從袍中拿出閃亮的銀色「空間百寶袋」送給凱。沉重的木箱瞬間化作一道暖金光流收進凱的腰帶裡，三人一起朝高山邁進！","dialogueEn":"Great Wizard: \"Travel light, apprentice!\"","dialogueZh":"大法師：「輕裝前行吧，小法師！」","spellCode":"# Chest stored in Spatial Dimensional Pocket","spellLabelEn":"Spatial Dimensional Pocket","spellLabelZh":"空間百寶袋","zone":"ENV_R05","mood":"magical wonder on the march","palette":["#F2C94C","#3A9BDC","#7A746E","#D9E4EC"],"advanceSectionEn":"The Spatial Dimensional Pocket & Journey to the Echoing Cavern","advanceSectionZh":"篇章插曲：空間百寶袋與前往迴音洞窟的旅程","advanceNarrationEn":"Seeing Kai's amazement, the Great Wizard pulled a shimmering silver pouch from his robes: a Spatial Dimensional Pocket. \"A true wizard of Pythonia cannot carry heavy wooden chests across the realm,\" he laughed. Watchful String tilted his head as the heavy wooden chest shrank gently into golden light streaming straight into Kai's belt!\n\nWith his vault carried weightlessly at his waist, Kai, String, and the Wizard resumed their march. String bounded ahead chasing luminous river-butterflies until rugged stone cliffs rose in deep purple twilight—leading straight to a shadowy fissure at the mountain base: the entrance to the echoing cavern.","advanceNarrationZh":"看見凱驚喜的神情，大法師微笑著從袍中取出一只閃爍銀光的錦囊——「空間百寶袋」。「真正的法師總不能扛著厚重木箱走遍天下吧。」在 String 好奇歪頭的注視下，大木箱化作一束溫暖金光縮小飛入凱的腰帶！\n\n身上輕巧無比、寶物卻隨時都在，一人一狗跟著大法師再次上路。String 一路追逐著灑落星塵的發光河蝶，直到暮色紫霧湧上山崖，引領他們來到山腳下一道幽深神祕的巨大岩縫——迴音洞窟的入口。","advanceDialogueEn":"Great Wizard: \"This Spatial Dimensional Pocket holds your Vault—now let us enter the echoing cavern.\"","advanceDialogueZh":"大法師：「這個空間百寶袋能為你收好寶庫——現在，我們一起走進前方的迴音洞窟吧。」","imageMobile":"assets/scenes-mobile/24_CH05_S04.webp"}],"chapterUrl":"chapters/chapter-06.html","chapterAdvanceUrl":"chapters/chapter-06-advance.html","paragraphsAdvanceEn":["Reunited with the Great Wizard on the barren Cursed Riverbank, Kai watched loose handfuls of golden coins vanish in puffs of dust (POOF!) until he locked them inside a sturdy chest with the Equals Padlock: gold = 100 and print(gold).","To spare Kai heavy burdens, the Wizard gifted a shimmering silver Spatial Dimensional Pocket that shrank the entire gold vault onto Kai's belt—and with String chasing glowing river-butterflies ahead, they marched into the twilight mountain fissure toward the echoing cavern."],"paragraphsAdvanceZh":["在受詛咒河岸與大法師重逢後，凱親眼看見抓在手心卻沒取名的金幣瞬間化為灰霧消失，直到學會用等號鎖鎖定「gold = 100」才順利守住一百枚金幣。","大法師接著贈予「空間百寶袋」，將沉重木箱縮小收進凱的腰帶！一路上 String 快樂追逐發光河蝶，陪伴凱與導師走進山腳下的迴音洞窟。"],"imageMobile":"assets/scenes-mobile/23_CH05_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

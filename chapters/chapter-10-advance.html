@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-10","partNumber":10,"code":"SPELL 9 · FORGE","zone":"ENV_R08","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐","subtitleEn":"Spell 9: hp = 100 - 20 · Math runes (+ - * /) and Dwarven steel armor","subtitleZh":"第九咒：hp = 100 - 20 · 踏實勞動與加減乘除戰甲魔法","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/39_CH08_S03.webp","imageAltEn":"Blazing forge fire and ringing anvil glowing warm amber light","imageAltZh":"熊熊燃燒的火爐與閃爍金色光芒的鍛造鐵砧","castIds":["hero-kai","string","master-grimsby"],"paragraphsEn":["To face the Bug King safely, Kai and String descended deep underground into the roaring Deep Dwarven Forge, ruled by fiery-bearded Master Grimsby.","Unlike the horned Blacksmith from the valley, Master Grimsby wore no helmet—his blazing ginger-orange twin-forked beard shimmered with brass rings. Before giving away any armor, Grimsby wanted to see if Kai had real grit.","Without a single complaint, Kai hauled heavy slag carts, shoveled blazing coal, and scrubbed every soot-covered brick clean, cheered on by String's glowing telepathic messages.","Won over by Kai's humble builder's heart, Master Grimsby unlocked gleaming silver Dwarven Steel Armor and a balanced Wizard's Blade! Then he taught Kai the four active combat math runes (+, -, *, /) like hp = 100 - 20 so his stats could update mid-battle."],"paragraphsZh":["為了能安全迎戰蟲蟲魔王，凱和 String 深入地底，來到火花轟鳴的「深山矮人鍛造爐」，由留著火紅雙叉鬍與黃銅鬍環的格里姆斯比大師掌管。","大師想先考驗凱有沒有真正的骨氣與毅力。凱沒有一句怨言，踏實地推著沉重的礦渣車、鏟起滾燙的煤炭，還把每一塊沾滿煤灰的磚頭刷洗得乾乾淨淨，String 也傳來溫暖的心電感應文字替他加油。","格里姆斯比大師被凱真誠勤勞的態度深深打動，打開保險庫，為凱穿上閃耀的矮人鋼甲並配上一把精巧平衡的法師長劍！","接著大師傳授了四道即時戰鬥算術符文（+、-、*、/），例如 hp = 100 - 20，讓凱在面對危險時能隨時計算並調整自己的力量。"],"dialogue":[{"speakerEn":"Master Grimsby","speakerZh":"格里姆斯比大師","lineEn":"\"You've got a true builder's heart! Wear this steel armor well, and never forget how numbers shift in battle.\"","lineZh":"「你有顆真正建築者的好心腸！穿上這副矮人鋼甲，記住數字在戰鬥中是如何加減變化的！」"}],"spell":{"nameEn":"Spell 9: FORGE — Math Runes (+ - * /)","nameZh":"第九咒：FORGE 算術魔法 — 加減乘除 (+ - * /)","code":"hp = 100 - 20\nprint(hp)","explainEn":"Use +, -, *, and / to add, subtract, multiply, and divide numbers and update variables!","explainZh":"用 +、-、*、/ 來幫數字進行加減乘除，還能把計算後的新結果存回原本的變數裡！","demoBtnEn":"Forge Math Armor 🛡️","demoBtnZh":"鍛造算術護甲 🛡️","demoOutputEn":"hp updated from 100 to 80! Dwarven Steel Armor equipped! 🛡️","demoOutputZh":"HP 從 100 更新為 80！成功裝備矮人鋼甲！🛡️"},"scenes":[{"pageNumber":37,"sceneIndex":1,"sceneId":"CH08_S01","image":"assets/scenes/37_CH08_S01.webp","titleEn":"Master Grimsby's Challenge in the Deep Forge","titleZh":"格里姆斯比大師的考驗","narrationEn":"Seeking stronger armor to protect Pythonia, Kai and String descended into the roaring Deep Dwarven Forge, where fiery-bearded Master Grimsby challenged Kai to prove his backbone!","narrationZh":"為了獲得保護王國的堅固鎧甲，凱與 String 走進轟隆作響的深山矮人鍛造爐，火紅鬍子的格里姆斯比大師立刻向凱提出毅力考驗！","dialogueEn":"Master Grimsby: \"Prove you've got a real builder's backbone!\"","dialogueZh":"格里姆斯比大師：「證明你有真正工匠的骨氣給我看！」","spellCode":"# Prove your builder's heart","spellLabelEn":"Dwarven Challenge","spellLabelZh":"矮人宗師的考驗","zone":"ENV_R08","mood":"intense fiery determination","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"9. FORGE — The Deep Dwarven Forge (+ - * / = Change the Numbers!)","advanceSectionZh":"九、FORGE 鍛造咒 — 矮人深處鍛造爐（加減乘除：+ - * /）","advanceNarrationEn":"Realizing his worn apprentice gear wouldn't shield him from dark citadel battles ahead, Kai followed the Sunnybrook elder's map down soot-stained stone stairs into the roaring Deep Dwarven Forge, ruled by fiery-bearded Master Grimsby.\n\n\"Every kid with an apprentice cloak thinks shiny armor appears just by asking!\" Grimsby grunted beside the blinding furnace. \"Go haul the heavy slag, shovel blazing coal, and scrub every soot-covered brick in this cavern!\"","advanceNarrationZh":"意識到舊學徒披風不足以迎戰前方黑山的險惡，凱依循晴溪村長老的指引，沿著滿是煤灰的石階深入地底，走進烈焰咆哮的「矮人深處鍛造爐」，拜見紅鬍子大匠師格里姆斯比。\n\n「每個披著綠斗篷的小傢伙都以為漂亮盔甲伸手求就能變出來！」格里姆斯比在火爐旁大聲哼道：「想學真本事，先去搬運沉重礦渣、剷起熾熱煤炭，把這座山洞每一塊薰黑的磚石刷洗乾淨再說！」","advanceDialogueEn":"Master Grimsby: \"Think a shiny sword drops just by asking? Haul the slag, shovel coal, and earn real steel!\"","advanceDialogueZh":"格里姆斯比大師：「以為好裝備開口就有嗎？去搬礦渣、剷煤炭，用真汗水證明你配得上矮人好鋼！」"},{"pageNumber":38,"sceneIndex":2,"sceneId":"CH08_S02","image":"assets/scenes/38_CH08_S02.webp","titleEn":"Grit Without Complaint & String's Telepathic Cheer","titleZh":"毫不抱怨的努力與 String 加油","narrationEn":"Kai hauled heavy slag, shoveled blazing coal, and scrubbed every soot-covered brick without a single complaint—cheered on by String's glowing telepathic encouragement!","narrationZh":"凱二話不說搬運重礦渣、鏟起熾熱煤炭、刷洗焦黑石磚，一聲抱怨也沒有——而 String 也在旁不斷傳送心電感應文字替他加油！","dialogueEn":"String (telepathic): \"KEEP GOING KAI! ZERO COMPLAINTS!\"","dialogueZh":"String（心電感應）：「凱加油！你最棒了！」","spellCode":"# Hard work builds a builder's heart","spellLabelEn":"Builder's Heart","spellLabelZh":"踏實努力的心","zone":"ENV_R08","mood":"inspiring perseverance","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"With String's warm telepathic encouragement flashing steadily inside Kai's Spellbook and mind (\"Keep going, Kai, you're doing great!\"), Kai hauled iron slag carts and scrubbed soot-darkened stone hour after hour without a single complaint.\n\nEven as embers scorched the air and blisters warmed his palms, Kai worked patiently until every stone floor around the great anvil gleamed clean.","advanceNarrationZh":"在 String 透過心電感應不斷閃出暖心文字鼓勵之下（「加油凱，你做得好棒！」），凱一車又一車搬起沉重礦渣，一小時接著一小時細心刷洗炭磚，從頭到尾沒有半句怨言。\n\n就算火爐熱氣蒸人、掌心微微起泡，凱依然踏踏實實地堅持到底，直到鐵砧四周的石板全都亮潔如新。","advanceDialogueEn":"String (telepathic): \"Keep going, Kai, you're doing great! Don't give up!\"","advanceDialogueZh":"String（心電感應）：「繼續加油，凱，你做得好極了！我們一起撐過去！」"},{"pageNumber":39,"sceneIndex":3,"sceneId":"CH08_S03","image":"assets/scenes/39_CH08_S03.webp","titleEn":"Forging Steel Armor & Active Math: hp = 100 - 20","titleZh":"矮人鋼甲與運算魔法：hp = 100 - 20","narrationEn":"Won over by Kai's true builder's heart, Master Grimsby unlocked magnificent Dwarven steel armor and a finely balanced Wizard's Blade, teaching Kai active math runes (+, -, *, /) with hp = 100 - 20!","narrationZh":"凱誠懇踏實的工匠之心打動了大師。格里姆斯比大師為他穿上閃耀的矮人鋼甲、配上平衡的法師之劍，並傳授能即時調整數值的運算符文（+ - * /）！","dialogueEn":"Master Grimsby: \"Wear this steel well, young builder—now cast hp = 100 - 20!\"","dialogueZh":"格里姆斯比大師：「好好穿戴這套矮人鋼甲吧，年輕的造物者——試著施展 hp = 100 - 20！」","spellCode":"Spell: hp = 100 - 20","spellLabelEn":"Spell 9: FORGE (+ - * /)","spellLabelZh":"第九咒：FORGE 算術魔法 (+ - * /)","zone":"ENV_R08","mood":"majestic craftsmanship and growth","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Astonished by Kai's quiet grit and true builder's heart, Master Grimsby roared with laughter! He unlocked magnificent Dwarven steel armor and a finely balanced wizard's blade forged just for Kai.\n\nAs Kai buckled the shining steel plates, Grimsby etched the four living math runes (+, -, *, /) straight onto Kai's gauntlet, teaching him active combat math like hp = 100 - 20 so his Vault stats could adapt in real battle!","advanceNarrationZh":"格里姆斯比大師被凱這份毫無怨言的毅力與真正工匠之心深深打動，忍不住放聲大笑！他打開秘庫，親手為凱披上耀眼的矮人精鋼戰甲，並配上一柄重心完美的法師利刃。\n\n在幫凱扣好鎧甲之際，大師把代表動態運算的四枚數學符文（+ - * /）刻上他的護手，傳授如 hp = 100 - 20 的即時數值調整咒，好讓他的寶庫數值能在實戰中靈活應變！","advanceDialogueEn":"Master Grimsby: \"You earned true steel, lad! Use + - * / like hp = 100 - 20 when battle changes the numbers!\"","advanceDialogueZh":"格里姆斯比大師：「小子，這身真鋼甲是你應得的！戰鬥中遇到數值變動時，就用 + - * / 來即時運算 hp = 100 - 20！」"},{"pageNumber":40,"sceneIndex":4,"sceneId":"CH08_S04","image":"assets/scenes/40_CH08_S04.webp","titleEn":"Master Grimsby's Fond Farewell","titleZh":"格里姆斯比大師的溫暖送行","narrationEn":"Clad in gleaming Dwarven steel armor with his Wizard's Blade ready, Kai saluted Master Grimsby warmly and ascended with String toward the mist-shrouded highlands.","narrationZh":"身穿堅固的矮人鋼甲與法師之劍，凱向格里姆斯比大師敬禮道別，與 String 一起沿著石階走向雲霧繚繞的高地。","dialogueEn":"Master Grimsby: \"Don't go getting broken out there, kid!\"","dialogueZh":"格里姆斯比大師：「小子，在外面別把自己弄壞了啊！」","spellCode":"# Dwarven Steel Armor equipped","spellLabelEn":"Farewell to the Forge","spellLabelZh":"告別深山鍛造爐","zone":"ENV_R08","mood":"warm camaraderie and readiness","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"After a fond farewell from roaring Master Grimsby at the forge doorway, Kai and String climbed back out beneath high twilight skies clad in gleaming Dwarven steel.\n\nWith boots striking crisp sparks off highland slate and balanced blade slung proudly alongside his glowing Spellbook, hero and pup set off toward the mist-shrouded mountain valleys ahead.","advanceNarrationZh":"在格里姆斯比大師欣慰又洪亮的祝福道別聲中，身穿閃耀鋼甲的凱帶著 String 再次走出地底鍛造爐。\n\n鋼靴踩在高地石板上發出沉穩清脆的聲響，細膩平衡的新寶劍與《古老咒語書》並掛身旁——一人一狗昂首邁向霧氣瀰漫的高山峽谷。","advanceDialogueEn":"Master Grimsby: \"Walk tall, little builder!\" · Kai: \"Thank you for everything, Master Grimsby!\"","advanceDialogueZh":"格里姆斯比大師：「抬頭挺胸向前走吧，小工匠！」· 小英雄凱：「謝謝您教會我的一切，格里姆斯比大師！」"}],"chapterUrl":"chapters/chapter-10.html","chapterAdvanceUrl":"chapters/chapter-10-advance.html","paragraphsAdvanceEn":["Hauling heavy iron slag and scrubbing soot-stained bricks inside the Deep Dwarven Forge with String cheering in his mind, Kai proved his quiet grit without a single complaint.","Delighted, Master Grimsby rewarded Kai with gleaming Dwarven steel armor, a balanced blade, and the active math runes (+, -, *, /) like hp = 100 - 20 before waving both companions into the misty valleys above."],"paragraphsAdvanceZh":["在格里姆斯比大師的地底鍛造爐裡，凱頂著高溫搬運礦渣、鏟煤刷磚毫無怨言，耳畔滿是 String 的心電打氣。","這份沉穩踏實贏得大師大笑讚賞，賜予凱矮人精鋼鎧甲、利刃與加減乘除即時運算咒語（+ - * /，例如 hp = 100 - 20），助他整裝迎向雲霧山巒。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-10","partNumber":10,"code":"SPELL 9 · FORGE","zone":"ENV_R08","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐","subtitleEn":"Spell 9: hp = 100 - 20 · Math runes (+ - * /) and Dwarven steel armor","subtitleZh":"第九咒：hp = 100 - 20 · 踏實勞動與加減乘除戰甲魔法","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/39_CH08_S03.webp","imageAltEn":"Blazing forge fire and ringing anvil glowing warm amber light","imageAltZh":"熊熊燃燒的火爐與閃爍金色光芒的鍛造鐵砧","castIds":["hero-kai","string","master-grimsby"],"paragraphsEn":["To face the Bug King safely, Kai and String descended deep underground into the roaring Deep Dwarven Forge, ruled by fiery-bearded Master Grimsby.","Unlike the horned Blacksmith from the valley, Master Grimsby wore no helmet—his blazing ginger-orange twin-forked beard shimmered with brass rings. Before giving away any armor, Grimsby wanted to see if Kai had real grit.","Without a single complaint, Kai hauled heavy slag carts, shoveled blazing coal, and scrubbed every soot-covered brick clean, cheered on by String's glowing telepathic messages.","Won over by Kai's humble builder's heart, Master Grimsby unlocked gleaming silver Dwarven Steel Armor and a balanced Wizard's Blade! Then he taught Kai the four active combat math runes (+, -, *, /) like hp = 100 - 20 so his stats could update mid-battle."],"paragraphsZh":["為了能安全迎戰蟲蟲魔王，凱和 String 深入地底，來到火花轟鳴的「深山矮人鍛造爐」，由留著火紅雙叉鬍與黃銅鬍環的格里姆斯比大師掌管。","大師想先考驗凱有沒有真正的骨氣與毅力。凱沒有一句怨言，踏實地推著沉重的礦渣車、鏟起滾燙的煤炭，還把每一塊沾滿煤灰的磚頭刷洗得乾乾淨淨，String 也傳來溫暖的心電感應文字替他加油。","格里姆斯比大師被凱真誠勤勞的態度深深打動，打開保險庫，為凱穿上閃耀的矮人鋼甲並配上一把精巧平衡的法師長劍！","接著大師傳授了四道即時戰鬥算術符文（+、-、*、/），例如 hp = 100 - 20，讓凱在面對危險時能隨時計算並調整自己的力量。"],"dialogue":[{"speakerEn":"Master Grimsby","speakerZh":"格里姆斯比大師","lineEn":"\"You've got a true builder's heart! Wear this steel armor well, and never forget how numbers shift in battle.\"","lineZh":"「你有顆真正建築者的好心腸！穿上這副矮人鋼甲，記住數字在戰鬥中是如何加減變化的！」"}],"spell":{"nameEn":"Spell 9: FORGE — Math Runes (+ - * /)","nameZh":"第九咒：FORGE 算術魔法 — 加減乘除 (+ - * /)","code":"hp = 100 - 20\nprint(hp)","explainEn":"Use +, -, *, and / to add, subtract, multiply, and divide numbers and update variables!","explainZh":"用 +、-、*、/ 來幫數字進行加減乘除，還能把計算後的新結果存回原本的變數裡！","demoBtnEn":"Forge Math Armor 🛡️","demoBtnZh":"鍛造算術護甲 🛡️","demoOutputEn":"hp updated from 100 to 80! Dwarven Steel Armor equipped! 🛡️","demoOutputZh":"HP 從 100 更新為 80！成功裝備矮人鋼甲！🛡️"},"scenes":[{"pageNumber":37,"sceneIndex":1,"sceneId":"CH08_S01","image":"assets/scenes/37_CH08_S01.webp","titleEn":"Master Grimsby's Challenge in the Deep Forge","titleZh":"格里姆斯比大師的考驗","narrationEn":"Seeking stronger armor to protect Pythonia, Kai and String descended into the roaring Deep Dwarven Forge, where fiery-bearded Master Grimsby challenged Kai to prove his backbone!","narrationZh":"為了獲得保護王國的堅固鎧甲，凱與 String 走進轟隆作響的深山矮人鍛造爐，火紅鬍子的格里姆斯比大師立刻向凱提出毅力考驗！","dialogueEn":"Master Grimsby: \"Prove you've got a real builder's backbone!\"","dialogueZh":"格里姆斯比大師：「證明你有真正工匠的骨氣給我看！」","spellCode":"# Prove your builder's heart","spellLabelEn":"Dwarven Challenge","spellLabelZh":"矮人宗師的考驗","zone":"ENV_R08","mood":"intense fiery determination","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"9. FORGE — The Deep Dwarven Forge (+ - * / = Change the Numbers!)","advanceSectionZh":"九、FORGE 鍛造咒 — 矮人深處鍛造爐（加減乘除：+ - * /）","advanceNarrationEn":"Realizing his worn apprentice gear wouldn't shield him from dark citadel battles ahead, Kai followed the Sunnybrook elder's map down soot-stained stone stairs into the roaring Deep Dwarven Forge, ruled by fiery-bearded Master Grimsby.\n\n\"Every kid with an apprentice cloak thinks shiny armor appears just by asking!\" Grimsby grunted beside the blinding furnace. \"Go haul the heavy slag, shovel blazing coal, and scrub every soot-covered brick in this cavern!\"","advanceNarrationZh":"意識到舊學徒披風不足以迎戰前方黑山的險惡，凱依循晴溪村長老的指引，沿著滿是煤灰的石階深入地底，走進烈焰咆哮的「矮人深處鍛造爐」，拜見紅鬍子大匠師格里姆斯比。\n\n「每個披著綠斗篷的小傢伙都以為漂亮盔甲伸手求就能變出來！」格里姆斯比在火爐旁大聲哼道：「想學真本事，先去搬運沉重礦渣、剷起熾熱煤炭，把這座山洞每一塊薰黑的磚石刷洗乾淨再說！」","advanceDialogueEn":"Master Grimsby: \"Think a shiny sword drops just by asking? Haul the slag, shovel coal, and earn real steel!\"","advanceDialogueZh":"格里姆斯比大師：「以為好裝備開口就有嗎？去搬礦渣、剷煤炭，用真汗水證明你配得上矮人好鋼！」","imageMobile":"assets/scenes-mobile/37_CH08_S01.webp"},{"pageNumber":38,"sceneIndex":2,"sceneId":"CH08_S02","image":"assets/scenes/38_CH08_S02.webp","titleEn":"Grit Without Complaint & String's Telepathic Cheer","titleZh":"毫不抱怨的努力與 String 加油","narrationEn":"Kai hauled heavy slag, shoveled blazing coal, and scrubbed every soot-covered brick without a single complaint—cheered on by String's glowing telepathic encouragement!","narrationZh":"凱二話不說搬運重礦渣、鏟起熾熱煤炭、刷洗焦黑石磚，一聲抱怨也沒有——而 String 也在旁不斷傳送心電感應文字替他加油！","dialogueEn":"String (telepathic): \"KEEP GOING KAI! ZERO COMPLAINTS!\"","dialogueZh":"String（心電感應）：「凱加油！你最棒了！」","spellCode":"# Hard work builds a builder's heart","spellLabelEn":"Builder's Heart","spellLabelZh":"踏實努力的心","zone":"ENV_R08","mood":"inspiring perseverance","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"With String's warm telepathic encouragement flashing steadily inside Kai's Spellbook and mind (\"Keep going, Kai, you're doing great!\"), Kai hauled iron slag carts and scrubbed soot-darkened stone hour after hour without a single complaint.\n\nEven as embers scorched the air and blisters warmed his palms, Kai worked patiently until every stone floor around the great anvil gleamed clean.","advanceNarrationZh":"在 String 透過心電感應不斷閃出暖心文字鼓勵之下（「加油凱，你做得好棒！」），凱一車又一車搬起沉重礦渣，一小時接著一小時細心刷洗炭磚，從頭到尾沒有半句怨言。\n\n就算火爐熱氣蒸人、掌心微微起泡，凱依然踏踏實實地堅持到底，直到鐵砧四周的石板全都亮潔如新。","advanceDialogueEn":"String (telepathic): \"Keep going, Kai, you're doing great! Don't give up!\"","advanceDialogueZh":"String（心電感應）：「繼續加油，凱，你做得好極了！我們一起撐過去！」","imageMobile":"assets/scenes-mobile/38_CH08_S02.webp"},{"pageNumber":39,"sceneIndex":3,"sceneId":"CH08_S03","image":"assets/scenes/39_CH08_S03.webp","titleEn":"Forging Steel Armor & Active Math: hp = 100 - 20","titleZh":"矮人鋼甲與運算魔法：hp = 100 - 20","narrationEn":"Won over by Kai's true builder's heart, Master Grimsby unlocked magnificent Dwarven steel armor and a finely balanced Wizard's Blade, teaching Kai active math runes (+, -, *, /) with hp = 100 - 20!","narrationZh":"凱誠懇踏實的工匠之心打動了大師。格里姆斯比大師為他穿上閃耀的矮人鋼甲、配上平衡的法師之劍，並傳授能即時調整數值的運算符文（+ - * /）！","dialogueEn":"Master Grimsby: \"Wear this steel well, young builder—now cast hp = 100 - 20!\"","dialogueZh":"格里姆斯比大師：「好好穿戴這套矮人鋼甲吧，年輕的造物者——試著施展 hp = 100 - 20！」","spellCode":"Spell: hp = 100 - 20","spellLabelEn":"Spell 9: FORGE (+ - * /)","spellLabelZh":"第九咒：FORGE 算術魔法 (+ - * /)","zone":"ENV_R08","mood":"majestic craftsmanship and growth","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Astonished by Kai's quiet grit and true builder's heart, Master Grimsby roared with laughter! He unlocked magnificent Dwarven steel armor and a finely balanced wizard's blade forged just for Kai.\n\nAs Kai buckled the shining steel plates, Grimsby etched the four living math runes (+, -, *, /) straight onto Kai's gauntlet, teaching him active combat math like hp = 100 - 20 so his Vault stats could adapt in real battle!","advanceNarrationZh":"格里姆斯比大師被凱這份毫無怨言的毅力與真正工匠之心深深打動，忍不住放聲大笑！他打開秘庫，親手為凱披上耀眼的矮人精鋼戰甲，並配上一柄重心完美的法師利刃。\n\n在幫凱扣好鎧甲之際，大師把代表動態運算的四枚數學符文（+ - * /）刻上他的護手，傳授如 hp = 100 - 20 的即時數值調整咒，好讓他的寶庫數值能在實戰中靈活應變！","advanceDialogueEn":"Master Grimsby: \"You earned true steel, lad! Use + - * / like hp = 100 - 20 when battle changes the numbers!\"","advanceDialogueZh":"格里姆斯比大師：「小子，這身真鋼甲是你應得的！戰鬥中遇到數值變動時，就用 + - * / 來即時運算 hp = 100 - 20！」","imageMobile":"assets/scenes-mobile/39_CH08_S03.webp"},{"pageNumber":40,"sceneIndex":4,"sceneId":"CH08_S04","image":"assets/scenes/40_CH08_S04.webp","titleEn":"Master Grimsby's Fond Farewell","titleZh":"格里姆斯比大師的溫暖送行","narrationEn":"Clad in gleaming Dwarven steel armor with his Wizard's Blade ready, Kai saluted Master Grimsby warmly and ascended with String toward the mist-shrouded highlands.","narrationZh":"身穿堅固的矮人鋼甲與法師之劍，凱向格里姆斯比大師敬禮道別，與 String 一起沿著石階走向雲霧繚繞的高地。","dialogueEn":"Master Grimsby: \"Don't go getting broken out there, kid!\"","dialogueZh":"格里姆斯比大師：「小子，在外面別把自己弄壞了啊！」","spellCode":"# Dwarven Steel Armor equipped","spellLabelEn":"Farewell to the Forge","spellLabelZh":"告別深山鍛造爐","zone":"ENV_R08","mood":"warm camaraderie and readiness","palette":["#E07A38","#D9E4EC","#6E655F","#D4A23C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"After a fond farewell from roaring Master Grimsby at the forge doorway, Kai and String climbed back out beneath high twilight skies clad in gleaming Dwarven steel.\n\nWith boots striking crisp sparks off highland slate and balanced blade slung proudly alongside his glowing Spellbook, hero and pup set off toward the mist-shrouded mountain valleys ahead.","advanceNarrationZh":"在格里姆斯比大師欣慰又洪亮的祝福道別聲中，身穿閃耀鋼甲的凱帶著 String 再次走出地底鍛造爐。\n\n鋼靴踩在高地石板上發出沉穩清脆的聲響，細膩平衡的新寶劍與《古老咒語書》並掛身旁——一人一狗昂首邁向霧氣瀰漫的高山峽谷。","advanceDialogueEn":"Master Grimsby: \"Walk tall, little builder!\" · Kai: \"Thank you for everything, Master Grimsby!\"","advanceDialogueZh":"格里姆斯比大師：「抬頭挺胸向前走吧，小工匠！」· 小英雄凱：「謝謝您教會我的一切，格里姆斯比大師！」","imageMobile":"assets/scenes-mobile/40_CH08_S04.webp"}],"chapterUrl":"chapters/chapter-10.html","chapterAdvanceUrl":"chapters/chapter-10-advance.html","paragraphsAdvanceEn":["Hauling heavy iron slag and scrubbing soot-stained bricks inside the Deep Dwarven Forge with String cheering in his mind, Kai proved his quiet grit without a single complaint.","Delighted, Master Grimsby rewarded Kai with gleaming Dwarven steel armor, a balanced blade, and the active math runes (+, -, *, /) like hp = 100 - 20 before waving both companions into the misty valleys above."],"paragraphsAdvanceZh":["在格里姆斯比大師的地底鍛造爐裡，凱頂著高溫搬運礦渣、鏟煤刷磚毫無怨言，耳畔滿是 String 的心電打氣。","這份沉穩踏實贏得大師大笑讚賞，賜予凱矮人精鋼鎧甲、利刃與加減乘除即時運算咒語（+ - * /，例如 hp = 100 - 20），助他整裝迎向雲霧山巒。"],"imageMobile":"assets/scenes-mobile/39_CH08_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

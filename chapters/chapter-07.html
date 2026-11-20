@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-07","partNumber":7,"code":"SPELL 6 · MULTI-VAULT","zone":"ENV_R05A","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別","subtitleEn":"Spell 6: hp, mana, gold = 100, 50, 10 · Lock many vaults at once","subtitleZh":"第六咒：hp, mana, gold = 100, 50, 10 · 一口氣鎖好三個寶箱","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/27_CH05A_S03.webp","imageAltEn":"Crystal cavern altar holding ruby HP chest, golden Gold chest, and sapphire Mana chest beside the silver-leafed tree","imageAltZh":"迴音山洞裡的三座寶箱祭壇，紅、金、藍三色寶箱與洞外的銀葉樹相映","castIds":["hero-kai","string","great-wizard"],"paragraphsEn":["At twilight, Kai, String, and the Great Wizard stepped into an echoing mountain cavern. On a stone altar sat three glowing chests: ruby-red for HP, sapphire-blue for Mana, and bright gold for Gold.","HISSSS! A creeping red shadow darted from the dark rocks to snatch the treasures away! There wasn't time to lock them one by one. While String barked bravely to distract the shadow, Kai lined all three up in one breath: hp, mana, gold = 100, 50, 10!","CLACK-CLACK-CLACK! Three heavy iron padlocks slammed shut at the exact same moment, pulling all three vital stats safely into Kai's Spatial Dimensional Pocket.","Stepping outside beneath a silver-leafed tree, the Great Wizard placed a gentle hand on Kai's shoulder. \"From here on, trust your own mind,\" he smiled. With a flash of emerald starlight, the Wizard dissolved into glowing code, leaving Kai and String standing bravely together on the mountain trail."],"paragraphsZh":["暮色降臨時，凱、String 與大法師走進迴音山洞。石祭壇上擺著三個發光寶箱：紅寶石箱裝著生命值（HP）、藍寶石箱裝著魔力（Mana）、金箱裝著金幣（Gold）。","嘶——！一道紅色暗影突然從黑暗中撲出想搶走寶物！沒時間一個一個上鎖了！String 勇敢地大叫吸引暗影注意，凱深吸一口氣同時對準三個箱子施咒：hp, mana, gold = 100, 50, 10！","喀嚓、喀嚓、喀嚓！三把大鎖同時緊緊扣上，三份重要力量瞬間飛進空間百寶袋。","走出洞外，他們在一棵銀葉大樹下停步。大法師輕拍凱的肩膀微笑說：「接下來，你必須相信自己的智慧，勇敢走下去。」說完，大法師化為漫天翠綠星光般的文字消散，留下凱與 String 勇敢邁步。"],"dialogue":[{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"You have mastered all the foundational spells I know. May your code always compile true.\"","lineZh":"「你已經學會我所知道的基礎魔法了。願你的程式碼永遠真誠且運行無礙。」"}],"spell":{"nameEn":"Spell 6: MULTI-VAULT — Unpacking","nameZh":"第六咒：MULTI-VAULT 多重儲存魔法","code":"hp, mana, gold = 100, 50, 10","explainEn":"Use commas on both sides of = to assign multiple variables cleanly in one single line!","explainZh":"在等號兩邊都用逗號排好順序，就能在同一個瞬間一次儲存好幾個數值！","demoBtnEn":"Lock All 3 Chests Together ⚡","demoBtnZh":"同時鎖好三個寶箱 ⚡","demoOutputEn":"CLACK-CLACK-CLACK! HP = 100 · Mana = 50 · Gold = 10 locked!","demoOutputZh":"喀嚓三連響！HP = 100 · Mana = 50 · Gold = 10 全部鎖好！"},"scenes":[{"pageNumber":25,"sceneIndex":1,"sceneId":"CH05A_S01","image":"assets/scenes/25_CH05A_S01.webp","titleEn":"The Stone Altar of Three Chests","titleZh":"迴音洞窟的三寶箱祭壇","narrationEn":"At twilight, they entered the echoing cavern and found three glowing chests on a raised stone altar: a ruby-red chest for HP, a sapphire-blue chest for Mana, and a gleaming chest for Gold.","narrationZh":"黃昏時，他們走進迴音洞窟，發現石祭壇上放著三個發光寶箱：紅寶石生命箱（HP）、藍寶石魔力箱（Mana）與閃亮金幣箱（Gold）。","dialogueEn":"Kai: \"Three glowing chests at once!\"","dialogueZh":"小英雄凱：「一次有三個發光寶箱！」","spellCode":"# Three treasures on the altar","spellLabelEn":"Three Chests","spellLabelZh":"三色寶箱","zone":"ENV_R05A","mood":"mysterious underground awe","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"6. MULTI-VAULT — The Cave of Three Chests (Names, Names = Values, Values)","advanceSectionZh":"六、MULTI-VAULT 多重寶庫咒 — 三寶箱洞窟","advanceNarrationEn":"Inside the damp, crystal-lit cavern, glowing subterranean quartz reflected across shimmering underground pools.\n\nUpon a raised stone altar ahead stood three radiant chests waiting together: a ruby-red chest for HP (health), a sapphire-blue chest for Mana (magic energy), and a gleaming golden chest for Gold.","advanceNarrationZh":"走進微涼潮濕、閃耀著天然水晶光輝的洞窟深處，地下泉水映出斑斕光影。\n\n就在前方高起的石祭壇上，並列著三只發光的魔法寶箱：象徵生命值的紅寶石箱 HP、象徵魔力的藍寶石箱 Mana，以及金光閃閃的金幣箱 Gold。","advanceDialogueEn":"Kai: \"Three glowing chests at once—ruby HP, sapphire Mana, and gleaming Gold!\"","advanceDialogueZh":"小英雄凱：「石壇上同時有三只發光寶箱——紅色的 HP、藍色的 Mana，還有閃亮的 Gold！」"},{"pageNumber":26,"sceneIndex":2,"sceneId":"CH05A_S02","image":"assets/scenes/26_CH05A_S02.webp","titleEn":"The Creeping Red Shadow & String's Bark","titleZh":"紅影來襲與 String 勇敢吠叫","narrationEn":"Suddenly, a creeping red shadow hissed from the darkness to snatch the chests! \"There's no time to lock them one by one!\" shouted the Wizard as String barked bravely to hold the shadow back.","narrationZh":"突然，一道詭異的紅影從黑暗中竄出想搶走寶物！「來不及一個一個鎖了！」大法師大喊，String 則勇敢地大聲吠叫替凱拖延時間！","dialogueEn":"Great Wizard: \"Line them up all at once, apprentice!\"","dialogueZh":"大法師：「同時排成一列，一口氣全部鎖起來！」","spellCode":"# No time to lock one by one!","spellLabelEn":"Red Shadow Ambush","spellLabelZh":"紅影突襲","zone":"ENV_R05A","mood":"high-stakes urgent courage","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Suddenly, a creeping red shadow hissed out from the cave darkness, darting fast across the stone floor to swallow all three treasures before Kai could touch them!\n\n\"There's no time to lock them one by one—the shadow is far too fast!\" the Great Wizard shouted, bracing his glowing staff to hold back the advancing gloom. \"Line them up all at once, apprentice!\"","advanceNarrationZh":"突然間，洞穴陰影裡竄出一道嘶嘶作響的猩紅黑影，貼著冰冷石面飛快撲來，想一口吞掉三箱能量！\n\n「沒時間一個一個慢慢上鎖了——那團黑影速度太快！」大法師高舉藍水晶法杖抵擋逼近的黑暗，大聲喊道：「把它們排成一列，一口氣全部同時上鎖！」","advanceDialogueEn":"Great Wizard: \"There's no time to lock them one by one—line them up all at once, apprentice!\"","advanceDialogueZh":"大法師：「來不及單獨上鎖了——小魔法師，一口氣把三個名字和數值整齊對齊！」"},{"pageNumber":27,"sceneIndex":3,"sceneId":"CH05A_S03","image":"assets/scenes/27_CH05A_S03.webp","titleEn":"Triple Lock: hp, mana, gold = 100, 50, 10","titleZh":"三重齊鎖：hp, mana, gold = 100, 50, 10","narrationEn":"In a single breath, Kai cast: hp, mana, gold = 100, 50, 10. CLACK-CLACK-CLACK! Three iron padlocks slammed shut at once, sealing all three vital stats safely into his Spatial Pocket!","narrationZh":"凱屏氣凝神一氣呵成唸出：hp, mana, gold = 100, 50, 10！喀嚓、喀嚓、喀嚓！三個鐵鎖同時合上，三份珍貴數值安全飛進空間百寶袋！","dialogueEn":"Kai: \"hp, mana, gold = 100, 50, 10!\"","dialogueZh":"小英雄凱：「hp, mana, gold = 100, 50, 10！」","spellCode":"Spell: hp, mana, gold = 100, 50, 10","spellLabelEn":"Spell 6: MULTI-VAULT","spellLabelZh":"第六咒：MULTI-VAULT 多重儲存","zone":"ENV_R05A","mood":"triumphant mastery","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"With brave String barking fiercely to distract the creeping shadow, Kai raised his Spellbook, aligned all three Vault names and treasures side by side, and cast in one steady breath: hp, mana, gold = 100, 50, 10.\n\nCLACK-CLACK-CLACK! Three heavy iron padlocks slammed shut at the exact same instant! A brilliant barrier of blue and gold light froze the red shadow in its tracks and zipped all three vital stats safely into Kai's Spatial Dimensional Pocket!","advanceNarrationZh":"勇敢的 String 朝黑影大聲狂吠分散注意，凱趁勢舉起咒語書，將三個名字與三個數值整齊並排，屏息一唸：hp, mana, gold = 100, 50, 10。\n\n「喀噠、喀噠、喀噠！」三把厚重鐵鎖在同一個瞬間同時鎖死！藍與金交織的絢麗光牆猛然綻放，當場震退猩紅黑影，並把三股珍貴力量平安收進凱的空間百寶袋！","advanceDialogueEn":"Kai: \"hp, mana, gold = 100, 50, 10 — Triple lock complete!\"","advanceDialogueZh":"小英雄凱：「hp, mana, gold = 100, 50, 10 ——三重鎖定同時完成！」"},{"pageNumber":28,"sceneIndex":4,"sceneId":"CH05A_S04","image":"assets/scenes/28_CH05A_S04.webp","titleEn":"The Great Wizard's Emerald Farewell","titleZh":"銀葉樹下大法師的翠綠告別","narrationEn":"Outside beneath a sprawling silver-leafed tree, the Great Wizard placed a gentle hand on Kai's shoulder. \"From here on, trust your own mind. May your code always compile true.\" In a swirl of emerald starlight, he dissolved into the code.","narrationZh":"走出洞窟來到一棵銀葉大樹下，大法師輕輕拍了拍凱的肩膀：「接下來的路要相信自己的心智。願你的程式碼永遠順利編譯。」隨即化為翠綠星光與數字符號消散在夜空。","dialogueEn":"Great Wizard: \"May your code always compile true.\"","dialogueZh":"大法師：「願你的程式碼永遠真誠無誤。」","spellCode":"# Walk on bravely","spellLabelEn":"Emerald Farewell","spellLabelZh":"大法師的告別","zone":"ENV_R05A","mood":"tender bittersweet courage","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"The Great Wizard's Farewell","advanceSectionZh":"篇章插曲：大法師的道別","advanceNarrationEn":"Stepping out of the cavern onto a high mountain trail at dusk, the Great Wizard paused beneath a sprawling silver-leafed tree and checked the glowing crests along Kai's belt with a proud smile. \"You have mastered Voice, Weave, Fuse, Listen, Vaults, and Multi-Vaults. From this moment on, you must depend entirely on yourself and trust your own mind.\"\n\nKai felt a flutter of nerves, until warm String pressed firmly against his leg with a brave bark. Whispering \"May your code always compile true,\" the Wizard dissolved in a sudden flash of emerald starlight, leaving Kai and String standing ready together.","advanceNarrationZh":"走出迴音洞窟時已近黃昏，一行人沿著山道向上攀登。大法師停在一棵枝葉繁茂的銀葉大樹下，欣慰地望著凱腰帶上閃閃發亮的魔法徽章：「我已把我所知的基礎善咒全都傳授給你了。從這一刻起，你必須完全相信自己的頭腦，靠自己的力量走下去。」\n\n凱的心微微緊張地顫動了一下，但溫暖的 String 立刻緊緊靠著他的腿邊，發出一聲沉穩勇敢的吠叫。大法師柔聲道別：「願你的程式碼永遠正確編譯。」說完，他在一陣燦爛的翠綠星光中化為漂浮的數位光字消散，留下凱與 String 並肩面向前方的山嶺。","advanceDialogueEn":"Great Wizard: \"You are ready, young apprentice. May your code always compile true.\"","advanceDialogueZh":"大法師：「你已經準備好了，年輕的法師。願你的程式碼永遠正確無誤地運行。」"}],"chapterUrl":"chapters/chapter-07.html","chapterAdvanceUrl":"chapters/chapter-07-advance.html","paragraphsAdvanceEn":["Inside the crystal cavern, a hissing red shadow lunged to snatch all three glowing chests—until String barked bravely and Kai locked all three vital stats at once: hp, mana, gold = 100, 50, 10 (CLACK-CLACK-CLACK!).","On the twilight ridge beneath a silver-leafed tree, the Great Wizard declared Kai ready to trust his own mind—whispering \"May your code always compile true\" before dissolving into radiant emerald starlight."],"paragraphsAdvanceZh":["洞窟內猩紅黑影來勢洶洶，凱在 String 勇敢吠叫掩護下，排出三重寶庫鎖「hp, mana, gold = 100, 50, 10」，一瞬間同時鎖住生命、魔力與金幣並退敵！","離開洞窟後的銀葉樹下，大法師欣慰地告訴凱從此要學會獨立判斷，留下祝福后化作漫天翠綠星光消散在夜空裡。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-07","partNumber":7,"code":"SPELL 6 · MULTI-VAULT","zone":"ENV_R05A","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別","subtitleEn":"Spell 6: hp, mana, gold = 100, 50, 10 · Lock many vaults at once","subtitleZh":"第六咒：hp, mana, gold = 100, 50, 10 · 一口氣鎖好三個寶箱","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/27_CH05A_S03.webp","imageAltEn":"Crystal cavern altar holding ruby HP chest, golden Gold chest, and sapphire Mana chest beside the silver-leafed tree","imageAltZh":"迴音山洞裡的三座寶箱祭壇，紅、金、藍三色寶箱與洞外的銀葉樹相映","castIds":["hero-kai","string","great-wizard"],"paragraphsEn":["At twilight, Kai, String, and the Great Wizard stepped into an echoing mountain cavern. On a stone altar sat three glowing chests: ruby-red for HP, sapphire-blue for Mana, and bright gold for Gold.","HISSSS! A creeping red shadow darted from the dark rocks to snatch the treasures away! There wasn't time to lock them one by one. While String barked bravely to distract the shadow, Kai lined all three up in one breath: hp, mana, gold = 100, 50, 10!","CLACK-CLACK-CLACK! Three heavy iron padlocks slammed shut at the exact same moment, pulling all three vital stats safely into Kai's Spatial Dimensional Pocket.","Stepping outside beneath a silver-leafed tree, the Great Wizard placed a gentle hand on Kai's shoulder. \"From here on, trust your own mind,\" he smiled. With a flash of emerald starlight, the Wizard dissolved into glowing code, leaving Kai and String standing bravely together on the mountain trail."],"paragraphsZh":["暮色降臨時，凱、String 與大法師走進迴音山洞。石祭壇上擺著三個發光寶箱：紅寶石箱裝著生命值（HP）、藍寶石箱裝著魔力（Mana）、金箱裝著金幣（Gold）。","嘶——！一道紅色暗影突然從黑暗中撲出想搶走寶物！沒時間一個一個上鎖了！String 勇敢地大叫吸引暗影注意，凱深吸一口氣同時對準三個箱子施咒：hp, mana, gold = 100, 50, 10！","喀嚓、喀嚓、喀嚓！三把大鎖同時緊緊扣上，三份重要力量瞬間飛進空間百寶袋。","走出洞外，他們在一棵銀葉大樹下停步。大法師輕拍凱的肩膀微笑說：「接下來，你必須相信自己的智慧，勇敢走下去。」說完，大法師化為漫天翠綠星光般的文字消散，留下凱與 String 勇敢邁步。"],"dialogue":[{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"You have mastered all the foundational spells I know. May your code always compile true.\"","lineZh":"「你已經學會我所知道的基礎魔法了。願你的程式碼永遠真誠且運行無礙。」"}],"spell":{"nameEn":"Spell 6: MULTI-VAULT — Unpacking","nameZh":"第六咒：MULTI-VAULT 多重儲存魔法","code":"hp, mana, gold = 100, 50, 10","explainEn":"Use commas on both sides of = to assign multiple variables cleanly in one single line!","explainZh":"在等號兩邊都用逗號排好順序，就能在同一個瞬間一次儲存好幾個數值！","demoBtnEn":"Lock All 3 Chests Together ⚡","demoBtnZh":"同時鎖好三個寶箱 ⚡","demoOutputEn":"CLACK-CLACK-CLACK! HP = 100 · Mana = 50 · Gold = 10 locked!","demoOutputZh":"喀嚓三連響！HP = 100 · Mana = 50 · Gold = 10 全部鎖好！"},"scenes":[{"pageNumber":25,"sceneIndex":1,"sceneId":"CH05A_S01","image":"assets/scenes/25_CH05A_S01.webp","titleEn":"The Stone Altar of Three Chests","titleZh":"迴音洞窟的三寶箱祭壇","narrationEn":"At twilight, they entered the echoing cavern and found three glowing chests on a raised stone altar: a ruby-red chest for HP, a sapphire-blue chest for Mana, and a gleaming chest for Gold.","narrationZh":"黃昏時，他們走進迴音洞窟，發現石祭壇上放著三個發光寶箱：紅寶石生命箱（HP）、藍寶石魔力箱（Mana）與閃亮金幣箱（Gold）。","dialogueEn":"Kai: \"Three glowing chests at once!\"","dialogueZh":"小英雄凱：「一次有三個發光寶箱！」","spellCode":"# Three treasures on the altar","spellLabelEn":"Three Chests","spellLabelZh":"三色寶箱","zone":"ENV_R05A","mood":"mysterious underground awe","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"6. MULTI-VAULT — The Cave of Three Chests (Names, Names = Values, Values)","advanceSectionZh":"六、MULTI-VAULT 多重寶庫咒 — 三寶箱洞窟","advanceNarrationEn":"Inside the damp, crystal-lit cavern, glowing subterranean quartz reflected across shimmering underground pools.\n\nUpon a raised stone altar ahead stood three radiant chests waiting together: a ruby-red chest for HP (health), a sapphire-blue chest for Mana (magic energy), and a gleaming golden chest for Gold.","advanceNarrationZh":"走進微涼潮濕、閃耀著天然水晶光輝的洞窟深處，地下泉水映出斑斕光影。\n\n就在前方高起的石祭壇上，並列著三只發光的魔法寶箱：象徵生命值的紅寶石箱 HP、象徵魔力的藍寶石箱 Mana，以及金光閃閃的金幣箱 Gold。","advanceDialogueEn":"Kai: \"Three glowing chests at once—ruby HP, sapphire Mana, and gleaming Gold!\"","advanceDialogueZh":"小英雄凱：「石壇上同時有三只發光寶箱——紅色的 HP、藍色的 Mana，還有閃亮的 Gold！」","imageMobile":"assets/scenes-mobile/25_CH05A_S01.webp"},{"pageNumber":26,"sceneIndex":2,"sceneId":"CH05A_S02","image":"assets/scenes/26_CH05A_S02.webp","titleEn":"The Creeping Red Shadow & String's Bark","titleZh":"紅影來襲與 String 勇敢吠叫","narrationEn":"Suddenly, a creeping red shadow hissed from the darkness to snatch the chests! \"There's no time to lock them one by one!\" shouted the Wizard as String barked bravely to hold the shadow back.","narrationZh":"突然，一道詭異的紅影從黑暗中竄出想搶走寶物！「來不及一個一個鎖了！」大法師大喊，String 則勇敢地大聲吠叫替凱拖延時間！","dialogueEn":"Great Wizard: \"Line them up all at once, apprentice!\"","dialogueZh":"大法師：「同時排成一列，一口氣全部鎖起來！」","spellCode":"# No time to lock one by one!","spellLabelEn":"Red Shadow Ambush","spellLabelZh":"紅影突襲","zone":"ENV_R05A","mood":"high-stakes urgent courage","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Suddenly, a creeping red shadow hissed out from the cave darkness, darting fast across the stone floor to swallow all three treasures before Kai could touch them!\n\n\"There's no time to lock them one by one—the shadow is far too fast!\" the Great Wizard shouted, bracing his glowing staff to hold back the advancing gloom. \"Line them up all at once, apprentice!\"","advanceNarrationZh":"突然間，洞穴陰影裡竄出一道嘶嘶作響的猩紅黑影，貼著冰冷石面飛快撲來，想一口吞掉三箱能量！\n\n「沒時間一個一個慢慢上鎖了——那團黑影速度太快！」大法師高舉藍水晶法杖抵擋逼近的黑暗，大聲喊道：「把它們排成一列，一口氣全部同時上鎖！」","advanceDialogueEn":"Great Wizard: \"There's no time to lock them one by one—line them up all at once, apprentice!\"","advanceDialogueZh":"大法師：「來不及單獨上鎖了——小魔法師，一口氣把三個名字和數值整齊對齊！」","imageMobile":"assets/scenes-mobile/26_CH05A_S02.webp"},{"pageNumber":27,"sceneIndex":3,"sceneId":"CH05A_S03","image":"assets/scenes/27_CH05A_S03.webp","titleEn":"Triple Lock: hp, mana, gold = 100, 50, 10","titleZh":"三重齊鎖：hp, mana, gold = 100, 50, 10","narrationEn":"In a single breath, Kai cast: hp, mana, gold = 100, 50, 10. CLACK-CLACK-CLACK! Three iron padlocks slammed shut at once, sealing all three vital stats safely into his Spatial Pocket!","narrationZh":"凱屏氣凝神一氣呵成唸出：hp, mana, gold = 100, 50, 10！喀嚓、喀嚓、喀嚓！三個鐵鎖同時合上，三份珍貴數值安全飛進空間百寶袋！","dialogueEn":"Kai: \"hp, mana, gold = 100, 50, 10!\"","dialogueZh":"小英雄凱：「hp, mana, gold = 100, 50, 10！」","spellCode":"Spell: hp, mana, gold = 100, 50, 10","spellLabelEn":"Spell 6: MULTI-VAULT","spellLabelZh":"第六咒：MULTI-VAULT 多重儲存","zone":"ENV_R05A","mood":"triumphant mastery","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"With brave String barking fiercely to distract the creeping shadow, Kai raised his Spellbook, aligned all three Vault names and treasures side by side, and cast in one steady breath: hp, mana, gold = 100, 50, 10.\n\nCLACK-CLACK-CLACK! Three heavy iron padlocks slammed shut at the exact same instant! A brilliant barrier of blue and gold light froze the red shadow in its tracks and zipped all three vital stats safely into Kai's Spatial Dimensional Pocket!","advanceNarrationZh":"勇敢的 String 朝黑影大聲狂吠分散注意，凱趁勢舉起咒語書，將三個名字與三個數值整齊並排，屏息一唸：hp, mana, gold = 100, 50, 10。\n\n「喀噠、喀噠、喀噠！」三把厚重鐵鎖在同一個瞬間同時鎖死！藍與金交織的絢麗光牆猛然綻放，當場震退猩紅黑影，並把三股珍貴力量平安收進凱的空間百寶袋！","advanceDialogueEn":"Kai: \"hp, mana, gold = 100, 50, 10 — Triple lock complete!\"","advanceDialogueZh":"小英雄凱：「hp, mana, gold = 100, 50, 10 ——三重鎖定同時完成！」","imageMobile":"assets/scenes-mobile/27_CH05A_S03.webp"},{"pageNumber":28,"sceneIndex":4,"sceneId":"CH05A_S04","image":"assets/scenes/28_CH05A_S04.webp","titleEn":"The Great Wizard's Emerald Farewell","titleZh":"銀葉樹下大法師的翠綠告別","narrationEn":"Outside beneath a sprawling silver-leafed tree, the Great Wizard placed a gentle hand on Kai's shoulder. \"From here on, trust your own mind. May your code always compile true.\" In a swirl of emerald starlight, he dissolved into the code.","narrationZh":"走出洞窟來到一棵銀葉大樹下，大法師輕輕拍了拍凱的肩膀：「接下來的路要相信自己的心智。願你的程式碼永遠順利編譯。」隨即化為翠綠星光與數字符號消散在夜空。","dialogueEn":"Great Wizard: \"May your code always compile true.\"","dialogueZh":"大法師：「願你的程式碼永遠真誠無誤。」","spellCode":"# Walk on bravely","spellLabelEn":"Emerald Farewell","spellLabelZh":"大法師的告別","zone":"ENV_R05A","mood":"tender bittersweet courage","palette":["#B83B3B","#2B6CA3","#F2C94C","#2ECC71"],"advanceSectionEn":"The Great Wizard's Farewell","advanceSectionZh":"篇章插曲：大法師的道別","advanceNarrationEn":"Stepping out of the cavern onto a high mountain trail at dusk, the Great Wizard paused beneath a sprawling silver-leafed tree and checked the glowing crests along Kai's belt with a proud smile. \"You have mastered Voice, Weave, Fuse, Listen, Vaults, and Multi-Vaults. From this moment on, you must depend entirely on yourself and trust your own mind.\"\n\nKai felt a flutter of nerves, until warm String pressed firmly against his leg with a brave bark. Whispering \"May your code always compile true,\" the Wizard dissolved in a sudden flash of emerald starlight, leaving Kai and String standing ready together.","advanceNarrationZh":"走出迴音洞窟時已近黃昏，一行人沿著山道向上攀登。大法師停在一棵枝葉繁茂的銀葉大樹下，欣慰地望著凱腰帶上閃閃發亮的魔法徽章：「我已把我所知的基礎善咒全都傳授給你了。從這一刻起，你必須完全相信自己的頭腦，靠自己的力量走下去。」\n\n凱的心微微緊張地顫動了一下，但溫暖的 String 立刻緊緊靠著他的腿邊，發出一聲沉穩勇敢的吠叫。大法師柔聲道別：「願你的程式碼永遠正確編譯。」說完，他在一陣燦爛的翠綠星光中化為漂浮的數位光字消散，留下凱與 String 並肩面向前方的山嶺。","advanceDialogueEn":"Great Wizard: \"You are ready, young apprentice. May your code always compile true.\"","advanceDialogueZh":"大法師：「你已經準備好了，年輕的法師。願你的程式碼永遠正確無誤地運行。」","imageMobile":"assets/scenes-mobile/28_CH05A_S04.webp"}],"chapterUrl":"chapters/chapter-07.html","chapterAdvanceUrl":"chapters/chapter-07-advance.html","paragraphsAdvanceEn":["Inside the crystal cavern, a hissing red shadow lunged to snatch all three glowing chests—until String barked bravely and Kai locked all three vital stats at once: hp, mana, gold = 100, 50, 10 (CLACK-CLACK-CLACK!).","On the twilight ridge beneath a silver-leafed tree, the Great Wizard declared Kai ready to trust his own mind—whispering \"May your code always compile true\" before dissolving into radiant emerald starlight."],"paragraphsAdvanceZh":["洞窟內猩紅黑影來勢洶洶，凱在 String 勇敢吠叫掩護下，排出三重寶庫鎖「hp, mana, gold = 100, 50, 10」，一瞬間同時鎖住生命、魔力與金幣並退敵！","離開洞窟後的銀葉樹下，大法師欣慰地告訴凱從此要學會獨立判斷，留下祝福后化作漫天翠綠星光消散在夜空裡。"],"imageMobile":"assets/scenes-mobile/27_CH05A_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

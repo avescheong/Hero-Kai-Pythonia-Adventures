@@ -217,7 +217,8 @@
           "advanceNarrationEn": "Late one afternoon, Kai was at his computer playing his favorite adventure game. Suddenly, his screen glitched—not because he broke anything, but because a classmate in the game got stuck and Kai paused to help them instead of rushing ahead.\n\nAs Kai took a calm breath and typed a kind message, a swirling vortex of emerald light opened right inside his monitor!",
           "advanceNarrationZh": "一天傍晚，凱正坐在電腦前玩著他最喜歡的冒險遊戲。突然間，螢幕閃起了一道奇異的訊號——並不是因為他弄壞了什麼，而是因為遊戲裡一位同學卡關了，凱選擇停下腳步去幫忙，而不是自顧自地往前衝。\n\n就在凱深吸一口氣、靜心打出一則溫暖訊息的那一刻，螢幕正中央突然旋轉展開了一道璀璨的翠綠色光影漩渦！",
           "advanceDialogueEn": "Kai: \"Hold on—don't worry. I'll pause here and help you get through this first.\"",
-          "advanceDialogueZh": "小英雄凱：「別擔心，我先停下來陪你一起過關。」"
+          "advanceDialogueZh": "小英雄凱：「別擔心，我先停下來陪你一起過關。」",
+          "imageMobile": "assets/scenes-mobile/01_PRO_S01.webp"
         },
         {
           "pageNumber": 2,
@@ -246,7 +247,8 @@
           "advanceNarrationEn": "The emerald vortex pulled Kai straight through a dazzling Virtual City of floating letters, glowing numbers, and woven streams of light before setting him gently down on a quiet dirt road in Pythonia.\n\nKai blinked in wonder. His bedroom was completely gone. Instead, he found himself wearing an olive-green cloak, a wooden sword at his side, and holding an empty Ancient Spellbook already warming in his hands.",
           "advanceNarrationZh": "翠綠色的光影漩渦拉著凱穿越了一座飄浮著字母、數字與光流符號的炫目「虛擬之城」，最後溫柔地將他送到蟒蛇王國一條安靜的泥土小路上。\n\n凱眨了眨眼，驚訝地發現自己的房間不見了——取而代之的是一身橄欖綠披風、腰間的木劍，還有一本正在掌心散發暖光的空白《古老咒語書》。",
           "advanceDialogueEn": "Kai: \"Whoa... my bedroom is gone! Where did this glowing Spellbook come from?\"",
-          "advanceDialogueZh": "小英雄凱：「哇……我的房間不見了！這本發光的咒語書是哪裡來的？」"
+          "advanceDialogueZh": "小英雄凱：「哇……我的房間不見了！這本發光的咒語書是哪裡來的？」",
+          "imageMobile": "assets/scenes-mobile/02_PRO_S02.webp"
         },
         {
           "pageNumber": 3,
@@ -275,7 +277,8 @@
           "advanceNarrationEn": "An old Great Wizard hurried down the road toward him, eyes wide with relief. Pointing first to the warm gold glow in Kai's Spellbook and then toward a distant dark mountain, the Wizard revealed Pythonia's sorrow.\n\n\"Long ago, Pythonia's Steward of Order kept every river, forest, and village running in harmony,\" he explained. \"But people grew careless. They left broken words, greedy shortcuts, and tangled rules everywhere. All that messy, unkind code twisted around the Steward until fear and static swallowed him whole—turning him into the Bug King! He locked away the Eleven Ancient Spells so no one could make more broken magic.\"",
           "advanceNarrationZh": "一位年邁的大法師鬆了一口氣、急忙沿著小路迎上前來。他先指向凱手中泛著暖金光芒的咒語書，接著望向遠方黑暗的山脈，娓娓道出王國的危機。\n\n「很久以前，秩序守護者曾讓蟒蛇王國的每一條河流、森林與村莊和諧運作。」大法師說：「但後來人們變得粗心大意，到處留下殘缺的文字、貪心的捷徑和混亂的規則。那些自私又雜亂的程式碼纏住了守護者，讓恐懼與雜訊吞沒了他的心——他因此變成了『蟲蟲魔王』，鎖起了十一道古老善咒。」",
           "advanceDialogueEn": "Great Wizard: \"All that messy, unkind code swallowed the Steward—turning him into the Bug King!\"",
-          "advanceDialogueZh": "大法師：「混亂又自私的程式碼吞噬了守護者，使他變成了蟲蟲魔王！」"
+          "advanceDialogueZh": "大法師：「混亂又自私的程式碼吞噬了守護者，使他變成了蟲蟲魔王！」",
+          "imageMobile": "assets/scenes-mobile/03_PRO_S03.webp"
         },
         {
           "pageNumber": 4,
@@ -304,7 +307,8 @@
           "advanceNarrationEn": "\"Why me?\" Kai asked quietly. \"I'm not the fastest or strongest player.\"\n\nThe Great Wizard smiled softly. \"Anyone can swing a sword. We called for someone who knows how to pause, stay calm, and care for others. Your Spellbook answered your kind heart.\" Holding the glowing book close, Kai stepped bravely down the path toward Silent Village.",
           "advanceNarrationZh": "「為什麼是我呢？」凱輕聲問道：「我既不是跑得最快，也不是最強的玩家。」\n\n大法師溫柔地微笑：「任誰都能揮舞寶劍。我們召喚的，是懂得停下腳步、保持冷靜、並且真心關懷他人的人。你的咒語書回應了你善良的心。」凱抱緊發光的書本，勇敢地沿著泥土路走向靜默村莊。",
           "advanceDialogueEn": "Great Wizard: \"Anyone can swing a sword. Your Spellbook answered your kind heart.\"",
-          "advanceDialogueZh": "大法師：「任誰都能揮舞寶劍，但你的咒語書回應了你善良的心。」"
+          "advanceDialogueZh": "大法師：「任誰都能揮舞寶劍，但你的咒語書回應了你善良的心。」",
+          "imageMobile": "assets/scenes-mobile/04_PRO_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-01.html",
@@ -318,7 +322,8 @@
         "某個傍晚，凱在遊戲裡選擇停下來耐心安慰並幫助卡關的同學，這個溫柔舉動打開了電腦螢幕裡的翠綠漩渦，帶他穿過虛擬之城來到蟒蛇王國。",
         "換上橄欖綠披風、手持木劍與散發金光的空白古書，凱從大法師口中得知：人們粗心混亂的程式碼把秩序守護者變成了蟲蟲魔王。",
         "「任誰都能揮舞寶劍，」大法師溫柔微笑道：「但你的咒語書，回應了你靜心行善的心。」"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/03_PRO_S03.webp"
     },
     {
       "id": "part-02",
@@ -404,7 +409,8 @@
           "advanceNarrationEn": "Kai and the Great Wizard walked into Silent Village, where a heavy grey hush hung low over the cobblestone square.\n\nBarnaby the Baker waved silently behind his shop counter, unable to call out his morning greetings. Nearby, a little girl hurried up and opened her mouth to greet Kai—but not even a faint whisper came out into the fog.",
           "advanceNarrationZh": "凱與大法師走進靜默村莊時，一層沉重的灰色寂靜正籠罩在石板廣場上。\n\n麵包師巴納比只能站在櫃檯後默默揮手，連早安都喊不出來；廣場旁，一位小女孩小跑上前想向凱打招呼，張開嘴巴卻連一絲微弱的氣音都發不出來。",
           "advanceDialogueEn": "Narrator: \"Not a single laugh, greeting, or birdsong could pierce the grey hush.\"",
-          "advanceDialogueZh": "旁白：「沒有一聲歡笑、一句問候或一聲鳥鳴，能穿透這片灰色的寂靜。」"
+          "advanceDialogueZh": "旁白：「沒有一聲歡笑、一句問候或一聲鳥鳴，能穿透這片灰色的寂靜。」",
+          "imageMobile": "assets/scenes-mobile/05_CH01_S01.webp"
         },
         {
           "pageNumber": 6,
@@ -433,7 +439,8 @@
           "advanceNarrationEn": "Kai didn't draw his wooden sword or raise his voice in frustration. Instead, he dropped gently to one knee right in front of the frightened child to comfort her.\n\nThe instant his kindness warmed the silent air, his Ancient Spellbook flipped open on its own to a bright page bearing the glowing Mouth symbol: print().",
           "advanceNarrationZh": "面對無聲的霧氣，凱沒有拔出木劍，也沒有焦急抱怨。相反地，他輕輕單膝跪在害怕的小女孩面前，溫柔地安撫她。\n\n就在這份體貼照亮空氣的瞬間，凱手中的《古老咒語書》自動翻開，書頁上亮起了一枚閃耀的「嘴巴」符印：print()。",
           "advanceDialogueEn": "Great Wizard: \"Every great wizard begins with a single kind word.\"",
-          "advanceDialogueZh": "大法師：「每一位偉大的法師，都從一句溫暖善良的話開始。」"
+          "advanceDialogueZh": "大法師：「每一位偉大的法師，都從一句溫暖善良的話開始。」",
+          "imageMobile": "assets/scenes-mobile/06_CH01_S02.webp"
         },
         {
           "pageNumber": 7,
@@ -462,7 +469,8 @@
           "advanceNarrationEn": "Guided by the Great Wizard's steady nod, Kai took a slow, calm breath, raised his hand toward the misty village well, and cast his very first Pythonia spell: print(\"Hello!\").\n\nPOP! A bright bluebird burst into clear song on the rooftop, Barnaby the Baker's cheerful laugh echoed across the square, and warm golden sunlight broke straight through the grey mist!",
           "advanceNarrationZh": "在大法師沉穩的點頭鼓勵下，凱靜心深呼吸，朝著霧氣瀰漫的古老石井伸出手，唸出他在蟒蛇王國的第一道咒語：print(\"Hello!\")。\n\n「啵！」一聲，屋頂上的藍鳥清脆高歌，麵包師巴納比開朗的笑聲迴盪廣場，溫暖的金色陽光瞬間穿透濃霧灑落下來！",
           "advanceDialogueEn": "Kai: \"print('Hello!')\" · Barnaby the Baker: \"Aha! My voice—everyone can hear me again!\"",
-          "advanceDialogueZh": "小英雄凱：「print('Hello!')」· 麵包師巴納比：「太好了！我的聲音回來了，大家都能聽見我說話了！」"
+          "advanceDialogueZh": "小英雄凱：「print('Hello!')」· 麵包師巴納比：「太好了！我的聲音回來了，大家都能聽見我說話了！」",
+          "imageMobile": "assets/scenes-mobile/07_CH01_S03.webp"
         },
         {
           "pageNumber": 8,
@@ -491,7 +499,8 @@
           "advanceNarrationEn": "The villagers cheered and thanked Kai, and Kai tried happily to reply: \"I am so glad to meet you all!\" But the magic stuttered! \"I.\" Kai paused and tried again. \"Glad.\" Once more: \"Meet.\"\n\nSpeaking only one word at a time made his thoughts crumble before finishing a single sentence! Hurrying back to ask the Great Wizard why, the Wizard pointed his staff toward a distant emerald treeline: \"A single thread of magic is weak on its own, Kai. Follow the thousands of colorful ribbons fluttering in Loom Forest—they will lead you straight to the Weaver's Loom!\" Tightening his backpack, Kai set off beneath tall pines swaying with rainbow ribbons of silk and light.",
           "advanceNarrationZh": "村民們歡呼著感謝凱，凱開心地想回應大家：「我很高興遇見你們！」沒想到魔法卻結巴了起來：「我。」凱停下來再試一次：「高興。」又試了一次：「遇見。」\n\n一次只能吐出一個詞，讓他連一句完整的問候都說不完！凱連忙跑去請教大法師，大法師微笑著將法杖指向遠方翠綠的樹梢：「單獨一條魔法絲線太脆弱了。去織錦森林吧——那裡有成千上萬條隨風飄揚的彩色絲帶，會引領你找到織布大師的織布機。」凱背好行囊，朝著飄滿絲帶與光影的松林小徑出發。",
           "advanceDialogueEn": "Kai: \"I. ... Glad. ... Meet.\" · Great Wizard: \"Follow the colorful ribbons into Loom Forest!\"",
-          "advanceDialogueZh": "小英雄凱：「我……高興……遇見。」· 大法師：「跟著飄揚的彩虹絲帶走進織錦森林吧！」"
+          "advanceDialogueZh": "小英雄凱：「我……高興……遇見。」· 大法師：「跟著飄揚的彩虹絲帶走進織錦森林吧！」",
+          "imageMobile": "assets/scenes-mobile/08_CH01_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-02.html",
@@ -503,7 +512,8 @@
       "paragraphsAdvanceZh": [
         "走進被灰霧靜音的靜默村莊，連麵包師巴納比和小女孩都發不出半點聲音。凱沒有拔劍，而是先蹲下來輕聲安慰害怕的孩子——因而喚醒了書頁上的開口咒 print()。",
         "當凱唸出 print(\"Hello!\") 讓陽光照亮村莊後，他想回答村民卻一個字一個字地結巴起來。大法師便指向遠處飄滿彩虹絲帶的松林，指引凱前往織錦森林學習編織句子的魔法。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/07_CH01_S03.webp"
     },
     {
       "id": "part-03",
@@ -584,7 +594,8 @@
           "advanceNarrationEn": "Following the fluttering trail of colorful ribbons deeper into Loom Forest, Kai walked beneath ancient pines draped in silk banners of crimson, emerald, and gold.\n\nEvery gentle breeze carried soft chimes from the woven streamers overhead, guiding Kai step by step into a warm, sunlit clearing.",
           "advanceNarrationZh": "順著空中飄揚的七彩絲帶一路深入織錦森林，凱走進了掛滿翠綠、金黃與緋紅綢緞的古老松林。\n\n微風拂過時，枝頭上的絲帶輕輕搖曳作響，一步一步將凱引向森林深處一座灑滿陽光的溫暖林間空地。",
           "advanceDialogueEn": "Kai: \"Thousands of ribbons... the Great Wizard was right. The trail is leading straight ahead!\"",
-          "advanceDialogueZh": "小英雄凱：「好幾千條彩色絲帶……大法師說得沒錯，這條路就在前方引領著我！」"
+          "advanceDialogueZh": "小英雄凱：「好幾千條彩色絲帶……大法師說得沒錯，這條路就在前方引領著我！」",
+          "imageMobile": "assets/scenes-mobile/09_CH02_S01.webp"
         },
         {
           "pageNumber": 10,
@@ -613,7 +624,8 @@
           "advanceNarrationEn": "At the end of the ribbon trail stood a cozy wooden cottage draped in woven banners, where old Grandma Looma sat working calmly at a giant oak loom—while a friendly, unnamed golden-tan pup trotted right up to sniff Kai's boots.\n\n\"Hello.\" ... \"Name.\" ... \"Kai.\" Kai blurted out, stumbling one word at a time. Grandma Looma smiled gently: \"A single thread cannot keep anyone warm, young apprentice. Words are just like thread—weave them together with a comma ,, and Pythonia leaves a neat, comfortable space between them so they become a whole cloth!\"",
           "advanceNarrationZh": "絲帶盡頭是一座掛滿織錦旗幟的溫馨木屋。慈祥的魯瑪奶奶正坐在巨大的橡木織布機前專心紡織，而一隻友善卻還沒取名的小黃狗，立刻搖著尾巴跑上前聞了聞凱的靴子。\n\n「你好。」……「名字。」……「凱。」凱還是只能一字一頓地說。魯瑪奶奶溫柔地笑了：「單獨一根線無法替任何人保暖。話語就像織線一樣——用逗號 , 把它們編織在一起，蟒蛇王國就會自動留出剛剛好、舒舒服服的空隙，讓字句變成一塊完整的暖布！」",
           "advanceDialogueEn": "Grandma Looma: \"Weave words together with a comma , and Pythonia leaves a neat space between them!\"",
-          "advanceDialogueZh": "魯瑪奶奶：「用逗號 , 把詞語編織起來，蟒蛇王國就會貼心地在詞語之間留出舒適的空格！」"
+          "advanceDialogueZh": "魯瑪奶奶：「用逗號 , 把詞語編織起來，蟒蛇王國就會貼心地在詞語之間留出舒適的空格！」",
+          "imageMobile": "assets/scenes-mobile/10_CH02_S02.webp"
         },
         {
           "pageNumber": 11,
@@ -642,7 +654,8 @@
           "advanceNarrationEn": "Holding up the glowing green thread between his fingers, Kai linked his greetings smoothly with Grandma Looma's comma rune and cast: print(\"Hello\", \"Pythonia!\").\n\nAt last, his words flowed together in one smooth, warm sentence—each word connected yet resting comfortably side by side without crowding!",
           "advanceNarrationZh": "凱舉起指尖閃耀微光的綠色織線，運用魯瑪奶奶教導的逗號魔法將詞彙串連起來，念出咒語：print(\"Hello\", \"Pythonia!\")。\n\n終於，他的話語像順滑的錦緞般一口氣流淌出來——兩個詞既緊密相連，中間又保留了乾淨溫暖的呼吸距離！",
           "advanceDialogueEn": "Kai: \"print('Hello', 'Pythonia!') — It worked! My words flow smoothly together!\"",
-          "advanceDialogueZh": "小英雄凱：「print('Hello', 'Pythonia!') ——成功了！我的話語終於能流暢地連成一句溫暖的話！」"
+          "advanceDialogueZh": "小英雄凱：「print('Hello', 'Pythonia!') ——成功了！我的話語終於能流暢地連成一句溫暖的話！」",
+          "imageMobile": "assets/scenes-mobile/11_CH02_S03.webp"
         },
         {
           "pageNumber": 12,
@@ -671,7 +684,8 @@
           "advanceNarrationEn": "Glowing with pride, Kai thanked Grandma Looma warmly, knelt to give the friendly unnamed pup a cheerful pat on the head, and waved goodbye.\n\nAs the two of them stepped back out onto the sunlit forest trail, the little golden-tan pup stayed right at Kai's heels—already eager for their next horizon toward the distant rocky valley.",
           "advanceNarrationZh": "凱開懷地向魯瑪奶奶道謝，蹲下身輕輕拍拍這隻還沒取名的小黃狗的腦袋，笑著揮手道別。\n\n當一人一狗重新踏上陽光燦爛的林間小路時，小黃狗已經一步也不離開凱的腳邊，精神抖擻地準備一起迎向遠方充滿迴音的岩石山谷。",
           "advanceDialogueEn": "Kai: \"Thank you, Grandma Looma! Come on, little buddy—let's see where the sunlit trail goes!\"",
-          "advanceDialogueZh": "小英雄凱：「謝謝您，魯瑪奶奶！走吧，小夥伴，我們一起去看看陽光小路的盡頭有什麼！」"
+          "advanceDialogueZh": "小英雄凱：「謝謝您，魯瑪奶奶！走吧，小夥伴，我們一起去看看陽光小路的盡頭有什麼！」",
+          "imageMobile": "assets/scenes-mobile/12_CH02_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-03.html",
@@ -683,7 +697,8 @@
       "paragraphsAdvanceZh": [
         "順著飄揚的彩虹絲帶走進森林深處，凱來到魯瑪奶奶掛滿布幔的小木屋，還遇見一隻親切討喜、尚未取名的小黃狗。",
         "魯瑪奶奶溫柔教導凱「單線難成暖衣」，學會用逗號編織咒 , 留出舒服的詞距後，凱順暢唸出 print(\"Hello\", \"Pythonia!\")，帶著緊跟在身邊的小黃狗歡喜朝下一站邁進。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/11_CH02_S03.webp"
     },
     {
       "id": "part-04",
@@ -764,7 +779,8 @@
           "advanceNarrationEn": "The winding dirt path carried Kai and the golden-tan pup out of the whispering pines and down into a rocky canyon where the air smelled of hot steel and charcoal smoke, echoing with a rhythmic CLANG! CLANG! CLANG!.\n\nDown on the valley floor, Kai tripped over two shattered halves of an ancient iron sword. Trying Grandma Looma's comma weave—print(\"Iron\", \"Sword\")—only left an awkward, airy gap in midair: Iron Sword! That wouldn't hold together in battle at all!",
           "advanceNarrationZh": "蜿蜒的小路帶著凱與小黃狗走出松林，進入了一座瀰漫著灼熱鐵味與木炭煙霧的岩石峽谷，崖壁間迴盪著整齊響亮的「鏘！鏘！鏘！」打鐵聲。\n\n就在路邊塵土裡，凱被一柄斷成兩截的古老鐵劍絆了一跤。他試著套用魯瑪奶奶教的逗號編織——print(\"Iron\", \"Sword\")——結果空中卻出現了一道尷尬的縫隙：Iron Sword！分開成兩截的劍根本沒辦法用來作戰啊！",
           "advanceDialogueEn": "Kai: \"Oh no—the comma left an airy gap: 'Iron Sword'! How do I fuse broken metal?\"",
-          "advanceDialogueZh": "小英雄凱：「糟了——逗號在中間留下了空隙，變成分開的 'Iron Sword'！要怎麼把金屬緊密熔合呢？」"
+          "advanceDialogueZh": "小英雄凱：「糟了——逗號在中間留下了空隙，變成分開的 'Iron Sword'！要怎麼把金屬緊密熔合呢？」",
+          "imageMobile": "assets/scenes-mobile/13_CH03_S01.webp"
         },
         {
           "pageNumber": 14,
@@ -793,7 +809,8 @@
           "advanceNarrationEn": "Ahead, towering orange sparks poured through the wide doorway of the Iron Outpost.\n\nLooking up from his glowing anvil, the burly Blacksmith boomed out in a voice like rolling thunder: \"Threads leave spaces! That's fine for chatting, young wizard, but metal needs the Plus Sign + to FUSE—melt two pieces into one solid blade with zero gaps!\"",
           "advanceNarrationZh": "前方不遠處的「鋼鐵前哨站」大門敞開，裡頭不斷飛濺出耀眼的金色火花。\n\n壯碩的鐵匠從熾熱的鐵砧前抬起頭，聲音像打雷般洪亮地大喊：「絲線才會留空隙！聊天交談時留空格很好，但鍛造金屬必須用『加號 +』來進行『FUSE 熔合』——把兩塊斷鐵融成一把毫無縫隙的堅固寶劍！」",
           "advanceDialogueEn": "Blacksmith: \"Metal needs the Plus Sign + to FUSE—melt two pieces into one solid blade with zero gaps!\"",
-          "advanceDialogueZh": "前哨鐵匠：「金屬必須靠『加號 +』來熔合，才能把兩塊碎鐵鑄成一把完全沒有縫隙的實心寶劍！」"
+          "advanceDialogueZh": "前哨鐵匠：「金屬必須靠『加號 +』來熔合，才能把兩塊碎鐵鑄成一把完全沒有縫隙的實心寶劍！」",
+          "imageMobile": "assets/scenes-mobile/14_CH03_S02.webp"
         },
         {
           "pageNumber": 15,
@@ -822,7 +839,8 @@
           "advanceNarrationEn": "Gripping his Ancient Spellbook tightly, Kai stepped up to the blazing anvil, aimed his wand right between the broken iron halves, and cast the FUSE spell: print(\"Iron\" + \"Sword\").\n\nCLANG! Bright golden fire roared across the steel—and right before his eyes, the two shattered halves melted seamlessly together into one gleaming, unbroken IronSword!",
           "advanceNarrationZh": "凱握緊《古老咒語書》，大步站到閃爍金光的鐵砧前，舉起魔杖對準斷裂的劍身，果斷揮出熔合咒語：print(\"Iron\" + \"Sword\")。\n\n「鏘！」一聲巨響，金色烈焰瞬間包覆鐵片——就在眼前，原本斷成兩半的金屬徹底融為一體，化作一把寒光閃閃、毫無接縫的堅固鐵劍 IronSword！",
           "advanceDialogueEn": "Kai: \"print('Iron' + 'Sword')!\" · Blacksmith: \"Haha! Zero gaps—now THAT is forged steel!\"",
-          "advanceDialogueZh": "小英雄凱：「print('Iron' + 'Sword')！」· 前哨鐵匠：「哈哈！一點縫隙都沒有——這才叫真正千錘百鍊的好劍！」"
+          "advanceDialogueZh": "小英雄凱：「print('Iron' + 'Sword')！」· 前哨鐵匠：「哈哈！一點縫隙都沒有——這才叫真正千錘百鍊的好劍！」",
+          "imageMobile": "assets/scenes-mobile/15_CH03_S03.webp"
         },
         {
           "pageNumber": 16,
@@ -851,7 +869,8 @@
           "advanceNarrationEn": "With his gleaming IronSword securely belted at his waist and the loyal golden-tan pup trotting joyfully beside him, Kai waved goodbye to the burly Blacksmith.\n\nSoon the rhythmic CLANG! CLANG! of the Outpost faded behind them as the rocky canyon gave way to a dense, twilight canopy of ancient moss-draped trees.",
           "advanceNarrationZh": "凱把閃閃發光的無縫鐵劍 IronSword 牢牢佩掛在腰間，向豪爽的鐵匠揮手道別。\n\n小黃狗開心地緊跟在後，身後「鏘、鏘」的打鐵聲漸漸遠去，岩石峽谷也慢慢轉變為一片藤蔓低垂、神秘幽深的暮色古樹林。",
           "advanceDialogueEn": "Kai: \"IronSword feels strong and steady! Ready to explore those twilight woods ahead?\"",
-          "advanceDialogueZh": "小英雄凱：「佩上鐵劍感覺好踏實！小夥伴，準備好一起走進前面那片暮色森林了嗎？」"
+          "advanceDialogueZh": "小英雄凱：「佩上鐵劍感覺好踏實！小夥伴，準備好一起走進前面那片暮色森林了嗎？」",
+          "imageMobile": "assets/scenes-mobile/16_CH03_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-04.html",
@@ -863,7 +882,8 @@
       "paragraphsAdvanceZh": [
         "在煙霧與打鐵聲迴盪的鋼鐵前哨峽谷裡，凱發現斷成兩半的古鐵劍，並明白用逗號會在劍身留下鬆散空隙。",
         "在火星四濺的鐵砧前，壯碩鐵匠洪亮傳授「FUSE 熔合咒 +」：一聲 print(\"Iron\" + \"Sword\") 化作金焰，把斷鐵無縫鑄成一把光亮堅實的 IronSword！"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/15_CH03_S03.webp"
     },
     {
       "id": "part-05",
@@ -952,7 +972,8 @@
           "advanceNarrationEn": "Kai and the pup stepped beneath the twilight canopy of the Whispering Forest—a realm where dancing shadows drifted over ancient moss and every leaf rustled with quiet secrets.\n\nYet as Kai walked deeper into the gloom, something troubled him deeply: every time he called out a question to a glowing mushroom or a mossy stone marker, they stayed coldly silent, ignoring his spells entirely.",
           "advanceNarrationZh": "一人一狗踏入「低語森林」的暮色樹冠下——這裡的影子隨著枝葉輕舞，彷彿每片葉子都藏著未說出口的祕密。\n\n但越往深處走，凱心裡越覺得不對勁：無論他向發光的蘑菇或古老石碑提出什麼問題，對方都毫無反應，完全把他單方面施放的咒語當成耳邊風。",
           "advanceDialogueEn": "Kai: \"Hello? Glowing mushroom? Ancient marker? Why won't anything answer me back?\"",
-          "advanceDialogueZh": "小英雄凱：「請問有人嗎？發光蘑菇？古老石碑？為什麼大家都不理會我的問題呢？」"
+          "advanceDialogueZh": "小英雄凱：「請問有人嗎？發光蘑菇？古老石碑？為什麼大家都不理會我的問題呢？」",
+          "imageMobile": "assets/scenes-mobile/17_CH04_S01.webp"
         },
         {
           "pageNumber": 18,
@@ -981,7 +1002,8 @@
           "advanceNarrationEn": "\"Travelers always talk at me, never to me,\" sighed a luminous Forest Spirit, materializing like a wisp of cool blue mist across the twisting trail. \"You cast your spells into the wind, young wizard, but you never stop to listen for a reply.\"\n\nRight beside Kai, the golden-tan pup let out a soft woof and gently nudged Kai's hand—reminding him that true magic always requires patience and two-way connection.",
           "advanceNarrationZh": "「旅人們總是只顧著對森林說話，卻從來不聽森林回答。」一縷如湛藍薄霧般的森林精靈在蜿蜒小徑上顯現身形，輕聲嘆息：「年輕的法師啊，你把咒語丟進風裡，卻從沒停下來傾聽回音。」\n\n就在此刻，身旁的小黃狗發出一聲溫柔的輕吠，用鼻子輕輕頂了頂凱的手心——提醒著凱，真正的魔法需要耐心與雙向的交流。",
           "advanceDialogueEn": "Forest Spirit: \"To pass through my woods, you must pause, ask your question, and wait for the world to answer.\"",
-          "advanceDialogueZh": "森林精靈：「想穿過我的森林，你必須先停下腳步、提出問題，並安靜等待世界給你的回答。」"
+          "advanceDialogueZh": "森林精靈：「想穿過我的森林，你必須先停下腳步、提出問題，並安靜等待世界給你的回答。」",
+          "imageMobile": "assets/scenes-mobile/18_CH04_S02.webp"
         },
         {
           "pageNumber": 19,
@@ -1010,7 +1032,8 @@
           "advanceNarrationEn": "Tapping her mossy staff against the earth, the Forest Spirit taught Kai the spell of patient listening: input(\"What is your name? \").\n\nAt once, the forest grew wonderfully still. A glowing purple input box flickered on the twilight air like a gentle firefly, waiting patiently. Kai spoke calmly into the quiet and listened with all his heart—and as the forest accepted his words, his loyal golden-tan pup finally earned his true name: String!",
           "advanceNarrationZh": "森林精靈將魔杖輕點在青苔地上，傳授給凱象徵耐心傾聽的咒語：input(\"What is your name? \")。\n\n霎時間，整座森林安靜得連露水滴落都聽得見。一道紫色微光的輸入對話框像螢火蟲般在空中靜靜閃爍等待。凱平心靜氣地唸出名字、也專心聆聽小狗的心意——就在森林接納回答的那一刻，這隻忠誠的小黃狗終於擁有了自己的名字：String（字串）！",
           "advanceDialogueEn": "Kai: \"input('What is your name? ') — Wait... you heard us! Your true name is String!\"",
-          "advanceDialogueZh": "小英雄凱：「input('What is your name? ') ——太棒了！森林聽見了，從今天起你的名字就叫 String！」"
+          "advanceDialogueZh": "小英雄凱：「input('What is your name? ') ——太棒了！森林聽見了，從今天起你的名字就叫 String！」",
+          "imageMobile": "assets/scenes-mobile/19_CH04_S03.webp"
         },
         {
           "pageNumber": 20,
@@ -1039,7 +1062,8 @@
           "advanceNarrationEn": "The dense wall of tangled emerald brambles parted smoothly to reveal a clear, lantern-lit forest exit ahead.\n\nString bounded joyfully down the newly opened trail beside Kai, both of them stepping out into the cool evening breeze filled with the soothing sound of rushing river water.",
           "advanceNarrationZh": "原本糾纏密布的翠綠荊棘緩緩向左右分開，露出一條清澈明亮的森林大道。\n\n剛得到新名字的 String 開心地沿著小路向前奔躍，帶著凱一起走出幽暗森林，迎面吹來清涼的晚風與遠方潺潺流動的水聲。",
           "advanceDialogueEn": "String: \"Woof!\" · Kai: \"Look, String—the brambles opened! Let's follow the sound of the river!\"",
-          "advanceDialogueZh": "String：「汪！」· 小英雄凱：「你看，String——荊棘讓開路了！我們順著河水的聲音繼續前進吧！」"
+          "advanceDialogueZh": "String：「汪！」· 小英雄凱：「你看，String——荊棘讓開路了！我們順著河水的聲音繼續前進吧！」",
+          "imageMobile": "assets/scenes-mobile/20_CH04_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-05.html",
@@ -1051,7 +1075,8 @@
       "paragraphsAdvanceZh": [
         "走進低語森林後，無論凱怎麼單方面問話，發光蘑菇與石碑全都沉默不語。直到湛藍的森林精靈現身點醒，加上小黃狗輕碰手心提醒他耐心傾聽。",
         "唸出 input(\"What is your name? \") 後，空中閃起紫色光框靜靜等候回應。凱真誠回答並聆聽小狗心聲的那一刻，小黃狗終於獲得真名「String」，糾纏荊棘也應聲讓路！"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/19_CH04_S03.webp"
     },
     {
       "id": "part-06",
@@ -1132,7 +1157,8 @@
           "advanceNarrationEn": "Waiting calmly along the scenic highway stood the Great Wizard, adjusting his starry blue cloak with a proud smile. Marching together toward the Bug King's distant dark mountain, lush green grass suddenly gave way to barren grey stones at the Cursed Riverbank.\n\nAcross the smooth pebbles glittered thousands of golden coins shining like fallen stars! Eagerly, Kai scooped up a huge double handful—POOF! In a puff of grey dust, every coin vanished right out of his fingers!",
           "advanceNarrationZh": "在林外的景觀大道旁，大法師早已披著星辰藍披風微笑等候。一人一狗與大法師重新會合，並肩朝黑山前進；可走著走著，綠油油的草地卻變成了荒涼灰石，來到了令人不安的「受詛咒河岸」。\n\n圓潤的河畔鵝卵石上閃耀著成千上萬枚金幣，宛如墜落的星辰。凱興奮地雙手掬起滿滿一把金幣——「噗！」一陣灰色塵霧飄散，指縫裡的金幣竟在一眨眼間全數消失得無影無蹤！",
           "advanceDialogueEn": "Kai: \"Wait—every single coin just vanished into grey dust right out of my fingers!\"",
-          "advanceDialogueZh": "小英雄凱：「咦——金幣剛拿到手裡，怎麼就變成一陣灰塵憑空消失了！？」"
+          "advanceDialogueZh": "小英雄凱：「咦——金幣剛拿到手裡，怎麼就變成一陣灰塵憑空消失了！？」",
+          "imageMobile": "assets/scenes-mobile/21_CH05_S01.webp"
         },
         {
           "pageNumber": 22,
@@ -1161,7 +1187,8 @@
           "advanceNarrationEn": "\"Any treasure left unnamed disappears into the river's curse,\" the Great Wizard warned, pointing his glowing staff toward a sturdy, empty wooden chest resting on the grey stones.\n\n\"In Pythonia, you cannot just hold wealth loose in your hands—you must lock it inside a named Vault using the Equals Padlock =!\"",
           "advanceNarrationZh": "「任何沒有被取名鎖好的財富，都會被河岸的詛咒吞噬。」大法師舉起魔杖指向岸邊一只厚實卻空蕩蕩的木頭寶箱，鄭重提醒道：\n\n「在蟒蛇王國裡，你不能只用手握著數值——你必須用『等號鎖 =』，把它安全鎖進有名字的寶庫變數裡！」",
           "advanceDialogueEn": "Great Wizard: \"You must lock it inside a named Vault using the Equals Padlock =!\"",
-          "advanceDialogueZh": "大法師：「你必須運用『等號鎖 =』，把寶物穩穩鎖進屬於它名字的寶庫裡！」"
+          "advanceDialogueZh": "大法師：「你必須運用『等號鎖 =』，把寶物穩穩鎖進屬於它名字的寶庫裡！」",
+          "imageMobile": "assets/scenes-mobile/22_CH05_S02.webp"
         },
         {
           "pageNumber": 23,
@@ -1190,7 +1217,8 @@
           "advanceNarrationEn": "Kai slammed the heavy wooden chest shut and spun the glowing rune padlock—gold = 100—securing his treasure safely inside the named Vault. Eager to verify that the magic held, he raised his Spellbook and cast: print(gold).\n\nCLACK! The lid shone with steady golden light, and all 100 coins gleamed safely inside—with loyal String sitting proudly on top as guard!",
           "advanceNarrationZh": "凱用力蓋上沉重的木箱，轉動閃耀金光的等號寶鎖——gold = 100——把一百枚金幣穩穩封存進名為 gold 的寶庫裡。為了確認魔法生效，他舉起咒語書朗聲唸道：print(gold)。\n\n「喀噠！」一聲清脆，箱蓋綻放出穩定柔和的金光，裡頭整整一百枚金幣安然閃亮——而忠心的小狗 String 正威風凜凜地坐在箱蓋上負責看守！",
           "advanceDialogueEn": "Kai: \"gold = 100 ... print(gold)! Look, String—all 100 coins stayed right where we locked them!\"",
-          "advanceDialogueZh": "小英雄凱：「gold = 100 …… print(gold)！快看 String，整整一百枚金幣全都安安全全地鎖住了！」"
+          "advanceDialogueZh": "小英雄凱：「gold = 100 …… print(gold)！快看 String，整整一百枚金幣全都安安全全地鎖住了！」",
+          "imageMobile": "assets/scenes-mobile/23_CH05_S03.webp"
         },
         {
           "pageNumber": 24,
@@ -1219,7 +1247,8 @@
           "advanceNarrationEn": "Seeing Kai's amazement, the Great Wizard pulled a shimmering silver pouch from his robes: a Spatial Dimensional Pocket. \"A true wizard of Pythonia cannot carry heavy wooden chests across the realm,\" he laughed. Watchful String tilted his head as the heavy wooden chest shrank gently into golden light streaming straight into Kai's belt!\n\nWith his vault carried weightlessly at his waist, Kai, String, and the Wizard resumed their march. String bounded ahead chasing luminous river-butterflies until rugged stone cliffs rose in deep purple twilight—leading straight to a shadowy fissure at the mountain base: the entrance to the echoing cavern.",
           "advanceNarrationZh": "看見凱驚喜的神情，大法師微笑著從袍中取出一只閃爍銀光的錦囊——「空間百寶袋」。「真正的法師總不能扛著厚重木箱走遍天下吧。」在 String 好奇歪頭的注視下，大木箱化作一束溫暖金光縮小飛入凱的腰帶！\n\n身上輕巧無比、寶物卻隨時都在，一人一狗跟著大法師再次上路。String 一路追逐著灑落星塵的發光河蝶，直到暮色紫霧湧上山崖，引領他們來到山腳下一道幽深神祕的巨大岩縫——迴音洞窟的入口。",
           "advanceDialogueEn": "Great Wizard: \"This Spatial Dimensional Pocket holds your Vault—now let us enter the echoing cavern.\"",
-          "advanceDialogueZh": "大法師：「這個空間百寶袋能為你收好寶庫——現在，我們一起走進前方的迴音洞窟吧。」"
+          "advanceDialogueZh": "大法師：「這個空間百寶袋能為你收好寶庫——現在，我們一起走進前方的迴音洞窟吧。」",
+          "imageMobile": "assets/scenes-mobile/24_CH05_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-06.html",
@@ -1231,7 +1260,8 @@
       "paragraphsAdvanceZh": [
         "在受詛咒河岸與大法師重逢後，凱親眼看見抓在手心卻沒取名的金幣瞬間化為灰霧消失，直到學會用等號鎖鎖定「gold = 100」才順利守住一百枚金幣。",
         "大法師接著贈予「空間百寶袋」，將沉重木箱縮小收進凱的腰帶！一路上 String 快樂追逐發光河蝶，陪伴凱與導師走進山腳下的迴音洞窟。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/23_CH05_S03.webp"
     },
     {
       "id": "part-07",
@@ -1312,7 +1342,8 @@
           "advanceNarrationEn": "Inside the damp, crystal-lit cavern, glowing subterranean quartz reflected across shimmering underground pools.\n\nUpon a raised stone altar ahead stood three radiant chests waiting together: a ruby-red chest for HP (health), a sapphire-blue chest for Mana (magic energy), and a gleaming golden chest for Gold.",
           "advanceNarrationZh": "走進微涼潮濕、閃耀著天然水晶光輝的洞窟深處，地下泉水映出斑斕光影。\n\n就在前方高起的石祭壇上，並列著三只發光的魔法寶箱：象徵生命值的紅寶石箱 HP、象徵魔力的藍寶石箱 Mana，以及金光閃閃的金幣箱 Gold。",
           "advanceDialogueEn": "Kai: \"Three glowing chests at once—ruby HP, sapphire Mana, and gleaming Gold!\"",
-          "advanceDialogueZh": "小英雄凱：「石壇上同時有三只發光寶箱——紅色的 HP、藍色的 Mana，還有閃亮的 Gold！」"
+          "advanceDialogueZh": "小英雄凱：「石壇上同時有三只發光寶箱——紅色的 HP、藍色的 Mana，還有閃亮的 Gold！」",
+          "imageMobile": "assets/scenes-mobile/25_CH05A_S01.webp"
         },
         {
           "pageNumber": 26,
@@ -1341,7 +1372,8 @@
           "advanceNarrationEn": "Suddenly, a creeping red shadow hissed out from the cave darkness, darting fast across the stone floor to swallow all three treasures before Kai could touch them!\n\n\"There's no time to lock them one by one—the shadow is far too fast!\" the Great Wizard shouted, bracing his glowing staff to hold back the advancing gloom. \"Line them up all at once, apprentice!\"",
           "advanceNarrationZh": "突然間，洞穴陰影裡竄出一道嘶嘶作響的猩紅黑影，貼著冰冷石面飛快撲來，想一口吞掉三箱能量！\n\n「沒時間一個一個慢慢上鎖了——那團黑影速度太快！」大法師高舉藍水晶法杖抵擋逼近的黑暗，大聲喊道：「把它們排成一列，一口氣全部同時上鎖！」",
           "advanceDialogueEn": "Great Wizard: \"There's no time to lock them one by one—line them up all at once, apprentice!\"",
-          "advanceDialogueZh": "大法師：「來不及單獨上鎖了——小魔法師，一口氣把三個名字和數值整齊對齊！」"
+          "advanceDialogueZh": "大法師：「來不及單獨上鎖了——小魔法師，一口氣把三個名字和數值整齊對齊！」",
+          "imageMobile": "assets/scenes-mobile/26_CH05A_S02.webp"
         },
         {
           "pageNumber": 27,
@@ -1370,7 +1402,8 @@
           "advanceNarrationEn": "With brave String barking fiercely to distract the creeping shadow, Kai raised his Spellbook, aligned all three Vault names and treasures side by side, and cast in one steady breath: hp, mana, gold = 100, 50, 10.\n\nCLACK-CLACK-CLACK! Three heavy iron padlocks slammed shut at the exact same instant! A brilliant barrier of blue and gold light froze the red shadow in its tracks and zipped all three vital stats safely into Kai's Spatial Dimensional Pocket!",
           "advanceNarrationZh": "勇敢的 String 朝黑影大聲狂吠分散注意，凱趁勢舉起咒語書，將三個名字與三個數值整齊並排，屏息一唸：hp, mana, gold = 100, 50, 10。\n\n「喀噠、喀噠、喀噠！」三把厚重鐵鎖在同一個瞬間同時鎖死！藍與金交織的絢麗光牆猛然綻放，當場震退猩紅黑影，並把三股珍貴力量平安收進凱的空間百寶袋！",
           "advanceDialogueEn": "Kai: \"hp, mana, gold = 100, 50, 10 — Triple lock complete!\"",
-          "advanceDialogueZh": "小英雄凱：「hp, mana, gold = 100, 50, 10 ——三重鎖定同時完成！」"
+          "advanceDialogueZh": "小英雄凱：「hp, mana, gold = 100, 50, 10 ——三重鎖定同時完成！」",
+          "imageMobile": "assets/scenes-mobile/27_CH05A_S03.webp"
         },
         {
           "pageNumber": 28,
@@ -1399,7 +1432,8 @@
           "advanceNarrationEn": "Stepping out of the cavern onto a high mountain trail at dusk, the Great Wizard paused beneath a sprawling silver-leafed tree and checked the glowing crests along Kai's belt with a proud smile. \"You have mastered Voice, Weave, Fuse, Listen, Vaults, and Multi-Vaults. From this moment on, you must depend entirely on yourself and trust your own mind.\"\n\nKai felt a flutter of nerves, until warm String pressed firmly against his leg with a brave bark. Whispering \"May your code always compile true,\" the Wizard dissolved in a sudden flash of emerald starlight, leaving Kai and String standing ready together.",
           "advanceNarrationZh": "走出迴音洞窟時已近黃昏，一行人沿著山道向上攀登。大法師停在一棵枝葉繁茂的銀葉大樹下，欣慰地望著凱腰帶上閃閃發亮的魔法徽章：「我已把我所知的基礎善咒全都傳授給你了。從這一刻起，你必須完全相信自己的頭腦，靠自己的力量走下去。」\n\n凱的心微微緊張地顫動了一下，但溫暖的 String 立刻緊緊靠著他的腿邊，發出一聲沉穩勇敢的吠叫。大法師柔聲道別：「願你的程式碼永遠正確編譯。」說完，他在一陣燦爛的翠綠星光中化為漂浮的數位光字消散，留下凱與 String 並肩面向前方的山嶺。",
           "advanceDialogueEn": "Great Wizard: \"You are ready, young apprentice. May your code always compile true.\"",
-          "advanceDialogueZh": "大法師：「你已經準備好了，年輕的法師。願你的程式碼永遠正確無誤地運行。」"
+          "advanceDialogueZh": "大法師：「你已經準備好了，年輕的法師。願你的程式碼永遠正確無誤地運行。」",
+          "imageMobile": "assets/scenes-mobile/28_CH05A_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-07.html",
@@ -1411,7 +1445,8 @@
       "paragraphsAdvanceZh": [
         "洞窟內猩紅黑影來勢洶洶，凱在 String 勇敢吠叫掩護下，排出三重寶庫鎖「hp, mana, gold = 100, 50, 10」，一瞬間同時鎖住生命、魔力與金幣並退敵！",
         "離開洞窟後的銀葉樹下，大法師欣慰地告訴凱從此要學會獨立判斷，留下祝福后化作漫天翠綠星光消散在夜空裡。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/27_CH05A_S03.webp"
     },
     {
       "id": "part-08",
@@ -1491,7 +1526,8 @@
           "advanceNarrationEn": "The winding mountain path led Kai and String past towering stone pillars straight to a massive pair of ancient bronze library doors.\n\nCurled fast asleep right across the stone threshold lay a gigantic red dragon—her ruby-bright scales gleaming in the twilight as deep, heavy rumbles rose and fell from her chest.",
           "advanceNarrationZh": "蜿蜒山路帶著凱和 String 穿過高聳的古石柱群，來到一扇氣勢磅礴的青銅圖書館大門前。\n\n然而就在青銅門檻正前方，一頭身軀龐大如小山的紅龍正蜷曲沉睡著——她宛如紅寶石般的鱗片在暮色中閃閃發亮，胸口每呼吸一次都傳出低沉的轟鳴。",
           "advanceDialogueEn": "Kai (whispering): \"Step carefully, String... one loud spark from my Spellbook could wake that dragon!\"",
-          "advanceDialogueZh": "小英雄凱（氣音小聲）：「腳步放輕，String……要是不小心觸發吵鬧的魔法火花，這頭巨龍一定會醒過來！」"
+          "advanceDialogueZh": "小英雄凱（氣音小聲）：「腳步放輕，String……要是不小心觸發吵鬧的魔法火花，這頭巨龍一定會醒過來！」",
+          "imageMobile": "assets/scenes-mobile/29_CH06_S01.webp"
         },
         {
           "pageNumber": 30,
@@ -1520,7 +1556,8 @@
           "advanceNarrationEn": "Drifting softly out from the doorway shadows appeared the Ghost Librarian in flowing robes, pressing a glowing feather quill to her lips. \"Shhh!\" she whispered. \"Humans need to leave notes for each other, but the Pythonia magic must never hear them. Use the Mute Mark #—a secret whisper only humans read and the magic completely ignores!\"\n\nWith a delicate stroke of her glowing quill, she traced a shimmering # mark right onto Kai's cheek.",
           "advanceNarrationZh": "大門陰影中輕輕飄出一位身披飄逸長袍的「幽靈圖書館員」，她將散發柔和微光的羽毛筆輕抵唇前：「噓——！」她輕聲細語道：「人類需要彼此寫筆記交流，但不能讓蟒蛇王國的魔法聽見或執行！用靜音符號 # ——那是只有人類看得見、魔法系統卻會完全忽略的祕密悄悄話！」\n\n她伸出羽毛筆尖，溫柔地在凱的臉頰上輕輕畫下一枚發著微光的「#」印記。",
           "advanceDialogueEn": "Ghost Librarian: \"Shhh! Use the Mute Mark #—a whisper only humans read and the magic ignores!\"",
-          "advanceDialogueZh": "幽靈圖書館員：「噓——！用靜音符號 # ，讓這句話只給人類閱讀，魔法會完全保持安靜。」"
+          "advanceDialogueZh": "幽靈圖書館員：「噓——！用靜音符號 # ，讓這句話只給人類閱讀，魔法會完全保持安靜。」",
+          "imageMobile": "assets/scenes-mobile/30_CH06_S02.webp"
         },
         {
           "pageNumber": 31,
@@ -1549,7 +1586,8 @@
           "advanceNarrationEn": "Stepping gingerly past the giant dragon's twitching crimson tail, Kai raised his Spellbook, held his breath, and quietly traced a silent note into the air:\n\n# I am going inside the library.\n\nBecause the Mute Mark # silenced the entire line for Pythonia's magic engine, not a single spark cracked or hummed through the quiet dusk!",
           "advanceNarrationZh": "凱屏住呼吸，躡手躡腳地繞過巨龍微微抽動的赤紅長尾，抬起《古老咒語書》，安靜地在空氣中寫下一行給自己看的小紙條：\n\n# I am going inside the library.\n\n由於句首的靜音號 # 讓整行文字在魔法眼中完全靜音，四周沒有迸出一丁點火花或聲響！",
           "advanceDialogueEn": "Kai (silently): \"# I am going inside the library.\"",
-          "advanceDialogueZh": "小英雄凱（無聲書寫）：「# I am going inside the library.（＃我要走進圖書館了）」"
+          "advanceDialogueZh": "小英雄凱（無聲書寫）：「# I am going inside the library.（＃我要走進圖書館了）」",
+          "imageMobile": "assets/scenes-mobile/31_CH06_S03.webp"
         },
         {
           "pageNumber": 32,
@@ -1578,7 +1616,8 @@
           "advanceNarrationEn": "The giant red dragon snored peacefully on. With String tiptoeing quietly at his boots, Kai slipped through the bronze doors into the quiet, starlit hall of the Ancient Library.\n\nBetween towering shelves of floating leather tomes, String's keen nose began sniffing behind the oak reading desk—uncovering a hidden stone trapdoor glowing softly with prismatic crystal light!",
           "advanceNarrationZh": "沉睡的紅寶石巨龍依然打著平穩的呼嚕，連眼皮也沒動一下。String 踮著小肉墊無聲跟隨，一人一狗順利滑進星光閃爍、萬籟俱寂的古老圖書館大廳。\n\n就在一排排飄浮典籍的橡木書桌後方，靈敏的 String 用鼻子東聞西嗅——竟然在地板角落嗅出了一扇正透出七彩微光的隱藏地下暗門！",
           "advanceDialogueEn": "String: \"*sniff sniff*\" · Kai: \"Good find, String! Look—there's a glowing trapdoor hidden behind this desk!\"",
-          "advanceDialogueZh": "String：「（用力嗅聞）」· 小英雄凱：「好樣的 String！你看——書桌後面藏著一道發光的地下活板門！」"
+          "advanceDialogueZh": "String：「（用力嗅聞）」· 小英雄凱：「好樣的 String！你看——書桌後面藏著一道發光的地下活板門！」",
+          "imageMobile": "assets/scenes-mobile/32_CH06_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-08.html",
@@ -1590,7 +1629,8 @@
       "paragraphsAdvanceZh": [
         "圖書館青銅大門前躺著一頭沉睡的紅寶石巨龍！幸虧幽靈圖書館員輕聲指點，並在凱臉頰點上發光的「#」靜音符號。",
         "寫下只給人類看、魔法卻會保持安靜的「# 筆記」後，一人一狗無聲穿過睡龍踏進大廳——而靈敏的 String 更在書桌後方嗅出了一道透著彩光的地下秘門！"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/31_CH06_S03.webp"
     },
     {
       "id": "part-09",
@@ -1676,7 +1716,8 @@
           "advanceNarrationEn": "Pulling open the iron ring, Kai and String descended a spiral stone staircase into a breathtaking underground cavern warmed by four floating Shapeshift Crystals.\n\nWhen Kai approached the luminous Scroll Crystal (str for words), it resonated straight with his pup! String leaped joyfully into the crystal light and officially upgraded—now glowing ribbons of text flashed directly into Kai's Spellbook and mind in a secret telepathic bond!",
           "advanceNarrationZh": "拉開鐵環掀開暗門，凱和 String 沿著螺旋石梯往下走，來到一座由四枚飄浮「變形水晶」照亮的奇幻地下水晶洞窟。\n\n當凱走近象徵文字的卷軸水晶 str 時，水晶忽然與小狗產生了共鳴！String 開心地一躍而起吸納那束光影，正式完成升級——從此之後，發光的文字絲帶能透過心電感應，直接把 String 的心聲傳進凱的咒語書與腦海裡！",
           "advanceDialogueEn": "String (telepathic str ribbon): \"Kai! Look—I can finally send real words right into your Spellbook!\"",
-          "advanceDialogueZh": "String（心電感應文字光帶）：「凱！快看——我終於可以把真正的心裡話傳進你的咒語書裡了！」"
+          "advanceDialogueZh": "String（心電感應文字光帶）：「凱！快看——我終於可以把真正的心裡話傳進你的咒語書裡了！」",
+          "imageMobile": "assets/scenes-mobile/33_CH07_S01.webp"
         },
         {
           "pageNumber": 34,
@@ -1705,7 +1746,8 @@
           "advanceNarrationEn": "Beside newly telepathic String stood the three remaining spirit crystals waiting to reveal how every magical shape reveals itself under the type() magnifying glass:\n\nThe sturdy Stone Block golem (int for whole numbers), which immediately dropped down to do crisp push-ups; the clear Water Droplet (float for decimals), bouncing joyfully with shimmering bubbles; and the Flashing Gem (bool for True or False), a gleaming lie detector.",
           "advanceNarrationZh": "在獲得文字天賦的 String 身旁，其餘三枚晶靈也一一顯現出在 type() 放大鏡下的真實樣貌：\n\n結實穩重的石塊小巨人（int 整數）立刻趴在地上示範標準伏地挺身；晶瑩剔透的小水滴（float 小數）快樂地彈跳起舞，冒出串串七彩泡泡；還有一閃一閃的閃耀寶石（bool 真假布林值），是一顆絕不說謊的測謊晶石。",
           "advanceDialogueEn": "Kai: \"Four distinct shapes under type(): str for words, int for whole numbers, float for decimals, and bool for True/False!\"",
-          "advanceDialogueZh": "小英雄凱：「原來在 type() 下共有四種形狀：文字 str、整數 int、小數 float，還有真假 bool！」"
+          "advanceDialogueZh": "小英雄凱：「原來在 type() 下共有四種形狀：文字 str、整數 int、小數 float，還有真假 bool！」",
+          "imageMobile": "assets/scenes-mobile/34_CH07_S02.webp"
         },
         {
           "pageNumber": 35,
@@ -1734,7 +1776,8 @@
           "advanceNarrationEn": "Climbing back into daylight, Kai and String arrived at Sunnybrook Village, where a fierce storm had battered homes, snapped fences, and washed out dry crop plots. Kai immediately called upon his crystal spirits!\n\nThe sturdy int golem reeled off twenty rapid push-ups and hoisted heavy fallen logs back into place while the clear float droplet nourished parched farm soil with bubbling water—until String suddenly stiffened, flashing an urgent telepathic alert across Kai's Spellbook: \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"",
           "advanceNarrationZh": "爬回地面陽光下，凱與 String 來到了晴溪村，發現一場猛烈暴風剛摧毀了這裡的屋簷、圍欄與農田。凱立刻喚出新結交的精靈夥伴前來相助！\n\n整數石巨人一口氣做了二十下伏地挺身，輕鬆扛起倒塌的圓木重建家園；小數水滴也湧出清澈氣泡泉水灌溉乾涸菜圃——就在此時，String 突然機警豎耳，立刻用心電感應把文字打在凱的書頁上：「凱！東邊穀倉旁有人鬼鬼祟祟地扛走了僅存的糧食袋！」",
           "advanceDialogueEn": "String (telepathic): \"Kai! Someone is sneaking away with the remaining food sacks near the eastern shed!\"",
-          "advanceDialogueZh": "String（心電感應）：「凱！東邊倉庫那邊有人想偷搬走剩下來的糧食袋！」"
+          "advanceDialogueZh": "String（心電感應）：「凱！東邊倉庫那邊有人想偷搬走剩下來的糧食袋！」",
+          "imageMobile": "assets/scenes-mobile/35_CH07_S03.webp"
         },
         {
           "pageNumber": 36,
@@ -1763,7 +1806,8 @@
           "advanceNarrationEn": "Kai sprinted around the wooden corner and caught a sneaky little goblin stammering frantic excuses. Holding up the bool Flashing Gem, it pulsed fierce crimson and chimed \"FALSE!\", exposing the trick at once!\n\nYet seeing how thin and hungry the trembling creature looked, Kai gently lowered the gem and shared a warm portion of the restored harvest with him—teaching everyone that true wizardry blends sharp awareness, justice, and compassion for those in need.",
           "advanceNarrationZh": "凱飛奔轉過木屋牆角，當場抓到一隻正支支吾吾編藉口的小哥布林。凱舉起測謊 bool 晶石，寶石瞬間閃出鮮紅光芒並響亮宣告「FALSE！（說謊）」，當場拆穿謊言！\n\n但凱仔細一看，發現這隻小傢伙瘦得發抖、只是餓壞了。他收起寶石，溫柔地從恢復收成的食物裡分出一籃送給他——讓晴溪村所有人都明白，真正的魔法不只在於辨別對錯，更在於警惕、正義與幫助困苦之人的慈悲。",
           "advanceDialogueEn": "Flashing Gem: \"FALSE!\" · Kai: \"No need to steal when you're hungry—come share part of the harvest with us.\"",
-          "advanceDialogueZh": "測謊寶石：「FALSE！」· 小英雄凱：「肚子餓不需要用偷的——來，這籃新鮮的食物分你一起吃吧。」"
+          "advanceDialogueZh": "測謊寶石：「FALSE！」· 小英雄凱：「肚子餓不需要用偷的——來，這籃新鮮的食物分你一起吃吧。」",
+          "imageMobile": "assets/scenes-mobile/36_CH07_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-09.html",
@@ -1775,7 +1819,8 @@
       "paragraphsAdvanceZh": [
         "走進地底水晶洞窟，String 躍入文字水晶 str 覺醒了心電感應對話能力！凱同時認識了愛做伏地挺身的 int 石巨人、跳動氣泡的 float 水滴，以及測謊的 bool 晶石，掌握 type() 四大形狀。",
         "來到剛經歷暴風的晴溪村，精靈夥伴們合力重建房屋與農田；String 更及時用心電文字揪出偷食物的小哥布林。在 bool 揭露真相後，凱依然溫柔分食給飢餓的小傢伙。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/35_CH07_S03.webp"
     },
     {
       "id": "part-10",
@@ -1856,7 +1901,8 @@
           "advanceNarrationEn": "Realizing his worn apprentice gear wouldn't shield him from dark citadel battles ahead, Kai followed the Sunnybrook elder's map down soot-stained stone stairs into the roaring Deep Dwarven Forge, ruled by fiery-bearded Master Grimsby.\n\n\"Every kid with an apprentice cloak thinks shiny armor appears just by asking!\" Grimsby grunted beside the blinding furnace. \"Go haul the heavy slag, shovel blazing coal, and scrub every soot-covered brick in this cavern!\"",
           "advanceNarrationZh": "意識到舊學徒披風不足以迎戰前方黑山的險惡，凱依循晴溪村長老的指引，沿著滿是煤灰的石階深入地底，走進烈焰咆哮的「矮人深處鍛造爐」，拜見紅鬍子大匠師格里姆斯比。\n\n「每個披著綠斗篷的小傢伙都以為漂亮盔甲伸手求就能變出來！」格里姆斯比在火爐旁大聲哼道：「想學真本事，先去搬運沉重礦渣、剷起熾熱煤炭，把這座山洞每一塊薰黑的磚石刷洗乾淨再說！」",
           "advanceDialogueEn": "Master Grimsby: \"Think a shiny sword drops just by asking? Haul the slag, shovel coal, and earn real steel!\"",
-          "advanceDialogueZh": "格里姆斯比大師：「以為好裝備開口就有嗎？去搬礦渣、剷煤炭，用真汗水證明你配得上矮人好鋼！」"
+          "advanceDialogueZh": "格里姆斯比大師：「以為好裝備開口就有嗎？去搬礦渣、剷煤炭，用真汗水證明你配得上矮人好鋼！」",
+          "imageMobile": "assets/scenes-mobile/37_CH08_S01.webp"
         },
         {
           "pageNumber": 38,
@@ -1885,7 +1931,8 @@
           "advanceNarrationEn": "With String's warm telepathic encouragement flashing steadily inside Kai's Spellbook and mind (\"Keep going, Kai, you're doing great!\"), Kai hauled iron slag carts and scrubbed soot-darkened stone hour after hour without a single complaint.\n\nEven as embers scorched the air and blisters warmed his palms, Kai worked patiently until every stone floor around the great anvil gleamed clean.",
           "advanceNarrationZh": "在 String 透過心電感應不斷閃出暖心文字鼓勵之下（「加油凱，你做得好棒！」），凱一車又一車搬起沉重礦渣，一小時接著一小時細心刷洗炭磚，從頭到尾沒有半句怨言。\n\n就算火爐熱氣蒸人、掌心微微起泡，凱依然踏踏實實地堅持到底，直到鐵砧四周的石板全都亮潔如新。",
           "advanceDialogueEn": "String (telepathic): \"Keep going, Kai, you're doing great! Don't give up!\"",
-          "advanceDialogueZh": "String（心電感應）：「繼續加油，凱，你做得好極了！我們一起撐過去！」"
+          "advanceDialogueZh": "String（心電感應）：「繼續加油，凱，你做得好極了！我們一起撐過去！」",
+          "imageMobile": "assets/scenes-mobile/38_CH08_S02.webp"
         },
         {
           "pageNumber": 39,
@@ -1914,7 +1961,8 @@
           "advanceNarrationEn": "Astonished by Kai's quiet grit and true builder's heart, Master Grimsby roared with laughter! He unlocked magnificent Dwarven steel armor and a finely balanced wizard's blade forged just for Kai.\n\nAs Kai buckled the shining steel plates, Grimsby etched the four living math runes (+, -, *, /) straight onto Kai's gauntlet, teaching him active combat math like hp = 100 - 20 so his Vault stats could adapt in real battle!",
           "advanceNarrationZh": "格里姆斯比大師被凱這份毫無怨言的毅力與真正工匠之心深深打動，忍不住放聲大笑！他打開秘庫，親手為凱披上耀眼的矮人精鋼戰甲，並配上一柄重心完美的法師利刃。\n\n在幫凱扣好鎧甲之際，大師把代表動態運算的四枚數學符文（+ - * /）刻上他的護手，傳授如 hp = 100 - 20 的即時數值調整咒，好讓他的寶庫數值能在實戰中靈活應變！",
           "advanceDialogueEn": "Master Grimsby: \"You earned true steel, lad! Use + - * / like hp = 100 - 20 when battle changes the numbers!\"",
-          "advanceDialogueZh": "格里姆斯比大師：「小子，這身真鋼甲是你應得的！戰鬥中遇到數值變動時，就用 + - * / 來即時運算 hp = 100 - 20！」"
+          "advanceDialogueZh": "格里姆斯比大師：「小子，這身真鋼甲是你應得的！戰鬥中遇到數值變動時，就用 + - * / 來即時運算 hp = 100 - 20！」",
+          "imageMobile": "assets/scenes-mobile/39_CH08_S03.webp"
         },
         {
           "pageNumber": 40,
@@ -1943,7 +1991,8 @@
           "advanceNarrationEn": "After a fond farewell from roaring Master Grimsby at the forge doorway, Kai and String climbed back out beneath high twilight skies clad in gleaming Dwarven steel.\n\nWith boots striking crisp sparks off highland slate and balanced blade slung proudly alongside his glowing Spellbook, hero and pup set off toward the mist-shrouded mountain valleys ahead.",
           "advanceNarrationZh": "在格里姆斯比大師欣慰又洪亮的祝福道別聲中，身穿閃耀鋼甲的凱帶著 String 再次走出地底鍛造爐。\n\n鋼靴踩在高地石板上發出沉穩清脆的聲響，細膩平衡的新寶劍與《古老咒語書》並掛身旁——一人一狗昂首邁向霧氣瀰漫的高山峽谷。",
           "advanceDialogueEn": "Master Grimsby: \"Walk tall, little builder!\" · Kai: \"Thank you for everything, Master Grimsby!\"",
-          "advanceDialogueZh": "格里姆斯比大師：「抬頭挺胸向前走吧，小工匠！」· 小英雄凱：「謝謝您教會我的一切，格里姆斯比大師！」"
+          "advanceDialogueZh": "格里姆斯比大師：「抬頭挺胸向前走吧，小工匠！」· 小英雄凱：「謝謝您教會我的一切，格里姆斯比大師！」",
+          "imageMobile": "assets/scenes-mobile/40_CH08_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-10.html",
@@ -1955,7 +2004,8 @@
       "paragraphsAdvanceZh": [
         "在格里姆斯比大師的地底鍛造爐裡，凱頂著高溫搬運礦渣、鏟煤刷磚毫無怨言，耳畔滿是 String 的心電打氣。",
         "這份沉穩踏實贏得大師大笑讚賞，賜予凱矮人精鋼鎧甲、利刃與加減乘除即時運算咒語（+ - * /，例如 hp = 100 - 20），助他整裝迎向雲霧山巒。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/39_CH08_S03.webp"
     },
     {
       "id": "part-11",
@@ -2035,7 +2085,8 @@
           "advanceNarrationEn": "Hiking far above the valley ridges, Kai and String entered a quiet highland gorge wrapped in swirling purple fog.\n\nRight before them, the mountain road split into two completely identical dirt paths disappearing into thick mist—while towering above the fork hovered the giant, unblinking stone Eye of Truth.",
           "advanceNarrationZh": "翻過重重幽谷，凱和 String 步入了一條籠罩在濃郁紫色霧氣中的寂靜高原峽谷。\n\n眼前道路突然分岔成兩條無論泥土顏色、草木甚至石塊位置都一模一樣的詭異小徑；而在岔路正上方，正懸浮著一顆巨大而沉靜的「真理之眼」。",
           "advanceDialogueEn": "Kai: \"Both dirt roads look completely identical in this purple mist... which one is a trap?\"",
-          "advanceDialogueZh": "小英雄凱：「兩條路在這片紫霧裡看起來完全一模一樣……哪一條才是暗藏危機的幻象陷阱呢？」"
+          "advanceDialogueZh": "小英雄凱：「兩條路在這片紫霧裡看起來完全一模一樣……哪一條才是暗藏危機的幻象陷阱呢？」",
+          "imageMobile": "assets/scenes-mobile/41_CH09_S01.webp"
         },
         {
           "pageNumber": 42,
@@ -2064,7 +2115,8 @@
           "advanceNarrationEn": "Ordinary eyes couldn't tell real stone from dark illusion—so Kai summoned the tenth Ancient Spell: SIGHT!\n\nInstantly, Kai's eyes flared with luminous radiant light and his eyebrows sharpened into twin glowing parallel lines (==), lifting the veil of ordinary vision to expose the fake path's unstable, glitching broken code alongside the true path's clean, honest logic.",
           "advanceNarrationZh": "肉眼無法穿透邪惡法術編織的假象，於是凱集中精神，發動第十道古老善咒——SIGHT 真視之瞳！\n\n霎時之間，凱的雙眸綻放璀璨星輝，雙眉化作兩條筆直發光的平行線（==）！在真視之瞳下，表象的霧紗瞬間褪去，揭露出左方假路下方其實是扭曲亂碼與破損幻影，唯有右邊真路散發出穩定清澈的邏輯光輝。",
           "advanceDialogueEn": "Kai: \"Now I see beneath the mist—one trail flickers with broken glitches while the other shines solid and true!\"",
-          "advanceDialogueZh": "小英雄凱：「我看穿霧氣底層了——左邊這條閃滿破碎亂碼，右邊這條才閃耀著真實穩固的邏輯光芒！」"
+          "advanceDialogueZh": "小英雄凱：「我看穿霧氣底層了——左邊這條閃滿破碎亂碼，右邊這條才閃耀著真實穩固的邏輯光芒！」",
+          "imageMobile": "assets/scenes-mobile/42_CH09_S02.webp"
         },
         {
           "pageNumber": 43,
@@ -2093,7 +2145,8 @@
           "advanceNarrationEn": "Raising his balanced wizard's wand toward the hovering stone archway, Kai aimed his sharpened == SIGHT directly at the numbers floating above the fork and cast his formal comparison test: print(100 > 0).",
           "advanceNarrationZh": "凱舉起矮人鍛造的新魔杖指向高懸的真理石門，讓閃耀着 == 雙線光芒的眼神鎖定岔路上的數值，朗聲吟唱比較咒語：print(100 > 0)！",
           "advanceDialogueEn": "Kai: \"Let the truth speak! print(100 > 0)!\"",
-          "advanceDialogueZh": "小英雄凱：「讓真實顯現吧！print(100 > 0)！」"
+          "advanceDialogueZh": "小英雄凱：「讓真實顯現吧！print(100 > 0)！」",
+          "imageMobile": "assets/scenes-mobile/43_CH09_S03.webp"
         },
         {
           "pageNumber": 44,
@@ -2122,7 +2175,8 @@
           "advanceNarrationEn": "\"TRUE!\" boomed the giant Eye of Truth across the gorge.\n\nIn a dazzling cascade of silver sound, the fake mirage path shattered into shimmering purple glass dust—leaving only the true sunlit trail clean and wide open up toward the windswept summit!",
           "advanceNarrationZh": "「TRUE！（真實成立！）」真理之眼發出震動整座山谷的宏亮宣告。\n\n伴隨清脆的崩裂聲，左邊整條偽裝岔路如紫水晶玻璃般碎成點點微光消散在空氣裡——只留下那條真正通往高山之巔的坦途！",
           "advanceDialogueEn": "Eye of Truth: \"TRUE!\" · Kai: \"The mirage shattered, String! Let's climb to the summit!\"",
-          "advanceDialogueZh": "真理之眼：「TRUE！」· 小英雄凱：「幻影碎掉了，String！我們一口氣登上山頂吧！」"
+          "advanceDialogueZh": "真理之眼：「TRUE！」· 小英雄凱：「幻影碎掉了，String！我們一口氣登上山頂吧！」",
+          "imageMobile": "assets/scenes-mobile/44_CH09_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-11.html",
@@ -2134,7 +2188,8 @@
       "paragraphsAdvanceZh": [
         "在真理之眼下的紫色濃霧岔路前，兩條路看起來毫無差別；凱及時喚醒真視之瞳 SIGHT，讓雙眉化作閃亮平行線（==）看破底下跳動的假亂碼。",
         "一聲 print(100 > 0) 換來「TRUE！」的莊嚴裁決，假幻象應聲如玻璃般碎裂，指明了真正通往山頂的大道。"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/43_CH09_S03.webp"
     },
     {
       "id": "part-12",
@@ -2214,7 +2269,8 @@
           "advanceNarrationEn": "Climbing onto the windswept summit plateau beneath churning violet storm clouds, Kai and String stood before a grand three-way crossroads.\n\nThree weathered wooden signposts pointed outward—DRAGON, TREASURE, and HOME—while an immense middle stone barrier sealed the royal archway rising toward the Bug King's Citadel of Core.",
           "advanceNarrationZh": "登上狂風呼嘯的高山平臺，在翻湧的深紫雷雲之下，凱和 String 來到了整場冒險的最後關頭——三岔命運十字路口。\n\n三塊古木路牌各自指向三個截然不同的方向：「DRAGON 巨龍」、「TREASURE 寶藏」與「HOME 回家」；而通往正中央蟲蟲魔王核芯城堡的宏偉大道，則被一面巨大無比的石門緊緊封住。",
           "advanceDialogueEn": "Kai: \"Three signposts—DRAGON, TREASURE, and HOME—and a massive middle stone barrier blocking the Citadel!\"",
-          "advanceDialogueZh": "小英雄凱：「三根路標——巨龍、寶藏與回家——還有這道擋在城堡正前方的巨型石門！」"
+          "advanceDialogueZh": "小英雄凱：「三根路標——巨龍、寶藏與回家——還有這道擋在城堡正前方的巨型石門！」",
+          "imageMobile": "assets/scenes-mobile/45_CH10_S01.webp"
         },
         {
           "pageNumber": 46,
@@ -2243,7 +2299,8 @@
           "advanceNarrationEn": "Beside the stone threshold stood the hooded Signpost-Keeper, leaning calmly on a gnarled staff while lightning flickered high overhead.\n\n\"You cannot walk all three paths at once,\" the Keeper decreed above the wind. \"Let your choice depend upon what your SIGHT proves TRUE!\"",
           "advanceNarrationZh": "路口石柱旁站著一位披著兜帽的「路標守護者」，他在高空電光閃爍中安靜地拄著老樹魔杖。\n\n「你不可能同時走上三條路，旅人。」守護者在狂風中莊嚴宣示：「讓你的命運抉擇，完全取決於你的『真視之瞳 SIGHT』所驗證出的結果是否為真（TRUE）！」",
           "advanceDialogueEn": "Signpost-Keeper: \"You cannot walk all three—let your choice depend on what your SIGHT proves TRUE!\"",
-          "advanceDialogueZh": "路標守護者：「你無法同時走完三條路——讓你的真視咒驗證出哪一條才是真正該走的道路吧！」"
+          "advanceDialogueZh": "路標守護者：「你無法同時走完三條路——讓你的真視咒驗證出哪一條才是真正該走的道路吧！」",
+          "imageMobile": "assets/scenes-mobile/46_CH10_S02.webp"
         },
         {
           "pageNumber": 47,
@@ -2272,7 +2329,8 @@
           "advanceNarrationEn": "Stepping steadily to the ancient altar, Kai unlocked each branching fate gate with a glowing golden Colon :—and then stepped four measured paces forward (4 spaces indentation) behind every gate before placing his action:\n\nif hp > 50:\n    print(\"Open the Citadel Gate!\")\nelif gold < 10:\n    print(\"Go get Treasure!\")\nelse:\n    print(\"Go Home safely!\")",
           "advanceNarrationZh": "凱穩步走上石壇，用一枚閃爍金光的「冒號 :」解開每一道命運分支大門，並在每道大門後小心謹慎地「退後並向前踏出整整四步縮排（4 格空白）」，依次刻下清晰的抉擇條件：\n\nif hp > 50:\n    print(\"Open the Citadel Gate!\")\nelif gold < 10:\n    print(\"Go get Treasure!\")\nelse:\n    print(\"Go Home safely!\")",
           "advanceDialogueEn": "Kai: \"Golden Colon : on every gate, and four steady steps forward inside each block!\"",
-          "advanceDialogueZh": "小英雄凱：「每道大門加上金色冒號 : ，再為裡頭的每個行動整齊踏出四步縮排！」"
+          "advanceDialogueZh": "小英雄凱：「每道大門加上金色冒號 : ，再為裡頭的每個行動整齊踏出四步縮排！」",
+          "imageMobile": "assets/scenes-mobile/47_CH10_S03.webp"
         },
         {
           "pageNumber": 48,
@@ -2301,7 +2359,8 @@
           "advanceNarrationEn": "CRACK! Because Kai's Dwarven-forged hp stood well above 50, the very first Citadel gate blazed open with blinding golden light—locking the eleventh and final Ancient Crest proudly onto his belt!\n\nAt that moment, the immense middle stone barrier dissolved into drifting emerald stardust, revealing the towering gateway of the Citadel of Core straight ahead.",
           "advanceNarrationZh": "「轟隆——啪！」由於凱的生命值 hp 充沛且大於 50，第一道分支大門頓時綻放耀眼金光應聲敞開——第十一枚、也是最後一枚古老善咒徽章正式鎖上凱的腰帶！\n\n與此同時，阻擋在路中央的巨大石牆化作漫天飛舞的翠綠星塵緩緩消散，露出了直通魔王「核芯城堡」的巍峨大門。",
           "advanceDialogueEn": "Kai: \"The eleventh crest locked into place! Look, String—the Citadel of Core awaits us inside!\"",
-          "advanceDialogueZh": "小英雄凱：「第十一枚徽章成功歸位了！String，核芯城堡的大門已經為我們敞開！」"
+          "advanceDialogueZh": "小英雄凱：「第十一枚徽章成功歸位了！String，核芯城堡的大門已經為我們敞開！」",
+          "imageMobile": "assets/scenes-mobile/48_CH10_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-12.html",
@@ -2313,7 +2372,8 @@
       "paragraphsAdvanceZh": [
         "在山頂狂風中的最終三岔路口，面對巨龍、寶藏與回家的路標和路標守護者的考驗，凱以金色冒號 : 與精準的四步縮排刻下 if / elif / else 的智慧抉擇。",
         "伴隨「喀啦」一聲巨響，第十一枚古老善咒徽章正式歸位，擋在核芯城堡大門前的巨型石壁隨之化作星塵打開！"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/47_CH10_S03.webp"
     },
     {
       "id": "part-13",
@@ -2401,7 +2461,8 @@
           "advanceNarrationEn": "The instant the middle barrier dissolved and the grand gateway to the Citadel of Core swung wide, the mountain earth split open beneath Kai's boots!\n\nRising from the abyss in towering jagged obsidian armor, the Bug King himself pulled Kai and String down into his vast subterranean throne room—lit by crackling green lightning and swirling storms of broken code.",
           "advanceNarrationZh": "就在石牆融化、核芯城堡大門敞開的那一剎那，腳下的山岩突然猛烈裂開！\n\n身披尖銳黑曜石重甲的蟲蟲魔王親自從深淵升起，一舉將凱與 String 捲入地底深處的宏偉王座大廳——四周電光如翠蛇亂竄，無數破損程式碼如風暴般狂舞。",
           "advanceDialogueEn": "Bug King: \"So the gentle coder with the empty book finally stands before my throne!\"",
-          "advanceDialogueZh": "蟲蟲魔王：「帶著空白古書來到這裡的溫柔編碼者啊……你終於踏進我的王座大廳了！」"
+          "advanceDialogueZh": "蟲蟲魔王：「帶著空白古書來到這裡的溫柔編碼者啊……你終於踏進我的王座大廳了！」",
+          "imageMobile": "assets/scenes-mobile/49_CH11_S01.webp"
         },
         {
           "pageNumber": 50,
@@ -2430,7 +2491,8 @@
           "advanceNarrationEn": "For hours across the echoing chamber, Kai and String fought courageously side by side!\n\nMaster Grimsby's Dwarven steel armor held firm against sweeping obsidian scythe blows, while String streaked across the stone floor like golden lightning—dodging chaos and flanking effortlessly via instant telepathic str commands flashed straight between pup and hero.",
           "advanceNarrationZh": "在地底王座大廳裡，凱與 String 並肩奮戰了整整數個小時！\n\n格里姆斯比大師親手鍛造的矮人鋼甲一次次擋下黑曜巨鐮的猛擊，而忠誠的 String 則宛如一道閃耀金雷般在黑影之間穿梭迂迴——靠著只屬於一人一狗的心電感應 str 文字指令，展開天衣無縫的左右夾擊！",
           "advanceDialogueEn": "String (telepathic): \"Left flank is open, Kai! Hold your armor steady—I've got your back!\"",
-          "advanceDialogueZh": "String（心電感應）：「凱，左側露出破綻了！穩住鋼盾——我在你身後掩護你！」"
+          "advanceDialogueZh": "String（心電感應）：「凱，左側露出破綻了！穩住鋼盾——我在你身後掩護你！」",
+          "imageMobile": "assets/scenes-mobile/50_CH11_S02.webp"
         },
         {
           "pageNumber": 51,
@@ -2459,7 +2521,8 @@
           "advanceNarrationEn": "Drawing on all eleven spells of kindness together, Kai kept calm—weaving silent # notes to track patterns, type() inspections to decode shifting illusions, hp = hp - 15 adjustments to guard his health, > checks to gauge force, and swift if / elif / else tactics.\n\nAt last, igniting his glowing == SIGHT eyes through the static storm, Kai spotted the exact hidden flaw inside the Bug King's core logic and struck true—shattering the dark obsidian shell in one golden burst!",
           "advanceNarrationZh": "凱喚齊十一道善咒的全部智慧與平靜之心——用 # 靜音筆跡理清戰況、以 type() 識破偽裝、靠 hp = hp - 15 精準調整防禦，並以 > 與 if / elif / else 靈活應對每一招變化。\n\n終於，凱點亮雙眉間閃耀星芒的 == 真視之瞳，看穿了蟲蟲魔王核心程式碼中最隱密的一處漏洞，集中所有勇氣與善念迎面一擊——震碎了那層冰冷的黑曜硬殼！",
           "advanceDialogueEn": "Kai: \"Every spell from calm kindness together—NOW, == SIGHT! Right through the glitch!\"",
-          "advanceDialogueZh": "小英雄凱：「匯集每一道善念與智慧——看清真相吧，== 真視之瞳！貫穿錯亂的核心！」"
+          "advanceDialogueZh": "小英雄凱：「匯集每一道善念與智慧——看清真相吧，== 真視之瞳！貫穿錯亂的核心！」",
+          "imageMobile": "assets/scenes-mobile/51_CH11_S03.webp"
         },
         {
           "pageNumber": 52,
@@ -2488,7 +2551,8 @@
           "advanceNarrationEn": "As the static smoke cleared, the cracked black obsidian shell shook gently. Tap. Tap. Crack! Splitting cleanly open, out wobbled not a monster at all—but a tiny, adorable baby praying mantis with bright emerald-green eyes, glistening wing-buds, and curious antennae!\n\n\"Thank you, young traveler,\" a gentle voice echoed straight into Kai's mind. \"For ages, the dark monarch imprisoned me inside my own shell, twisting my magic into corruption. I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored to the realm.\"\n\nStanding together—Kai, String, and their tiny green companion—they gazed out toward the warm dawn of a brand-new era for Pythonia.",
           "advanceNarrationZh": "當雜訊煙霧散盡，地上裂開的黑曜石甲殼輕輕晃動起來。「叩、叩、喀啦！」外殼從中裂開——走出來的不僅不是猙獰怪物，而是一隻模樣可愛極了的翠綠小螳螂寶寶，有著清澈明亮的綠寶石大眼、泛著珍珠微光的小翅芽和好奇擺動的觸角！\n\n「謝謝你，溫柔的旅人。」一個溫暖澄淨的聲音直接傳進凱的心底：「長久以來，黑暗執念把我囚禁在自己的外殼裡，把我的力量扭曲成了災厄。我才是蟒蛇王國真正的『魔法守護者』。因為你的勇敢與善良，整個王國終於恢復了和諧與平衡。」\n\n並肩站在一起——小英雄凱、忠犬 String，還有他們小小的綠寶石新夥伴——一同望向灑滿清晨金色曙光的嶄新蟒蛇王國。",
           "advanceDialogueEn": "Spell Guardian: \"I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored.\"",
-          "advanceDialogueZh": "魔法守護者：「我才是蟒蛇王國真正的魔法守護者。因為你的勇氣與善良，世界終於重歸和諧！」"
+          "advanceDialogueZh": "魔法守護者：「我才是蟒蛇王國真正的魔法守護者。因為你的勇氣與善良，世界終於重歸和諧！」",
+          "imageMobile": "assets/scenes-mobile/52_CH11_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-13.html",
@@ -2500,7 +2564,8 @@
       "paragraphsAdvanceZh": [
         "大門開啟的瞬間地裂天搖，凱與 String 被蟲蟲魔王捲入地底雷電王座大廳。一人一狗並肩奮戰數小時——矮人鋼甲迎戰巨鐮，String 如金電般配合心電文字流穿梭夾擊。",
         "最後凱結合十一道善咒並以 == 真視之瞳看穿魔王核心破綻，一舉震碎黑曜石殼！「叩、叩、喀啦」——裡頭破殼而出的竟是可愛的翠綠小螳螂寶寶、真正的蟒蛇王國魔法守護者，在溫暖晨曦中宣告和平與平衡重回大地！"
-      ]
+      ],
+      "imageMobile": "assets/scenes-mobile/51_CH11_S03.webp"
     }
   ],
   "districts": [

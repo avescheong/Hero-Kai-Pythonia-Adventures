@@ -42,13 +42,24 @@
       const lbPrev = document.getElementById("kc-lb-prev");
       const lbNext = document.getElementById("kc-lb-next");
 
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderResponsiveSceneImg = (desktopSrc, mobileSrc, alt, cls = "", loading = "lazy") => {
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (!mobileSrc || mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${alt}"${loadAttr} />`;
+        }
+        return `<picture class="kc-resp-pic"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${alt}"${loadAttr} /></picture>`;
+      };
+
       const openLightbox = (pIdx, sIdx) => {
         const part = state.worldData && state.worldData.storyParts && state.worldData.storyParts[pIdx];
         const sc = part && part.scenes && part.scenes[sIdx];
         if (!lbEl || !lbImg || !sc) return;
         state.activePartIdx = pIdx;
         state.activeSceneIdx = sIdx;
-        lbImg.src = sc.image;
+        lbImg.src = (isPortraitPhone() && sc.imageMobile) ? sc.imageMobile : sc.image;
         lbImg.alt = sc.titleEn;
         if (lbCap) {
           lbCap.textContent = state.lang === "zh-Hant"
@@ -100,6 +111,8 @@
         const placeholder = isZh ? (sp.demoInputPlaceholderZh || "") : (sp.demoInputPlaceholderEn || "");
         const chapHref = part.chapterUrl || `chapters/chapter-${String(part.partNumber).padStart(2, "0")}.html`;
         const advHref = part.chapterAdvanceUrl || `chapters/chapter-${String(part.partNumber).padStart(2, "0")}-advance.html`;
+        const comicEpCode = String(part.partNumber - 1).padStart(2, "0");
+        const comicBtnHTML = `<a class="kc-chapter-link" href="comic.html#ep=${comicEpCode}">${isZh ? `🎨 條漫 EP ${comicEpCode} →` : `🎨 Webtoon EP ${comicEpCode} →`}</a>`;
         const sanctMap = (window.PythoniaI18n && window.PythoniaI18n.SANCTUARY_BY_PART) || {};
         const sanctInfo = sanctMap[part.partNumber] || null;
         const sanctBtnHTML = sanctInfo
@@ -116,6 +129,7 @@
               <button class="kc-spell-cast-btn" type="button" data-cast-spell="${part.id}">${spellBtn}</button>
               <a class="kc-chapter-link" href="${chapHref}">${isZh ? "精簡版章節 ↗" : "Beginner Page ↗"}</a>
               <a class="kc-chapter-link" style="color:#8cf0bd;border-color:rgba(140,240,189,0.4);" href="${advHref}">${isZh ? "完整進階版 ↗" : "Advance Full ↗"}</a>
+              ${comicBtnHTML}
               ${sanctBtnHTML}
             </div>
             <div class="kc-spell-output" data-spell-out="${part.id}" data-default-out="${spellOut}" hidden>${spellOut}</div>
@@ -144,7 +158,7 @@
                   ${scenes.map((sc, idx) => `
                     <div class="kc-spread-scene">
                       <div class="kc-spread-scene__media" data-zoom-scene="${pIdx}:${idx}">
-                        <img src="${sc.image}" alt="${sc.titleEn}" loading="lazy" />
+                        ${renderResponsiveSceneImg(sc.image, sc.imageMobile, sc.titleEn)}
                         <span class="kc-scene-page-pill">Page ${sc.pageNumber} / 52 &middot; ${sc.sceneId}</span>
                       </div>
                       <div class="kc-spread-scene__body">
@@ -162,12 +176,13 @@
         }
 
         const displayImg = activeScene ? activeScene.image : part.image;
+        const displayImgMobile = activeScene ? activeScene.imageMobile : part.imageMobile;
         const displayAlt = activeScene ? (isZh ? activeScene.titleZh : activeScene.titleEn) : (isZh ? part.imageAltZh : part.imageAltEn);
         const thumbsHTML = scenes.length ? `
           <div class="kc-scene-thumbs" role="tablist" aria-label="4 scenes in this chapter">
             ${scenes.map((sc, idx) => `
               <button class="kc-scene-thumb" type="button" data-pick-scene="${pIdx}:${idx}" aria-current="${idx === sIdx ? "true" : "false"}">
-                <img src="${sc.image}" alt="${sc.titleEn}" loading="lazy" />
+                ${renderResponsiveSceneImg(sc.image, sc.imageMobile, sc.titleEn)}
                 <span class="kc-scene-thumb__label">P.${sc.pageNumber} · ${sc.sceneId}</span>
               </button>
             `).join("")}
@@ -196,7 +211,7 @@
           <article class="kc-story-card" data-part-id="${part.id}">
             <div class="kc-story-card__visual">
               <div class="kc-story-card__imgwrap" data-zoom-scene="${pIdx}:${sIdx}" title="Click to zoom illustration">
-                <img src="${displayImg}" alt="${displayAlt}" loading="lazy" />
+                ${renderResponsiveSceneImg(displayImg, displayImgMobile, displayAlt)}
                 ${activeScene ? `<span class="kc-scene-page-pill">Page ${activeScene.pageNumber} / 52 &middot; ${activeScene.sceneId}</span>` : ""}
                 <span class="kc-zoom-pill">${isZh ? "🔍 放大插畫" : "🔍 Zoom"}</span>
               </div>

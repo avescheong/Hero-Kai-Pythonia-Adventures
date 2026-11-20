@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-03","partNumber":3,"code":"SPELL 2 · WEAVE","zone":"ENV_R02","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗","subtitleEn":"Spell 2: print(\"Hello\", \"Pythonia!\") · Join words with neat space","subtitleZh":"第二咒：print(\"Hello\", \"Pythonia!\") · 用逗號留下剛好的呼吸空間","valueId":"love-others","valueEn":"Love Others","valueZh":"愛人","image":"assets/scenes/11_CH02_S03.webp","imageAltEn":"Grandma Looma smiling warmly beside her giant wooden tapestry loom lit by a glowing hanging lantern","imageAltZh":"魯瑪奶奶在掛著暖光燈籠的巨大木頭織布機旁露出慈祥的笑容","castIds":["hero-kai","grandma-looma","string"],"paragraphsEn":["Kai walked down the winding dirt path beneath tall whispering pines. Tied to every branch were thousands of colorful silk ribbons swaying in the breeze like living rainbows.","Following the fluttering trail, Kai reached a cozy wooden cottage draped in woven banners. Inside, kind Grandma Looma worked at a giant oak loom—and a scruffy, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","\"Hello.\" ... \"Name.\" ... \"Kai.\" he blurted out slowly. Grandma Looma laughed gently and held up her carved wooden shuttle. She showed him that weaving a comma , between words stitches them into one warm sentence with a neat, friendly space between every neighbor.","Kai held up the glowing green thread and cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed smoothly! He thanked Grandma Looma, gave the cheerful golden puppy a gentle pat on the head, and set off down the sunny trail with his new furry friend trotting beside him."],"paragraphsZh":["凱沿著彎曲的泥土小路走進高聳的松林，枝頭上繫著成千上萬條彩色絲帶，在微風中像會跳舞的彩虹一樣飄揚。","順著絲帶，凱來到一間掛滿手工掛毯的溫暖木屋。屋裡慈祥的魯瑪奶奶正操作著巨大的橡木織布機，還有一隻毛茸茸、尚未取名的金黃色小狗搖著尾巴跑來聞凱的靴子！","「你好。」……「名字。」……「凱。」他結結巴巴地說。魯瑪奶奶溫柔地笑著拿起木梭告訴他：只要在詞語之間放進「逗號 ,」，魔法就會自動留下剛剛好又舒服的間隔，把話織成一塊完整的暖布。","凱舉起發光的綠色絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，句子流暢地說出口了！他向魯瑪奶奶道謝，摸摸小黃狗的頭，和小夥伴一起踏上新的旅程。"],"dialogue":[{"speakerEn":"Grandma Looma","speakerZh":"魯瑪奶奶","lineEn":"\"A single thread cannot keep anyone warm, young apprentice. Weave your words with a comma, and every neighbor gets comfortable breathing room!\"","lineZh":"「單獨一條線沒辦法讓人保暖喔，小法師。用逗號把字詞織在一起，每個字之間都會有舒服的空間！」"}],"spell":{"nameEn":"Spell 2: WEAVE — Comma (,)","nameZh":"第二咒：WEAVE 編織魔法 — 逗號 (,)","code":"print(\"Hello\", \"Pythonia!\")","explainEn":"A comma (,) inside print() joins multiple strings and automatically puts one neat space between them.","explainZh":"在 print() 裡放進逗號 (,)，就能把好幾段文字連在一起說，而且會自動加上一個空格喔！","demoBtnEn":"Weave Words Together 🧶","demoBtnZh":"編織完整句子 🧶","demoOutputEn":"Hello Pythonia!  ✨ (Smooth, warm, and neatly spaced!)","demoOutputZh":"Hello Pythonia!  ✨（流暢、溫暖，間隔剛剛好！）"},"scenes":[{"pageNumber":9,"sceneIndex":1,"sceneId":"CH02_S01","image":"assets/scenes/09_CH02_S01.webp","titleEn":"Entering the Ribbon-Draped Loom Forest","titleZh":"走進彩虹絲帶的織錦森林","narrationEn":"Tightening his backpack, Kai followed the winding dirt trail beneath tall whispering pines, where thousands of silk ribbons swayed like living rainbows leading to the Weaver's Cottage.","narrationZh":"凱拉緊背包走進高聳的松林，枝頭上繫著成千上萬條像活彩虹般飄揚的絲帶，一路指引他來到溫馨的織布木屋。","dialogueEn":"Kai: \"So many living rainbows!\"","dialogueZh":"小英雄凱：「好多會跳舞的彩虹絲帶！」","spellCode":"# Follow the fluttering ribbons","spellLabelEn":"Loom Forest Trail","spellLabelZh":"織錦森林小徑","zone":"ENV_R02","mood":"enchanted woodland wonder","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"2. WEAVE — The Weaver's Loom in Loom Forest (Thread = ,)","advanceSectionZh":"二、WEAVE 編織咒 — 織錦森林的織布機（絲線逗號：,）","advanceNarrationEn":"Following the fluttering trail of colorful ribbons deeper into Loom Forest, Kai walked beneath ancient pines draped in silk banners of crimson, emerald, and gold.\n\nEvery gentle breeze carried soft chimes from the woven streamers overhead, guiding Kai step by step into a warm, sunlit clearing.","advanceNarrationZh":"順著空中飄揚的七彩絲帶一路深入織錦森林，凱走進了掛滿翠綠、金黃與緋紅綢緞的古老松林。\n\n微風拂過時，枝頭上的絲帶輕輕搖曳作響，一步一步將凱引向森林深處一座灑滿陽光的溫暖林間空地。","advanceDialogueEn":"Kai: \"Thousands of ribbons... the Great Wizard was right. The trail is leading straight ahead!\"","advanceDialogueZh":"小英雄凱：「好幾千條彩色絲帶……大法師說得沒錯，這條路就在前方引領著我！」"},{"pageNumber":10,"sceneIndex":2,"sceneId":"CH02_S02","image":"assets/scenes/10_CH02_S02.webp","titleEn":"Grandma Looma's Loom & The Unnamed Pup","titleZh":"魯瑪奶奶的織布機與無名小黃狗","narrationEn":"Inside the cozy cottage, Grandma Looma sat working quietly at her giant oak loom—while a friendly, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","narrationZh":"木屋裡，慈祥的魯瑪奶奶正在巨大的橡木織布機前安靜工作——還有一隻友善、還沒取名字的金黃色小狗跑來聞凱的靴子！","dialogueEn":"Grandma Looma: \"A single thread cannot keep anyone warm.\"","dialogueZh":"魯瑪奶奶：「單獨一條線是沒辦法讓人保暖的喔。」","spellCode":"# \"Hello.\" ... \"Name.\" ... \"Kai.\"","spellLabelEn":"Meeting Grandma Looma","spellLabelZh":"遇見魯瑪奶奶與小狗","zone":"ENV_R02","mood":"cozy heartwarming hospitality","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"At the end of the ribbon trail stood a cozy wooden cottage draped in woven banners, where old Grandma Looma sat working calmly at a giant oak loom—while a friendly, unnamed golden-tan pup trotted right up to sniff Kai's boots.\n\n\"Hello.\" ... \"Name.\" ... \"Kai.\" Kai blurted out, stumbling one word at a time. Grandma Looma smiled gently: \"A single thread cannot keep anyone warm, young apprentice. Words are just like thread—weave them together with a comma ,, and Pythonia leaves a neat, comfortable space between them so they become a whole cloth!\"","advanceNarrationZh":"絲帶盡頭是一座掛滿織錦旗幟的溫馨木屋。慈祥的魯瑪奶奶正坐在巨大的橡木織布機前專心紡織，而一隻友善卻還沒取名的小黃狗，立刻搖著尾巴跑上前聞了聞凱的靴子。\n\n「你好。」……「名字。」……「凱。」凱還是只能一字一頓地說。魯瑪奶奶溫柔地笑了：「單獨一根線無法替任何人保暖。話語就像織線一樣——用逗號 , 把它們編織在一起，蟒蛇王國就會自動留出剛剛好、舒舒服服的空隙，讓字句變成一塊完整的暖布！」","advanceDialogueEn":"Grandma Looma: \"Weave words together with a comma , and Pythonia leaves a neat space between them!\"","advanceDialogueZh":"魯瑪奶奶：「用逗號 , 把詞語編織起來，蟒蛇王國就會貼心地在詞語之間留出舒適的空格！」"},{"pageNumber":11,"sceneIndex":3,"sceneId":"CH02_S03","image":"assets/scenes/11_CH02_S03.webp","titleEn":"Stitching Words: print(\"Hello\", \"Pythonia!\")","titleZh":"逗號編織：print(\"Hello\", \"Pythonia!\")","narrationEn":"Holding up the glowing green comma thread, Kai cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed together in one smooth, warm sentence!","narrationZh":"凱舉起發光的綠色逗號絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，詞語順暢地織成一句溫暖又完整的話！","dialogueEn":"Kai: \"Hello, Pythonia! My words flowed together!\"","dialogueZh":"小英雄凱：「Hello, Pythonia！我的話順利織在一起了！」","spellCode":"Spell: print(\"Hello\", \"Pythonia!\")","spellLabelEn":"Spell 2: WEAVE (,)","spellLabelZh":"第二咒：WEAVE 編織魔法 (,)","zone":"ENV_R02","mood":"delighted breakthrough","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Holding up the glowing green thread between his fingers, Kai linked his greetings smoothly with Grandma Looma's comma rune and cast: print(\"Hello\", \"Pythonia!\").\n\nAt last, his words flowed together in one smooth, warm sentence—each word connected yet resting comfortably side by side without crowding!","advanceNarrationZh":"凱舉起指尖閃耀微光的綠色織線，運用魯瑪奶奶教導的逗號魔法將詞彙串連起來，念出咒語：print(\"Hello\", \"Pythonia!\")。\n\n終於，他的話語像順滑的錦緞般一口氣流淌出來——兩個詞既緊密相連，中間又保留了乾淨溫暖的呼吸距離！","advanceDialogueEn":"Kai: \"print('Hello', 'Pythonia!') — It worked! My words flow smoothly together!\"","advanceDialogueZh":"小英雄凱：「print('Hello', 'Pythonia!') ——成功了！我的話語終於能流暢地連成一句溫暖的話！」"},{"pageNumber":12,"sceneIndex":4,"sceneId":"CH02_S04","image":"assets/scenes/12_CH02_S04.webp","titleEn":"Setting Off Toward the Rocky Valley","titleZh":"告別魯瑪奶奶出發","narrationEn":"Kai thanked Grandma Looma, gave the cheerful pup an affectionate pat on the head, and waved goodbye as the two of them stepped back out onto the sunlit trail.","narrationZh":"凱向魯瑪奶奶道謝，溫柔摸摸小黃狗的頭，揮手告別後和小夥伴一起走回陽光燦爛的林間小路。","dialogueEn":"Grandma Looma: \"Weave your words like warm cloth!\"","dialogueZh":"魯瑪奶奶：「把話語像暖布一樣好好織起來喔！」","spellCode":"# Off toward the rocky valley","spellLabelEn":"New Companion","spellLabelZh":"結伴啟程","zone":"ENV_R02","mood":"warmhearted farewell and companionship","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Glowing with pride, Kai thanked Grandma Looma warmly, knelt to give the friendly unnamed pup a cheerful pat on the head, and waved goodbye.\n\nAs the two of them stepped back out onto the sunlit forest trail, the little golden-tan pup stayed right at Kai's heels—already eager for their next horizon toward the distant rocky valley.","advanceNarrationZh":"凱開懷地向魯瑪奶奶道謝，蹲下身輕輕拍拍這隻還沒取名的小黃狗的腦袋，笑著揮手道別。\n\n當一人一狗重新踏上陽光燦爛的林間小路時，小黃狗已經一步也不離開凱的腳邊，精神抖擻地準備一起迎向遠方充滿迴音的岩石山谷。","advanceDialogueEn":"Kai: \"Thank you, Grandma Looma! Come on, little buddy—let's see where the sunlit trail goes!\"","advanceDialogueZh":"小英雄凱：「謝謝您，魯瑪奶奶！走吧，小夥伴，我們一起去看看陽光小路的盡頭有什麼！」"}],"chapterUrl":"chapters/chapter-03.html","chapterAdvanceUrl":"chapters/chapter-03-advance.html","paragraphsAdvanceEn":["Following fluttering rainbow ribbons beneath whispering pines, Kai reached Grandma Looma's cozy cottage, where an unnamed golden-tan pup trotted warmly up to greet his boots.","Teaching him that single threads can keep nobody warm, Grandma Looma showed Kai how the Comma Weave (,) gives words comfortable breathing room: print(\"Hello\", \"Pythonia!\")—and with smooth speech restored, Kai and the faithful pup marched onward together."],"paragraphsAdvanceZh":["順著飄揚的彩虹絲帶走進森林深處，凱來到魯瑪奶奶掛滿布幔的小木屋，還遇見一隻親切討喜、尚未取名的小黃狗。","魯瑪奶奶溫柔教導凱「單線難成暖衣」，學會用逗號編織咒 , 留出舒服的詞距後，凱順暢唸出 print(\"Hello\", \"Pythonia!\")，帶著緊跟在身邊的小黃狗歡喜朝下一站邁進。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-03","partNumber":3,"code":"SPELL 2 · WEAVE","zone":"ENV_R02","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗","subtitleEn":"Spell 2: print(\"Hello\", \"Pythonia!\") · Join words with neat space","subtitleZh":"第二咒：print(\"Hello\", \"Pythonia!\") · 用逗號留下剛好的呼吸空間","valueId":"love-others","valueEn":"Love Others","valueZh":"愛人","image":"assets/scenes/11_CH02_S03.webp","imageAltEn":"Grandma Looma smiling warmly beside her giant wooden tapestry loom lit by a glowing hanging lantern","imageAltZh":"魯瑪奶奶在掛著暖光燈籠的巨大木頭織布機旁露出慈祥的笑容","castIds":["hero-kai","grandma-looma","string"],"paragraphsEn":["Kai walked down the winding dirt path beneath tall whispering pines. Tied to every branch were thousands of colorful silk ribbons swaying in the breeze like living rainbows.","Following the fluttering trail, Kai reached a cozy wooden cottage draped in woven banners. Inside, kind Grandma Looma worked at a giant oak loom—and a scruffy, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","\"Hello.\" ... \"Name.\" ... \"Kai.\" he blurted out slowly. Grandma Looma laughed gently and held up her carved wooden shuttle. She showed him that weaving a comma , between words stitches them into one warm sentence with a neat, friendly space between every neighbor.","Kai held up the glowing green thread and cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed smoothly! He thanked Grandma Looma, gave the cheerful golden puppy a gentle pat on the head, and set off down the sunny trail with his new furry friend trotting beside him."],"paragraphsZh":["凱沿著彎曲的泥土小路走進高聳的松林，枝頭上繫著成千上萬條彩色絲帶，在微風中像會跳舞的彩虹一樣飄揚。","順著絲帶，凱來到一間掛滿手工掛毯的溫暖木屋。屋裡慈祥的魯瑪奶奶正操作著巨大的橡木織布機，還有一隻毛茸茸、尚未取名的金黃色小狗搖著尾巴跑來聞凱的靴子！","「你好。」……「名字。」……「凱。」他結結巴巴地說。魯瑪奶奶溫柔地笑著拿起木梭告訴他：只要在詞語之間放進「逗號 ,」，魔法就會自動留下剛剛好又舒服的間隔，把話織成一塊完整的暖布。","凱舉起發光的綠色絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，句子流暢地說出口了！他向魯瑪奶奶道謝，摸摸小黃狗的頭，和小夥伴一起踏上新的旅程。"],"dialogue":[{"speakerEn":"Grandma Looma","speakerZh":"魯瑪奶奶","lineEn":"\"A single thread cannot keep anyone warm, young apprentice. Weave your words with a comma, and every neighbor gets comfortable breathing room!\"","lineZh":"「單獨一條線沒辦法讓人保暖喔，小法師。用逗號把字詞織在一起，每個字之間都會有舒服的空間！」"}],"spell":{"nameEn":"Spell 2: WEAVE — Comma (,)","nameZh":"第二咒：WEAVE 編織魔法 — 逗號 (,)","code":"print(\"Hello\", \"Pythonia!\")","explainEn":"A comma (,) inside print() joins multiple strings and automatically puts one neat space between them.","explainZh":"在 print() 裡放進逗號 (,)，就能把好幾段文字連在一起說，而且會自動加上一個空格喔！","demoBtnEn":"Weave Words Together 🧶","demoBtnZh":"編織完整句子 🧶","demoOutputEn":"Hello Pythonia!  ✨ (Smooth, warm, and neatly spaced!)","demoOutputZh":"Hello Pythonia!  ✨（流暢、溫暖，間隔剛剛好！）"},"scenes":[{"pageNumber":9,"sceneIndex":1,"sceneId":"CH02_S01","image":"assets/scenes/09_CH02_S01.webp","titleEn":"Entering the Ribbon-Draped Loom Forest","titleZh":"走進彩虹絲帶的織錦森林","narrationEn":"Tightening his backpack, Kai followed the winding dirt trail beneath tall whispering pines, where thousands of silk ribbons swayed like living rainbows leading to the Weaver's Cottage.","narrationZh":"凱拉緊背包走進高聳的松林，枝頭上繫著成千上萬條像活彩虹般飄揚的絲帶，一路指引他來到溫馨的織布木屋。","dialogueEn":"Kai: \"So many living rainbows!\"","dialogueZh":"小英雄凱：「好多會跳舞的彩虹絲帶！」","spellCode":"# Follow the fluttering ribbons","spellLabelEn":"Loom Forest Trail","spellLabelZh":"織錦森林小徑","zone":"ENV_R02","mood":"enchanted woodland wonder","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"2. WEAVE — The Weaver's Loom in Loom Forest (Thread = ,)","advanceSectionZh":"二、WEAVE 編織咒 — 織錦森林的織布機（絲線逗號：,）","advanceNarrationEn":"Following the fluttering trail of colorful ribbons deeper into Loom Forest, Kai walked beneath ancient pines draped in silk banners of crimson, emerald, and gold.\n\nEvery gentle breeze carried soft chimes from the woven streamers overhead, guiding Kai step by step into a warm, sunlit clearing.","advanceNarrationZh":"順著空中飄揚的七彩絲帶一路深入織錦森林，凱走進了掛滿翠綠、金黃與緋紅綢緞的古老松林。\n\n微風拂過時，枝頭上的絲帶輕輕搖曳作響，一步一步將凱引向森林深處一座灑滿陽光的溫暖林間空地。","advanceDialogueEn":"Kai: \"Thousands of ribbons... the Great Wizard was right. The trail is leading straight ahead!\"","advanceDialogueZh":"小英雄凱：「好幾千條彩色絲帶……大法師說得沒錯，這條路就在前方引領著我！」","imageMobile":"assets/scenes-mobile/09_CH02_S01.webp"},{"pageNumber":10,"sceneIndex":2,"sceneId":"CH02_S02","image":"assets/scenes/10_CH02_S02.webp","titleEn":"Grandma Looma's Loom & The Unnamed Pup","titleZh":"魯瑪奶奶的織布機與無名小黃狗","narrationEn":"Inside the cozy cottage, Grandma Looma sat working quietly at her giant oak loom—while a friendly, unnamed golden-tan puppy trotted right up to sniff Kai's boots!","narrationZh":"木屋裡，慈祥的魯瑪奶奶正在巨大的橡木織布機前安靜工作——還有一隻友善、還沒取名字的金黃色小狗跑來聞凱的靴子！","dialogueEn":"Grandma Looma: \"A single thread cannot keep anyone warm.\"","dialogueZh":"魯瑪奶奶：「單獨一條線是沒辦法讓人保暖的喔。」","spellCode":"# \"Hello.\" ... \"Name.\" ... \"Kai.\"","spellLabelEn":"Meeting Grandma Looma","spellLabelZh":"遇見魯瑪奶奶與小狗","zone":"ENV_R02","mood":"cozy heartwarming hospitality","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"At the end of the ribbon trail stood a cozy wooden cottage draped in woven banners, where old Grandma Looma sat working calmly at a giant oak loom—while a friendly, unnamed golden-tan pup trotted right up to sniff Kai's boots.\n\n\"Hello.\" ... \"Name.\" ... \"Kai.\" Kai blurted out, stumbling one word at a time. Grandma Looma smiled gently: \"A single thread cannot keep anyone warm, young apprentice. Words are just like thread—weave them together with a comma ,, and Pythonia leaves a neat, comfortable space between them so they become a whole cloth!\"","advanceNarrationZh":"絲帶盡頭是一座掛滿織錦旗幟的溫馨木屋。慈祥的魯瑪奶奶正坐在巨大的橡木織布機前專心紡織，而一隻友善卻還沒取名的小黃狗，立刻搖著尾巴跑上前聞了聞凱的靴子。\n\n「你好。」……「名字。」……「凱。」凱還是只能一字一頓地說。魯瑪奶奶溫柔地笑了：「單獨一根線無法替任何人保暖。話語就像織線一樣——用逗號 , 把它們編織在一起，蟒蛇王國就會自動留出剛剛好、舒舒服服的空隙，讓字句變成一塊完整的暖布！」","advanceDialogueEn":"Grandma Looma: \"Weave words together with a comma , and Pythonia leaves a neat space between them!\"","advanceDialogueZh":"魯瑪奶奶：「用逗號 , 把詞語編織起來，蟒蛇王國就會貼心地在詞語之間留出舒適的空格！」","imageMobile":"assets/scenes-mobile/10_CH02_S02.webp"},{"pageNumber":11,"sceneIndex":3,"sceneId":"CH02_S03","image":"assets/scenes/11_CH02_S03.webp","titleEn":"Stitching Words: print(\"Hello\", \"Pythonia!\")","titleZh":"逗號編織：print(\"Hello\", \"Pythonia!\")","narrationEn":"Holding up the glowing green comma thread, Kai cast print(\"Hello\", \"Pythonia!\"). At last, his words flowed together in one smooth, warm sentence!","narrationZh":"凱舉起發光的綠色逗號絲線，唸出 print(\"Hello\", \"Pythonia!\")。終於，詞語順暢地織成一句溫暖又完整的話！","dialogueEn":"Kai: \"Hello, Pythonia! My words flowed together!\"","dialogueZh":"小英雄凱：「Hello, Pythonia！我的話順利織在一起了！」","spellCode":"Spell: print(\"Hello\", \"Pythonia!\")","spellLabelEn":"Spell 2: WEAVE (,)","spellLabelZh":"第二咒：WEAVE 編織魔法 (,)","zone":"ENV_R02","mood":"delighted breakthrough","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Holding up the glowing green thread between his fingers, Kai linked his greetings smoothly with Grandma Looma's comma rune and cast: print(\"Hello\", \"Pythonia!\").\n\nAt last, his words flowed together in one smooth, warm sentence—each word connected yet resting comfortably side by side without crowding!","advanceNarrationZh":"凱舉起指尖閃耀微光的綠色織線，運用魯瑪奶奶教導的逗號魔法將詞彙串連起來，念出咒語：print(\"Hello\", \"Pythonia!\")。\n\n終於，他的話語像順滑的錦緞般一口氣流淌出來——兩個詞既緊密相連，中間又保留了乾淨溫暖的呼吸距離！","advanceDialogueEn":"Kai: \"print('Hello', 'Pythonia!') — It worked! My words flow smoothly together!\"","advanceDialogueZh":"小英雄凱：「print('Hello', 'Pythonia!') ——成功了！我的話語終於能流暢地連成一句溫暖的話！」","imageMobile":"assets/scenes-mobile/11_CH02_S03.webp"},{"pageNumber":12,"sceneIndex":4,"sceneId":"CH02_S04","image":"assets/scenes/12_CH02_S04.webp","titleEn":"Setting Off Toward the Rocky Valley","titleZh":"告別魯瑪奶奶出發","narrationEn":"Kai thanked Grandma Looma, gave the cheerful pup an affectionate pat on the head, and waved goodbye as the two of them stepped back out onto the sunlit trail.","narrationZh":"凱向魯瑪奶奶道謝，溫柔摸摸小黃狗的頭，揮手告別後和小夥伴一起走回陽光燦爛的林間小路。","dialogueEn":"Grandma Looma: \"Weave your words like warm cloth!\"","dialogueZh":"魯瑪奶奶：「把話語像暖布一樣好好織起來喔！」","spellCode":"# Off toward the rocky valley","spellLabelEn":"New Companion","spellLabelZh":"結伴啟程","zone":"ENV_R02","mood":"warmhearted farewell and companionship","palette":["#5F7A61","#F5A623","#3B5368","#6E5B8A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Glowing with pride, Kai thanked Grandma Looma warmly, knelt to give the friendly unnamed pup a cheerful pat on the head, and waved goodbye.\n\nAs the two of them stepped back out onto the sunlit forest trail, the little golden-tan pup stayed right at Kai's heels—already eager for their next horizon toward the distant rocky valley.","advanceNarrationZh":"凱開懷地向魯瑪奶奶道謝，蹲下身輕輕拍拍這隻還沒取名的小黃狗的腦袋，笑著揮手道別。\n\n當一人一狗重新踏上陽光燦爛的林間小路時，小黃狗已經一步也不離開凱的腳邊，精神抖擻地準備一起迎向遠方充滿迴音的岩石山谷。","advanceDialogueEn":"Kai: \"Thank you, Grandma Looma! Come on, little buddy—let's see where the sunlit trail goes!\"","advanceDialogueZh":"小英雄凱：「謝謝您，魯瑪奶奶！走吧，小夥伴，我們一起去看看陽光小路的盡頭有什麼！」","imageMobile":"assets/scenes-mobile/12_CH02_S04.webp"}],"chapterUrl":"chapters/chapter-03.html","chapterAdvanceUrl":"chapters/chapter-03-advance.html","paragraphsAdvanceEn":["Following fluttering rainbow ribbons beneath whispering pines, Kai reached Grandma Looma's cozy cottage, where an unnamed golden-tan pup trotted warmly up to greet his boots.","Teaching him that single threads can keep nobody warm, Grandma Looma showed Kai how the Comma Weave (,) gives words comfortable breathing room: print(\"Hello\", \"Pythonia!\")—and with smooth speech restored, Kai and the faithful pup marched onward together."],"paragraphsAdvanceZh":["順著飄揚的彩虹絲帶走進森林深處，凱來到魯瑪奶奶掛滿布幔的小木屋，還遇見一隻親切討喜、尚未取名的小黃狗。","魯瑪奶奶溫柔教導凱「單線難成暖衣」，學會用逗號編織咒 , 留出舒服的詞距後，凱順暢唸出 print(\"Hello\", \"Pythonia!\")，帶著緊跟在身邊的小黃狗歡喜朝下一站邁進。"],"imageMobile":"assets/scenes-mobile/11_CH02_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

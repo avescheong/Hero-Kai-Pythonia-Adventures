@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-01","partNumber":1,"code":"PROLOGUE","zone":"ENV_R00","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來","subtitleEn":"Why Pythonia chose a kind coder instead of the fastest player","subtitleZh":"為什麼魔法王國選擇了願意停下來幫忙的孩子","valueId":"love-others","valueEn":"Love Others","valueZh":"愛人","image":"assets/scenes/03_PRO_S03.webp","imageAltEn":"Hero Kai beside the Great Wizard on the sunlit entry road to Silent Village with an emerald portal in the mountain mist","imageAltZh":"小英雄凱與大法師站在通往靜默村莊的陽光小路上，遠方山霧中有翠綠色的傳送漩渦","castIds":["hero-kai","great-wizard","bug-king"],"paragraphsEn":["Late one afternoon, 11-year-old Kai was at his computer playing his favorite adventure game. Suddenly, a classmate in the game got stuck. Instead of rushing ahead to win by himself, Kai paused calmly and typed a kind message to help.","WHOOSH! A swirling vortex of emerald light opened right inside his monitor! It pulled Kai through a dazzling Virtual City of floating letters and numbers and set him gently down on a quiet dirt road in a magical land called Pythonia.","Kai blinked. His bedroom was gone! He wore an olive-green cloak with a golden crescent clasp, a lotus medallion belt, a wooden sword, and an empty Ancient Spellbook glowing warm gold in his hands.","An old Great Wizard hurried over with relief. He pointed toward a dark mountain far away and explained that Pythonia's Steward of Order had been twisted by careless, messy, unkind code into the fearful Bug King—who locked away all Eleven Ancient Spells."],"paragraphsZh":["一天傍晚，十一歲的凱正在電腦前玩他最喜歡的冒險遊戲。突然，遊戲裡有一位同學卡關了。凱沒有急著自己衝向終點，而是靜下心停下腳步，打出溫暖的訊息去幫忙。","刷的一聲！電腦螢幕裡突然打開了一道閃耀的翠綠色光影漩渦！光圈將凱拉進一座漂浮著文字與數字的「虛擬之城」，接著輕輕把他放在魔法王國「蟒蛇王國（Pythonia）」的泥土小路上。","凱眨了眨眼，他的房間不見了！他身上穿著配有金色新月扣環的橄欖綠披風、蓮花徽章腰帶、背著一把木劍，手裡還捧著一本散發金色微光的空白《古老咒語書》。","一位慈祥的大法師急忙走來，鬆了一口氣。他指向遠方的黑山，告訴凱：從前王國的「秩序守護者」被人們草率、自私又雜亂的壞程式碼纏住，變成可怕的「蟲蟲魔王」，把十一道古老善咒全都鎖了起來。"],"dialogue":[{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"Why me? I'm not the fastest or strongest player.\"","lineZh":"「為什麼是我？我既不是跑得最快的，也不是最強的玩家。」"},{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"Anyone can swing a sword. We called for someone who knows how to pause, stay calm, and care for others. Your Spellbook answered your kind heart.\"","lineZh":"「誰都能揮動木劍。我們等待的，是懂得停下來、保持冷靜、並且關心別人的人。你的咒語書回應了你善良的心。」"}],"spell":{"nameEn":"The Kind Pause","nameZh":"善念起步 · 靜心助人","code":"# Pause first. Care for others before rushing.","explainEn":"Before learning any Python command, Kai learns the most important rule of coding and life: slow down, breathe, and care.","explainZh":"在學會任何程式魔法前，凱先學會最重要的一件事：遇到夥伴卡關時，先靜心伸出援手。","demoBtnEn":"Open Ancient Spellbook ✨","demoBtnZh":"翻開古老咒語書 ✨","demoOutputEn":"📖 Your Spellbook glows warm gold! 11 blank pages await your kindness.","demoOutputZh":"📖 古老咒語書亮起溫暖金光！十一頁空白魔法正等著你書寫。"},"scenes":[{"pageNumber":1,"sceneIndex":1,"sceneId":"PRO_S01","image":"assets/scenes/01_PRO_S01.webp","titleEn":"The Kind Pause at Kai's Computer Desk","titleZh":"螢幕前的靜心助人","narrationEn":"Late one afternoon, Kai paused his favorite adventure game to type a kind message to a stuck classmate. Suddenly, a swirling vortex of emerald light opened right inside his monitor!","narrationZh":"一天傍晚，凱沒有急著自己破關，而是停下腳步打字幫助卡關的同學。突然間，螢幕裡打開了一道閃耀的翠綠色光影漩渦！","dialogueEn":"Kai: \"Hold on—let me help you first.\"","dialogueZh":"小英雄凱：「別急，我先來幫你。」","spellCode":"# Pause first. Care for others before rushing.","spellLabelEn":"The Kind Pause","spellLabelZh":"善念起步 · 靜心助人","zone":"ENV_R00","mood":"warm bedroom comfort meeting magical emerald wonder","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"Prologue: The Glitch, the Gentle Heart & the Bug King's Origin","advanceSectionZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來","advanceNarrationEn":"Late one afternoon, Kai was at his computer playing his favorite adventure game. Suddenly, his screen glitched—not because he broke anything, but because a classmate in the game got stuck and Kai paused to help them instead of rushing ahead.\n\nAs Kai took a calm breath and typed a kind message, a swirling vortex of emerald light opened right inside his monitor!","advanceNarrationZh":"一天傍晚，凱正坐在電腦前玩著他最喜歡的冒險遊戲。突然間，螢幕閃起了一道奇異的訊號——並不是因為他弄壞了什麼，而是因為遊戲裡一位同學卡關了，凱選擇停下腳步去幫忙，而不是自顧自地往前衝。\n\n就在凱深吸一口氣、靜心打出一則溫暖訊息的那一刻，螢幕正中央突然旋轉展開了一道璀璨的翠綠色光影漩渦！","advanceDialogueEn":"Kai: \"Hold on—don't worry. I'll pause here and help you get through this first.\"","advanceDialogueZh":"小英雄凱：「別擔心，我先停下來陪你一起過關。」"},{"pageNumber":2,"sceneIndex":2,"sceneId":"PRO_S02","image":"assets/scenes/02_PRO_S02.webp","titleEn":"Swept Through the Virtual City Vortex","titleZh":"穿越虛擬之城光影漩渦","narrationEn":"The emerald vortex pulled Kai through a dazzling Virtual City of floating letters and numbers, dressing him in an olive-green cloak, wooden sword, and an empty gold-glowing Ancient Spellbook.","narrationZh":"翠綠漩渦拉著凱穿過漂浮著文字與數字的「虛擬之城」，替他換上橄欖綠披風、木劍，手裡也出現一本發光的空白《古老咒語書》。","dialogueEn":"Kai: \"Whoa—where am I?\"","dialogueZh":"小英雄凱：「哇——這裡是哪裡？」","spellCode":"# Entering Pythonia","spellLabelEn":"Portal Arrival","spellLabelZh":"穿越傳送門","zone":"ENV_R00","mood":"exhilarating magical transformation","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The emerald vortex pulled Kai straight through a dazzling Virtual City of floating letters, glowing numbers, and woven streams of light before setting him gently down on a quiet dirt road in Pythonia.\n\nKai blinked in wonder. His bedroom was completely gone. Instead, he found himself wearing an olive-green cloak, a wooden sword at his side, and holding an empty Ancient Spellbook already warming in his hands.","advanceNarrationZh":"翠綠色的光影漩渦拉著凱穿越了一座飄浮著字母、數字與光流符號的炫目「虛擬之城」，最後溫柔地將他送到蟒蛇王國一條安靜的泥土小路上。\n\n凱眨了眨眼，驚訝地發現自己的房間不見了——取而代之的是一身橄欖綠披風、腰間的木劍，還有一本正在掌心散發暖光的空白《古老咒語書》。","advanceDialogueEn":"Kai: \"Whoa... my bedroom is gone! Where did this glowing Spellbook come from?\"","advanceDialogueZh":"小英雄凱：「哇……我的房間不見了！這本發光的咒語書是哪裡來的？」"},{"pageNumber":3,"sceneIndex":3,"sceneId":"PRO_S03","image":"assets/scenes/03_PRO_S03.webp","titleEn":"The Great Wizard & Story of the Bug King","titleZh":"大法師與蟲蟲魔王的由來","narrationEn":"An old Great Wizard hurried up in relief, pointing toward the dark mountain. Careless, unkind code had twisted Pythonia's Steward of Order into the Bug King—and Kai's Spellbook had answered his kind heart.","narrationZh":"慈祥的大法師鬆了一口氣地迎上來，指向遠方的黑山，告訴凱人們混亂自私的程式碼把秩序守護者變成了蟲蟲魔王，而咒語書回應了凱善良的心。","dialogueEn":"Great Wizard: \"Your Spellbook answered your kind heart.\"","dialogueZh":"大法師：「你的咒語書回應了你善良的心。」","spellCode":"# Care for others","spellLabelEn":"Kind Heart Chosen","spellLabelZh":"善念的召喚","zone":"ENV_R00","mood":"hopeful warmth tempered by distant mystery","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"An old Great Wizard hurried down the road toward him, eyes wide with relief. Pointing first to the warm gold glow in Kai's Spellbook and then toward a distant dark mountain, the Wizard revealed Pythonia's sorrow.\n\n\"Long ago, Pythonia's Steward of Order kept every river, forest, and village running in harmony,\" he explained. \"But people grew careless. They left broken words, greedy shortcuts, and tangled rules everywhere. All that messy, unkind code twisted around the Steward until fear and static swallowed him whole—turning him into the Bug King! He locked away the Eleven Ancient Spells so no one could make more broken magic.\"","advanceNarrationZh":"一位年邁的大法師鬆了一口氣、急忙沿著小路迎上前來。他先指向凱手中泛著暖金光芒的咒語書，接著望向遠方黑暗的山脈，娓娓道出王國的危機。\n\n「很久以前，秩序守護者曾讓蟒蛇王國的每一條河流、森林與村莊和諧運作。」大法師說：「但後來人們變得粗心大意，到處留下殘缺的文字、貪心的捷徑和混亂的規則。那些自私又雜亂的程式碼纏住了守護者，讓恐懼與雜訊吞沒了他的心——他因此變成了『蟲蟲魔王』，鎖起了十一道古老善咒。」","advanceDialogueEn":"Great Wizard: \"All that messy, unkind code swallowed the Steward—turning him into the Bug King!\"","advanceDialogueZh":"大法師：「混亂又自私的程式碼吞噬了守護者，使他變成了蟲蟲魔王！」"},{"pageNumber":4,"sceneIndex":4,"sceneId":"PRO_S04","image":"assets/scenes/04_PRO_S04.webp","titleEn":"Stepping Toward Silent Village","titleZh":"邁向靜默村莊的旅程","narrationEn":"Encouraged by the Great Wizard, Kai tucked his glowing Spellbook close and stepped bravely down the quiet dirt road toward Silent Village.","narrationZh":"在大法師溫柔的鼓勵下，凱抱緊閃耀微光的咒語書，勇敢地沿著泥土小路朝著被薄霧籠罩的靜默村莊出發。","dialogueEn":"Great Wizard: \"Every great wizard begins with a single kind word.\"","dialogueZh":"大法師：「每一位偉大的法師，都從一句溫暖的話開始。」","spellCode":"# Begin the quest","spellLabelEn":"First Step","spellLabelZh":"踏出第一步","zone":"ENV_R00","mood":"hopeful new adventure","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Why me?\" Kai asked quietly. \"I'm not the fastest or strongest player.\"\n\nThe Great Wizard smiled softly. \"Anyone can swing a sword. We called for someone who knows how to pause, stay calm, and care for others. Your Spellbook answered your kind heart.\" Holding the glowing book close, Kai stepped bravely down the path toward Silent Village.","advanceNarrationZh":"「為什麼是我呢？」凱輕聲問道：「我既不是跑得最快，也不是最強的玩家。」\n\n大法師溫柔地微笑：「任誰都能揮舞寶劍。我們召喚的，是懂得停下腳步、保持冷靜、並且真心關懷他人的人。你的咒語書回應了你善良的心。」凱抱緊發光的書本，勇敢地沿著泥土路走向靜默村莊。","advanceDialogueEn":"Great Wizard: \"Anyone can swing a sword. Your Spellbook answered your kind heart.\"","advanceDialogueZh":"大法師：「任誰都能揮舞寶劍，但你的咒語書回應了你善良的心。」"}],"chapterUrl":"chapters/chapter-01.html","chapterAdvanceUrl":"chapters/chapter-01-advance.html","paragraphsAdvanceEn":["One afternoon, Kai paused his favorite adventure game to type a kind, unhurried message to a stuck classmate—opening an emerald portal straight through a dazzling Virtual City into the realm of Pythonia.","Dressed in an olive cloak with a wooden sword and a gold-glowing empty Spellbook, Kai learned from the Great Wizard how careless, tangled code had twisted Pythonia's Steward of Order into the fearsome Bug King.","\"Anyone can swing a sword,\" the Wizard smiled softly. \"Your Spellbook answered your calm, caring heart.\""],"paragraphsAdvanceZh":["某個傍晚，凱在遊戲裡選擇停下來耐心安慰並幫助卡關的同學，這個溫柔舉動打開了電腦螢幕裡的翠綠漩渦，帶他穿過虛擬之城來到蟒蛇王國。","換上橄欖綠披風、手持木劍與散發金光的空白古書，凱從大法師口中得知：人們粗心混亂的程式碼把秩序守護者變成了蟲蟲魔王。","「任誰都能揮舞寶劍，」大法師溫柔微笑道：「但你的咒語書，回應了你靜心行善的心。」"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-01","partNumber":1,"code":"PROLOGUE","zone":"ENV_R00","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來","subtitleEn":"Why Pythonia chose a kind coder instead of the fastest player","subtitleZh":"為什麼魔法王國選擇了願意停下來幫忙的孩子","valueId":"love-others","valueEn":"Love Others","valueZh":"愛人","image":"assets/scenes/03_PRO_S03.webp","imageAltEn":"Hero Kai beside the Great Wizard on the sunlit entry road to Silent Village with an emerald portal in the mountain mist","imageAltZh":"小英雄凱與大法師站在通往靜默村莊的陽光小路上，遠方山霧中有翠綠色的傳送漩渦","castIds":["hero-kai","great-wizard","bug-king"],"paragraphsEn":["Late one afternoon, 11-year-old Kai was at his computer playing his favorite adventure game. Suddenly, a classmate in the game got stuck. Instead of rushing ahead to win by himself, Kai paused calmly and typed a kind message to help.","WHOOSH! A swirling vortex of emerald light opened right inside his monitor! It pulled Kai through a dazzling Virtual City of floating letters and numbers and set him gently down on a quiet dirt road in a magical land called Pythonia.","Kai blinked. His bedroom was gone! He wore an olive-green cloak with a golden crescent clasp, a lotus medallion belt, a wooden sword, and an empty Ancient Spellbook glowing warm gold in his hands.","An old Great Wizard hurried over with relief. He pointed toward a dark mountain far away and explained that Pythonia's Steward of Order had been twisted by careless, messy, unkind code into the fearful Bug King—who locked away all Eleven Ancient Spells."],"paragraphsZh":["一天傍晚，十一歲的凱正在電腦前玩他最喜歡的冒險遊戲。突然，遊戲裡有一位同學卡關了。凱沒有急著自己衝向終點，而是靜下心停下腳步，打出溫暖的訊息去幫忙。","刷的一聲！電腦螢幕裡突然打開了一道閃耀的翠綠色光影漩渦！光圈將凱拉進一座漂浮著文字與數字的「虛擬之城」，接著輕輕把他放在魔法王國「蟒蛇王國（Pythonia）」的泥土小路上。","凱眨了眨眼，他的房間不見了！他身上穿著配有金色新月扣環的橄欖綠披風、蓮花徽章腰帶、背著一把木劍，手裡還捧著一本散發金色微光的空白《古老咒語書》。","一位慈祥的大法師急忙走來，鬆了一口氣。他指向遠方的黑山，告訴凱：從前王國的「秩序守護者」被人們草率、自私又雜亂的壞程式碼纏住，變成可怕的「蟲蟲魔王」，把十一道古老善咒全都鎖了起來。"],"dialogue":[{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"Why me? I'm not the fastest or strongest player.\"","lineZh":"「為什麼是我？我既不是跑得最快的，也不是最強的玩家。」"},{"speakerEn":"The Great Wizard","speakerZh":"大法師","lineEn":"\"Anyone can swing a sword. We called for someone who knows how to pause, stay calm, and care for others. Your Spellbook answered your kind heart.\"","lineZh":"「誰都能揮動木劍。我們等待的，是懂得停下來、保持冷靜、並且關心別人的人。你的咒語書回應了你善良的心。」"}],"spell":{"nameEn":"The Kind Pause","nameZh":"善念起步 · 靜心助人","code":"# Pause first. Care for others before rushing.","explainEn":"Before learning any Python command, Kai learns the most important rule of coding and life: slow down, breathe, and care.","explainZh":"在學會任何程式魔法前，凱先學會最重要的一件事：遇到夥伴卡關時，先靜心伸出援手。","demoBtnEn":"Open Ancient Spellbook ✨","demoBtnZh":"翻開古老咒語書 ✨","demoOutputEn":"📖 Your Spellbook glows warm gold! 11 blank pages await your kindness.","demoOutputZh":"📖 古老咒語書亮起溫暖金光！十一頁空白魔法正等著你書寫。"},"scenes":[{"pageNumber":1,"sceneIndex":1,"sceneId":"PRO_S01","image":"assets/scenes/01_PRO_S01.webp","titleEn":"The Kind Pause at Kai's Computer Desk","titleZh":"螢幕前的靜心助人","narrationEn":"Late one afternoon, Kai paused his favorite adventure game to type a kind message to a stuck classmate. Suddenly, a swirling vortex of emerald light opened right inside his monitor!","narrationZh":"一天傍晚，凱沒有急著自己破關，而是停下腳步打字幫助卡關的同學。突然間，螢幕裡打開了一道閃耀的翠綠色光影漩渦！","dialogueEn":"Kai: \"Hold on—let me help you first.\"","dialogueZh":"小英雄凱：「別急，我先來幫你。」","spellCode":"# Pause first. Care for others before rushing.","spellLabelEn":"The Kind Pause","spellLabelZh":"善念起步 · 靜心助人","zone":"ENV_R00","mood":"warm bedroom comfort meeting magical emerald wonder","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"Prologue: The Glitch, the Gentle Heart & the Bug King's Origin","advanceSectionZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來","advanceNarrationEn":"Late one afternoon, Kai was at his computer playing his favorite adventure game. Suddenly, his screen glitched—not because he broke anything, but because a classmate in the game got stuck and Kai paused to help them instead of rushing ahead.\n\nAs Kai took a calm breath and typed a kind message, a swirling vortex of emerald light opened right inside his monitor!","advanceNarrationZh":"一天傍晚，凱正坐在電腦前玩著他最喜歡的冒險遊戲。突然間，螢幕閃起了一道奇異的訊號——並不是因為他弄壞了什麼，而是因為遊戲裡一位同學卡關了，凱選擇停下腳步去幫忙，而不是自顧自地往前衝。\n\n就在凱深吸一口氣、靜心打出一則溫暖訊息的那一刻，螢幕正中央突然旋轉展開了一道璀璨的翠綠色光影漩渦！","advanceDialogueEn":"Kai: \"Hold on—don't worry. I'll pause here and help you get through this first.\"","advanceDialogueZh":"小英雄凱：「別擔心，我先停下來陪你一起過關。」","imageMobile":"assets/scenes-mobile/01_PRO_S01.webp"},{"pageNumber":2,"sceneIndex":2,"sceneId":"PRO_S02","image":"assets/scenes/02_PRO_S02.webp","titleEn":"Swept Through the Virtual City Vortex","titleZh":"穿越虛擬之城光影漩渦","narrationEn":"The emerald vortex pulled Kai through a dazzling Virtual City of floating letters and numbers, dressing him in an olive-green cloak, wooden sword, and an empty gold-glowing Ancient Spellbook.","narrationZh":"翠綠漩渦拉著凱穿過漂浮著文字與數字的「虛擬之城」，替他換上橄欖綠披風、木劍，手裡也出現一本發光的空白《古老咒語書》。","dialogueEn":"Kai: \"Whoa—where am I?\"","dialogueZh":"小英雄凱：「哇——這裡是哪裡？」","spellCode":"# Entering Pythonia","spellLabelEn":"Portal Arrival","spellLabelZh":"穿越傳送門","zone":"ENV_R00","mood":"exhilarating magical transformation","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The emerald vortex pulled Kai straight through a dazzling Virtual City of floating letters, glowing numbers, and woven streams of light before setting him gently down on a quiet dirt road in Pythonia.\n\nKai blinked in wonder. His bedroom was completely gone. Instead, he found himself wearing an olive-green cloak, a wooden sword at his side, and holding an empty Ancient Spellbook already warming in his hands.","advanceNarrationZh":"翠綠色的光影漩渦拉著凱穿越了一座飄浮著字母、數字與光流符號的炫目「虛擬之城」，最後溫柔地將他送到蟒蛇王國一條安靜的泥土小路上。\n\n凱眨了眨眼，驚訝地發現自己的房間不見了——取而代之的是一身橄欖綠披風、腰間的木劍，還有一本正在掌心散發暖光的空白《古老咒語書》。","advanceDialogueEn":"Kai: \"Whoa... my bedroom is gone! Where did this glowing Spellbook come from?\"","advanceDialogueZh":"小英雄凱：「哇……我的房間不見了！這本發光的咒語書是哪裡來的？」","imageMobile":"assets/scenes-mobile/02_PRO_S02.webp"},{"pageNumber":3,"sceneIndex":3,"sceneId":"PRO_S03","image":"assets/scenes/03_PRO_S03.webp","titleEn":"The Great Wizard & Story of the Bug King","titleZh":"大法師與蟲蟲魔王的由來","narrationEn":"An old Great Wizard hurried up in relief, pointing toward the dark mountain. Careless, unkind code had twisted Pythonia's Steward of Order into the Bug King—and Kai's Spellbook had answered his kind heart.","narrationZh":"慈祥的大法師鬆了一口氣地迎上來，指向遠方的黑山，告訴凱人們混亂自私的程式碼把秩序守護者變成了蟲蟲魔王，而咒語書回應了凱善良的心。","dialogueEn":"Great Wizard: \"Your Spellbook answered your kind heart.\"","dialogueZh":"大法師：「你的咒語書回應了你善良的心。」","spellCode":"# Care for others","spellLabelEn":"Kind Heart Chosen","spellLabelZh":"善念的召喚","zone":"ENV_R00","mood":"hopeful warmth tempered by distant mystery","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"An old Great Wizard hurried down the road toward him, eyes wide with relief. Pointing first to the warm gold glow in Kai's Spellbook and then toward a distant dark mountain, the Wizard revealed Pythonia's sorrow.\n\n\"Long ago, Pythonia's Steward of Order kept every river, forest, and village running in harmony,\" he explained. \"But people grew careless. They left broken words, greedy shortcuts, and tangled rules everywhere. All that messy, unkind code twisted around the Steward until fear and static swallowed him whole—turning him into the Bug King! He locked away the Eleven Ancient Spells so no one could make more broken magic.\"","advanceNarrationZh":"一位年邁的大法師鬆了一口氣、急忙沿著小路迎上前來。他先指向凱手中泛著暖金光芒的咒語書，接著望向遠方黑暗的山脈，娓娓道出王國的危機。\n\n「很久以前，秩序守護者曾讓蟒蛇王國的每一條河流、森林與村莊和諧運作。」大法師說：「但後來人們變得粗心大意，到處留下殘缺的文字、貪心的捷徑和混亂的規則。那些自私又雜亂的程式碼纏住了守護者，讓恐懼與雜訊吞沒了他的心——他因此變成了『蟲蟲魔王』，鎖起了十一道古老善咒。」","advanceDialogueEn":"Great Wizard: \"All that messy, unkind code swallowed the Steward—turning him into the Bug King!\"","advanceDialogueZh":"大法師：「混亂又自私的程式碼吞噬了守護者，使他變成了蟲蟲魔王！」","imageMobile":"assets/scenes-mobile/03_PRO_S03.webp"},{"pageNumber":4,"sceneIndex":4,"sceneId":"PRO_S04","image":"assets/scenes/04_PRO_S04.webp","titleEn":"Stepping Toward Silent Village","titleZh":"邁向靜默村莊的旅程","narrationEn":"Encouraged by the Great Wizard, Kai tucked his glowing Spellbook close and stepped bravely down the quiet dirt road toward Silent Village.","narrationZh":"在大法師溫柔的鼓勵下，凱抱緊閃耀微光的咒語書，勇敢地沿著泥土小路朝著被薄霧籠罩的靜默村莊出發。","dialogueEn":"Great Wizard: \"Every great wizard begins with a single kind word.\"","dialogueZh":"大法師：「每一位偉大的法師，都從一句溫暖的話開始。」","spellCode":"# Begin the quest","spellLabelEn":"First Step","spellLabelZh":"踏出第一步","zone":"ENV_R00","mood":"hopeful new adventure","palette":["#2ECC71","#3A86FF","#F6C863","#8C5E3C"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Why me?\" Kai asked quietly. \"I'm not the fastest or strongest player.\"\n\nThe Great Wizard smiled softly. \"Anyone can swing a sword. We called for someone who knows how to pause, stay calm, and care for others. Your Spellbook answered your kind heart.\" Holding the glowing book close, Kai stepped bravely down the path toward Silent Village.","advanceNarrationZh":"「為什麼是我呢？」凱輕聲問道：「我既不是跑得最快，也不是最強的玩家。」\n\n大法師溫柔地微笑：「任誰都能揮舞寶劍。我們召喚的，是懂得停下腳步、保持冷靜、並且真心關懷他人的人。你的咒語書回應了你善良的心。」凱抱緊發光的書本，勇敢地沿著泥土路走向靜默村莊。","advanceDialogueEn":"Great Wizard: \"Anyone can swing a sword. Your Spellbook answered your kind heart.\"","advanceDialogueZh":"大法師：「任誰都能揮舞寶劍，但你的咒語書回應了你善良的心。」","imageMobile":"assets/scenes-mobile/04_PRO_S04.webp"}],"chapterUrl":"chapters/chapter-01.html","chapterAdvanceUrl":"chapters/chapter-01-advance.html","paragraphsAdvanceEn":["One afternoon, Kai paused his favorite adventure game to type a kind, unhurried message to a stuck classmate—opening an emerald portal straight through a dazzling Virtual City into the realm of Pythonia.","Dressed in an olive cloak with a wooden sword and a gold-glowing empty Spellbook, Kai learned from the Great Wizard how careless, tangled code had twisted Pythonia's Steward of Order into the fearsome Bug King.","\"Anyone can swing a sword,\" the Wizard smiled softly. \"Your Spellbook answered your calm, caring heart.\""],"paragraphsAdvanceZh":["某個傍晚，凱在遊戲裡選擇停下來耐心安慰並幫助卡關的同學，這個溫柔舉動打開了電腦螢幕裡的翠綠漩渦，帶他穿過虛擬之城來到蟒蛇王國。","換上橄欖綠披風、手持木劍與散發金光的空白古書，凱從大法師口中得知：人們粗心混亂的程式碼把秩序守護者變成了蟲蟲魔王。","「任誰都能揮舞寶劍，」大法師溫柔微笑道：「但你的咒語書，回應了你靜心行善的心。」"],"imageMobile":"assets/scenes-mobile/03_PRO_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

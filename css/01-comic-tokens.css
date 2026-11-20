@@ -1,0 +1,116 @@
+/* ============================================================================
+ * 01-comic-tokens.css
+ * Hero Kai · Pythonia Webtoon Comic Reader — Brand & Reading Theme Tokens
+ * Inherits exact kaipy.netlify.app (--sc-*, --kc-*) design tokens for drop-in
+ * integration with Hero-Kai-Pythonia-Adventures.
+ * ============================================================================ */
+
+:root {
+  /* Core kaipy.netlify.app Design System Tokens */
+  --sc-canvas: #0b1612;
+  --sc-surface: #12211b;
+  --sc-surface-elevated: #172b23;
+  --sc-ink: #f4efe4;
+  --sc-ink-soft: #c0d3c8;
+  --sc-ink-muted: #8ea69a;
+  --sc-accent: #8cf0bd;
+  --sc-accent-ink: #07120e;
+  --sc-font-display: "Palatino Linotype", "Book Antiqua", "Noto Serif TC", Georgia, serif;
+  --sc-font-text: "Segoe UI", "Microsoft JhengHei", "PingFang TC", system-ui, -apple-system, sans-serif;
+  --sc-font-mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+
+  --kc-gold: #ffd285;
+  --kc-gold-deep: #d99b38;
+  --kc-cyan: #79d8e6;
+  --kc-crimson: #c24b3a;
+  --kc-panel: rgba(11, 22, 18, 0.92);
+  --kc-panel-solid: #0d1a15;
+  --kc-border: rgba(140, 240, 189, 0.25);
+  --kc-border-warm: rgba(255, 210, 133, 0.34);
+
+  /* Webtoon Reader Stage Defaults */
+  --comic-stage-bg: #08100d;
+  --comic-strip-width: 800px;
+  --comic-brightness: 1;
+  --comic-radius-sm: 10px;
+  --comic-radius-md: 16px;
+  --comic-radius-lg: 22px;
+  --comic-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+  --comic-transition: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reading Backdrop Themes (Reader Mode Only) */
+body[data-reader-theme="cinema"] {
+  --comic-stage-bg: #050708;
+}
+
+body[data-reader-theme="parchment"] {
+  --comic-stage-bg: #ede3cf;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--sc-canvas);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-text);
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Focus Accessibility */
+:focus-visible {
+  outline: 2px solid var(--kc-gold);
+  outline-offset: 2px;
+}
+
+/* Subtle Grain Texture matching kaipy.netlify.app */
+.sc-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.45) 0.5px, transparent 0.5px);
+  background-size: 4px 4px;
+}
+
+/* Top Reading Progress Bar */
+.comic-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sc-accent), var(--kc-gold));
+  z-index: 120;
+  transition: width 90ms linear;
+  pointer-events: none;
+}

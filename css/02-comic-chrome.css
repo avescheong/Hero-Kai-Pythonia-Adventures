@@ -1,0 +1,462 @@
+/* ============================================================================
+ * 02-comic-chrome.css
+ * Hero Kai · Pythonia Webtoon Comic Reader — Topbar, Reader HUD & Drawer
+ * Matches 02-navigation-chrome.css from kaipy.netlify.app
+ * ============================================================================ */
+
+/* ---- Top-Left Brand Seal ------------------------------------------------- */
+.kc-seal {
+  position: fixed;
+  top: 12px;
+  left: 14px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 13px 6px 8px;
+  border-radius: 12px;
+  background: var(--kc-panel);
+  border: 1px solid var(--kc-border);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  color: var(--sc-ink);
+  transition: transform var(--comic-transition), opacity var(--comic-transition), border-color 180ms ease;
+}
+
+.kc-seal:hover {
+  border-color: var(--kc-gold);
+}
+
+.kc-seal__stamp {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: linear-gradient(145deg, #c24b3a, #8d241b);
+  border: 1px solid rgba(255, 224, 178, 0.52);
+  font-family: var(--sc-font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff6e6;
+}
+
+.kc-seal__meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.kc-seal__title {
+  font-family: var(--sc-font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.kc-seal__sub {
+  font-family: var(--sc-font-mono);
+  font-size: 0.64rem;
+  color: var(--sc-ink-soft);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Top-Right Control Bar ---------------------------------------------- */
+.kc-topbar-right {
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  transition: transform var(--comic-transition), opacity var(--comic-transition);
+}
+
+.kc-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.kc-hub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(16, 52, 37, 0.96), rgba(32, 46, 23, 0.96));
+  border: 1px solid var(--kc-gold);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.42);
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.kc-hub-pill:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.kc-ctrl-btn {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--kc-panel);
+  border: 1px solid var(--kc-border);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.42);
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.kc-ctrl-btn:hover {
+  border-color: var(--kc-gold);
+}
+
+.kc-ctrl-btn[data-active="true"] {
+  background: rgba(140, 240, 189, 0.16);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+.kc-lang-switch {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--kc-panel);
+  border: 1px solid var(--kc-border);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.42);
+}
+
+.kc-lang-btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sc-ink-soft);
+  font-family: var(--sc-font-mono);
+  font-size: 0.71rem;
+  font-weight: 600;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.kc-lang-btn[aria-pressed="true"] {
+  background: var(--kc-gold);
+  color: #171005;
+}
+
+.kc-nav__panel {
+  width: min(295px, 88vw);
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(10, 20, 16, 0.97);
+  border: 1px solid var(--kc-border);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.65);
+  display: grid;
+  gap: 4px;
+}
+
+.kc-nav__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  color: var(--sc-ink);
+  font-size: 0.84rem;
+  transition: background 160ms ease;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.kc-nav__link:hover {
+  background: rgba(140, 240, 189, 0.14);
+}
+
+.kc-nav__link--hub {
+  border: 1px solid rgba(255, 210, 133, 0.45);
+  background: linear-gradient(135deg, rgba(18, 49, 36, 0.92), rgba(34, 46, 22, 0.92));
+  color: var(--kc-gold);
+  font-weight: 700;
+}
+
+.kc-nav__idx {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--sc-accent);
+}
+
+/* Auto-hide Top Chrome when Reader HUD is Hidden */
+body.view-reader.hud-hidden .kc-seal,
+body.view-reader.hud-hidden .kc-topbar-right {
+  opacity: 0;
+  transform: translateY(-16px);
+  pointer-events: none;
+}
+
+/* ---- Webtoon Reader Sticky Bottom HUD ----------------------------------- */
+.reader-hud-bottom {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 92;
+  width: min(760px, calc(100vw - 24px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(10, 20, 16, 0.94);
+  border: 1px solid var(--kc-border-warm);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.58);
+  transition: transform var(--comic-transition), opacity var(--comic-transition);
+}
+
+body.hud-hidden .reader-hud-bottom {
+  opacity: 0;
+  transform: translate(-50%, 24px);
+  pointer-events: none;
+}
+
+.reader-hud-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-btn {
+  appearance: none;
+  border: 1px solid var(--kc-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--sc-ink);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: all 150ms ease;
+}
+
+.hud-btn:hover:not(:disabled) {
+  border-color: var(--kc-gold);
+  background: rgba(255, 210, 133, 0.12);
+}
+
+.hud-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.hud-btn--active {
+  background: rgba(140, 240, 189, 0.18);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+.hud-btn--primary {
+  background: linear-gradient(135deg, var(--kc-gold), var(--kc-gold-deep));
+  border-color: transparent;
+  color: #161005;
+  font-weight: 700;
+}
+
+.hud-btn--primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+  background: linear-gradient(135deg, var(--kc-gold), var(--kc-gold-deep));
+}
+
+.hud-ep-pill {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--sc-ink);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  cursor: pointer;
+  padding: 2px 10px;
+  border-radius: 12px;
+  transition: background 150ms ease;
+}
+
+.hud-ep-pill:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hud-ep-code {
+  font-family: var(--sc-font-mono);
+  font-size: 0.67rem;
+  color: var(--kc-gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hud-ep-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sc-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+/* ---- Slide-Over Episode Drawer ------------------------------------------ */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: rgba(4, 10, 8, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.episode-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  width: min(390px, 92vw);
+  background: var(--kc-panel-solid);
+  border-left: 1px solid var(--kc-border-warm);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--kc-border);
+}
+
+.drawer-header h3 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.08rem;
+  color: var(--kc-gold);
+}
+
+.drawer-close {
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--kc-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--sc-ink);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.drawer-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(140, 240, 189, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--sc-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all 150ms ease;
+}
+
+.drawer-item:hover {
+  border-color: var(--kc-gold);
+  background: rgba(255, 210, 133, 0.08);
+}
+
+.drawer-item.is-active {
+  border-color: var(--sc-accent);
+  background: rgba(140, 240, 189, 0.14);
+}
+
+.drawer-item__num {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--sc-surface-elevated);
+  color: var(--kc-gold);
+  border: 1px solid var(--kc-border-warm);
+}
+
+.drawer-item.is-read .drawer-item__num {
+  background: rgba(140, 240, 189, 0.2);
+  color: var(--sc-accent);
+  border-color: var(--sc-accent);
+}
+
+.drawer-item__info {
+  min-width: 0;
+  flex: 1;
+}
+
+.drawer-item__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drawer-item__spell {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-ink-soft);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

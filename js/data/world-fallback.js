@@ -215,7 +215,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A86FF",
             "#F6C863",
             "#8C5E3C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/01_PRO_S01.webp"
         },
         {
           "pageNumber": 2,
@@ -238,7 +239,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A86FF",
             "#F6C863",
             "#8C5E3C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/02_PRO_S02.webp"
         },
         {
           "pageNumber": 3,
@@ -261,7 +263,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A86FF",
             "#F6C863",
             "#8C5E3C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/03_PRO_S03.webp"
         },
         {
           "pageNumber": 4,
@@ -284,11 +287,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A86FF",
             "#F6C863",
             "#8C5E3C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/04_PRO_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-01.html",
-      "chapterAdvanceUrl": "chapters/chapter-01-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-01-advance.html",
+      "imageMobile": "assets/scenes-mobile/03_PRO_S03.webp"
     },
     {
       "id": "part-02",
@@ -368,7 +373,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D8B474",
             "#D9E4EC",
             "#F6C863"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/05_CH01_S01.webp"
         },
         {
           "pageNumber": 6,
@@ -391,7 +397,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D8B474",
             "#D9E4EC",
             "#F6C863"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/06_CH01_S02.webp"
         },
         {
           "pageNumber": 7,
@@ -414,7 +421,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D8B474",
             "#D9E4EC",
             "#F6C863"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/07_CH01_S03.webp"
         },
         {
           "pageNumber": 8,
@@ -437,11 +445,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D8B474",
             "#D9E4EC",
             "#F6C863"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/08_CH01_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-02.html",
-      "chapterAdvanceUrl": "chapters/chapter-02-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-02-advance.html",
+      "imageMobile": "assets/scenes-mobile/07_CH01_S03.webp"
     },
     {
       "id": "part-03",
@@ -516,7 +526,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F5A623",
             "#3B5368",
             "#6E5B8A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/09_CH02_S01.webp"
         },
         {
           "pageNumber": 10,
@@ -539,7 +550,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F5A623",
             "#3B5368",
             "#6E5B8A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/10_CH02_S02.webp"
         },
         {
           "pageNumber": 11,
@@ -562,7 +574,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F5A623",
             "#3B5368",
             "#6E5B8A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/11_CH02_S03.webp"
         },
         {
           "pageNumber": 12,
@@ -585,11 +598,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F5A623",
             "#3B5368",
             "#6E5B8A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/12_CH02_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-03.html",
-      "chapterAdvanceUrl": "chapters/chapter-03-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-03-advance.html",
+      "imageMobile": "assets/scenes-mobile/11_CH02_S03.webp"
     },
     {
       "id": "part-04",
@@ -664,7 +679,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#E06D53",
             "#C8963E",
             "#4A7C9B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/13_CH03_S01.webp"
         },
         {
           "pageNumber": 14,
@@ -687,7 +703,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#E06D53",
             "#C8963E",
             "#4A7C9B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/14_CH03_S02.webp"
         },
         {
           "pageNumber": 15,
@@ -710,7 +727,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#E06D53",
             "#C8963E",
             "#4A7C9B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/15_CH03_S03.webp"
         },
         {
           "pageNumber": 16,
@@ -733,11 +751,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#E06D53",
             "#C8963E",
             "#4A7C9B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/16_CH03_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-04.html",
-      "chapterAdvanceUrl": "chapters/chapter-04-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-04-advance.html",
+      "imageMobile": "assets/scenes-mobile/15_CH03_S03.webp"
     },
     {
       "id": "part-05",
@@ -820,7 +840,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6BC4B8",
             "#8A79A6",
             "#E9C46A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/17_CH04_S01.webp"
         },
         {
           "pageNumber": 18,
@@ -843,7 +864,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6BC4B8",
             "#8A79A6",
             "#E9C46A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/18_CH04_S02.webp"
         },
         {
           "pageNumber": 19,
@@ -866,7 +888,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6BC4B8",
             "#8A79A6",
             "#E9C46A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/19_CH04_S03.webp"
         },
         {
           "pageNumber": 20,
@@ -889,11 +912,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6BC4B8",
             "#8A79A6",
             "#E9C46A"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/20_CH04_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-05.html",
-      "chapterAdvanceUrl": "chapters/chapter-05-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-05-advance.html",
+      "imageMobile": "assets/scenes-mobile/19_CH04_S03.webp"
     },
     {
       "id": "part-06",
@@ -968,7 +993,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A9BDC",
             "#7A746E",
             "#D9E4EC"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/21_CH05_S01.webp"
         },
         {
           "pageNumber": 22,
@@ -991,7 +1017,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A9BDC",
             "#7A746E",
             "#D9E4EC"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/22_CH05_S02.webp"
         },
         {
           "pageNumber": 23,
@@ -1014,7 +1041,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A9BDC",
             "#7A746E",
             "#D9E4EC"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/23_CH05_S03.webp"
         },
         {
           "pageNumber": 24,
@@ -1037,11 +1065,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#3A9BDC",
             "#7A746E",
             "#D9E4EC"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/24_CH05_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-06.html",
-      "chapterAdvanceUrl": "chapters/chapter-06-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-06-advance.html",
+      "imageMobile": "assets/scenes-mobile/23_CH05_S03.webp"
     },
     {
       "id": "part-07",
@@ -1116,7 +1146,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2B6CA3",
             "#F2C94C",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/25_CH05A_S01.webp"
         },
         {
           "pageNumber": 26,
@@ -1139,7 +1170,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2B6CA3",
             "#F2C94C",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/26_CH05A_S02.webp"
         },
         {
           "pageNumber": 27,
@@ -1162,7 +1194,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2B6CA3",
             "#F2C94C",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/27_CH05A_S03.webp"
         },
         {
           "pageNumber": 28,
@@ -1185,11 +1218,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2B6CA3",
             "#F2C94C",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/28_CH05A_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-07.html",
-      "chapterAdvanceUrl": "chapters/chapter-07-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-07-advance.html",
+      "imageMobile": "assets/scenes-mobile/27_CH05A_S03.webp"
     },
     {
       "id": "part-08",
@@ -1263,7 +1298,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#EFE4CE",
             "#5A3826",
             "#A86454"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/29_CH06_S01.webp"
         },
         {
           "pageNumber": 30,
@@ -1286,7 +1322,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#EFE4CE",
             "#5A3826",
             "#A86454"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/30_CH06_S02.webp"
         },
         {
           "pageNumber": 31,
@@ -1309,7 +1346,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#EFE4CE",
             "#5A3826",
             "#A86454"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/31_CH06_S03.webp"
         },
         {
           "pageNumber": 32,
@@ -1332,11 +1370,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#EFE4CE",
             "#5A3826",
             "#A86454"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/32_CH06_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-08.html",
-      "chapterAdvanceUrl": "chapters/chapter-08-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-08-advance.html",
+      "imageMobile": "assets/scenes-mobile/31_CH06_S03.webp"
     },
     {
       "id": "part-09",
@@ -1416,7 +1456,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F4D068",
             "#D6CBB5",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/33_CH07_S01.webp"
         },
         {
           "pageNumber": 34,
@@ -1439,7 +1480,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F4D068",
             "#D6CBB5",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/34_CH07_S02.webp"
         },
         {
           "pageNumber": 35,
@@ -1462,7 +1504,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F4D068",
             "#D6CBB5",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/35_CH07_S03.webp"
         },
         {
           "pageNumber": 36,
@@ -1485,11 +1528,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F4D068",
             "#D6CBB5",
             "#2ECC71"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/36_CH07_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-09.html",
-      "chapterAdvanceUrl": "chapters/chapter-09-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-09-advance.html",
+      "imageMobile": "assets/scenes-mobile/35_CH07_S03.webp"
     },
     {
       "id": "part-10",
@@ -1564,7 +1609,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D9E4EC",
             "#6E655F",
             "#D4A23C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/37_CH08_S01.webp"
         },
         {
           "pageNumber": 38,
@@ -1587,7 +1633,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D9E4EC",
             "#6E655F",
             "#D4A23C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/38_CH08_S02.webp"
         },
         {
           "pageNumber": 39,
@@ -1610,7 +1657,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D9E4EC",
             "#6E655F",
             "#D4A23C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/39_CH08_S03.webp"
         },
         {
           "pageNumber": 40,
@@ -1633,11 +1681,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#D9E4EC",
             "#6E655F",
             "#D4A23C"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/40_CH08_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-10.html",
-      "chapterAdvanceUrl": "chapters/chapter-10-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-10-advance.html",
+      "imageMobile": "assets/scenes-mobile/39_CH08_S03.webp"
     },
     {
       "id": "part-11",
@@ -1711,7 +1761,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2ECC71",
             "#6B3FA0",
             "#FDE08D"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/41_CH09_S01.webp"
         },
         {
           "pageNumber": 42,
@@ -1734,7 +1785,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2ECC71",
             "#6B3FA0",
             "#FDE08D"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/42_CH09_S02.webp"
         },
         {
           "pageNumber": 43,
@@ -1757,7 +1809,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2ECC71",
             "#6B3FA0",
             "#FDE08D"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/43_CH09_S03.webp"
         },
         {
           "pageNumber": 44,
@@ -1780,11 +1833,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#2ECC71",
             "#6B3FA0",
             "#FDE08D"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/44_CH09_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-11.html",
-      "chapterAdvanceUrl": "chapters/chapter-11-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-11-advance.html",
+      "imageMobile": "assets/scenes-mobile/43_CH09_S03.webp"
     },
     {
       "id": "part-12",
@@ -1858,7 +1913,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F7C852",
             "#5C6B73",
             "#6E473B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/45_CH10_S01.webp"
         },
         {
           "pageNumber": 46,
@@ -1881,7 +1937,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F7C852",
             "#5C6B73",
             "#6E473B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/46_CH10_S02.webp"
         },
         {
           "pageNumber": 47,
@@ -1904,7 +1961,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F7C852",
             "#5C6B73",
             "#6E473B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/47_CH10_S03.webp"
         },
         {
           "pageNumber": 48,
@@ -1927,11 +1985,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#F7C852",
             "#5C6B73",
             "#6E473B"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/48_CH10_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-12.html",
-      "chapterAdvanceUrl": "chapters/chapter-12-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-12-advance.html",
+      "imageMobile": "assets/scenes-mobile/47_CH10_S03.webp"
     },
     {
       "id": "part-13",
@@ -2013,7 +2073,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6B3FA0",
             "#2ECC71",
             "#F7C852"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/49_CH11_S01.webp"
         },
         {
           "pageNumber": 50,
@@ -2036,7 +2097,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6B3FA0",
             "#2ECC71",
             "#F7C852"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/50_CH11_S02.webp"
         },
         {
           "pageNumber": 51,
@@ -2059,7 +2121,8 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6B3FA0",
             "#2ECC71",
             "#F7C852"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/51_CH11_S03.webp"
         },
         {
           "pageNumber": 52,
@@ -2082,11 +2145,13 @@ window.PYTHONIA_WORLD_FALLBACK = {
             "#6B3FA0",
             "#2ECC71",
             "#F7C852"
-          ]
+          ],
+          "imageMobile": "assets/scenes-mobile/52_CH11_S04.webp"
         }
       ],
       "chapterUrl": "chapters/chapter-13.html",
-      "chapterAdvanceUrl": "chapters/chapter-13-advance.html"
+      "chapterAdvanceUrl": "chapters/chapter-13-advance.html",
+      "imageMobile": "assets/scenes-mobile/51_CH11_S03.webp"
     }
   ],
   "districts": [

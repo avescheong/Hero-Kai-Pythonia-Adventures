@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-11","partNumber":11,"code":"SPELL 10 · SIGHT","zone":"ENV_R09","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼","subtitleEn":"Spell 10: print(100 > 0) · Compare facts and shatter illusions","subtitleZh":"第十咒：print(100 > 0) · 比較真偽、識破虛假幻象","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/43_CH09_S03.webp","imageAltEn":"Armored Hero Kai facing the shadowed Bug King across glowing comparison runes","imageAltZh":"穿上裝備的小英雄凱在發光符文前直面蟲蟲魔王的幻象考驗","castIds":["hero-kai","string"],"paragraphsEn":["After saying a warm goodbye to Master Grimsby, Kai and String hiked across high misty cliffs until the road split into two identical dirt paths beneath a giant stone arch: the Eye of Truth.","One path was real, and one was a dangerous mirage! Summoning the SIGHT spell, Kai's eyes flared with bright light and his eyebrows sharpened into glowing parallel lines (==).","Through his SIGHT eyes, Kai saw the hidden code underneath the cliffs! One road flickered with unstable glitching wires, while the other shone with steady, solid logic.","Kai stepped forward and cast print(100 > 0). \"TRUE!\" boomed the Eye of Truth! The fake mirage path shattered like glass into sparkling mist, leaving only the real road open toward the summit."],"paragraphsZh":["向格里姆斯比大師道別後，凱與 String 爬上高聳霧氣瀰漫的懸崖，道路在巨大的石拱門「真理之眼」下方分成兩條看起來一模一樣的小徑。","其中一條是真路，另一條則是危險的幻象陷阱！凱發動了「真視咒」，雙眼閃耀光芒，眉毛化為兩道發亮的平行線（==）。","透過真視之眼，凱看見了山崖底下隱藏的程式碼結構！左邊的假路閃爍著混亂破碎的雜訊線條，右邊的真路則流淌著穩定清晰的邏輯光脈。","凱向前一步唸出：print(100 > 0)。「TRUE！」真理之眼發出洪鐘般的迴響，假冒的幻象道路像玻璃一樣碎裂消散，只留下通往山頂的真實道路！"],"dialogue":[{"speakerEn":"Eye of Truth","speakerZh":"真理之眼","lineEn":"\"TRUE! Only clear sight that checks the facts can shatter an illusion.\"","lineZh":"「TRUE！唯有仔細核對事實的清晰雙眼，才能擊碎虛假的幻象。」"}],"spell":{"nameEn":"Spell 10: SIGHT — Comparisons (> < ==)","nameZh":"第十咒：SIGHT 比較魔法 — 大於小於與等於 (> < ==)","code":"print(100 > 0)","explainEn":"Use > (greater than), < (less than), and == (is equal to?) to check if something is True or False!","explainZh":"用 >（大於）、<（小於）和兩個等號 ==（是否相等？）來比較事實，魔法會回答 True 或 False！","demoBtnEn":"Activate == Sight Eyes 👁️","demoBtnZh":"開啟 == 真視之眼 👁️","demoOutputEn":"True!  ✨ (Mirage shattered! The true path to the summit shines clearly!)","demoOutputZh":"True!  ✨（幻象碎裂！通往山頂的真實道路閃亮開啟！）"},"scenes":[{"pageNumber":41,"sceneIndex":1,"sceneId":"CH09_S01","image":"assets/scenes/41_CH09_S01.webp","titleEn":"The Highland Fork Beneath the Eye of Truth","titleZh":"真理之眼下的雙歧幻路","narrationEn":"Crossing mist-shrouded valleys, Kai and String reached a cliffside fork where two completely identical dirt paths split beneath the giant stone Eye of Truth.","narrationZh":"穿過薄霧山谷後，凱與 String 來到崎嶇高地，眼前出現兩條一模一樣的泥土小路，頭頂則矗立著巨大的「真理之眼」石拱門。","dialogueEn":"Eye of Truth: \"Only truth can shatter illusion.\"","dialogueZh":"真理之眼：「唯有真實，才能擊碎虛幻。」","spellCode":"# Two identical paths—which is true?","spellLabelEn":"The Fork in the Fog","spellLabelZh":"迷霧岔路","zone":"ENV_R09","mood":"tense thoughtful mystery","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"10. SIGHT — The Twin Illusion Paths (> < == = Compare & Find the Truth!)","advanceSectionZh":"十、SIGHT 真視咒 — 雙生幻影岔路（比較真理：> < ==）","advanceNarrationEn":"Hiking far above the valley ridges, Kai and String entered a quiet highland gorge wrapped in swirling purple fog.\n\nRight before them, the mountain road split into two completely identical dirt paths disappearing into thick mist—while towering above the fork hovered the giant, unblinking stone Eye of Truth.","advanceNarrationZh":"翻過重重幽谷，凱和 String 步入了一條籠罩在濃郁紫色霧氣中的寂靜高原峽谷。\n\n眼前道路突然分岔成兩條無論泥土顏色、草木甚至石塊位置都一模一樣的詭異小徑；而在岔路正上方，正懸浮著一顆巨大而沉靜的「真理之眼」。","advanceDialogueEn":"Kai: \"Both dirt roads look completely identical in this purple mist... which one is a trap?\"","advanceDialogueZh":"小英雄凱：「兩條路在這片紫霧裡看起來完全一模一樣……哪一條才是暗藏危機的幻象陷阱呢？」"},{"pageNumber":42,"sceneIndex":2,"sceneId":"CH09_S02","image":"assets/scenes/42_CH09_S02.webp","titleEn":"Awakening SIGHT Vision & == Eyebrows","titleZh":"覺醒真視之眼與 == 平行雙眉","narrationEn":"Summoning the SIGHT spell, Kai's eyes flared with radiant light and his eyebrows sharpened into glowing parallel lines (==)—instantly exposing the fake path's unstable glitching code!","narrationZh":"凱召喚真視咒語——他的雙眼閃耀璀璨光芒，眉毛化為兩道發光的平行線（==）！瞬間看穿整片大地的底層程式碼，假路上的錯亂幻影無所遁形！","dialogueEn":"String (telepathic): \"THE LEFT PATH IS GLITCHING!\"","dialogueZh":"String（心電感應）：「左邊那條路的程式在閃爍出錯！」","spellCode":"# Sight Eyes (==) reveal true vs. fake code","spellLabelEn":"== SIGHT Awakens","spellLabelZh":"真視雙眼覺醒","zone":"ENV_R09","mood":"razor-sharp clarity and awe","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Ordinary eyes couldn't tell real stone from dark illusion—so Kai summoned the tenth Ancient Spell: SIGHT!\n\nInstantly, Kai's eyes flared with luminous radiant light and his eyebrows sharpened into twin glowing parallel lines (==), lifting the veil of ordinary vision to expose the fake path's unstable, glitching broken code alongside the true path's clean, honest logic.","advanceNarrationZh":"肉眼無法穿透邪惡法術編織的假象，於是凱集中精神，發動第十道古老善咒——SIGHT 真視之瞳！\n\n霎時之間，凱的雙眸綻放璀璨星輝，雙眉化作兩條筆直發光的平行線（==）！在真視之瞳下，表象的霧紗瞬間褪去，揭露出左方假路下方其實是扭曲亂碼與破損幻影，唯有右邊真路散發出穩定清澈的邏輯光輝。","advanceDialogueEn":"Kai: \"Now I see beneath the mist—one trail flickers with broken glitches while the other shines solid and true!\"","advanceDialogueZh":"小英雄凱：「我看穿霧氣底層了——左邊這條閃滿破碎亂碼，右邊這條才閃耀著真實穩固的邏輯光芒！」"},{"pageNumber":43,"sceneIndex":3,"sceneId":"CH09_S03","image":"assets/scenes/43_CH09_S03.webp","titleEn":"Comparing the Code: print(100 > 0)","titleZh":"施展比較魔法：print(100 > 0)","narrationEn":"Looking steadily through the illusions, Kai raised his Wizard's Blade and cast: print(100 > 0) straight toward the towering Eye of Truth!","narrationZh":"看穿一切虛假後，凱堅定舉起法師之劍，朝真理之眼施展比較咒語：print(100 > 0)！","dialogueEn":"Kai: \"print(100 > 0)! True!\"","dialogueZh":"小英雄凱：「print(100 > 0)！結果是 True！」","spellCode":"Spell: print(100 > 0)","spellLabelEn":"Spell 10: SIGHT (> < ==)","spellLabelZh":"第十咒：SIGHT 比較魔法 (> < ==)","zone":"ENV_R09","mood":"commanding truth","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Raising his balanced wizard's wand toward the hovering stone archway, Kai aimed his sharpened == SIGHT directly at the numbers floating above the fork and cast his formal comparison test: print(100 > 0).","advanceNarrationZh":"凱舉起矮人鍛造的新魔杖指向高懸的真理石門，讓閃耀着 == 雙線光芒的眼神鎖定岔路上的數值，朗聲吟唱比較咒語：print(100 > 0)！","advanceDialogueEn":"Kai: \"Let the truth speak! print(100 > 0)!\"","advanceDialogueZh":"小英雄凱：「讓真實顯現吧！print(100 > 0)！」"},{"pageNumber":44,"sceneIndex":4,"sceneId":"CH09_S04","image":"assets/scenes/44_CH09_S04.webp","titleEn":"Shattering the Fake Path (TRUE!)","titleZh":"真理之眼回響 TRUE！擊碎幻影道路","narrationEn":"\"TRUE!\" boomed the Eye of Truth, shattering the fake path into glittering glass shards and leaving only the true road open straight to the summit!","narrationZh":"「TRUE！」真理之眼發出洪亮回響，假的道路瞬間像玻璃一樣碎裂消散，只留下通往山頂的真實大道！","dialogueEn":"Kai: \"One more step to the summit—let's go, String!\"","dialogueZh":"小英雄凱：「就快到山頂了——我們走吧，String！」","spellCode":"# TRUE! Mirage shattered","spellLabelEn":"Truth Revealed","spellLabelZh":"幻象破滅","zone":"ENV_R09","mood":"clarifying triumph","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"TRUE!\" boomed the giant Eye of Truth across the gorge.\n\nIn a dazzling cascade of silver sound, the fake mirage path shattered into shimmering purple glass dust—leaving only the true sunlit trail clean and wide open up toward the windswept summit!","advanceNarrationZh":"「TRUE！（真實成立！）」真理之眼發出震動整座山谷的宏亮宣告。\n\n伴隨清脆的崩裂聲，左邊整條偽裝岔路如紫水晶玻璃般碎成點點微光消散在空氣裡——只留下那條真正通往高山之巔的坦途！","advanceDialogueEn":"Eye of Truth: \"TRUE!\" · Kai: \"The mirage shattered, String! Let's climb to the summit!\"","advanceDialogueZh":"真理之眼：「TRUE！」· 小英雄凱：「幻影碎掉了，String！我們一口氣登上山頂吧！」"}],"chapterUrl":"chapters/chapter-11.html","chapterAdvanceUrl":"chapters/chapter-11-advance.html","paragraphsAdvanceEn":["Blocked in purple mist by two completely identical dirt roads beneath the giant Eye of Truth, Kai awakened SIGHT—turning his eyes bright and his eyebrows into glowing parallel bars (==) to spot glitching mirage code beneath the trap.","Casting print(100 > 0) drew a booming \"TRUE!\" that shattered the fake path into glass and cleared the true summit trail ahead."],"paragraphsAdvanceZh":["在真理之眼下的紫色濃霧岔路前，兩條路看起來毫無差別；凱及時喚醒真視之瞳 SIGHT，讓雙眉化作閃亮平行線（==）看破底下跳動的假亂碼。","一聲 print(100 > 0) 換來「TRUE！」的莊嚴裁決，假幻象應聲如玻璃般碎裂，指明了真正通往山頂的大道。"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-11","partNumber":11,"code":"SPELL 10 · SIGHT","zone":"ENV_R09","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼","subtitleEn":"Spell 10: print(100 > 0) · Compare facts and shatter illusions","subtitleZh":"第十咒：print(100 > 0) · 比較真偽、識破虛假幻象","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/43_CH09_S03.webp","imageAltEn":"Armored Hero Kai facing the shadowed Bug King across glowing comparison runes","imageAltZh":"穿上裝備的小英雄凱在發光符文前直面蟲蟲魔王的幻象考驗","castIds":["hero-kai","string"],"paragraphsEn":["After saying a warm goodbye to Master Grimsby, Kai and String hiked across high misty cliffs until the road split into two identical dirt paths beneath a giant stone arch: the Eye of Truth.","One path was real, and one was a dangerous mirage! Summoning the SIGHT spell, Kai's eyes flared with bright light and his eyebrows sharpened into glowing parallel lines (==).","Through his SIGHT eyes, Kai saw the hidden code underneath the cliffs! One road flickered with unstable glitching wires, while the other shone with steady, solid logic.","Kai stepped forward and cast print(100 > 0). \"TRUE!\" boomed the Eye of Truth! The fake mirage path shattered like glass into sparkling mist, leaving only the real road open toward the summit."],"paragraphsZh":["向格里姆斯比大師道別後，凱與 String 爬上高聳霧氣瀰漫的懸崖，道路在巨大的石拱門「真理之眼」下方分成兩條看起來一模一樣的小徑。","其中一條是真路，另一條則是危險的幻象陷阱！凱發動了「真視咒」，雙眼閃耀光芒，眉毛化為兩道發亮的平行線（==）。","透過真視之眼，凱看見了山崖底下隱藏的程式碼結構！左邊的假路閃爍著混亂破碎的雜訊線條，右邊的真路則流淌著穩定清晰的邏輯光脈。","凱向前一步唸出：print(100 > 0)。「TRUE！」真理之眼發出洪鐘般的迴響，假冒的幻象道路像玻璃一樣碎裂消散，只留下通往山頂的真實道路！"],"dialogue":[{"speakerEn":"Eye of Truth","speakerZh":"真理之眼","lineEn":"\"TRUE! Only clear sight that checks the facts can shatter an illusion.\"","lineZh":"「TRUE！唯有仔細核對事實的清晰雙眼，才能擊碎虛假的幻象。」"}],"spell":{"nameEn":"Spell 10: SIGHT — Comparisons (> < ==)","nameZh":"第十咒：SIGHT 比較魔法 — 大於小於與等於 (> < ==)","code":"print(100 > 0)","explainEn":"Use > (greater than), < (less than), and == (is equal to?) to check if something is True or False!","explainZh":"用 >（大於）、<（小於）和兩個等號 ==（是否相等？）來比較事實，魔法會回答 True 或 False！","demoBtnEn":"Activate == Sight Eyes 👁️","demoBtnZh":"開啟 == 真視之眼 👁️","demoOutputEn":"True!  ✨ (Mirage shattered! The true path to the summit shines clearly!)","demoOutputZh":"True!  ✨（幻象碎裂！通往山頂的真實道路閃亮開啟！）"},"scenes":[{"pageNumber":41,"sceneIndex":1,"sceneId":"CH09_S01","image":"assets/scenes/41_CH09_S01.webp","titleEn":"The Highland Fork Beneath the Eye of Truth","titleZh":"真理之眼下的雙歧幻路","narrationEn":"Crossing mist-shrouded valleys, Kai and String reached a cliffside fork where two completely identical dirt paths split beneath the giant stone Eye of Truth.","narrationZh":"穿過薄霧山谷後，凱與 String 來到崎嶇高地，眼前出現兩條一模一樣的泥土小路，頭頂則矗立著巨大的「真理之眼」石拱門。","dialogueEn":"Eye of Truth: \"Only truth can shatter illusion.\"","dialogueZh":"真理之眼：「唯有真實，才能擊碎虛幻。」","spellCode":"# Two identical paths—which is true?","spellLabelEn":"The Fork in the Fog","spellLabelZh":"迷霧岔路","zone":"ENV_R09","mood":"tense thoughtful mystery","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"10. SIGHT — The Twin Illusion Paths (> < == = Compare & Find the Truth!)","advanceSectionZh":"十、SIGHT 真視咒 — 雙生幻影岔路（比較真理：> < ==）","advanceNarrationEn":"Hiking far above the valley ridges, Kai and String entered a quiet highland gorge wrapped in swirling purple fog.\n\nRight before them, the mountain road split into two completely identical dirt paths disappearing into thick mist—while towering above the fork hovered the giant, unblinking stone Eye of Truth.","advanceNarrationZh":"翻過重重幽谷，凱和 String 步入了一條籠罩在濃郁紫色霧氣中的寂靜高原峽谷。\n\n眼前道路突然分岔成兩條無論泥土顏色、草木甚至石塊位置都一模一樣的詭異小徑；而在岔路正上方，正懸浮著一顆巨大而沉靜的「真理之眼」。","advanceDialogueEn":"Kai: \"Both dirt roads look completely identical in this purple mist... which one is a trap?\"","advanceDialogueZh":"小英雄凱：「兩條路在這片紫霧裡看起來完全一模一樣……哪一條才是暗藏危機的幻象陷阱呢？」","imageMobile":"assets/scenes-mobile/41_CH09_S01.webp"},{"pageNumber":42,"sceneIndex":2,"sceneId":"CH09_S02","image":"assets/scenes/42_CH09_S02.webp","titleEn":"Awakening SIGHT Vision & == Eyebrows","titleZh":"覺醒真視之眼與 == 平行雙眉","narrationEn":"Summoning the SIGHT spell, Kai's eyes flared with radiant light and his eyebrows sharpened into glowing parallel lines (==)—instantly exposing the fake path's unstable glitching code!","narrationZh":"凱召喚真視咒語——他的雙眼閃耀璀璨光芒，眉毛化為兩道發光的平行線（==）！瞬間看穿整片大地的底層程式碼，假路上的錯亂幻影無所遁形！","dialogueEn":"String (telepathic): \"THE LEFT PATH IS GLITCHING!\"","dialogueZh":"String（心電感應）：「左邊那條路的程式在閃爍出錯！」","spellCode":"# Sight Eyes (==) reveal true vs. fake code","spellLabelEn":"== SIGHT Awakens","spellLabelZh":"真視雙眼覺醒","zone":"ENV_R09","mood":"razor-sharp clarity and awe","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Ordinary eyes couldn't tell real stone from dark illusion—so Kai summoned the tenth Ancient Spell: SIGHT!\n\nInstantly, Kai's eyes flared with luminous radiant light and his eyebrows sharpened into twin glowing parallel lines (==), lifting the veil of ordinary vision to expose the fake path's unstable, glitching broken code alongside the true path's clean, honest logic.","advanceNarrationZh":"肉眼無法穿透邪惡法術編織的假象，於是凱集中精神，發動第十道古老善咒——SIGHT 真視之瞳！\n\n霎時之間，凱的雙眸綻放璀璨星輝，雙眉化作兩條筆直發光的平行線（==）！在真視之瞳下，表象的霧紗瞬間褪去，揭露出左方假路下方其實是扭曲亂碼與破損幻影，唯有右邊真路散發出穩定清澈的邏輯光輝。","advanceDialogueEn":"Kai: \"Now I see beneath the mist—one trail flickers with broken glitches while the other shines solid and true!\"","advanceDialogueZh":"小英雄凱：「我看穿霧氣底層了——左邊這條閃滿破碎亂碼，右邊這條才閃耀著真實穩固的邏輯光芒！」","imageMobile":"assets/scenes-mobile/42_CH09_S02.webp"},{"pageNumber":43,"sceneIndex":3,"sceneId":"CH09_S03","image":"assets/scenes/43_CH09_S03.webp","titleEn":"Comparing the Code: print(100 > 0)","titleZh":"施展比較魔法：print(100 > 0)","narrationEn":"Looking steadily through the illusions, Kai raised his Wizard's Blade and cast: print(100 > 0) straight toward the towering Eye of Truth!","narrationZh":"看穿一切虛假後，凱堅定舉起法師之劍，朝真理之眼施展比較咒語：print(100 > 0)！","dialogueEn":"Kai: \"print(100 > 0)! True!\"","dialogueZh":"小英雄凱：「print(100 > 0)！結果是 True！」","spellCode":"Spell: print(100 > 0)","spellLabelEn":"Spell 10: SIGHT (> < ==)","spellLabelZh":"第十咒：SIGHT 比較魔法 (> < ==)","zone":"ENV_R09","mood":"commanding truth","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Raising his balanced wizard's wand toward the hovering stone archway, Kai aimed his sharpened == SIGHT directly at the numbers floating above the fork and cast his formal comparison test: print(100 > 0).","advanceNarrationZh":"凱舉起矮人鍛造的新魔杖指向高懸的真理石門，讓閃耀着 == 雙線光芒的眼神鎖定岔路上的數值，朗聲吟唱比較咒語：print(100 > 0)！","advanceDialogueEn":"Kai: \"Let the truth speak! print(100 > 0)!\"","advanceDialogueZh":"小英雄凱：「讓真實顯現吧！print(100 > 0)！」","imageMobile":"assets/scenes-mobile/43_CH09_S03.webp"},{"pageNumber":44,"sceneIndex":4,"sceneId":"CH09_S04","image":"assets/scenes/44_CH09_S04.webp","titleEn":"Shattering the Fake Path (TRUE!)","titleZh":"真理之眼回響 TRUE！擊碎幻影道路","narrationEn":"\"TRUE!\" boomed the Eye of Truth, shattering the fake path into glittering glass shards and leaving only the true road open straight to the summit!","narrationZh":"「TRUE！」真理之眼發出洪亮回響，假的道路瞬間像玻璃一樣碎裂消散，只留下通往山頂的真實大道！","dialogueEn":"Kai: \"One more step to the summit—let's go, String!\"","dialogueZh":"小英雄凱：「就快到山頂了——我們走吧，String！」","spellCode":"# TRUE! Mirage shattered","spellLabelEn":"Truth Revealed","spellLabelZh":"幻象破滅","zone":"ENV_R09","mood":"clarifying triumph","palette":["#1F2A44","#2ECC71","#6B3FA0","#FDE08D"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"TRUE!\" boomed the giant Eye of Truth across the gorge.\n\nIn a dazzling cascade of silver sound, the fake mirage path shattered into shimmering purple glass dust—leaving only the true sunlit trail clean and wide open up toward the windswept summit!","advanceNarrationZh":"「TRUE！（真實成立！）」真理之眼發出震動整座山谷的宏亮宣告。\n\n伴隨清脆的崩裂聲，左邊整條偽裝岔路如紫水晶玻璃般碎成點點微光消散在空氣裡——只留下那條真正通往高山之巔的坦途！","advanceDialogueEn":"Eye of Truth: \"TRUE!\" · Kai: \"The mirage shattered, String! Let's climb to the summit!\"","advanceDialogueZh":"真理之眼：「TRUE！」· 小英雄凱：「幻影碎掉了，String！我們一口氣登上山頂吧！」","imageMobile":"assets/scenes-mobile/44_CH09_S04.webp"}],"chapterUrl":"chapters/chapter-11.html","chapterAdvanceUrl":"chapters/chapter-11-advance.html","paragraphsAdvanceEn":["Blocked in purple mist by two completely identical dirt roads beneath the giant Eye of Truth, Kai awakened SIGHT—turning his eyes bright and his eyebrows into glowing parallel bars (==) to spot glitching mirage code beneath the trap.","Casting print(100 > 0) drew a booming \"TRUE!\" that shattered the fake path into glass and cleared the true summit trail ahead."],"paragraphsAdvanceZh":["在真理之眼下的紫色濃霧岔路前，兩條路看起來毫無差別；凱及時喚醒真視之瞳 SIGHT，讓雙眉化作閃亮平行線（==）看破底下跳動的假亂碼。","一聲 print(100 > 0) 換來「TRUE！」的莊嚴裁決，假幻象應聲如玻璃般碎裂，指明了真正通往山頂的大道。"],"imageMobile":"assets/scenes-mobile/43_CH09_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

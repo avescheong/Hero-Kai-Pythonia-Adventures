@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-08","partNumber":8,"code":"SPELL 7 · WHISPER","zone":"ENV_R06","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契","subtitleEn":"Spell 7: # Secret human note · Leave helpful notes that magic ignores","subtitleZh":"第七咒：# 靜音記號 · 魔法不會聽見的人類悄悄話","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/31_CH06_S03.webp","imageAltEn":"Quiet ancient threshold guarded by gentle woodland light where Kai and String tiptoe silently","imageAltZh":"寧靜的古老森林書庫入口，凱與 String 躡手躡腳安靜穿行","castIds":["hero-kai","string"],"paragraphsEn":["High along the mountain cliff, Kai and String arrived at towering bronze doors. Curled right across the doorway was a gigantic red dragon, fast asleep with tiny curls of smoke drifting from her nose!","If Kai cast a normal spell, the loud magic sparks would surely wake the dragon. Just then, the translucent Ghost Librarian drifted through the door holding a glowing silver feather quill to her lips: \"Shhh!\"","She explained that wizards often need to leave clear notes for humans to read—without making Pythonia's magic run out loud. With a gentle stroke of her quill, she traced a shimmering # Mute Mark onto Kai's cheek.","Kai raised his Spellbook and quietly typed a whispered note: # I am going inside the library. Because of #, Pythonia ignored the line completely! The red dragon kept snoring peacefully while Kai and String tiptoed safely inside."],"paragraphsZh":["沿著山壁小路，凱和 String 來到一扇巨大的青銅門前。門檻上正盤踞著一頭正在打呼的巨大紅龍，鼻孔還冒著一縷縷小煙！","如果施展普通咒語，響亮的魔法火花一定會吵醒紅龍。這時，戴著眼鏡的透明幽靈圖書管理員飄出門縫，將發光的銀羽毛筆貼在嘴唇前：「噓——！」","她告訴凱，法師們常需要寫下給人類看的筆記，但又不能讓王國的魔法引擎把它當成指令執行。她輕輕用羽毛筆在凱臉頰上畫了一個閃亮的井字靜音符號「#」。","凱在咒語書裡安靜寫下：# I am going inside the library. 因為開頭有「#」，魔法系統完全忽略了這行悄悄話！紅龍繼續香甜沉睡，凱和 String 順利溜進了古書庫。"],"dialogue":[{"speakerEn":"Ghost Librarian","speakerZh":"幽靈圖書管理員","lineEn":"\"Shhh! Humans need to leave notes for each other, but the magic must never hear them. Use the Mute Mark #!\"","lineZh":"「噓！人類需要互相留筆記，但不能讓魔法聽見。只要在最前面加上靜音記號 # 就行了！」"}],"spell":{"nameEn":"Spell 7: WHISPER — Comment (#)","nameZh":"第七咒：WHISPER 靜音筆記 — 井字號 (#)","code":"# I am going inside the library.","explainEn":"Anything written after # on a line is a comment—it helps human readers understand code, and Python skips it silently.","explainZh":"寫在「#」後面的文字叫做註解，是給人類夥伴看的小筆記，電腦會安安靜靜跳過它不執行。","demoBtnEn":"Tiptoe Silently Past Dragon 🐉","demoBtnZh":"悄悄溜過睡龍身旁 🐉","demoOutputEn":"(Silence... zzz... 🐉 The dragon sleeps on while your # note stays hidden!)","demoOutputZh":"（一片安靜……呼嚕嚕……🐉 紅龍繼續熟睡，只有人類看得見 # 筆記！）"},"scenes":[{"pageNumber":29,"sceneIndex":1,"sceneId":"CH06_S01","image":"assets/scenes/29_CH06_S01.webp","titleEn":"The Giant Red Dragon at the Bronze Doors","titleZh":"青銅大門前沉睡的巨紅龍","narrationEn":"The mountain trail brought Kai and String to massive bronze doors guarded by a gigantic crimson dragon curled fast asleep across the threshold.","narrationZh":"山路帶著凱與 String 來到巍峨的青銅圖書館大門前，一隻巨大的紅龍正盤踞在門檻上呼呼大睡。","dialogueEn":"Kai: \"Real code magic will wake her up!\"","dialogueZh":"小英雄凱：「如果施展真正的魔法，一定會吵醒牠！」","spellCode":"# Careful not to wake the dragon","spellLabelEn":"Sleeping Threshold","spellLabelZh":"睡龍守門","zone":"ENV_R06","mood":"hushed suspense","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"7. WHISPER — The Sleeping Dragon's Library (# = Mute the Line = Comment)","advanceSectionZh":"七、WHISPER 低語咒 — 沉睡巨龍的圖書館（靜音符號：#）","advanceNarrationEn":"The winding mountain path led Kai and String past towering stone pillars straight to a massive pair of ancient bronze library doors.\n\nCurled fast asleep right across the stone threshold lay a gigantic red dragon—her ruby-bright scales gleaming in the twilight as deep, heavy rumbles rose and fell from her chest.","advanceNarrationZh":"蜿蜒山路帶著凱和 String 穿過高聳的古石柱群，來到一扇氣勢磅礴的青銅圖書館大門前。\n\n然而就在青銅門檻正前方，一頭身軀龐大如小山的紅龍正蜷曲沉睡著——她宛如紅寶石般的鱗片在暮色中閃閃發亮，胸口每呼吸一次都傳出低沉的轟鳴。","advanceDialogueEn":"Kai (whispering): \"Step carefully, String... one loud spark from my Spellbook could wake that dragon!\"","advanceDialogueZh":"小英雄凱（氣音小聲）：「腳步放輕，String……要是不小心觸發吵鬧的魔法火花，這頭巨龍一定會醒過來！」"},{"pageNumber":30,"sceneIndex":2,"sceneId":"CH06_S02","image":"assets/scenes/30_CH06_S02.webp","titleEn":"The Ghost Librarian's # Cheek Mark","titleZh":"幽靈圖書館員的 # 靜音印記","narrationEn":"Out drifted the translucent Ghost Librarian, holding a glowing feather quill to her lips. \"Shhh! Magic must never hear human notes. Use the Mute Mark #!\" She traced a shimmering # right onto Kai's cheek.","narrationZh":"透明的幽靈圖書館員飄了出來，將發光的羽毛筆豎在嘴唇前輕聲說：「噓！人類留下的筆記不能讓魔法聽見，要用靜音記號 #！」說完在凱的臉頰畫上發光的 # 符號。","dialogueEn":"Ghost Librarian: \"Shhh! Use the Mute Mark #!\"","dialogueZh":"幽靈圖書館員：「噓！用靜音符號 # 就不會驚動魔法！」","spellCode":"# Mute Mark traced on cheek","spellLabelEn":"The Mute Mark #","spellLabelZh":"臉頰上的 # 印記","zone":"ENV_R06","mood":"playful tiptoe secrecy","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Drifting softly out from the doorway shadows appeared the Ghost Librarian in flowing robes, pressing a glowing feather quill to her lips. \"Shhh!\" she whispered. \"Humans need to leave notes for each other, but the Pythonia magic must never hear them. Use the Mute Mark #—a secret whisper only humans read and the magic completely ignores!\"\n\nWith a delicate stroke of her glowing quill, she traced a shimmering # mark right onto Kai's cheek.","advanceNarrationZh":"大門陰影中輕輕飄出一位身披飄逸長袍的「幽靈圖書館員」，她將散發柔和微光的羽毛筆輕抵唇前：「噓——！」她輕聲細語道：「人類需要彼此寫筆記交流，但不能讓蟒蛇王國的魔法聽見或執行！用靜音符號 # ——那是只有人類看得見、魔法系統卻會完全忽略的祕密悄悄話！」\n\n她伸出羽毛筆尖，溫柔地在凱的臉頰上輕輕畫下一枚發著微光的「#」印記。","advanceDialogueEn":"Ghost Librarian: \"Shhh! Use the Mute Mark #—a whisper only humans read and the magic ignores!\"","advanceDialogueZh":"幽靈圖書館員：「噓——！用靜音符號 # ，讓這句話只給人類閱讀，魔法會完全保持安靜。」"},{"pageNumber":31,"sceneIndex":3,"sceneId":"CH06_S03","image":"assets/scenes/31_CH06_S03.webp","titleEn":"Typing the Silent Note: # I am going inside the library.","titleZh":"寫下靜音筆記：# I am going inside the library.","narrationEn":"Kai raised his Spellbook and typed a quiet, muted note into the air: # I am going inside the library. Pythonia's loud magic ignored it completely!","narrationZh":"凱輕手輕腳舉起咒語書，在空中寫下一行不會觸發魔法的悄悄話：# I am going inside the library. 魔法果然完全沒有響起！","dialogueEn":"Kai (whispering): \"# I am going inside the library.\"","dialogueZh":"小英雄凱（低聲）：「# 我正要走進圖書館。」","spellCode":"Spell: # I am going inside the library.","spellLabelEn":"Spell 7: WHISPER (# Comment)","spellLabelZh":"第七咒：WHISPER 靜音筆記 (#)","zone":"ENV_R06","mood":"whisper-quiet relief","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Stepping gingerly past the giant dragon's twitching crimson tail, Kai raised his Spellbook, held his breath, and quietly traced a silent note into the air:\n\n# I am going inside the library.\n\nBecause the Mute Mark # silenced the entire line for Pythonia's magic engine, not a single spark cracked or hummed through the quiet dusk!","advanceNarrationZh":"凱屏住呼吸，躡手躡腳地繞過巨龍微微抽動的赤紅長尾，抬起《古老咒語書》，安靜地在空氣中寫下一行給自己看的小紙條：\n\n# I am going inside the library.\n\n由於句首的靜音號 # 讓整行文字在魔法眼中完全靜音，四周沒有迸出一丁點火花或聲響！","advanceDialogueEn":"Kai (silently): \"# I am going inside the library.\"","advanceDialogueZh":"小英雄凱（無聲書寫）：「# I am going inside the library.（＃我要走進圖書館了）」"},{"pageNumber":32,"sceneIndex":4,"sceneId":"CH06_S04","image":"assets/scenes/32_CH06_S04.webp","titleEn":"Starlit Library Hall & Hidden Trapdoor","titleZh":"星光古書庫與秘密旋轉階梯","narrationEn":"The dragon snored peacefully on as Kai and String tiptoed safely inside the starlit Ancient Library—discovering a hidden spiral staircase behind the reading desk!","narrationZh":"巨龍繼續安穩打呼，凱與 String 躡手躡腳安全溜進星光閃耀的古老圖書館——在書桌後方發現了一座通往地底的秘密旋轉階梯！","dialogueEn":"Kai: \"Safe and sound, String! Look behind the desk!\"","dialogueZh":"小英雄凱：「安全過關了，String！你看書桌後面！」","spellCode":"# Hidden spiral staircase discovered","spellLabelEn":"Inside the Library","spellLabelZh":"潛入古書庫","zone":"ENV_R06","mood":"awe-inspiring quiet discovery","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The giant red dragon snored peacefully on. With String tiptoeing quietly at his boots, Kai slipped through the bronze doors into the quiet, starlit hall of the Ancient Library.\n\nBetween towering shelves of floating leather tomes, String's keen nose began sniffing behind the oak reading desk—uncovering a hidden stone trapdoor glowing softly with prismatic crystal light!","advanceNarrationZh":"沉睡的紅寶石巨龍依然打著平穩的呼嚕，連眼皮也沒動一下。String 踮著小肉墊無聲跟隨，一人一狗順利滑進星光閃爍、萬籟俱寂的古老圖書館大廳。\n\n就在一排排飄浮典籍的橡木書桌後方，靈敏的 String 用鼻子東聞西嗅——竟然在地板角落嗅出了一扇正透出七彩微光的隱藏地下暗門！","advanceDialogueEn":"String: \"*sniff sniff*\" · Kai: \"Good find, String! Look—there's a glowing trapdoor hidden behind this desk!\"","advanceDialogueZh":"String：「（用力嗅聞）」· 小英雄凱：「好樣的 String！你看——書桌後面藏著一道發光的地下活板門！」"}],"chapterUrl":"chapters/chapter-08.html","chapterAdvanceUrl":"chapters/chapter-08-advance.html","paragraphsAdvanceEn":["Finding a gigantic ruby-scaled red dragon curled fast asleep across the Ancient Library doors, Kai learned the Whisper spell from the drifting Ghost Librarian, who traced a glowing # mark onto his cheek.","Typing a silent # human note let Kai and tiptoeing String slip peacefully past the snoring dragon into the starlit hall—where String's keen nose uncovered a prismatic hidden trapdoor behind the reading desk!"],"paragraphsAdvanceZh":["圖書館青銅大門前躺著一頭沉睡的紅寶石巨龍！幸虧幽靈圖書館員輕聲指點，並在凱臉頰點上發光的「#」靜音符號。","寫下只給人類看、魔法卻會保持安靜的「# 筆記」後，一人一狗無聲穿過睡龍踏進大廳——而靈敏的 String 更在書桌後方嗅出了一道透著彩光的地下秘門！"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-08","partNumber":8,"code":"SPELL 7 · WHISPER","zone":"ENV_R06","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契","subtitleEn":"Spell 7: # Secret human note · Leave helpful notes that magic ignores","subtitleZh":"第七咒：# 靜音記號 · 魔法不會聽見的人類悄悄話","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/31_CH06_S03.webp","imageAltEn":"Quiet ancient threshold guarded by gentle woodland light where Kai and String tiptoe silently","imageAltZh":"寧靜的古老森林書庫入口，凱與 String 躡手躡腳安靜穿行","castIds":["hero-kai","string"],"paragraphsEn":["High along the mountain cliff, Kai and String arrived at towering bronze doors. Curled right across the doorway was a gigantic red dragon, fast asleep with tiny curls of smoke drifting from her nose!","If Kai cast a normal spell, the loud magic sparks would surely wake the dragon. Just then, the translucent Ghost Librarian drifted through the door holding a glowing silver feather quill to her lips: \"Shhh!\"","She explained that wizards often need to leave clear notes for humans to read—without making Pythonia's magic run out loud. With a gentle stroke of her quill, she traced a shimmering # Mute Mark onto Kai's cheek.","Kai raised his Spellbook and quietly typed a whispered note: # I am going inside the library. Because of #, Pythonia ignored the line completely! The red dragon kept snoring peacefully while Kai and String tiptoed safely inside."],"paragraphsZh":["沿著山壁小路，凱和 String 來到一扇巨大的青銅門前。門檻上正盤踞著一頭正在打呼的巨大紅龍，鼻孔還冒著一縷縷小煙！","如果施展普通咒語，響亮的魔法火花一定會吵醒紅龍。這時，戴著眼鏡的透明幽靈圖書管理員飄出門縫，將發光的銀羽毛筆貼在嘴唇前：「噓——！」","她告訴凱，法師們常需要寫下給人類看的筆記，但又不能讓王國的魔法引擎把它當成指令執行。她輕輕用羽毛筆在凱臉頰上畫了一個閃亮的井字靜音符號「#」。","凱在咒語書裡安靜寫下：# I am going inside the library. 因為開頭有「#」，魔法系統完全忽略了這行悄悄話！紅龍繼續香甜沉睡，凱和 String 順利溜進了古書庫。"],"dialogue":[{"speakerEn":"Ghost Librarian","speakerZh":"幽靈圖書管理員","lineEn":"\"Shhh! Humans need to leave notes for each other, but the magic must never hear them. Use the Mute Mark #!\"","lineZh":"「噓！人類需要互相留筆記，但不能讓魔法聽見。只要在最前面加上靜音記號 # 就行了！」"}],"spell":{"nameEn":"Spell 7: WHISPER — Comment (#)","nameZh":"第七咒：WHISPER 靜音筆記 — 井字號 (#)","code":"# I am going inside the library.","explainEn":"Anything written after # on a line is a comment—it helps human readers understand code, and Python skips it silently.","explainZh":"寫在「#」後面的文字叫做註解，是給人類夥伴看的小筆記，電腦會安安靜靜跳過它不執行。","demoBtnEn":"Tiptoe Silently Past Dragon 🐉","demoBtnZh":"悄悄溜過睡龍身旁 🐉","demoOutputEn":"(Silence... zzz... 🐉 The dragon sleeps on while your # note stays hidden!)","demoOutputZh":"（一片安靜……呼嚕嚕……🐉 紅龍繼續熟睡，只有人類看得見 # 筆記！）"},"scenes":[{"pageNumber":29,"sceneIndex":1,"sceneId":"CH06_S01","image":"assets/scenes/29_CH06_S01.webp","titleEn":"The Giant Red Dragon at the Bronze Doors","titleZh":"青銅大門前沉睡的巨紅龍","narrationEn":"The mountain trail brought Kai and String to massive bronze doors guarded by a gigantic crimson dragon curled fast asleep across the threshold.","narrationZh":"山路帶著凱與 String 來到巍峨的青銅圖書館大門前，一隻巨大的紅龍正盤踞在門檻上呼呼大睡。","dialogueEn":"Kai: \"Real code magic will wake her up!\"","dialogueZh":"小英雄凱：「如果施展真正的魔法，一定會吵醒牠！」","spellCode":"# Careful not to wake the dragon","spellLabelEn":"Sleeping Threshold","spellLabelZh":"睡龍守門","zone":"ENV_R06","mood":"hushed suspense","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"7. WHISPER — The Sleeping Dragon's Library (# = Mute the Line = Comment)","advanceSectionZh":"七、WHISPER 低語咒 — 沉睡巨龍的圖書館（靜音符號：#）","advanceNarrationEn":"The winding mountain path led Kai and String past towering stone pillars straight to a massive pair of ancient bronze library doors.\n\nCurled fast asleep right across the stone threshold lay a gigantic red dragon—her ruby-bright scales gleaming in the twilight as deep, heavy rumbles rose and fell from her chest.","advanceNarrationZh":"蜿蜒山路帶著凱和 String 穿過高聳的古石柱群，來到一扇氣勢磅礴的青銅圖書館大門前。\n\n然而就在青銅門檻正前方，一頭身軀龐大如小山的紅龍正蜷曲沉睡著——她宛如紅寶石般的鱗片在暮色中閃閃發亮，胸口每呼吸一次都傳出低沉的轟鳴。","advanceDialogueEn":"Kai (whispering): \"Step carefully, String... one loud spark from my Spellbook could wake that dragon!\"","advanceDialogueZh":"小英雄凱（氣音小聲）：「腳步放輕，String……要是不小心觸發吵鬧的魔法火花，這頭巨龍一定會醒過來！」","imageMobile":"assets/scenes-mobile/29_CH06_S01.webp"},{"pageNumber":30,"sceneIndex":2,"sceneId":"CH06_S02","image":"assets/scenes/30_CH06_S02.webp","titleEn":"The Ghost Librarian's # Cheek Mark","titleZh":"幽靈圖書館員的 # 靜音印記","narrationEn":"Out drifted the translucent Ghost Librarian, holding a glowing feather quill to her lips. \"Shhh! Magic must never hear human notes. Use the Mute Mark #!\" She traced a shimmering # right onto Kai's cheek.","narrationZh":"透明的幽靈圖書館員飄了出來，將發光的羽毛筆豎在嘴唇前輕聲說：「噓！人類留下的筆記不能讓魔法聽見，要用靜音記號 #！」說完在凱的臉頰畫上發光的 # 符號。","dialogueEn":"Ghost Librarian: \"Shhh! Use the Mute Mark #!\"","dialogueZh":"幽靈圖書館員：「噓！用靜音符號 # 就不會驚動魔法！」","spellCode":"# Mute Mark traced on cheek","spellLabelEn":"The Mute Mark #","spellLabelZh":"臉頰上的 # 印記","zone":"ENV_R06","mood":"playful tiptoe secrecy","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Drifting softly out from the doorway shadows appeared the Ghost Librarian in flowing robes, pressing a glowing feather quill to her lips. \"Shhh!\" she whispered. \"Humans need to leave notes for each other, but the Pythonia magic must never hear them. Use the Mute Mark #—a secret whisper only humans read and the magic completely ignores!\"\n\nWith a delicate stroke of her glowing quill, she traced a shimmering # mark right onto Kai's cheek.","advanceNarrationZh":"大門陰影中輕輕飄出一位身披飄逸長袍的「幽靈圖書館員」，她將散發柔和微光的羽毛筆輕抵唇前：「噓——！」她輕聲細語道：「人類需要彼此寫筆記交流，但不能讓蟒蛇王國的魔法聽見或執行！用靜音符號 # ——那是只有人類看得見、魔法系統卻會完全忽略的祕密悄悄話！」\n\n她伸出羽毛筆尖，溫柔地在凱的臉頰上輕輕畫下一枚發著微光的「#」印記。","advanceDialogueEn":"Ghost Librarian: \"Shhh! Use the Mute Mark #—a whisper only humans read and the magic ignores!\"","advanceDialogueZh":"幽靈圖書館員：「噓——！用靜音符號 # ，讓這句話只給人類閱讀，魔法會完全保持安靜。」","imageMobile":"assets/scenes-mobile/30_CH06_S02.webp"},{"pageNumber":31,"sceneIndex":3,"sceneId":"CH06_S03","image":"assets/scenes/31_CH06_S03.webp","titleEn":"Typing the Silent Note: # I am going inside the library.","titleZh":"寫下靜音筆記：# I am going inside the library.","narrationEn":"Kai raised his Spellbook and typed a quiet, muted note into the air: # I am going inside the library. Pythonia's loud magic ignored it completely!","narrationZh":"凱輕手輕腳舉起咒語書，在空中寫下一行不會觸發魔法的悄悄話：# I am going inside the library. 魔法果然完全沒有響起！","dialogueEn":"Kai (whispering): \"# I am going inside the library.\"","dialogueZh":"小英雄凱（低聲）：「# 我正要走進圖書館。」","spellCode":"Spell: # I am going inside the library.","spellLabelEn":"Spell 7: WHISPER (# Comment)","spellLabelZh":"第七咒：WHISPER 靜音筆記 (#)","zone":"ENV_R06","mood":"whisper-quiet relief","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Stepping gingerly past the giant dragon's twitching crimson tail, Kai raised his Spellbook, held his breath, and quietly traced a silent note into the air:\n\n# I am going inside the library.\n\nBecause the Mute Mark # silenced the entire line for Pythonia's magic engine, not a single spark cracked or hummed through the quiet dusk!","advanceNarrationZh":"凱屏住呼吸，躡手躡腳地繞過巨龍微微抽動的赤紅長尾，抬起《古老咒語書》，安靜地在空氣中寫下一行給自己看的小紙條：\n\n# I am going inside the library.\n\n由於句首的靜音號 # 讓整行文字在魔法眼中完全靜音，四周沒有迸出一丁點火花或聲響！","advanceDialogueEn":"Kai (silently): \"# I am going inside the library.\"","advanceDialogueZh":"小英雄凱（無聲書寫）：「# I am going inside the library.（＃我要走進圖書館了）」","imageMobile":"assets/scenes-mobile/31_CH06_S03.webp"},{"pageNumber":32,"sceneIndex":4,"sceneId":"CH06_S04","image":"assets/scenes/32_CH06_S04.webp","titleEn":"Starlit Library Hall & Hidden Trapdoor","titleZh":"星光古書庫與秘密旋轉階梯","narrationEn":"The dragon snored peacefully on as Kai and String tiptoed safely inside the starlit Ancient Library—discovering a hidden spiral staircase behind the reading desk!","narrationZh":"巨龍繼續安穩打呼，凱與 String 躡手躡腳安全溜進星光閃耀的古老圖書館——在書桌後方發現了一座通往地底的秘密旋轉階梯！","dialogueEn":"Kai: \"Safe and sound, String! Look behind the desk!\"","dialogueZh":"小英雄凱：「安全過關了，String！你看書桌後面！」","spellCode":"# Hidden spiral staircase discovered","spellLabelEn":"Inside the Library","spellLabelZh":"潛入古書庫","zone":"ENV_R06","mood":"awe-inspiring quiet discovery","palette":["#8A79A6","#EFE4CE","#5A3826","#A86454"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The giant red dragon snored peacefully on. With String tiptoeing quietly at his boots, Kai slipped through the bronze doors into the quiet, starlit hall of the Ancient Library.\n\nBetween towering shelves of floating leather tomes, String's keen nose began sniffing behind the oak reading desk—uncovering a hidden stone trapdoor glowing softly with prismatic crystal light!","advanceNarrationZh":"沉睡的紅寶石巨龍依然打著平穩的呼嚕，連眼皮也沒動一下。String 踮著小肉墊無聲跟隨，一人一狗順利滑進星光閃爍、萬籟俱寂的古老圖書館大廳。\n\n就在一排排飄浮典籍的橡木書桌後方，靈敏的 String 用鼻子東聞西嗅——竟然在地板角落嗅出了一扇正透出七彩微光的隱藏地下暗門！","advanceDialogueEn":"String: \"*sniff sniff*\" · Kai: \"Good find, String! Look—there's a glowing trapdoor hidden behind this desk!\"","advanceDialogueZh":"String：「（用力嗅聞）」· 小英雄凱：「好樣的 String！你看——書桌後面藏著一道發光的地下活板門！」","imageMobile":"assets/scenes-mobile/32_CH06_S04.webp"}],"chapterUrl":"chapters/chapter-08.html","chapterAdvanceUrl":"chapters/chapter-08-advance.html","paragraphsAdvanceEn":["Finding a gigantic ruby-scaled red dragon curled fast asleep across the Ancient Library doors, Kai learned the Whisper spell from the drifting Ghost Librarian, who traced a glowing # mark onto his cheek.","Typing a silent # human note let Kai and tiptoeing String slip peacefully past the snoring dragon into the starlit hall—where String's keen nose uncovered a prismatic hidden trapdoor behind the reading desk!"],"paragraphsAdvanceZh":["圖書館青銅大門前躺著一頭沉睡的紅寶石巨龍！幸虧幽靈圖書館員輕聲指點，並在凱臉頰點上發光的「#」靜音符號。","寫下只給人類看、魔法卻會保持安靜的「# 筆記」後，一人一狗無聲穿過睡龍踏進大廳——而靈敏的 String 更在書桌後方嗅出了一道透著彩光的地下秘門！"],"imageMobile":"assets/scenes-mobile/31_CH06_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

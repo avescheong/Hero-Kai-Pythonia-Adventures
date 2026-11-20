@@ -1,0 +1,137 @@
+{
+  "schema_version": "3.0.0",
+  "status": "pending_image_quota_reset",
+  "quota_error_observed": "429 RESOURCE_EXHAUSTED on gemini-3.1-flash-image (reset at 2026-11-13T12:00:45Z / 20:00:45 +08:00)",
+  "style_preamble": "16:9 widescreen children's fantasy storybook illustration, Studio Ghibli meets Akira Toriyama Dragon Quest art style, warm watercolor wash and fine sepia-umbrian ink contours (#3E2B23) on textured cream cotton paper (#FAF4E8), borderless edge-to-edge, text-free, no labels, no watermarks.",
+  "pending_character_sheets": [
+    {
+      "character": "String",
+      "folder": "02_Source_Assets/Characters/String/",
+      "prompt_pack": "02_Source_Assets/Characters/String/string_mandatory_sheet_prompts.md",
+      "required_files": [
+        "01_Turnaround_4View.png",
+        "02_Equipment_and_Props_Callout.png",
+        "03_Action_Poses_Sheet.png",
+        "04_Expressions_and_Phonemes.png",
+        "05_Wardrobe_and_Color_Key.png"
+      ]
+    },
+    {
+      "character": "Master_Grimsby",
+      "folder": "02_Source_Assets/Characters/Master_Grimsby/",
+      "prompt_pack": "02_Source_Assets/Characters/Master_Grimsby/master_grimsby_mandatory_sheet_prompts.md",
+      "required_files": [
+        "01_Turnaround_4View.png",
+        "02_Equipment_and_Props_Callout.png",
+        "03_Action_Poses_Sheet.png",
+        "04_Expressions_and_Phonemes.png",
+        "05_Wardrobe_and_Color_Key.png"
+      ]
+    },
+    {
+      "character": "Spell_Guardian",
+      "folder": "02_Source_Assets/Characters/Spell_Guardian/",
+      "prompt_pack": "02_Source_Assets/Characters/Spell_Guardian/spell_guardian_mandatory_sheet_prompts.md",
+      "required_files": [
+        "01_Turnaround_4View.png",
+        "02_Equipment_and_Props_Callout.png",
+        "03_Action_Poses_Sheet.png",
+        "04_Expressions_and_Phonemes.png",
+        "05_Wardrobe_and_Color_Key.png"
+      ]
+    }
+  ],
+  "story_website_scenes": [
+    {
+      "part": 1,
+      "id": "part-01",
+      "target_asset": "assets/scenes/ch00-prologue.webp",
+      "scene_refs": ["PRO_S01", "PRO_S02", "PRO_S03"],
+      "brief": "Kai pausing calmly at his cozy bedroom computer desk to help a stuck classmate as an emerald vortex of floating code opens, welcoming him into Pythonia beside the Great Wizard."
+    },
+    {
+      "part": 2,
+      "id": "part-02",
+      "scene_refs": ["CH01_S02", "CH01_S03"],
+      "target_asset": "assets/scenes/ch01-silent-village.webp",
+      "brief": "Misty cobblestone Silent Village square where Hero Kai kneels gently to comfort a frightened child and casts golden print('Hello!') by the stone well as bluebirds sing and Barnaby the Baker smiles."
+    },
+    {
+      "part": 3,
+      "id": "part-03",
+      "scene_refs": ["CH02_S02", "CH02_S03"],
+      "target_asset": "assets/scenes/ch02-loom-forest.webp",
+      "brief": "Inside Grandma Looma's warm sunlit cottage in Loom Forest draped in rainbow ribbons, Grandma Looma at her giant oak loom showing Kai the comma weave while a friendly golden-tan pup sniffs Kai's boots."
+    },
+    {
+      "part": 4,
+      "id": "part-04",
+      "scene_refs": ["CH03_S03"],
+      "target_asset": "assets/scenes/ch03-iron-outpost.webp",
+      "brief": "Rocky valley Iron Outpost open forge where the stout horned silver-bearded Blacksmith cheers as Kai strikes the ringing anvil to fuse two broken halves into a gleaming IronSword beside the golden pup."
+    },
+    {
+      "part": 5,
+      "id": "part-05",
+      "scene_refs": ["CH04_S03"],
+      "target_asset": "assets/scenes/ch04-whispering-forest.webp",
+      "brief": "Twilight moss-draped Whispering Forest with glowing mushrooms and fireflies; a luminous blue Forest Spirit parts the brambles as Kai pauses quietly to name his loyal pup String."
+    },
+    {
+      "part": 6,
+      "id": "part-06",
+      "scene_refs": ["CH05_S03", "CH05_S04"],
+      "target_asset": "assets/scenes/ch05-cursed-riverbank.webp",
+      "brief": "Barren grey Cursed Riverbank beside Great Wizard; String sits proudly guarding a golden-padlocked wooden chest (gold = 100) glowing beside Kai's silver Spatial Dimensional Pocket pouch."
+    },
+    {
+      "part": 7,
+      "id": "part-07",
+      "scene_refs": ["CH05A_S03", "CH05A_S04"],
+      "target_asset": "assets/scenes/ch05a-three-chests.webp",
+      "brief": "Echoing mountain cavern with ruby HP, sapphire Mana, and Gold chests locked at once, followed by the Great Wizard dissolving into emerald starlight beneath a silver-leafed farewell tree."
+    },
+    {
+      "part": 8,
+      "id": "part-08",
+      "scene_refs": ["CH06_S02", "CH06_S03"],
+      "target_asset": "assets/scenes/ch06-sleeping-dragon.webp",
+      "brief": "Colossal crimson red dragon curled fast asleep across bronze Ancient Library doors while the translucent Ghost Librarian whispers 'Shhh!' and traces a glowing # Mute Mark beside Kai and String."
+    },
+    {
+      "part": 9,
+      "id": "part-09",
+      "scene_refs": ["CH07_S02", "CH07_S03"],
+      "target_asset": "assets/scenes/ch07-sunnybrook-spirits.webp",
+      "brief": "Sunlit Sunnybrook Village after a storm: String wears his glowing teal str scroll collar, the stone int golem lifts logs, the azure float droplet waters crops, and bool flashes beside Kai sharing bread with a hungry goblin."
+    },
+    {
+      "part": 10,
+      "id": "part-10",
+      "scene_refs": ["CH08_S03", "CH08_S04"],
+      "target_asset": "assets/scenes/ch08-dwarven-forge.webp",
+      "brief": "Subterranean Deep Dwarven Forge lit by molten gold crucibles; hatless fiery-bearded Master Grimsby with twin-forked ginger beard and brass rings fits gleaming Dwarven steel armor onto Kai beside String."
+    },
+    {
+      "part": 11,
+      "id": "part-11",
+      "scene_refs": ["CH09_S02", "CH09_S04"],
+      "target_asset": "assets/scenes/ch09-eye-of-truth.webp",
+      "brief": "Highland cliff crossroads beneath the towering Eye of Truth stone arch; Dwarven-armored Kai activates glowing parallel == Sight eyes, shattering a glitching mirage road into glass beside String."
+    },
+    {
+      "part": 12,
+      "id": "part-12",
+      "scene_refs": ["CH10_S03", "CH10_S04"],
+      "target_asset": "assets/scenes/ch10-final-crossroads.webp",
+      "brief": "Summit plateau with hooded Signpost-Keeper, three wooden signposts (DRAGON, TREASURE, HOME), golden colon (:) gates blazing open, and middle stone barrier dissolving before the Citadel of Core."
+    },
+    {
+      "part": 13,
+      "id": "part-13",
+      "scene_refs": ["CH11_S03", "CH11_S04"],
+      "target_asset": "assets/scenes/ch11-dawn-guardian.webp",
+      "brief": "Golden sunrise flooding the Citadel of Core; the cracked dark obsidian shell of the Bug King lies open as the tiny emerald Baby Praying Mantis Spell Guardian smiles warmly beside Dwarven-armored Kai and String."
+    }
+  ]
+}

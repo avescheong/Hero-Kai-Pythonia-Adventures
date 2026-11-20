@@ -1,0 +1,578 @@
+/* ============================================================================
+ * 03-comic-hub.css
+ * Hero Kai · Pythonia Webtoon Comic Reader — Series Hub & Episode Catalog
+ * ============================================================================ */
+
+.comic-hub {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 72px;
+}
+
+/* ---- Widescreen Webtoon Series Hero ------------------------------------- */
+.hub-hero {
+  position: relative;
+  min-height: 490px;
+  display: flex;
+  align-items: flex-end;
+  padding: 96px 24px 44px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--kc-border);
+}
+
+.hub-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(1.06) brightness(0.76);
+  transform: scale(1.02);
+}
+
+.hub-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11, 22, 18, 0.58) 0%, rgba(11, 22, 18, 0.35) 38%, rgba(11, 22, 18, 0.94) 86%, var(--sc-canvas) 100%),
+    linear-gradient(90deg, rgba(11, 22, 18, 0.85) 0%, rgba(11, 22, 18, 0.45) 55%, rgba(11, 22, 18, 0.2) 100%);
+}
+
+.hub-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 32px;
+  align-items: end;
+}
+
+.hub-cover-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--kc-gold);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+  background: var(--sc-surface);
+  aspect-ratio: 800 / 1132;
+}
+
+.hub-cover-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hub-cover-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(11, 22, 18, 0.88);
+  border: 1px solid var(--kc-gold);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hub-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hub-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(140, 240, 189, 0.14);
+  border: 1px solid var(--kc-border);
+  color: var(--sc-accent);
+}
+
+.hub-tag--gold {
+  background: rgba(255, 210, 133, 0.14);
+  border-color: var(--kc-border-warm);
+  color: var(--kc-gold);
+}
+
+.hub-title {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.9rem);
+  line-height: 1.12;
+  color: #fff8eb;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+.hub-subtitle {
+  margin: 0;
+  font-size: 1.04rem;
+  color: var(--kc-gold);
+  font-weight: 600;
+}
+
+.hub-synopsis {
+  margin: 0;
+  max-width: 66ch;
+  font-size: 0.95rem;
+  color: var(--sc-ink-soft);
+}
+
+.hub-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 6px 0;
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  color: var(--sc-ink-soft);
+}
+
+.hub-stat strong {
+  color: var(--sc-ink);
+}
+
+.hub-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.btn-webtoon-primary {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sc-accent), #4fd193);
+  color: var(--sc-accent-ink);
+  font-size: 0.94rem;
+  font-weight: 800;
+  box-shadow: 0 10px 28px rgba(140, 240, 189, 0.28);
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.btn-webtoon-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.btn-webtoon-secondary {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(18, 33, 27, 0.9);
+  border: 1px solid var(--kc-border-warm);
+  color: var(--kc-gold);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.btn-webtoon-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 210, 133, 0.14);
+}
+
+/* ---- Main Content Container --------------------------------------------- */
+.hub-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+}
+
+/* Reading Progress Banner */
+.progress-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--comic-radius-md);
+  background: var(--sc-surface);
+  border: 1px solid var(--kc-border);
+  margin-bottom: 24px;
+}
+
+.progress-strip__track {
+  flex: 1;
+  min-width: 180px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-strip__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--sc-accent), var(--kc-gold));
+  border-radius: 999px;
+  transition: width 300ms ease;
+}
+
+.progress-strip__label {
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  color: var(--sc-ink-soft);
+}
+
+/* Episode Section Header + Filters */
+.section-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-bar h2 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.45rem;
+  color: #fff8eb;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--kc-border);
+  background: var(--sc-surface);
+  color: var(--sc-ink);
+  font-size: 0.84rem;
+  min-width: 210px;
+}
+
+.search-input::placeholder {
+  color: var(--sc-ink-muted);
+}
+
+.filter-pill {
+  appearance: none;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--kc-border);
+  background: var(--sc-surface);
+  color: var(--sc-ink-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all 150ms ease;
+}
+
+.filter-pill[aria-pressed="true"] {
+  background: rgba(140, 240, 189, 0.18);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+/* ---- Webtoon Episode List Grid ------------------------------------------ */
+.episode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.episode-grid > * {
+  min-width: 0;
+}
+
+.ep-card {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--comic-radius-md);
+  background: var(--sc-surface);
+  border: 1px solid rgba(140, 240, 189, 0.16);
+  cursor: pointer;
+  text-align: left;
+  color: var(--sc-ink);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.ep-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--kc-gold);
+  background: var(--sc-surface-elevated);
+}
+
+.ep-card.is-read {
+  border-color: rgba(140, 240, 189, 0.38);
+}
+
+.ep-card__thumb {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex: none;
+  border-radius: 11px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #163327, #0c1d16);
+  border: 1px solid var(--kc-border);
+  display: grid;
+  place-items: center;
+}
+
+.ep-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ep-card__thumb-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  text-align: center;
+}
+
+.ep-card__thumb-icon {
+  font-size: 1.55rem;
+}
+
+.ep-card__thumb-code {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--kc-gold);
+  font-weight: 700;
+}
+
+.ep-card__body {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.ep-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.ep-card__epnum {
+  font-family: var(--sc-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+  letter-spacing: 0.05em;
+}
+
+.ep-card__status {
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(140, 240, 189, 0.14);
+  color: var(--sc-accent);
+}
+
+.ep-card__title {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.28;
+  color: #fff8eb;
+}
+
+.ep-card__spell {
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  color: var(--kc-cyan);
+  background: rgba(121, 216, 230, 0.09);
+  border: 1px solid rgba(121, 216, 230, 0.22);
+  padding: 3px 8px;
+  border-radius: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ep-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.73rem;
+  color: var(--sc-ink-muted);
+}
+
+/* ---- Bonus Shelf: Spell Grimoire, Back Cover & Master 73-Page PDF ------- */
+.bonus-shelf {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.bonus-card {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  padding: 18px;
+  border-radius: var(--comic-radius-lg);
+  background: linear-gradient(145deg, rgba(18, 36, 29, 0.95), rgba(13, 24, 20, 0.95));
+  border: 1px solid var(--kc-border-warm);
+  box-shadow: var(--comic-shadow);
+}
+
+.bonus-card__img {
+  width: 84px;
+  height: 118px;
+  flex: none;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--kc-gold);
+}
+
+.bonus-card__body h3 {
+  margin: 0 0 6px;
+  font-family: var(--sc-font-display);
+  font-size: 1.08rem;
+  color: var(--kc-gold);
+}
+
+.bonus-card__body p {
+  margin: 0 0 12px;
+  font-size: 0.84rem;
+  color: var(--sc-ink-soft);
+}
+
+/* Citadel Footer Banner */
+.citadel-footer {
+  margin-top: 44px;
+  position: relative;
+  border-radius: var(--comic-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--kc-border-warm);
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  padding: 32px;
+}
+
+.citadel-footer__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.citadel-footer__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11, 22, 18, 0.92) 0%, rgba(11, 22, 18, 0.65) 60%, rgba(11, 22, 18, 0.35) 100%);
+}
+
+.citadel-footer__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.citadel-footer__content h3 {
+  margin: 0 0 8px;
+  font-family: var(--sc-font-display);
+  font-size: 1.45rem;
+  color: #fff8eb;
+}
+
+.citadel-footer__content p {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: var(--sc-ink-soft);
+}
+
+.hub-title__zh {
+  display: block;
+  font-size: 0.72em;
+  color: var(--kc-gold);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Site cross-links (Storybook / Learning Hub), always visible on phones ---- */
+.hub-sitelinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.hub-sitelink {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(140, 240, 189, 0.1);
+  border: 1px solid rgba(140, 240, 189, 0.4);
+  color: var(--sc-ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hub-sitelink:hover {
+  border-color: var(--kc-gold);
+}
+
+.hub-tags--bottom {
+  margin-top: 16px;
+  margin-bottom: 0;
+}

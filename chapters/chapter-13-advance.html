@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-13","partNumber":13,"code":"EPILOGUE","zone":"ENV_R11","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生","subtitleEn":"All 11 Spells United · Shattering darkness to free Pythonia's gentle dawn","subtitleZh":"十一善咒合而為一 · 擊碎黑暗外殼，迎接蟒蛇王國的黎明","valueId":"love-earth","valueEn":"Love the Earth","valueZh":"愛地球","image":"assets/scenes/51_CH11_S03.webp","imageAltEn":"Hero Kai resting joyfully in a sunlit wildflower meadow under clear skies after restoring peace to Pythonia","imageAltZh":"在奪回和平後的晨光花海草地上，小英雄凱安心微笑仰望晴朗藍天","castIds":["hero-kai","string","bug-king","spell-guardian"],"paragraphsEn":["As the grand gateway to the Citadel of Core swung wide, the earth split open! Rising in jagged obsidian armor, the Bug King pulled Kai and String down into his subterranean throne room.","For hours, Kai and String fought side by side with calm courage. Kai's Dwarven Steel Armor held firm against heavy scythe blows, while String darted like golden lightning, flashing telepathic str callouts straight to Kai's Spellbook!","Weaving # mutes, type() checks, hp = hp - 15 math, > comparisons, and if / elif / else tactics, Kai lit up his glowing == SIGHT eyes—spotting the exact tangled flaw in the Bug King's dark shell and shattering it with a burst of golden light!","As the smoke cleared, the broken obsidian shell split open—Tap. Tap. Crack.—and out wobbled a tiny, adorable Baby Praying Mantis with bright emerald-green eyes! Freed from the dark prison that twisted his magic, the true Spell Guardian thanked Kai, and together—Kai, String, and their tiny new friend—watched the warm sunrise of a peaceful Pythonia."],"paragraphsZh":["核心堡壘的大門敞開之際，大地突然裂開！身披鋸齒黑曜石鎧甲的蟲蟲魔王從地底升起，將凱與 String 拉進地底王座大廳。","凱與 String 並肩奮戰了許久。凱的矮人鋼甲穩穩擋下揮擊，String 如金色閃電般靈巧穿梭，透過心電感應絲帶把對手的動向即時傳進凱的咒語書裡！","凱融合全部十一道善咒的力量——運用 # 靜音掩護、type() 觀察、hp = hp - 15 計算與 if/else 戰術，並點亮 == 真視之眼，精準看穿黑曜石鎧甲上混亂程式碼的破綻，一舉擊碎了黑暗外殼！","煙霧散去，裂開的黑殼裡傳來輕輕的聲響——喀、喀、啪！——一隻有著明亮翠綠大眼睛的可愛小螳螂搖搖晃晃走了出來！原來牠就是被黑暗困住、真正的「咒語守護神」。太陽緩緩升起，凱、String 與小小的守護神並肩望著重獲平靜與生機的蟒蛇王國。"],"dialogue":[{"speakerEn":"Bug King (Before Clash)","speakerZh":"蟲蟲魔王（決戰前）","lineEn":"\"Your journey ends here!\"","lineZh":"「你們的冒險就在這裡結束吧！」"},{"speakerEn":"Baby Praying Mantis (Spell Guardian)","speakerZh":"小螳螂咒語守護神","lineEn":"\"Thank you, young traveler. I am the true Spell Guardian of Pythonia. Because of your courage and kindness, balance has finally been restored.\"","lineZh":"「謝謝你，年輕的旅人。我才是蟒蛇王國真正的咒語守護神。因為你的勇氣與善良，這片土地終於恢復了平衡。」"}],"spell":{"nameEn":"The Grand Weave: All 11 Spells United","nameZh":"終極合奏：十一道善咒合一","code":"# All 11 Spells United!\nif kindness == True and courage > 0:\n    print(\"Dawn restored to Pythonia!\")","explainEn":"Every Python spell works together when guided by patience, honesty, and care for others and the Earth!","explainZh":"當我們用耐心、誠實與關懷來編寫魔法，十一道程式咒語就能合為一體，讓世界變得更美好！","demoBtnEn":"Awaken the Dawn Guardian 🌱","demoBtnZh":"喚醒黎明小螳螂守護神 🌱","demoOutputEn":"Tap. Tap. Crack. 🌱 Dawn restored to Pythonia! Thank you, Spellkeeper!","demoOutputZh":"喀、喀、啪！🌱 蟒蛇王國重現曙光！謝謝你，小小守咒人！"},"scenes":[{"pageNumber":49,"sceneIndex":1,"sceneId":"CH11_S01","image":"assets/scenes/49_CH11_S01.webp","titleEn":"Summoned into the Bug King's Throne Room","titleZh":"墜入地底王座與蟲蟲魔王現身","narrationEn":"Suddenly, the earth split open! The Bug King himself rose in jagged obsidian armor, pulling Kai and String down into his subterranean throne room.","narrationZh":"突然大地裂開！身穿鋸齒黑曜石鎧甲的蟲蟲魔王從深淵現身，將凱與 String 拉進地底王座大廳！","dialogueEn":"Bug King: \"Your journey ends here, little coder!\"","dialogueZh":"蟲蟲魔王：「你的旅程到此為止了，小程式員！」","spellCode":"# Confronting the Bug King","spellLabelEn":"The Throne Room","spellLabelZh":"地底王座對決","zone":"ENV_R11","mood":"climactic awe and courage","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","advanceSectionZh":"終章：命運之戰與真實守護者的誕生","advanceNarrationEn":"The instant the middle barrier dissolved and the grand gateway to the Citadel of Core swung wide, the mountain earth split open beneath Kai's boots!\n\nRising from the abyss in towering jagged obsidian armor, the Bug King himself pulled Kai and String down into his vast subterranean throne room—lit by crackling green lightning and swirling storms of broken code.","advanceNarrationZh":"就在石牆融化、核芯城堡大門敞開的那一剎那，腳下的山岩突然猛烈裂開！\n\n身披尖銳黑曜石重甲的蟲蟲魔王親自從深淵升起，一舉將凱與 String 捲入地底深處的宏偉王座大廳——四周電光如翠蛇亂竄，無數破損程式碼如風暴般狂舞。","advanceDialogueEn":"Bug King: \"So the gentle coder with the empty book finally stands before my throne!\"","advanceDialogueZh":"蟲蟲魔王：「帶著空白古書來到這裡的溫柔編碼者啊……你終於踏進我的王座大廳了！」"},{"pageNumber":50,"sceneIndex":2,"sceneId":"CH11_S02","image":"assets/scenes/50_CH11_S02.webp","titleEn":"Dwarven Steel & String's Lightning Flank","titleZh":"矮人鋼甲與 String 的閃電夾擊","narrationEn":"For hours, Kai and String fought bravely! Kai's Dwarven steel armor held firm against fierce scythe blows while String darted like golden lightning via telepathic str commands!","narrationZh":"凱與 String 並肩奮戰！矮人鋼甲穩穩擋下猛烈的鐮刀攻勢，String 化作一道金色閃電繞到側翼，透過心電感應文字傳遞戰術！","dialogueEn":"Kai: \"String, flank left! Let's weave our spells!\"","dialogueZh":"小英雄凱：「String，從左翼包抄！把十一道咒語織在一起！」","spellCode":"# Weaving #, type(), hp - 15, >, if/else","spellLabelEn":"Clash of Fates","spellLabelZh":"命運激戰","zone":"ENV_R11","mood":"breathtaking kinetic heroism","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"For hours across the echoing chamber, Kai and String fought courageously side by side!\n\nMaster Grimsby's Dwarven steel armor held firm against sweeping obsidian scythe blows, while String streaked across the stone floor like golden lightning—dodging chaos and flanking effortlessly via instant telepathic str commands flashed straight between pup and hero.","advanceNarrationZh":"在地底王座大廳裡，凱與 String 並肩奮戰了整整數個小時！\n\n格里姆斯比大師親手鍛造的矮人鋼甲一次次擋下黑曜巨鐮的猛擊，而忠誠的 String 則宛如一道閃耀金雷般在黑影之間穿梭迂迴——靠著只屬於一人一狗的心電感應 str 文字指令，展開天衣無縫的左右夾擊！","advanceDialogueEn":"String (telepathic): \"Left flank is open, Kai! Hold your armor steady—I've got your back!\"","advanceDialogueZh":"String（心電感應）：「凱，左側露出破綻了！穩住鋼盾——我在你身後掩護你！」"},{"pageNumber":51,"sceneIndex":3,"sceneId":"CH11_S03","image":"assets/scenes/51_CH11_S03.webp","titleEn":"Piercing the Core Vulnerability with == SIGHT","titleZh":"真視雙眼看穿弱點、擊碎黑暗外殼","narrationEn":"Activating his glowing == SIGHT eyes, Kai spotted the exact vulnerability in the Bug King's core logic—and delivered one precision strike to shatter the dark corrupted shell!","narrationZh":"凱啟動發光的 == 真視雙眼，精準看見蟲蟲魔王核心邏輯的破綻——他揮出溫柔而堅定的一擊，將扭曲黑暗的黑曜石外殼徹底擊碎！","dialogueEn":"Kai: \"I see the flaw—== SIGHT! Let the shadows fall away!\"","dialogueZh":"小英雄凱：「我看見破綻了——== 真視之眼！讓陰影消散吧！」","spellCode":"Spell: Grand Weave (All 11 Spells + == SIGHT)","spellLabelEn":"Shattering the Dark Shell","spellLabelZh":"擊碎黑曜石外殼","zone":"ENV_R11","mood":"redeeming breakthrough climax","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Drawing on all eleven spells of kindness together, Kai kept calm—weaving silent # notes to track patterns, type() inspections to decode shifting illusions, hp = hp - 15 adjustments to guard his health, > checks to gauge force, and swift if / elif / else tactics.\n\nAt last, igniting his glowing == SIGHT eyes through the static storm, Kai spotted the exact hidden flaw inside the Bug King's core logic and struck true—shattering the dark obsidian shell in one golden burst!","advanceNarrationZh":"凱喚齊十一道善咒的全部智慧與平靜之心——用 # 靜音筆跡理清戰況、以 type() 識破偽裝、靠 hp = hp - 15 精準調整防禦，並以 > 與 if / elif / else 靈活應對每一招變化。\n\n終於，凱點亮雙眉間閃耀星芒的 == 真視之瞳，看穿了蟲蟲魔王核心程式碼中最隱密的一處漏洞，集中所有勇氣與善念迎面一擊——震碎了那層冰冷的黑曜硬殼！","advanceDialogueEn":"Kai: \"Every spell from calm kindness together—NOW, == SIGHT! Right through the glitch!\"","advanceDialogueZh":"小英雄凱：「匯集每一道善念與智慧——看清真相吧，== 真視之瞳！貫穿錯亂的核心！」"},{"pageNumber":52,"sceneIndex":4,"sceneId":"CH11_S04","image":"assets/scenes/52_CH11_S04.webp","titleEn":"Birth of the Baby Praying Mantis Spell Guardian","titleZh":"小螳螂咒語守護神破殼誕生","narrationEn":"Tap. Tap. Crack. Out from the broken black shell wobbled a tiny, adorable baby praying mantis with bright emerald eyes—the true Spell Guardian of Pythonia! Together, Kai, String, and their new companion looked out at a bright new dawn.","narrationZh":"叩、叩、喀嚓。從破裂的黑殼裡，搖搖晃晃走出一隻有著明亮翠綠大眼睛的可愛小螳螂——原來牠才是蟒蛇王國真正的「咒語守護神」！凱、String 與新夥伴一起望向嶄新和平的黎明。","dialogueEn":"Spell Guardian: \"Because of your courage, balance has been restored.\"","dialogueZh":"小螳螂守護神：「多虧了你的勇氣，王國終於恢復了和諧與平衡。」","spellCode":"# Balance restored across Pythonia ✨","spellLabelEn":"Dawn of Harmony","spellLabelZh":"和平的黎明","zone":"ENV_R11","mood":"pure peace, joy, and restoration","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"As the static smoke cleared, the cracked black obsidian shell shook gently. Tap. Tap. Crack! Splitting cleanly open, out wobbled not a monster at all—but a tiny, adorable baby praying mantis with bright emerald-green eyes, glistening wing-buds, and curious antennae!\n\n\"Thank you, young traveler,\" a gentle voice echoed straight into Kai's mind. \"For ages, the dark monarch imprisoned me inside my own shell, twisting my magic into corruption. I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored to the realm.\"\n\nStanding together—Kai, String, and their tiny green companion—they gazed out toward the warm dawn of a brand-new era for Pythonia.","advanceNarrationZh":"當雜訊煙霧散盡，地上裂開的黑曜石甲殼輕輕晃動起來。「叩、叩、喀啦！」外殼從中裂開——走出來的不僅不是猙獰怪物，而是一隻模樣可愛極了的翠綠小螳螂寶寶，有著清澈明亮的綠寶石大眼、泛著珍珠微光的小翅芽和好奇擺動的觸角！\n\n「謝謝你，溫柔的旅人。」一個溫暖澄淨的聲音直接傳進凱的心底：「長久以來，黑暗執念把我囚禁在自己的外殼裡，把我的力量扭曲成了災厄。我才是蟒蛇王國真正的『魔法守護者』。因為你的勇敢與善良，整個王國終於恢復了和諧與平衡。」\n\n並肩站在一起——小英雄凱、忠犬 String，還有他們小小的綠寶石新夥伴——一同望向灑滿清晨金色曙光的嶄新蟒蛇王國。","advanceDialogueEn":"Spell Guardian: \"I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored.\"","advanceDialogueZh":"魔法守護者：「我才是蟒蛇王國真正的魔法守護者。因為你的勇氣與善良，世界終於重歸和諧！」"}],"chapterUrl":"chapters/chapter-13.html","chapterAdvanceUrl":"chapters/chapter-13-advance.html","paragraphsAdvanceEn":["Dragged down by jagged obsidian armor into the Bug King's lightning-lit throne room, Kai and String fought bravely for hours—Dwarven steel blocking scythe blows while String flanked like golden lightning via telepathic str signals.","Weaving all eleven spells together and piercing the dark core's glitch with blazing == SIGHT eyes, Kai shattered the obsidian armor (Tap. Tap. Crack.)—freeing a tiny emerald-eyed baby praying mantis: Pythonia's true Spell Guardian, who hailed balance restored to the dawn!"],"paragraphsAdvanceZh":["大門開啟的瞬間地裂天搖，凱與 String 被蟲蟲魔王捲入地底雷電王座大廳。一人一狗並肩奮戰數小時——矮人鋼甲迎戰巨鐮，String 如金電般配合心電文字流穿梭夾擊。","最後凱結合十一道善咒並以 == 真視之瞳看穿魔王核心破綻，一舉震碎黑曜石殼！「叩、叩、喀啦」——裡頭破殼而出的竟是可愛的翠綠小螳螂寶寶、真正的蟒蛇王國魔法守護者，在溫暖晨曦中宣告和平與平衡重回大地！"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-13","partNumber":13,"code":"EPILOGUE","zone":"ENV_R11","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生","subtitleEn":"All 11 Spells United · Shattering darkness to free Pythonia's gentle dawn","subtitleZh":"十一善咒合而為一 · 擊碎黑暗外殼，迎接蟒蛇王國的黎明","valueId":"love-earth","valueEn":"Love the Earth","valueZh":"愛地球","image":"assets/scenes/51_CH11_S03.webp","imageAltEn":"Hero Kai resting joyfully in a sunlit wildflower meadow under clear skies after restoring peace to Pythonia","imageAltZh":"在奪回和平後的晨光花海草地上，小英雄凱安心微笑仰望晴朗藍天","castIds":["hero-kai","string","bug-king","spell-guardian"],"paragraphsEn":["As the grand gateway to the Citadel of Core swung wide, the earth split open! Rising in jagged obsidian armor, the Bug King pulled Kai and String down into his subterranean throne room.","For hours, Kai and String fought side by side with calm courage. Kai's Dwarven Steel Armor held firm against heavy scythe blows, while String darted like golden lightning, flashing telepathic str callouts straight to Kai's Spellbook!","Weaving # mutes, type() checks, hp = hp - 15 math, > comparisons, and if / elif / else tactics, Kai lit up his glowing == SIGHT eyes—spotting the exact tangled flaw in the Bug King's dark shell and shattering it with a burst of golden light!","As the smoke cleared, the broken obsidian shell split open—Tap. Tap. Crack.—and out wobbled a tiny, adorable Baby Praying Mantis with bright emerald-green eyes! Freed from the dark prison that twisted his magic, the true Spell Guardian thanked Kai, and together—Kai, String, and their tiny new friend—watched the warm sunrise of a peaceful Pythonia."],"paragraphsZh":["核心堡壘的大門敞開之際，大地突然裂開！身披鋸齒黑曜石鎧甲的蟲蟲魔王從地底升起，將凱與 String 拉進地底王座大廳。","凱與 String 並肩奮戰了許久。凱的矮人鋼甲穩穩擋下揮擊，String 如金色閃電般靈巧穿梭，透過心電感應絲帶把對手的動向即時傳進凱的咒語書裡！","凱融合全部十一道善咒的力量——運用 # 靜音掩護、type() 觀察、hp = hp - 15 計算與 if/else 戰術，並點亮 == 真視之眼，精準看穿黑曜石鎧甲上混亂程式碼的破綻，一舉擊碎了黑暗外殼！","煙霧散去，裂開的黑殼裡傳來輕輕的聲響——喀、喀、啪！——一隻有著明亮翠綠大眼睛的可愛小螳螂搖搖晃晃走了出來！原來牠就是被黑暗困住、真正的「咒語守護神」。太陽緩緩升起，凱、String 與小小的守護神並肩望著重獲平靜與生機的蟒蛇王國。"],"dialogue":[{"speakerEn":"Bug King (Before Clash)","speakerZh":"蟲蟲魔王（決戰前）","lineEn":"\"Your journey ends here!\"","lineZh":"「你們的冒險就在這裡結束吧！」"},{"speakerEn":"Baby Praying Mantis (Spell Guardian)","speakerZh":"小螳螂咒語守護神","lineEn":"\"Thank you, young traveler. I am the true Spell Guardian of Pythonia. Because of your courage and kindness, balance has finally been restored.\"","lineZh":"「謝謝你，年輕的旅人。我才是蟒蛇王國真正的咒語守護神。因為你的勇氣與善良，這片土地終於恢復了平衡。」"}],"spell":{"nameEn":"The Grand Weave: All 11 Spells United","nameZh":"終極合奏：十一道善咒合一","code":"# All 11 Spells United!\nif kindness == True and courage > 0:\n    print(\"Dawn restored to Pythonia!\")","explainEn":"Every Python spell works together when guided by patience, honesty, and care for others and the Earth!","explainZh":"當我們用耐心、誠實與關懷來編寫魔法，十一道程式咒語就能合為一體，讓世界變得更美好！","demoBtnEn":"Awaken the Dawn Guardian 🌱","demoBtnZh":"喚醒黎明小螳螂守護神 🌱","demoOutputEn":"Tap. Tap. Crack. 🌱 Dawn restored to Pythonia! Thank you, Spellkeeper!","demoOutputZh":"喀、喀、啪！🌱 蟒蛇王國重現曙光！謝謝你，小小守咒人！"},"scenes":[{"pageNumber":49,"sceneIndex":1,"sceneId":"CH11_S01","image":"assets/scenes/49_CH11_S01.webp","titleEn":"Summoned into the Bug King's Throne Room","titleZh":"墜入地底王座與蟲蟲魔王現身","narrationEn":"Suddenly, the earth split open! The Bug King himself rose in jagged obsidian armor, pulling Kai and String down into his subterranean throne room.","narrationZh":"突然大地裂開！身穿鋸齒黑曜石鎧甲的蟲蟲魔王從深淵現身，將凱與 String 拉進地底王座大廳！","dialogueEn":"Bug King: \"Your journey ends here, little coder!\"","dialogueZh":"蟲蟲魔王：「你的旅程到此為止了，小程式員！」","spellCode":"# Confronting the Bug King","spellLabelEn":"The Throne Room","spellLabelZh":"地底王座對決","zone":"ENV_R11","mood":"climactic awe and courage","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","advanceSectionZh":"終章：命運之戰與真實守護者的誕生","advanceNarrationEn":"The instant the middle barrier dissolved and the grand gateway to the Citadel of Core swung wide, the mountain earth split open beneath Kai's boots!\n\nRising from the abyss in towering jagged obsidian armor, the Bug King himself pulled Kai and String down into his vast subterranean throne room—lit by crackling green lightning and swirling storms of broken code.","advanceNarrationZh":"就在石牆融化、核芯城堡大門敞開的那一剎那，腳下的山岩突然猛烈裂開！\n\n身披尖銳黑曜石重甲的蟲蟲魔王親自從深淵升起，一舉將凱與 String 捲入地底深處的宏偉王座大廳——四周電光如翠蛇亂竄，無數破損程式碼如風暴般狂舞。","advanceDialogueEn":"Bug King: \"So the gentle coder with the empty book finally stands before my throne!\"","advanceDialogueZh":"蟲蟲魔王：「帶著空白古書來到這裡的溫柔編碼者啊……你終於踏進我的王座大廳了！」","imageMobile":"assets/scenes-mobile/49_CH11_S01.webp"},{"pageNumber":50,"sceneIndex":2,"sceneId":"CH11_S02","image":"assets/scenes/50_CH11_S02.webp","titleEn":"Dwarven Steel & String's Lightning Flank","titleZh":"矮人鋼甲與 String 的閃電夾擊","narrationEn":"For hours, Kai and String fought bravely! Kai's Dwarven steel armor held firm against fierce scythe blows while String darted like golden lightning via telepathic str commands!","narrationZh":"凱與 String 並肩奮戰！矮人鋼甲穩穩擋下猛烈的鐮刀攻勢，String 化作一道金色閃電繞到側翼，透過心電感應文字傳遞戰術！","dialogueEn":"Kai: \"String, flank left! Let's weave our spells!\"","dialogueZh":"小英雄凱：「String，從左翼包抄！把十一道咒語織在一起！」","spellCode":"# Weaving #, type(), hp - 15, >, if/else","spellLabelEn":"Clash of Fates","spellLabelZh":"命運激戰","zone":"ENV_R11","mood":"breathtaking kinetic heroism","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"For hours across the echoing chamber, Kai and String fought courageously side by side!\n\nMaster Grimsby's Dwarven steel armor held firm against sweeping obsidian scythe blows, while String streaked across the stone floor like golden lightning—dodging chaos and flanking effortlessly via instant telepathic str commands flashed straight between pup and hero.","advanceNarrationZh":"在地底王座大廳裡，凱與 String 並肩奮戰了整整數個小時！\n\n格里姆斯比大師親手鍛造的矮人鋼甲一次次擋下黑曜巨鐮的猛擊，而忠誠的 String 則宛如一道閃耀金雷般在黑影之間穿梭迂迴——靠著只屬於一人一狗的心電感應 str 文字指令，展開天衣無縫的左右夾擊！","advanceDialogueEn":"String (telepathic): \"Left flank is open, Kai! Hold your armor steady—I've got your back!\"","advanceDialogueZh":"String（心電感應）：「凱，左側露出破綻了！穩住鋼盾——我在你身後掩護你！」","imageMobile":"assets/scenes-mobile/50_CH11_S02.webp"},{"pageNumber":51,"sceneIndex":3,"sceneId":"CH11_S03","image":"assets/scenes/51_CH11_S03.webp","titleEn":"Piercing the Core Vulnerability with == SIGHT","titleZh":"真視雙眼看穿弱點、擊碎黑暗外殼","narrationEn":"Activating his glowing == SIGHT eyes, Kai spotted the exact vulnerability in the Bug King's core logic—and delivered one precision strike to shatter the dark corrupted shell!","narrationZh":"凱啟動發光的 == 真視雙眼，精準看見蟲蟲魔王核心邏輯的破綻——他揮出溫柔而堅定的一擊，將扭曲黑暗的黑曜石外殼徹底擊碎！","dialogueEn":"Kai: \"I see the flaw—== SIGHT! Let the shadows fall away!\"","dialogueZh":"小英雄凱：「我看見破綻了——== 真視之眼！讓陰影消散吧！」","spellCode":"Spell: Grand Weave (All 11 Spells + == SIGHT)","spellLabelEn":"Shattering the Dark Shell","spellLabelZh":"擊碎黑曜石外殼","zone":"ENV_R11","mood":"redeeming breakthrough climax","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Drawing on all eleven spells of kindness together, Kai kept calm—weaving silent # notes to track patterns, type() inspections to decode shifting illusions, hp = hp - 15 adjustments to guard his health, > checks to gauge force, and swift if / elif / else tactics.\n\nAt last, igniting his glowing == SIGHT eyes through the static storm, Kai spotted the exact hidden flaw inside the Bug King's core logic and struck true—shattering the dark obsidian shell in one golden burst!","advanceNarrationZh":"凱喚齊十一道善咒的全部智慧與平靜之心——用 # 靜音筆跡理清戰況、以 type() 識破偽裝、靠 hp = hp - 15 精準調整防禦，並以 > 與 if / elif / else 靈活應對每一招變化。\n\n終於，凱點亮雙眉間閃耀星芒的 == 真視之瞳，看穿了蟲蟲魔王核心程式碼中最隱密的一處漏洞，集中所有勇氣與善念迎面一擊——震碎了那層冰冷的黑曜硬殼！","advanceDialogueEn":"Kai: \"Every spell from calm kindness together—NOW, == SIGHT! Right through the glitch!\"","advanceDialogueZh":"小英雄凱：「匯集每一道善念與智慧——看清真相吧，== 真視之瞳！貫穿錯亂的核心！」","imageMobile":"assets/scenes-mobile/51_CH11_S03.webp"},{"pageNumber":52,"sceneIndex":4,"sceneId":"CH11_S04","image":"assets/scenes/52_CH11_S04.webp","titleEn":"Birth of the Baby Praying Mantis Spell Guardian","titleZh":"小螳螂咒語守護神破殼誕生","narrationEn":"Tap. Tap. Crack. Out from the broken black shell wobbled a tiny, adorable baby praying mantis with bright emerald eyes—the true Spell Guardian of Pythonia! Together, Kai, String, and their new companion looked out at a bright new dawn.","narrationZh":"叩、叩、喀嚓。從破裂的黑殼裡，搖搖晃晃走出一隻有著明亮翠綠大眼睛的可愛小螳螂——原來牠才是蟒蛇王國真正的「咒語守護神」！凱、String 與新夥伴一起望向嶄新和平的黎明。","dialogueEn":"Spell Guardian: \"Because of your courage, balance has been restored.\"","dialogueZh":"小螳螂守護神：「多虧了你的勇氣，王國終於恢復了和諧與平衡。」","spellCode":"# Balance restored across Pythonia ✨","spellLabelEn":"Dawn of Harmony","spellLabelZh":"和平的黎明","zone":"ENV_R11","mood":"pure peace, joy, and restoration","palette":["#2E1C44","#6B3FA0","#2ECC71","#F7C852"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"As the static smoke cleared, the cracked black obsidian shell shook gently. Tap. Tap. Crack! Splitting cleanly open, out wobbled not a monster at all—but a tiny, adorable baby praying mantis with bright emerald-green eyes, glistening wing-buds, and curious antennae!\n\n\"Thank you, young traveler,\" a gentle voice echoed straight into Kai's mind. \"For ages, the dark monarch imprisoned me inside my own shell, twisting my magic into corruption. I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored to the realm.\"\n\nStanding together—Kai, String, and their tiny green companion—they gazed out toward the warm dawn of a brand-new era for Pythonia.","advanceNarrationZh":"當雜訊煙霧散盡，地上裂開的黑曜石甲殼輕輕晃動起來。「叩、叩、喀啦！」外殼從中裂開——走出來的不僅不是猙獰怪物，而是一隻模樣可愛極了的翠綠小螳螂寶寶，有著清澈明亮的綠寶石大眼、泛著珍珠微光的小翅芽和好奇擺動的觸角！\n\n「謝謝你，溫柔的旅人。」一個溫暖澄淨的聲音直接傳進凱的心底：「長久以來，黑暗執念把我囚禁在自己的外殼裡，把我的力量扭曲成了災厄。我才是蟒蛇王國真正的『魔法守護者』。因為你的勇敢與善良，整個王國終於恢復了和諧與平衡。」\n\n並肩站在一起——小英雄凱、忠犬 String，還有他們小小的綠寶石新夥伴——一同望向灑滿清晨金色曙光的嶄新蟒蛇王國。","advanceDialogueEn":"Spell Guardian: \"I am the true Spell Guardian of Pythonia. Because of your courage, balance has finally been restored.\"","advanceDialogueZh":"魔法守護者：「我才是蟒蛇王國真正的魔法守護者。因為你的勇氣與善良，世界終於重歸和諧！」","imageMobile":"assets/scenes-mobile/52_CH11_S04.webp"}],"chapterUrl":"chapters/chapter-13.html","chapterAdvanceUrl":"chapters/chapter-13-advance.html","paragraphsAdvanceEn":["Dragged down by jagged obsidian armor into the Bug King's lightning-lit throne room, Kai and String fought bravely for hours—Dwarven steel blocking scythe blows while String flanked like golden lightning via telepathic str signals.","Weaving all eleven spells together and piercing the dark core's glitch with blazing == SIGHT eyes, Kai shattered the obsidian armor (Tap. Tap. Crack.)—freeing a tiny emerald-eyed baby praying mantis: Pythonia's true Spell Guardian, who hailed balance restored to the dawn!"],"paragraphsAdvanceZh":["大門開啟的瞬間地裂天搖，凱與 String 被蟲蟲魔王捲入地底雷電王座大廳。一人一狗並肩奮戰數小時——矮人鋼甲迎戰巨鐮，String 如金電般配合心電文字流穿梭夾擊。","最後凱結合十一道善咒並以 == 真視之瞳看穿魔王核心破綻，一舉震碎黑曜石殼！「叩、叩、喀啦」——裡頭破殼而出的竟是可愛的翠綠小螳螂寶寶、真正的蟒蛇王國魔法守護者，在溫暖晨曦中宣告和平與平衡重回大地！"],"imageMobile":"assets/scenes-mobile/51_CH11_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

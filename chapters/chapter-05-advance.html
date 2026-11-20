@@ -103,6 +103,20 @@
       transition: filter 160ms ease, transform 160ms ease;
     }
     .ch-hub-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ch-mobile-menu-btn {
+      display: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(17, 34, 27, 0.94);
+      border: 1px solid var(--border-warm);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
     .ch-select {
       appearance: none;
       padding: 6px 28px 6px 12px;
@@ -284,6 +298,16 @@
       height: 100%;
       z-index: 0;
     }
+    .ch-stage__pic,
+    .ch-board-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .ch-recap-thumb picture {
+      display: block;
+      width: 100%;
+    }
     .ch-stage__img {
       width: 100%;
       height: 100%;
@@ -320,6 +344,7 @@
       z-index: 6;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       pointer-events: none;
     }
@@ -337,6 +362,32 @@
     .ch-glass-pill--mint {
       border-color: var(--border);
       color: var(--accent);
+    }
+    .ch-art-peek-btn {
+      pointer-events: auto;
+      appearance: none;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(14, 30, 23, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(140, 240, 189, 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink);
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+    .ch-art-peek-btn[aria-pressed="true"] {
+      background: var(--gold);
+      border-color: #fff3d6;
+      color: #161005;
+      font-weight: 700;
+    }
+    .ch-stage.is-art-peek .ch-stage__copy-zone,
+    .ch-stage.is-art-peek .ch-stage__scrim {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 220ms ease;
     }
 
     /* Hero-Banner Copy Zone & Unfolding Beats */
@@ -790,6 +841,101 @@
       }
       .ch-stage__topmeta { left: 16px; }
     }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .ch-topbar__inner {
+        padding: 7px 12px;
+        gap: 6px;
+      }
+      .ch-brand {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .ch-back-btn,
+      .ch-hub-btn {
+        white-space: nowrap;
+      }
+      .ch-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .ch-topbar:not(.is-menu-open) .ch-select,
+      .ch-topbar:not(.is-menu-open) .ch-controls {
+        display: none;
+      }
+      .ch-topbar.is-menu-open .ch-brand {
+        flex-wrap: wrap;
+      }
+      .ch-topbar.is-menu-open .ch-select {
+        width: 100%;
+        max-width: 100%;
+        order: 10;
+        margin-top: 4px;
+      }
+      .ch-topbar.is-menu-open .ch-controls {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        gap: 6px;
+      }
+      .ch-spine { display: none !important; }
+      .ch-scroll-scene {
+        height: 255vh;
+      }
+      .ch-stage__scrim {
+        background: linear-gradient(180deg,
+          rgba(7, 15, 12, 0.38) 0%,
+          rgba(7, 15, 12, 0.03) 15%,
+          rgba(7, 15, 12, 0.03) 60%,
+          rgba(7, 15, 12, 0.68) 78%,
+          rgba(7, 15, 12, 0.90) 100%);
+      }
+      .ch-stage__topmeta {
+        top: calc(var(--topbar-h, 46px) + 10px);
+        left: 12px;
+        right: 12px;
+        gap: 6px;
+      }
+      .ch-stage__copy-zone,
+      body.is-advance .ch-stage__copy-zone {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        width: auto;
+      }
+      .ch-beat--story:not(.ch-beat--story-adv) {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(7, 15, 12, 0.68);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(140, 240, 189, 0.24);
+      }
+      .ch-beat--story-adv {
+        padding: 11px 14px;
+        max-height: min(33vh, calc(100vh - var(--topbar-h, 48px) - 96px));
+        background: rgba(7, 15, 12, 0.72);
+        backdrop-filter: blur(8px);
+      }
+      .ch-hero-scene-title {
+        font-size: clamp(1.18rem, 4.9vw, 1.55rem);
+        margin-bottom: 5px;
+      }
+      .ch-hero-narration {
+        font-size: 0.88rem;
+        line-height: 1.52;
+      }
+      .ch-board-card__img {
+        aspect-ratio: 9 / 16;
+        max-height: 76svh;
+      }
+      .ch-recap-thumb img {
+        aspect-ratio: 3 / 4;
+        object-position: center 65%;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .ch-scroll-scene {
         height: auto;
@@ -837,11 +983,12 @@
       <div class="ch-brand">
         <a class="ch-back-btn" href="../index.html#story-reader" id="ch-back-link">&larr; World Map</a>
         <a class="ch-hub-btn" href="../hub.html" id="ch-hub-link">🏰 Learning Hub</a>
+        <button class="ch-mobile-menu-btn" type="button" id="ch-mobile-menu-btn" aria-expanded="false" aria-controls="ch-topbar-controls">☰ Menu</button>
         <label for="ch-chapter-select" style="position:absolute;left:-9999px;">Select chapter</label>
         <select class="ch-select" id="ch-chapter-select" aria-label="Select chapter"></select>
       </div>
 
-      <div class="ch-controls">
+      <div class="ch-controls" id="ch-topbar-controls">
         <div class="ch-level-switch" role="group" aria-label="Story depth level">
           <button class="ch-level-pill" type="button" id="ch-level-beginner" data-level="beginner" aria-pressed="true">🌱 Beginner</button>
           <button class="ch-level-pill" type="button" id="ch-level-advance" data-level="advance" aria-pressed="false">📚 Advance</button>
@@ -909,7 +1056,7 @@
     </div>
   </div>
 
-  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-05","partNumber":5,"code":"SPELL 4 · LISTEN","zone":"ENV_R04","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生","subtitleEn":"Spell 4: input(\"What is your name? \") · Pause and listen for a reply","subtitleZh":"第四咒：input(\"What is your name? \") · 靜下來等待對方的回答","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/19_CH04_S03.webp","imageAltEn":"A luminous blue forest spirit glowing beneath flower-twined brambles and teal mushrooms in Whispering Forest","imageAltZh":"低語森林裡發光的青色蘑菇與花藤拱門下，漂浮著溫柔發亮的森林精靈","castIds":["hero-kai","string"],"paragraphsEn":["With his gleaming IronSword at his waist and the faithful golden-tan puppy at his heels, Kai walked into the Whispering Forest—a twilight canopy of moss-draped trees, glowing mushrooms, and soft violet fireflies.","Whenever Kai asked a glowing mushroom or stone marker a question, they stayed completely silent. Suddenly, a luminous Forest Spirit drifted into the path like blue mist, blocking the tangled brambles.","\"Travelers always talk AT me, never TO me,\" she sighed. Right beside Kai, the puppy let out a soft woof and nudged Kai's hand. True magic means pausing to listen! The Spirit taught Kai the Spell of Patience: input(\"What is your name? \").","The forest grew wonderfully still. A purple firefly box flickered in the air, waiting. Kai spoke softly into the quiet—and as the forest accepted his words, the loyal pup finally earned his true name: String! The brambles parted, and String bounded joyfully ahead."],"paragraphsZh":["凱把閃亮的鐵劍別在腰間，帶著忠實的小黃狗走進暮色籠罩的「低語森林」。這裡長滿發光的蘑菇，紫色的螢火蟲在古樹苔蘚間飛舞。","奇怪的是，無論凱問路邊的蘑菇或石碑什麼問題，誰都不回答他。突然，一位散發藍光的森林精靈飄浮出來，擋住了滿是荊棘的小路。","「旅人總是自顧自地說話，從來不聽我回答。」精靈輕嘆。身旁的小狗輕輕叫了一聲，用鼻尖頂了頂凱的手心。原來真正的魔法需要耐心傾聽！精靈教凱唸出傾聽咒：input(\"What is your name? \")。","森林瞬間安靜下來，空中浮現一個像螢火蟲般閃爍的紫色輸入框，靜靜等待回答。凱溫柔地說出名字，森林接納了他們，小狗也終於擁有了屬於自己的名字——「String（字串）」！荊棘分開，String 開心地往前奔跑。"],"dialogue":[{"speakerEn":"Forest Spirit","speakerZh":"森林精靈","lineEn":"\"To pass through my woods, you must pause, ask your question, and wait for the world to answer.\"","lineZh":"「想穿過這座森林，你必須先停下來、提出問題，並耐心等待世界的回應。」"},{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"Your name is String! Come on, String, let's go together!\"","lineZh":"「你的名字就叫 String 吧！走吧，String，我們一起出發！」"}],"spell":{"nameEn":"Spell 4: LISTEN — input()","nameZh":"第四咒：LISTEN 傾聽魔法 — input()","code":"name = input(\"What is your name? \")","explainEn":"input() pauses the program, asks a question, and waits patiently until someone types an answer!","explainZh":"input() 會讓魔法暫停下來，親切地問一個問題，等對方輸入回答後才繼續前進！","interactiveInput":true,"demoInputPlaceholderEn":"Type a puppy or hero name (e.g. String)","demoInputPlaceholderZh":"輸入小狗或你的名字（例如 String）","demoBtnEn":"Listen & Reply 👂","demoBtnZh":"傾聽並回應 👂","demoOutputEn":"Welcome, String! The forest brambles part cleanly before you.","demoOutputZh":"歡迎你，String！前方的森林荊棘溫柔地分開了道路。"},"scenes":[{"pageNumber":17,"sceneIndex":1,"sceneId":"CH04_S01","image":"assets/scenes/17_CH04_S01.webp","titleEn":"One-Way Echoes in the Gloom","titleZh":"低語森林裡無人回應的呼喊","narrationEn":"In the Whispering Forest, shadows danced and leaves rustled with secrets. Yet every time Kai called out to a glowing mushroom or stone marker, they stayed silent, ignoring him completely.","narrationZh":"在低語森林裡，葉片沙沙作響。但每當凱向發光蘑菇或古老石碑提問時，它們卻始終保持沉默，完全不理會他。","dialogueEn":"Kai: \"Hello?! Why won't anyone answer?\"","dialogueZh":"小英雄凱：「喂？！為什麼大家都不回答我？」","spellCode":"# Talking AT the world yields silence","spellLabelEn":"Silent Echoes","spellLabelZh":"無人回應的回音","zone":"ENV_R04","mood":"mysterious impatience","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"4. LISTEN — The Whispering Forest (Pause & Listen = input())","advanceSectionZh":"四、LISTEN 傾聽咒 — 低語森林（停下傾聽：input()）","advanceNarrationEn":"Kai and the pup stepped beneath the twilight canopy of the Whispering Forest—a realm where dancing shadows drifted over ancient moss and every leaf rustled with quiet secrets.\n\nYet as Kai walked deeper into the gloom, something troubled him deeply: every time he called out a question to a glowing mushroom or a mossy stone marker, they stayed coldly silent, ignoring his spells entirely.","advanceNarrationZh":"一人一狗踏入「低語森林」的暮色樹冠下——這裡的影子隨著枝葉輕舞，彷彿每片葉子都藏著未說出口的祕密。\n\n但越往深處走，凱心裡越覺得不對勁：無論他向發光的蘑菇或古老石碑提出什麼問題，對方都毫無反應，完全把他單方面施放的咒語當成耳邊風。","advanceDialogueEn":"Kai: \"Hello? Glowing mushroom? Ancient marker? Why won't anything answer me back?\"","advanceDialogueZh":"小英雄凱：「請問有人嗎？發光蘑菇？古老石碑？為什麼大家都不理會我的問題呢？」"},{"pageNumber":18,"sceneIndex":2,"sceneId":"CH04_S02","image":"assets/scenes/18_CH04_S02.webp","titleEn":"The Forest Spirit & The Pup's Gentle Nudge","titleZh":"森林精靈與小狗的溫柔提醒","narrationEn":"\"Travelers always talk AT me, never TO me,\" sighed a luminous Forest Spirit blocking the trail. Beside Kai, the pup let out a soft woof and nudged his hand, reminding him to pause and listen.","narrationZh":"「旅人總是只對我說話，卻從不聽我回答。」發光的森林精靈擋住小路嘆息道。小黃狗輕輕叫了一聲並用鼻子頂頂凱的手心，提醒他靜下心傾聽。","dialogueEn":"Forest Spirit: \"Pause, ask, and wait for the world to answer.\"","dialogueZh":"森林精靈：「停下來提問，然後耐心等待世界的回應。」","spellCode":"# Two-way connection requires patience","spellLabelEn":"Gentle Nudge","spellLabelZh":"溫柔的提醒","zone":"ENV_R04","mood":"reflective calm empathy","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Travelers always talk at me, never to me,\" sighed a luminous Forest Spirit, materializing like a wisp of cool blue mist across the twisting trail. \"You cast your spells into the wind, young wizard, but you never stop to listen for a reply.\"\n\nRight beside Kai, the golden-tan pup let out a soft woof and gently nudged Kai's hand—reminding him that true magic always requires patience and two-way connection.","advanceNarrationZh":"「旅人們總是只顧著對森林說話，卻從來不聽森林回答。」一縷如湛藍薄霧般的森林精靈在蜿蜒小徑上顯現身形，輕聲嘆息：「年輕的法師啊，你把咒語丟進風裡，卻從沒停下來傾聽回音。」\n\n就在此刻，身旁的小黃狗發出一聲溫柔的輕吠，用鼻子輕輕頂了頂凱的手心——提醒著凱，真正的魔法需要耐心與雙向的交流。","advanceDialogueEn":"Forest Spirit: \"To pass through my woods, you must pause, ask your question, and wait for the world to answer.\"","advanceDialogueZh":"森林精靈：「想穿過我的森林，你必須先停下腳步、提出問題，並安靜等待世界給你的回答。」"},{"pageNumber":19,"sceneIndex":3,"sceneId":"CH04_S03","image":"assets/scenes/19_CH04_S03.webp","titleEn":"Casting input() & Naming String!","titleZh":"施展 input() 與小犬「字串」誕生","narrationEn":"Kai cast: input(\"What is your name? \"). The forest grew wonderfully still as a purple input box flickered like a firefly. Kai spoke gently into the quiet—and his loyal pup finally earned his name: String!","narrationZh":"凱唸出傾聽咒：input(\"What is your name? \")。整座森林頓時安靜下來，紫色的光框像螢火蟲般閃爍。凱溫柔地說出名字，忠誠的小黃狗終於獲得了名字——String（字串）！","dialogueEn":"Kai: \"What is your name? ... From now on, your name is String!\"","dialogueZh":"小英雄凱：「你叫什麼名字呢？……以後，你的名字就叫 String！」","spellCode":"Spell: input(\"What is your name? \")","spellLabelEn":"Spell 4: LISTEN (input())","spellLabelZh":"第四咒：LISTEN 傾聽魔法 (input())","zone":"ENV_R04","mood":"serene joy and naming bond","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Tapping her mossy staff against the earth, the Forest Spirit taught Kai the spell of patient listening: input(\"What is your name? \").\n\nAt once, the forest grew wonderfully still. A glowing purple input box flickered on the twilight air like a gentle firefly, waiting patiently. Kai spoke calmly into the quiet and listened with all his heart—and as the forest accepted his words, his loyal golden-tan pup finally earned his true name: String!","advanceNarrationZh":"森林精靈將魔杖輕點在青苔地上，傳授給凱象徵耐心傾聽的咒語：input(\"What is your name? \")。\n\n霎時間，整座森林安靜得連露水滴落都聽得見。一道紫色微光的輸入對話框像螢火蟲般在空中靜靜閃爍等待。凱平心靜氣地唸出名字、也專心聆聽小狗的心意——就在森林接納回答的那一刻，這隻忠誠的小黃狗終於擁有了自己的名字：String（字串）！","advanceDialogueEn":"Kai: \"input('What is your name? ') — Wait... you heard us! Your true name is String!\"","advanceDialogueZh":"小英雄凱：「input('What is your name? ') ——太棒了！森林聽見了，從今天起你的名字就叫 String！」"},{"pageNumber":20,"sceneIndex":4,"sceneId":"CH04_S04","image":"assets/scenes/20_CH04_S04.webp","titleEn":"The Tangled Brambles Part","titleZh":"荊棘分開與歡快前行","narrationEn":"The tangled brambles parted wide to reveal the secret path ahead, and Kai and String bounded joyfully down the newly opened trail!","narrationZh":"糾結的荊棘向兩旁分開，露出一條明亮的祕密小徑，凱與剛剛得到名字的 String 開心地奔向前方！","dialogueEn":"Kai: \"Come on, String!\"","dialogueZh":"小英雄凱：「我們走吧，String！」","spellCode":"# Path unlocked through patience","spellLabelEn":"Bramble Arch Opens","spellLabelZh":"荊棘讓路","zone":"ENV_R04","mood":"liberated joyful momentum","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The dense wall of tangled emerald brambles parted smoothly to reveal a clear, lantern-lit forest exit ahead.\n\nString bounded joyfully down the newly opened trail beside Kai, both of them stepping out into the cool evening breeze filled with the soothing sound of rushing river water.","advanceNarrationZh":"原本糾纏密布的翠綠荊棘緩緩向左右分開，露出一條清澈明亮的森林大道。\n\n剛得到新名字的 String 開心地沿著小路向前奔躍，帶著凱一起走出幽暗森林，迎面吹來清涼的晚風與遠方潺潺流動的水聲。","advanceDialogueEn":"String: \"Woof!\" · Kai: \"Look, String—the brambles opened! Let's follow the sound of the river!\"","advanceDialogueZh":"String：「汪！」· 小英雄凱：「你看，String——荊棘讓開路了！我們順著河水的聲音繼續前進吧！」"}],"chapterUrl":"chapters/chapter-05.html","chapterAdvanceUrl":"chapters/chapter-05-advance.html","paragraphsAdvanceEn":["Deep inside the twilight Whispering Forest, glowing mushrooms and carved stone markers ignored Kai's one-sided questions—until a luminous blue Forest Spirit and a gentle nudge from the pup reminded Kai to slow down and truly listen.","Casting input(\"What is your name? \") sparked a patient purple firefly box in the air; as Kai listened and responded with care, the loyal golden-tan pup earned his true name—String!—and the tangled brambles parted wide."],"paragraphsAdvanceZh":["走進低語森林後，無論凱怎麼單方面問話，發光蘑菇與石碑全都沉默不語。直到湛藍的森林精靈現身點醒，加上小黃狗輕碰手心提醒他耐心傾聽。","唸出 input(\"What is your name? \") 後，空中閃起紫色光框靜靜等候回應。凱真誠回答並聆聽小狗心聲的那一刻，小黃狗終於獲得真名「String」，糾纏荊棘也應聲讓路！"]},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
+  <script type="application/json" id="ch-chapter-data">{"part":{"id":"part-05","partNumber":5,"code":"SPELL 4 · LISTEN","zone":"ENV_R04","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生","subtitleEn":"Spell 4: input(\"What is your name? \") · Pause and listen for a reply","subtitleZh":"第四咒：input(\"What is your name? \") · 靜下來等待對方的回答","valueId":"love-yourself","valueEn":"Love Yourself","valueZh":"愛己","image":"assets/scenes/19_CH04_S03.webp","imageAltEn":"A luminous blue forest spirit glowing beneath flower-twined brambles and teal mushrooms in Whispering Forest","imageAltZh":"低語森林裡發光的青色蘑菇與花藤拱門下，漂浮著溫柔發亮的森林精靈","castIds":["hero-kai","string"],"paragraphsEn":["With his gleaming IronSword at his waist and the faithful golden-tan puppy at his heels, Kai walked into the Whispering Forest—a twilight canopy of moss-draped trees, glowing mushrooms, and soft violet fireflies.","Whenever Kai asked a glowing mushroom or stone marker a question, they stayed completely silent. Suddenly, a luminous Forest Spirit drifted into the path like blue mist, blocking the tangled brambles.","\"Travelers always talk AT me, never TO me,\" she sighed. Right beside Kai, the puppy let out a soft woof and nudged Kai's hand. True magic means pausing to listen! The Spirit taught Kai the Spell of Patience: input(\"What is your name? \").","The forest grew wonderfully still. A purple firefly box flickered in the air, waiting. Kai spoke softly into the quiet—and as the forest accepted his words, the loyal pup finally earned his true name: String! The brambles parted, and String bounded joyfully ahead."],"paragraphsZh":["凱把閃亮的鐵劍別在腰間，帶著忠實的小黃狗走進暮色籠罩的「低語森林」。這裡長滿發光的蘑菇，紫色的螢火蟲在古樹苔蘚間飛舞。","奇怪的是，無論凱問路邊的蘑菇或石碑什麼問題，誰都不回答他。突然，一位散發藍光的森林精靈飄浮出來，擋住了滿是荊棘的小路。","「旅人總是自顧自地說話，從來不聽我回答。」精靈輕嘆。身旁的小狗輕輕叫了一聲，用鼻尖頂了頂凱的手心。原來真正的魔法需要耐心傾聽！精靈教凱唸出傾聽咒：input(\"What is your name? \")。","森林瞬間安靜下來，空中浮現一個像螢火蟲般閃爍的紫色輸入框，靜靜等待回答。凱溫柔地說出名字，森林接納了他們，小狗也終於擁有了屬於自己的名字——「String（字串）」！荊棘分開，String 開心地往前奔跑。"],"dialogue":[{"speakerEn":"Forest Spirit","speakerZh":"森林精靈","lineEn":"\"To pass through my woods, you must pause, ask your question, and wait for the world to answer.\"","lineZh":"「想穿過這座森林，你必須先停下來、提出問題，並耐心等待世界的回應。」"},{"speakerEn":"Hero Kai","speakerZh":"小英雄凱","lineEn":"\"Your name is String! Come on, String, let's go together!\"","lineZh":"「你的名字就叫 String 吧！走吧，String，我們一起出發！」"}],"spell":{"nameEn":"Spell 4: LISTEN — input()","nameZh":"第四咒：LISTEN 傾聽魔法 — input()","code":"name = input(\"What is your name? \")","explainEn":"input() pauses the program, asks a question, and waits patiently until someone types an answer!","explainZh":"input() 會讓魔法暫停下來，親切地問一個問題，等對方輸入回答後才繼續前進！","interactiveInput":true,"demoInputPlaceholderEn":"Type a puppy or hero name (e.g. String)","demoInputPlaceholderZh":"輸入小狗或你的名字（例如 String）","demoBtnEn":"Listen & Reply 👂","demoBtnZh":"傾聽並回應 👂","demoOutputEn":"Welcome, String! The forest brambles part cleanly before you.","demoOutputZh":"歡迎你，String！前方的森林荊棘溫柔地分開了道路。"},"scenes":[{"pageNumber":17,"sceneIndex":1,"sceneId":"CH04_S01","image":"assets/scenes/17_CH04_S01.webp","titleEn":"One-Way Echoes in the Gloom","titleZh":"低語森林裡無人回應的呼喊","narrationEn":"In the Whispering Forest, shadows danced and leaves rustled with secrets. Yet every time Kai called out to a glowing mushroom or stone marker, they stayed silent, ignoring him completely.","narrationZh":"在低語森林裡，葉片沙沙作響。但每當凱向發光蘑菇或古老石碑提問時，它們卻始終保持沉默，完全不理會他。","dialogueEn":"Kai: \"Hello?! Why won't anyone answer?\"","dialogueZh":"小英雄凱：「喂？！為什麼大家都不回答我？」","spellCode":"# Talking AT the world yields silence","spellLabelEn":"Silent Echoes","spellLabelZh":"無人回應的回音","zone":"ENV_R04","mood":"mysterious impatience","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"4. LISTEN — The Whispering Forest (Pause & Listen = input())","advanceSectionZh":"四、LISTEN 傾聽咒 — 低語森林（停下傾聽：input()）","advanceNarrationEn":"Kai and the pup stepped beneath the twilight canopy of the Whispering Forest—a realm where dancing shadows drifted over ancient moss and every leaf rustled with quiet secrets.\n\nYet as Kai walked deeper into the gloom, something troubled him deeply: every time he called out a question to a glowing mushroom or a mossy stone marker, they stayed coldly silent, ignoring his spells entirely.","advanceNarrationZh":"一人一狗踏入「低語森林」的暮色樹冠下——這裡的影子隨著枝葉輕舞，彷彿每片葉子都藏著未說出口的祕密。\n\n但越往深處走，凱心裡越覺得不對勁：無論他向發光的蘑菇或古老石碑提出什麼問題，對方都毫無反應，完全把他單方面施放的咒語當成耳邊風。","advanceDialogueEn":"Kai: \"Hello? Glowing mushroom? Ancient marker? Why won't anything answer me back?\"","advanceDialogueZh":"小英雄凱：「請問有人嗎？發光蘑菇？古老石碑？為什麼大家都不理會我的問題呢？」","imageMobile":"assets/scenes-mobile/17_CH04_S01.webp"},{"pageNumber":18,"sceneIndex":2,"sceneId":"CH04_S02","image":"assets/scenes/18_CH04_S02.webp","titleEn":"The Forest Spirit & The Pup's Gentle Nudge","titleZh":"森林精靈與小狗的溫柔提醒","narrationEn":"\"Travelers always talk AT me, never TO me,\" sighed a luminous Forest Spirit blocking the trail. Beside Kai, the pup let out a soft woof and nudged his hand, reminding him to pause and listen.","narrationZh":"「旅人總是只對我說話，卻從不聽我回答。」發光的森林精靈擋住小路嘆息道。小黃狗輕輕叫了一聲並用鼻子頂頂凱的手心，提醒他靜下心傾聽。","dialogueEn":"Forest Spirit: \"Pause, ask, and wait for the world to answer.\"","dialogueZh":"森林精靈：「停下來提問，然後耐心等待世界的回應。」","spellCode":"# Two-way connection requires patience","spellLabelEn":"Gentle Nudge","spellLabelZh":"溫柔的提醒","zone":"ENV_R04","mood":"reflective calm empathy","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"\"Travelers always talk at me, never to me,\" sighed a luminous Forest Spirit, materializing like a wisp of cool blue mist across the twisting trail. \"You cast your spells into the wind, young wizard, but you never stop to listen for a reply.\"\n\nRight beside Kai, the golden-tan pup let out a soft woof and gently nudged Kai's hand—reminding him that true magic always requires patience and two-way connection.","advanceNarrationZh":"「旅人們總是只顧著對森林說話，卻從來不聽森林回答。」一縷如湛藍薄霧般的森林精靈在蜿蜒小徑上顯現身形，輕聲嘆息：「年輕的法師啊，你把咒語丟進風裡，卻從沒停下來傾聽回音。」\n\n就在此刻，身旁的小黃狗發出一聲溫柔的輕吠，用鼻子輕輕頂了頂凱的手心——提醒著凱，真正的魔法需要耐心與雙向的交流。","advanceDialogueEn":"Forest Spirit: \"To pass through my woods, you must pause, ask your question, and wait for the world to answer.\"","advanceDialogueZh":"森林精靈：「想穿過我的森林，你必須先停下腳步、提出問題，並安靜等待世界給你的回答。」","imageMobile":"assets/scenes-mobile/18_CH04_S02.webp"},{"pageNumber":19,"sceneIndex":3,"sceneId":"CH04_S03","image":"assets/scenes/19_CH04_S03.webp","titleEn":"Casting input() & Naming String!","titleZh":"施展 input() 與小犬「字串」誕生","narrationEn":"Kai cast: input(\"What is your name? \"). The forest grew wonderfully still as a purple input box flickered like a firefly. Kai spoke gently into the quiet—and his loyal pup finally earned his name: String!","narrationZh":"凱唸出傾聽咒：input(\"What is your name? \")。整座森林頓時安靜下來，紫色的光框像螢火蟲般閃爍。凱溫柔地說出名字，忠誠的小黃狗終於獲得了名字——String（字串）！","dialogueEn":"Kai: \"What is your name? ... From now on, your name is String!\"","dialogueZh":"小英雄凱：「你叫什麼名字呢？……以後，你的名字就叫 String！」","spellCode":"Spell: input(\"What is your name? \")","spellLabelEn":"Spell 4: LISTEN (input())","spellLabelZh":"第四咒：LISTEN 傾聽魔法 (input())","zone":"ENV_R04","mood":"serene joy and naming bond","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"Tapping her mossy staff against the earth, the Forest Spirit taught Kai the spell of patient listening: input(\"What is your name? \").\n\nAt once, the forest grew wonderfully still. A glowing purple input box flickered on the twilight air like a gentle firefly, waiting patiently. Kai spoke calmly into the quiet and listened with all his heart—and as the forest accepted his words, his loyal golden-tan pup finally earned his true name: String!","advanceNarrationZh":"森林精靈將魔杖輕點在青苔地上，傳授給凱象徵耐心傾聽的咒語：input(\"What is your name? \")。\n\n霎時間，整座森林安靜得連露水滴落都聽得見。一道紫色微光的輸入對話框像螢火蟲般在空中靜靜閃爍等待。凱平心靜氣地唸出名字、也專心聆聽小狗的心意——就在森林接納回答的那一刻，這隻忠誠的小黃狗終於擁有了自己的名字：String（字串）！","advanceDialogueEn":"Kai: \"input('What is your name? ') — Wait... you heard us! Your true name is String!\"","advanceDialogueZh":"小英雄凱：「input('What is your name? ') ——太棒了！森林聽見了，從今天起你的名字就叫 String！」","imageMobile":"assets/scenes-mobile/19_CH04_S03.webp"},{"pageNumber":20,"sceneIndex":4,"sceneId":"CH04_S04","image":"assets/scenes/20_CH04_S04.webp","titleEn":"The Tangled Brambles Part","titleZh":"荊棘分開與歡快前行","narrationEn":"The tangled brambles parted wide to reveal the secret path ahead, and Kai and String bounded joyfully down the newly opened trail!","narrationZh":"糾結的荊棘向兩旁分開，露出一條明亮的祕密小徑，凱與剛剛得到名字的 String 開心地奔向前方！","dialogueEn":"Kai: \"Come on, String!\"","dialogueZh":"小英雄凱：「我們走吧，String！」","spellCode":"# Path unlocked through patience","spellLabelEn":"Bramble Arch Opens","spellLabelZh":"荊棘讓路","zone":"ENV_R04","mood":"liberated joyful momentum","palette":["#3D6B52","#6BC4B8","#8A79A6","#E9C46A"],"advanceSectionEn":"","advanceSectionZh":"","advanceNarrationEn":"The dense wall of tangled emerald brambles parted smoothly to reveal a clear, lantern-lit forest exit ahead.\n\nString bounded joyfully down the newly opened trail beside Kai, both of them stepping out into the cool evening breeze filled with the soothing sound of rushing river water.","advanceNarrationZh":"原本糾纏密布的翠綠荊棘緩緩向左右分開，露出一條清澈明亮的森林大道。\n\n剛得到新名字的 String 開心地沿著小路向前奔躍，帶著凱一起走出幽暗森林，迎面吹來清涼的晚風與遠方潺潺流動的水聲。","advanceDialogueEn":"String: \"Woof!\" · Kai: \"Look, String—the brambles opened! Let's follow the sound of the river!\"","advanceDialogueZh":"String：「汪！」· 小英雄凱：「你看，String——荊棘讓開路了！我們順著河水的聲音繼續前進吧！」","imageMobile":"assets/scenes-mobile/20_CH04_S04.webp"}],"chapterUrl":"chapters/chapter-05.html","chapterAdvanceUrl":"chapters/chapter-05-advance.html","paragraphsAdvanceEn":["Deep inside the twilight Whispering Forest, glowing mushrooms and carved stone markers ignored Kai's one-sided questions—until a luminous blue Forest Spirit and a gentle nudge from the pup reminded Kai to slow down and truly listen.","Casting input(\"What is your name? \") sparked a patient purple firefly box in the air; as Kai listened and responded with care, the loyal golden-tan pup earned his true name—String!—and the tangled brambles parted wide."],"paragraphsAdvanceZh":["走進低語森林後，無論凱怎麼單方面問話，發光蘑菇與石碑全都沉默不語。直到湛藍的森林精靈現身點醒，加上小黃狗輕碰手心提醒他耐心傾聽。","唸出 input(\"What is your name? \") 後，空中閃起紫色光框靜靜等候回應。凱真誠回答並聆聽小狗心聲的那一刻，小黃狗終於獲得真名「String」，糾纏荊棘也應聲讓路！"],"imageMobile":"assets/scenes-mobile/19_CH04_S03.webp"},"cast":[{"id":"hero-kai","nameEn":"Hero Kai","nameZh":"小英雄凱（Kai）","roleEn":"Boy Hero · Apprentice Wizard","roleZh":"少年勇者 · 魔法學徒","debutEn":"Part 1 · Prologue","debutZh":"序章登場","portrait":"assets/cast/hero-kai.webp","noteEn":"An 11-year-old calm coder pulled through an emerald screen glitch. Wears an olive cloak, Tzu Chi lotus belt buckle, Ancient Spellbook, IronSword, and Dwarven steel armor.","noteZh":"十一歲的沉穩小程式員，因為停下來幫助同學而穿越翠綠螢幕漩渦。身穿橄欖綠披風、慈濟蓮花腰帶扣，帶著古咒書、熔合鐵劍與矮人鋼甲。"},{"id":"string","nameEn":"String","nameZh":"小犬「字串」（String）","roleEn":"Loyal Golden-Tan Pup","roleZh":"忠誠的小黃狗夥伴","debutEn":"Part 3 · Named in Part 5","debutZh":"第三章相遇 · 第五章取名","portrait":"assets/cast/string.webp","noteEn":"A scruffy golden-tan puppy who meets Kai at Grandma Looma's cottage, earns the name String through input(), and gains a glowing telepathic str ribbon bond.","noteZh":"毛茸茸的金黃色小狗，在魯瑪奶奶的木屋遇見凱，透過 Listen 咒語獲得「String」這個名字，並在水晶洞獲得心電感應的文字絲帶。"},{"id":"great-wizard","nameEn":"The Great Wizard","nameZh":"大法師","roleEn":"Wise Mentor & Guide","roleZh":"慈祥的導師與引路人","debutEn":"Parts 1–7 · Prologue to Cavern","debutZh":"序章至第六章","portrait":"assets/cast/great-wizard.webp","noteEn":"Welcomes Kai into Pythonia with his glowing blue-crystal staff, gifts the silver Spatial Dimensional Pocket pouch, and leaves Kai to walk bravely on his own.","noteZh":"手持閃耀藍水晶魔杖迎接凱，教導基礎魔法並贈予銀色空間百寶袋，最後在銀葉樹下化為翠綠星光，讓凱學會獨立思考。"},{"id":"grandma-looma","nameEn":"Grandma Looma","nameZh":"魯瑪奶奶","roleEn":"Master Weaver of Loom Forest","roleZh":"織錦森林的編織大師","debutEn":"Part 3 · Chapter 2","debutZh":"第二章登場","portrait":"assets/cast/grandma-looma.webp","noteEn":"Sits warmly at her giant oak loom surrounded by rainbow ribbons, teaching Kai how the Comma Weave (,) gives words comfortable breathing room.","noteZh":"在掛滿彩虹絲帶的木屋裡操作巨大的橡木織布機，溫柔地教導凱用逗號「,」把單字編織成流暢又暖心的句子。"},{"id":"blacksmith","nameEn":"Outpost Blacksmith","nameZh":"前哨鐵匠","roleEn":"Forgeman of Iron Outpost","roleZh":"鋼鐵前哨的鍛造師","debutEn":"Part 4 · Chapter 3","debutZh":"第三章登場","portrait":"assets/cast/blacksmith.webp","noteEn":"Stout horned-helmet smith with a triple-braided silver beard who shows Kai how the Plus sign (+) melts two broken halves into one solid IronSword.","noteZh":"戴著雙角鐵盔、留著三股銀白辮子鬍的壯碩鐵匠，在火花四濺的鐵砧前教凱用加號「+」無縫熔合斷裂的鐵劍。"},{"id":"master-grimsby","nameEn":"Master Grimsby","nameZh":"格里姆斯比大師","roleEn":"Fiery-Bearded Dwarven Smith","roleZh":"紅鬍子深山矮人宗師","debutEn":"Part 10 · Chapter 8","debutZh":"第八章登場","portrait":"assets/cast/master-grimsby.webp","noteEn":"Hatless dwarven master with a twin-forked ginger beard and brass runes. Tests Kai's honest hard work before forging his Dwarven steel armor and math runes.","noteZh":"沒有戴頭盔、留著火紅雙叉鬍與黃銅符文圍裙的矮人鐵匠宗師。考驗凱勤勞誠懇的態度後，為他打造矮人鋼甲並傳授加減乘除魔法。"},{"id":"bug-king","nameEn":"The Bug King","nameZh":"蟲蟲魔王（Bug King）","roleEn":"Corrupted Steward of Order","roleZh":"迷失方向的秩序守護者","debutEn":"Part 1 & Part 13 · Citadel","debutZh":"序章提及 · 終章對決","portrait":"assets/cast/bug-king.webp","noteEn":"Once Pythonia's Steward of Order, twisted by tangled careless code into an obsidian armored sovereign. Shattering his dark shell frees the true guardian inside.","noteZh":"原本是守護王國的秩序使者，卻被人們草率混亂的壞程式碼纏繞而黑化。擊碎他黑暗的外殼後，裡面沉睡的真正守護者終於重獲自由。"},{"id":"spell-guardian","nameEn":"Baby Praying Mantis","nameZh":"小螳螂咒語守護神","roleEn":"True Spell Guardian of Pythonia","roleZh":"蟒蛇王國真正的守護小精靈","debutEn":"Part 13 · Epilogue","debutZh":"終章破殼誕生","portrait":"assets/cast/spell-guardian.webp","noteEn":"A tiny spring-emerald baby praying mantis with bright gentle eyes who hatches from the cracked dark shell at dawn, restoring peace to Pythonia.","noteZh":"從破裂的黑殼中搖搖晃晃走出的翠綠小螳螂精靈，有著清澈明亮的大眼睛，在黎明曙光中與凱和 String 一起迎接和平。"}],"navChapters":[{"partNumber":1,"file":"chapter-01.html","advanceFile":"chapter-01-advance.html","titleEn":"Prologue: The Glitch, the Gentle Heart & the Bug King","titleZh":"序章：螢幕裂縫、溫柔的心與蟲蟲魔王的由來"},{"partNumber":2,"file":"chapter-02.html","advanceFile":"chapter-02-advance.html","titleEn":"Chapter 1: VOICE — Breaking the Hush of Silent Village","titleZh":"第一章：VOICE 聲音咒 — 喚醒靜默村莊的微笑"},{"partNumber":3,"file":"chapter-03.html","advanceFile":"chapter-03-advance.html","titleEn":"Chapter 2: WEAVE — Grandma Looma's Cottage & the Friendly Pup","titleZh":"第二章：WEAVE 編織咒 — 魯瑪奶奶的木屋與小黃狗"},{"partNumber":4,"file":"chapter-04.html","advanceFile":"chapter-04-advance.html","titleEn":"Chapter 3: FUSE — The Iron Outpost & the Forged Sword","titleZh":"第三章：FUSE 熔合咒 — 鋼鐵前哨與無縫寶劍"},{"partNumber":5,"file":"chapter-05.html","advanceFile":"chapter-05-advance.html","titleEn":"Chapter 4: LISTEN — Whispering Forest & Naming String","titleZh":"第四章：LISTEN 傾聽咒 — 低語森林與「字串」誕生"},{"partNumber":6,"file":"chapter-06.html","advanceFile":"chapter-06-advance.html","titleEn":"Chapter 5: VAULT — Cursed Riverbank & Spatial Pocket","titleZh":"第五章：VAULT 保險箱咒 — 詛咒河畔與空間百寶袋"},{"partNumber":7,"file":"chapter-07.html","advanceFile":"chapter-07-advance.html","titleEn":"Chapter 6: MULTI-VAULT — Three Chests & the Wizard's Farewell","titleZh":"第六章：MULTI-VAULT 多重寶箱 — 齊心鎖寶與大法師告別"},{"partNumber":8,"file":"chapter-08.html","advanceFile":"chapter-08-advance.html","titleEn":"Chapter 7: WHISPER — The Sleeping Dragon's Library","titleZh":"第七章：WHISPER 悄悄話咒 — 睡龍古書庫的默契"},{"partNumber":9,"file":"chapter-09.html","advanceFile":"chapter-09-advance.html","titleEn":"Chapter 8: SHAPESHIFT — Four Spirits & Sunnybrook Village","titleZh":"第八章：SHAPESHIFT 形變咒 — 水晶四精靈與晴溪村"},{"partNumber":10,"file":"chapter-10.html","advanceFile":"chapter-10-advance.html","titleEn":"Chapter 9: FORGE — Master Grimsby's Deep Dwarven Forge","titleZh":"第九章：FORGE 運算咒 — 格里姆斯比大師的深山矮人爐"},{"partNumber":11,"file":"chapter-11.html","advanceFile":"chapter-11-advance.html","titleEn":"Chapter 10: SIGHT — Twin Illusion Paths & Eye of Truth","titleZh":"第十章：SIGHT 真視咒 — 真理雙歧幻路與真理之眼"},{"partNumber":12,"file":"chapter-12.html","advanceFile":"chapter-12-advance.html","titleEn":"Chapter 11: FATE — The Final Crossroads & Golden Colon Gates","titleZh":"第十一章：FATE 命運咒 — 最後的十字路口與金色冒號"},{"partNumber":13,"file":"chapter-13.html","advanceFile":"chapter-13-advance.html","titleEn":"Epilogue: The Clash of Fates & Birth of the True Guardian","titleZh":"終章：命運決戰與真正守護精靈的誕生"}]}</script>
   <script>
     (() => {
       const payload = JSON.parse(document.getElementById("ch-chapter-data").textContent);
@@ -1109,6 +1256,37 @@
         });
       }
 
+      const topbarNode = document.querySelector(".ch-topbar");
+      const mobileMenuBtn = document.getElementById("ch-mobile-menu-btn");
+      const syncMobileMenuLabel = () => {
+        if (!mobileMenuBtn || !topbarNode) return;
+        const open = topbarNode.classList.contains("is-menu-open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(open));
+        mobileMenuBtn.textContent = open
+          ? (lang === "zh-Hant" ? "✕ 收合" : "✕ Close")
+          : (lang === "zh-Hant" ? "☰ 選單" : "☰ Menu");
+      };
+      if (mobileMenuBtn && topbarNode) {
+        mobileMenuBtn.addEventListener("click", () => {
+          topbarNode.classList.toggle("is-menu-open");
+          syncMobileMenuLabel();
+          updateScrollAnimations();
+        });
+      }
+
+      const isPortraitPhone = () =>
+        !!(window.matchMedia && window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches);
+      const renderScenePicture = (s, cls = "", loading = "lazy") => {
+        const desktopSrc = `../${s.image}`;
+        const mobileSrc = s.imageMobile ? `../${s.imageMobile}` : desktopSrc;
+        const clsAttr = cls ? ` class="${cls}"` : "";
+        const loadAttr = loading ? ` loading="${loading}"` : "";
+        if (mobileSrc === desktopSrc) {
+          return `<img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} />`;
+        }
+        return `<picture class="${cls === "ch-stage__img" ? "ch-stage__pic" : ""}"><source media="(max-width: 768px) and (orientation: portrait)" srcset="${mobileSrc}" /><img${clsAttr} src="${desktopSrc}" alt="${s.titleEn}"${loadAttr} /></picture>`;
+      };
+
       const txt = (en, zh) => {
         if (lang === "zh-Hant") return zh || en || "";
         if (lang === "dual") return en && zh && en !== zh ? `${en}<br><span style="color:#ffd285;">${zh}</span>` : (en || zh || "");
@@ -1176,7 +1354,7 @@
         const lbCap = document.getElementById("ch-lb-caption");
         if (!lb || !lbImg || !s) return;
         activeSceneIdx = idx;
-        lbImg.src = `../${s.image}`;
+        lbImg.src = (isPortraitPhone() && s.imageMobile) ? `../${s.imageMobile}` : `../${s.image}`;
         lbImg.alt = s.titleEn;
         if (lbCap) {
           lbCap.textContent = lang === "zh-Hant"
@@ -1245,7 +1423,7 @@
                   return `
                   <article class="ch-board-card">
                     <div class="ch-board-card__img" data-open-lb="${i}">
-                      <img src="../${s.image}" alt="${s.titleEn}" />
+                      ${renderScenePicture(s, "", "lazy")}
                       <span class="ch-glass-pill" style="position:absolute;top:12px;left:12px;">Page ${s.pageNumber} / 52 &middot; ${s.sceneId}${cp.isAdv ? " &middot; Advance" : ""}</span>
                     </div>
                     <div class="ch-board-card__body">
@@ -1288,13 +1466,14 @@
             <section class="ch-scroll-scene" id="scene-${i + 1}" data-scene-idx="${i}" aria-label="${s.titleEn}">
               <div class="ch-stage">
                 <div class="ch-stage__media">
-                  <img class="ch-stage__img" src="../${s.image}" alt="${s.titleEn}" loading="${i === 0 ? "eager" : "lazy"}" />
+                  ${renderScenePicture(s, "ch-stage__img", i === 0 ? "eager" : "lazy")}
                 </div>
                 <div class="ch-stage__scrim" aria-hidden="true"></div>
 
                 <div class="ch-stage__topmeta">
                   <span class="ch-glass-pill">Page ${s.pageNumber} / 52 &middot; Scene ${i + 1} / ${scenes.length}${cp.isAdv ? " &middot; Advance" : ""}</span>
                   <span class="ch-glass-pill ch-glass-pill--mint">${s.sceneId} &middot; ${s.zone}</span>
+                  <button class="ch-art-peek-btn" type="button" data-art-peek="${i}" aria-pressed="false">${lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art"}</button>
                 </div>
 
                 <div class="ch-stage__copy-zone">
@@ -1329,6 +1508,17 @@
 
         flowEl.querySelectorAll("[data-zoom-scene]").forEach((btn) => {
           btn.addEventListener("click", () => openLightbox(Number(btn.getAttribute("data-zoom-scene")) || 0));
+        });
+        flowEl.querySelectorAll("[data-art-peek]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const stage = btn.closest(".ch-stage");
+            if (!stage) return;
+            const active = stage.classList.toggle("is-art-peek");
+            btn.setAttribute("aria-pressed", String(active));
+            btn.textContent = active
+              ? (lang === "zh-Hant" ? "👁️ 顯示文字" : "👁️ Show Text")
+              : (lang === "zh-Hant" ? "👁️ 賞圖" : "👁️ Art");
+          });
         });
         flowEl.querySelectorAll("[data-advance-scene]").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -1383,30 +1573,32 @@
 
           const beat1 = sec.querySelector(".ch-beat--story");
           const beat2 = sec.querySelector(".ch-beat--dialogue");
+          const scrimEl = sec.querySelector(".ch-stage__scrim");
 
           // Beat 1: For Scene 0 start crisp at opacity 1 immediately at p=0;
-          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.38, fade out 0.38..0.52.
+          // for Scenes 1..3 fade + glide in over 0.00..0.16, hold until 0.32, fade out 0.32..0.42
+          // leaving a Pure Hero Art Window across 0.42..0.52.
           let b1Op = 1;
           let b1Ty = 0;
           if (idx > 0 && p < 0.16) {
             const tin = clamp01(p / 0.16);
             b1Op = tin;
             b1Ty = (1 - tin) * 28;
-          } else if (p > 0.38) {
-            const tout = clamp01((p - 0.38) / 0.14);
+          } else if (p > 0.32) {
+            const tout = clamp01((p - 0.32) / 0.10);
             b1Op = 1 - tout;
             b1Ty = -tout * 18;
           }
           applyBeatStyle(beat1, b1Op, b1Ty);
 
-          // Beat 2: Fade + rise in over 0.46..0.60, hold 0.60..0.90, soften slightly 0.90..1.00.
+          // Beat 2: Fade + rise in over 0.52..0.62, hold 0.62..0.90, soften slightly 0.90..1.00.
           let b2Op = 0;
           let b2Ty = 28;
-          if (p >= 0.46 && p < 0.60) {
-            const tin = clamp01((p - 0.46) / 0.14);
+          if (p >= 0.52 && p < 0.62) {
+            const tin = clamp01((p - 0.52) / 0.10);
             b2Op = tin;
             b2Ty = (1 - tin) * 28;
-          } else if (p >= 0.60 && p <= 0.90) {
+          } else if (p >= 0.62 && p <= 0.90) {
             b2Op = 1;
             b2Ty = 0;
           } else if (p > 0.90) {
@@ -1415,6 +1607,7 @@
             b2Ty = -tout * 14;
           }
           applyBeatStyle(beat2, b2Op, b2Ty);
+          if (scrimEl) scrimEl.style.opacity = (0.10 + 0.90 * Math.max(b1Op, b2Op)).toFixed(3);
         });
 
         const fin = document.getElementById("ch-finale");
@@ -1448,6 +1641,7 @@
         if (backEl) backEl.textContent = lang === "zh-Hant" ? "← 返回故事地圖" : "← World Map";
         const hubEl = document.getElementById("ch-hub-link");
         if (hubEl) hubEl.textContent = lang === "zh-Hant" ? "🏰 學習中心" : "🏰 Learning Hub";
+        syncMobileMenuLabel();
         populateSelect();
 
         const begBtn = document.getElementById("ch-level-beginner");
@@ -1548,7 +1742,7 @@
         if (recapEl) {
           recapEl.innerHTML = scenes.map((s, i) => `
             <button class="ch-recap-thumb" type="button" data-recap-lb="${i}">
-              <img src="../${s.image}" alt="${s.titleEn}" loading="lazy" />
+              ${renderScenePicture(s, "", "lazy")}
               <div class="ch-recap-thumb__cap">S0${i + 1} · ${lang === "zh-Hant" ? s.titleZh : s.titleEn}</div>
             </button>
           `).join("");
@@ -1573,12 +1767,15 @@
           const sanctFooterCta = sanctInfo
             ? `<a class="ch-btn ch-btn--sanctuary" href="../sanctuaries/${sanctInfo.file}">${sanctLabel} &rarr;</a>`
             : `<a class="ch-btn ch-btn--sanctuary" href="../hub.html">${lang === "zh-Hant" ? "🏰 前往學習互動中心 →" : "🏰 Open Learning Hub →"}</a>`;
+          const comicEp = String(partIndex).padStart(2, "0");
+          const comicFooterCta = `<a class="ch-btn" href="../comic.html#ep=${comicEp}">${lang === "zh-Hant" ? `🎨 本章條漫 EP ${comicEp} →` : `🎨 Webtoon EP ${comicEp} →`}</a>`;
           footerEl.innerHTML = `
             <a class="ch-btn" href="${prevHref}">${prevLabel}</a>
             <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--gold);">
               ${lang === "zh-Hant" ? `第 ${part.partNumber} / ${totalParts} 章已完成 · ${levelTag}` : `Chapter ${part.partNumber} of ${totalParts} Complete · ${levelTag}`}
             </span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              ${comicFooterCta}
               ${sanctFooterCta}
               <a class="ch-btn ch-btn--gold" href="${nextHref}">${nextLabel}</a>
             </div>

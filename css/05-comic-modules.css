@@ -1,0 +1,482 @@
+/* ============================================================================
+ * 05-comic-modules.css
+ * Hero Kai · Pythonia Webtoon Comic Reader — Extensible Module Slot Styles
+ * Houses:
+ *   1. Universal Lightbox Modal & Toasts
+ *   2. v1.1 Enhancements (Floating Progress/Top Pill, Resume Banner, Biome Thumbs)
+ *   3. v2.0 Bold Innovation (Live In-Comic Spell-Portal & 11-Seal Spell Passport)
+ * ============================================================================ */
+
+/* Lightbox Modal (Spell Grimoire / Back Cover / Passport / Shortcuts) */
+.comic-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(4, 10, 8, 0.84);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.comic-modal {
+  width: min(820px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--comic-radius-lg);
+  background: var(--kc-panel-solid);
+  border: 1px solid var(--kc-border-warm);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.78);
+  padding: 20px;
+}
+
+.comic-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.comic-modal__head h3 {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.2rem;
+  color: var(--kc-gold);
+}
+
+.comic-modal__img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Toast Notification */
+.comic-toast {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  z-index: 140;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(12, 28, 22, 0.96);
+  border: 1px solid var(--sc-accent);
+  color: var(--sc-accent);
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.comic-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- v1.1 Fix #1: Resume Scroll Bookmark Banner ------------------------- */
+.resume-banner {
+  max-width: var(--comic-strip-width);
+  margin: 0 auto 14px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(140, 240, 189, 0.14), rgba(255, 210, 133, 0.12));
+  border: 1px solid var(--kc-border-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+/* ---- v1.1 Fix #2: Floating Scroll % & Back-to-Top Rail ------------------ */
+.reader-float-rail {
+  position: fixed;
+  right: 16px;
+  bottom: 84px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: opacity var(--comic-transition), transform var(--comic-transition);
+}
+
+body.hud-hidden .reader-float-rail {
+  opacity: 0;
+  transform: translateX(18px);
+  pointer-events: none;
+}
+
+.float-pill-btn {
+  appearance: none;
+  cursor: pointer;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--kc-border-warm);
+  background: rgba(11, 22, 18, 0.94);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.float-pill-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+.float-pill-btn--spell {
+  background: linear-gradient(145deg, #1b4b37, #11291f);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+  font-size: 1.15rem;
+  box-shadow: 0 0 20px rgba(140, 240, 189, 0.32);
+}
+
+/* ---- v1.1 Fix #3: Biome-Colored Episode Thumbnail Cards ----------------- */
+.ep-card__thumb-biome {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  text-align: center;
+  position: relative;
+}
+
+.ep-card__thumb-biome::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.2), transparent 65%);
+  pointer-events: none;
+}
+
+.ep-card__seal-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--kc-gold), var(--kc-gold-deep));
+  color: #1a1004;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* ---- v1.1 Fix #6: Keyboard Shortcuts Grid ------------------------------- */
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--kc-border);
+  font-size: 0.84rem;
+}
+
+.kbd-key {
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--sc-surface-elevated);
+  border: 1px solid var(--kc-border-warm);
+  color: var(--kc-gold);
+}
+
+/* ============================================================================
+ * v2.0 BOLD INNOVATION: LIVE IN-COMIC SPELL-PORTAL & 11-SEAL PASSPORT
+ * ============================================================================ */
+.module-slot {
+  width: 100%;
+}
+
+.spell-portal {
+  position: relative;
+  max-width: var(--comic-strip-width);
+  margin: 26px auto 0;
+  padding: 24px 22px;
+  border-radius: var(--comic-radius-lg);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(140, 240, 189, 0.16), transparent 45%),
+    radial-gradient(circle at 12% 90%, rgba(255, 210, 133, 0.14), transparent 48%),
+    linear-gradient(160deg, #132820 0%, #0c1914 100%);
+  border: 1.5px solid var(--kc-border-warm);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.56);
+  overflow: hidden;
+}
+
+.spell-portal.is-awakened {
+  border-color: var(--sc-accent);
+  box-shadow: 0 0 36px rgba(140, 240, 189, 0.22), 0 20px 52px rgba(0, 0, 0, 0.56);
+}
+
+.spell-portal__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spell-portal__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.spell-portal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(255, 210, 133, 0.16);
+  border: 1px solid var(--kc-border-warm);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.spell-portal__badge--done {
+  background: rgba(140, 240, 189, 0.2);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+.spell-portal__title {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 6px;
+  font-family: var(--sc-font-display);
+  font-size: 1.32rem;
+  color: #fff8eb;
+}
+
+.spell-portal__prompt {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  color: var(--sc-ink-soft);
+}
+
+.spell-runes {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rune-chip {
+  appearance: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(121, 216, 230, 0.35);
+  background: rgba(121, 216, 230, 0.1);
+  color: var(--kc-cyan);
+  font-family: var(--sc-font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.rune-chip:hover {
+  transform: translateY(-1px);
+  background: rgba(121, 216, 230, 0.2);
+  border-color: var(--kc-gold);
+}
+
+.spell-editor-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.spell-input {
+  flex: 1;
+  min-width: 240px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--kc-border);
+  background: rgba(5, 12, 9, 0.88);
+  color: #fff8eb;
+  font-family: var(--sc-font-mono);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.spell-input:focus {
+  outline: none;
+  border-color: var(--kc-gold);
+  box-shadow: 0 0 0 3px rgba(255, 210, 133, 0.16);
+}
+
+.spell-output {
+  position: relative;
+  z-index: 2;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(6, 14, 11, 0.82);
+  border: 1px solid var(--kc-border);
+  font-family: var(--sc-font-mono);
+  font-size: 0.84rem;
+  color: var(--sc-ink-soft);
+}
+
+.spell-output--ok {
+  border-color: var(--sc-accent);
+  background: rgba(140, 240, 189, 0.12);
+  color: var(--sc-accent);
+}
+
+.spell-output--hint {
+  border-color: var(--kc-gold);
+  background: rgba(255, 210, 133, 0.1);
+  color: var(--kc-gold);
+}
+
+.spell-portal__cta {
+  position: relative;
+  z-index: 2;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(140, 240, 189, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Collectible 11-Seal Passport Pill & Grid */
+.passport-pill {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 210, 133, 0.2), rgba(140, 240, 189, 0.14));
+  border: 1px solid var(--kc-gold);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.passport-pill:hover {
+  transform: translateY(-1px);
+}
+
+.passport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.passport-seal-card {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--kc-border);
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.passport-seal-card:hover {
+  border-color: var(--kc-gold);
+}
+
+.passport-seal-card.is-unlocked {
+  background: linear-gradient(145deg, rgba(140, 240, 189, 0.14), rgba(255, 210, 133, 0.12));
+  border-color: var(--kc-gold);
+}
+
+.passport-seal-icon {
+  font-size: 1.65rem;
+  margin-bottom: 4px;
+  filter: grayscale(1) opacity(0.45);
+}
+
+.passport-seal-card.is-unlocked .passport-seal-icon {
+  filter: none;
+}
+
+.passport-seal-name {
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+}
+
+.passport-seal-code {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--sc-ink-soft);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 820px) {
+  .spell-portal {
+    margin: 20px 10px 0;
+    padding: 18px 15px;
+  }
+  .resume-banner {
+    margin: 0 10px 12px;
+  }
+  .reader-float-rail {
+    right: 10px;
+    bottom: 72px;
+  }
+}
