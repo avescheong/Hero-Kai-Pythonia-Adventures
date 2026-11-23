@@ -40,11 +40,29 @@
     }
   }
 
+  function getActiveComicLang(state) {
+    if (state.lang === 'zh-Hant') return 'zh-Hant';
+    if (state.lang === 'en') return 'en';
+    return state.comicLang === 'zh-Hant' ? 'zh-Hant' : 'en';
+  }
+
+  function getEpisodeTiles(ep, comicLang) {
+    if (comicLang === 'zh-Hant' && ep.localTilesZh && ep.localTilesZh.length) {
+      return ep.localTilesZh;
+    }
+    if (ep.localTilesEn && ep.localTilesEn.length) {
+      return ep.localTilesEn;
+    }
+    return ep.localTiles || [];
+  }
+
   function preloadNextEpisode(ctx, curEpNum) {
     const nextEp = ctx.manifest.episodes[curEpNum + 1];
-    if (!nextEp || preloadedEps.has(nextEp.episode)) return;
-    preloadedEps.add(nextEp.episode);
-    const firstSrc = (nextEp.localTiles && nextEp.localTiles[0]) || null;
+    const comicLang = getActiveComicLang(ctx.store.getState());
+    const key = nextEp ? `${nextEp.episode}:${comicLang}` : null;
+    if (!nextEp || preloadedEps.has(key)) return;
+    preloadedEps.add(key);
+    const firstSrc = getEpisodeTiles(nextEp, comicLang)[0] || null;
     if (firstSrc) {
       const img = new Image();
       img.decoding = 'async';
@@ -109,7 +127,9 @@
     document.getElementById('episode-drawer').hidden = true;
   }
 
-  function openEpisode(ctx, epNum) {
+  function openEpisode(ctx, epNum, opts) {
+    const options = opts || {};
+    const preserveRatio = typeof options.preserveRatio === 'number' ? options.preserveRatio : null;
     const episodes = ctx.manifest.episodes;
     const ep = episodes[epNum] || episodes[0];
     const savedRatio = ctx.store.getState().scrollBookmarks[ep.episode] || 0;
@@ -126,10 +146,12 @@
     document.getElementById('view-hub').hidden = true;
     document.getElementById('view-reader').hidden = false;
 
-    const lang = ctx.store.getState().lang;
+    const stNow = ctx.store.getState();
+    const lang = stNow.lang;
+    const comicLang = getActiveComicLang(stNow);
     const title = global.KaiComicI18n.formatEpTitle(ep, lang);
 
-    // 1. Episode Header Banner + Share Button (Fix #8)
+    // 1. Episode Header Banner + Edition Switcher + Share Button
     const banner = document.getElementById('reader-ep-banner');
     banner.innerHTML = `
       <div class="reader-ep-banner__meta">
@@ -138,15 +160,36 @@
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <span class="reader-ep-banner__spell">🐍 ${ep.spellCode}</span>
+        <div class="reader-lang-switch" role="group" aria-label="Comic edition language">
+          <button type="button" class="reader-lang-btn" data-comic-lang="en" aria-pressed="${comicLang === 'en'}">EN Comic</button>
+          <button type="button" class="reader-lang-btn" data-comic-lang="zh-Hant" aria-pressed="${comicLang === 'zh-Hant'}">繁體中文</button>
+        </div>
         <button type="button" class="hud-btn" id="reader-share-btn" title="Copy direct link to this episode">🔗 Share</button>
       </div>
     `;
     document.getElementById('reader-share-btn').addEventListener('click', () => copyShareLink(ctx, ep));
+    banner.querySelectorAll('[data-comic-lang]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nextComicLang = btn.getAttribute('data-comic-lang');
+        if (nextComicLang === comicLang) return;
+        const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = Math.max(0, Math.min(1, window.scrollY / docH));
+        const curSt = ctx.store.getState();
+        if (curSt.lang === 'dual') {
+          ctx.store.setState({ comicLang: nextComicLang });
+          openEpisode(ctx, ep.episode, { preserveRatio: ratio, silent: true });
+        } else {
+          ctx.store.setState({ lang: nextComicLang, comicLang: nextComicLang }, 'lang:changed');
+          ctx.bus.emit('lang:sync-ui');
+        }
+        ctx.toast(nextComicLang === 'zh-Hant' ? '已切換至繁體中文漫畫' : 'Switched to English Comic');
+      });
+    });
 
     // 2. Fix #1: Smart Resume Scroll Bookmark Banner
     const resumeSlot = document.getElementById('reader-resume-banner');
     if (resumeSlot) {
-      if (savedRatio >= 0.08 && savedRatio <= 0.92) {
+      if (preserveRatio === null && savedRatio >= 0.08 && savedRatio <= 0.92) {
         const pct = Math.round(savedRatio * 100);
         resumeSlot.hidden = false;
         resumeSlot.innerHTML = `
@@ -169,24 +212,39 @@
       }
     }
 
-    // 3. Seamless Vertical Webtoon Strip Canvas
+    // 3. Seamless Vertical Webtoon Strip Canvas (EN or 繁體中文 v5.3 tiles)
     const canvas = document.getElementById('webtoon-canvas');
     canvas.innerHTML = '';
+    canvas.dataset.comicLang = comicLang;
 
-    if (ep.localTiles && ep.localTiles.length) {
-      ep.localTiles.forEach((tileSrc, idx) => {
+    const tiles = getEpisodeTiles(ep, comicLang);
+    const activeFilename = (comicLang === 'zh-Hant' ? ep.filenameZh : ep.filenameEn) || ep.filename;
+
+    const restoreScroll = () => {
+      if (preserveRatio === null || preserveRatio <= 0) return;
+      const newDocH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      window.scrollTo({ top: Math.round(newDocH * preserveRatio), behavior: 'instant' });
+    };
+
+    if (tiles.length) {
+      tiles.forEach((tileSrc, idx) => {
         const img = document.createElement('img');
         img.className = 'webtoon-tile';
         img.src = tileSrc;
-        img.alt = `${ep.title_en} — Panel Strip ${idx + 1}`;
+        img.alt = comicLang === 'zh-Hant'
+          ? `${ep.title_zh} — 第 ${idx + 1} 段`
+          : `${ep.title_en} — Panel Strip ${idx + 1}`;
         img.decoding = 'async';
         if (idx > 1) img.loading = 'lazy';
+        if (preserveRatio !== null && preserveRatio > 0 && idx < 3) {
+          img.addEventListener('load', restoreScroll, { once: true });
+        }
         canvas.appendChild(img);
       });
     } else {
       const loader = document.createElement('div');
       loader.className = 'webtoon-loader';
-      loader.textContent = `Loading ${ep.code} (${ep.filename})...`;
+      loader.textContent = `Loading ${ep.code} (${activeFilename})...`;
       canvas.appendChild(loader);
 
       const img = document.createElement('img');
@@ -196,8 +254,8 @@
 
       const driveDirect = `https://lh3.googleusercontent.com/d/${ep.driveId}=w800`;
       const candidates = window.KAI_SELF_CONTAINED
-        ? [driveDirect, ep.filename, `comics/${ep.filename}`]
-        : [ep.filename, `comics/${ep.filename}`, driveDirect];
+        ? [driveDirect, activeFilename, `comics/${activeFilename}`]
+        : [activeFilename, `comics/${activeFilename}`, driveDirect];
       let candIdx = 0;
 
       img.onload = () => {
@@ -217,7 +275,7 @@
             <h3>${ep.code} · ${title}</h3>
             <p>${global.KaiComicI18n.formatEpSummary(ep, lang)}</p>
             <p style="font-size:0.8rem;color:var(--sc-ink-muted);">
-              For offline reading, place <code>${ep.filename}</code> inside <code>comics/</code> — or open the full strip on Google Drive, or cast this episode's Live Python Spell right below!
+              For offline reading, place <code>${activeFilename}</code> inside <code>comics/</code> — or open the full strip on Google Drive, or cast this episode's Live Python Spell right below!
             </p>
             <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
               <a class="btn-webtoon-primary" href="https://drive.google.com/file/d/${ep.driveId}/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">📖 Open Full Strip on Drive ↗</a>
@@ -237,19 +295,24 @@
     }
 
     // 4. Update Bottom HUD & Float Rail
-    document.getElementById('hud-ep-code').textContent = `${ep.code} · 0%`;
-    document.getElementById('hud-ep-title').textContent = ep.title_en;
+    const pctDisplay = preserveRatio !== null ? Math.round(preserveRatio * 100) : 0;
+    document.getElementById('hud-ep-code').textContent = `${ep.code} · ${pctDisplay}%`;
+    document.getElementById('hud-ep-title').textContent = comicLang === 'zh-Hant' ? ep.title_zh : ep.title_en;
     document.getElementById('hud-btn-prev').disabled = ep.episode <= 0;
     document.getElementById('hud-btn-next').disabled = ep.episode >= episodes.length - 1;
     const pctPill = document.getElementById('float-pct-btn');
-    if (pctPill) pctPill.textContent = '0%';
+    if (pctPill) pctPill.textContent = `${pctDisplay}%`;
 
     // 5. Render End-of-Episode Card
     renderEndCard(ctx, ep);
 
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (preserveRatio !== null) {
+      requestAnimationFrame(restoreScroll);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     ctx.bus.emit('episode:opened', { episode: ep });
-    ctx.bus.emit('audio:chime', 'tap');
+    if (!options.silent) ctx.bus.emit('audio:chime', 'tap');
   }
 
   function renderEndCard(ctx, ep) {
@@ -406,7 +469,11 @@
       ctx.bus.on('reader:open', ({ episode }) => openEpisode(ctx, episode));
       ctx.bus.on('lang:changed', () => {
         const st = ctx.store.getState();
-        if (st.view === 'reader') openEpisode(ctx, st.currentEpisode);
+        if (st.view === 'reader') {
+          const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          const ratio = window.scrollY > 20 ? Math.max(0, Math.min(1, window.scrollY / docH)) : 0;
+          openEpisode(ctx, st.currentEpisode, { preserveRatio: ratio, silent: true });
+        }
       });
     }
   });

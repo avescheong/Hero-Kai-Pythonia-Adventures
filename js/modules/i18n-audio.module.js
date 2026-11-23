@@ -140,11 +140,14 @@
       document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const lang = btn.getAttribute('data-lang-btn');
-          ctx.store.setState({ lang }, 'lang:changed');
+          const patch = lang === 'dual' ? { lang } : { lang, comicLang: lang };
+          ctx.store.setState(patch, 'lang:changed');
           applyTranslations(lang);
           playChime('tap');
         });
       });
+
+      ctx.bus.on('lang:sync-ui', () => applyTranslations(ctx.store.getState().lang));
 
       const soundBtn = document.getElementById('kc-sound-btn');
 

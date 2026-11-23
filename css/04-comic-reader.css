@@ -61,6 +61,33 @@
   border-radius: 999px;
 }
 
+.reader-lang-switch {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(11, 22, 18, 0.9);
+  border: 1px solid var(--kc-border);
+}
+
+.reader-lang-btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sc-ink-soft);
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.reader-lang-btn[aria-pressed="true"] {
+  background: var(--kc-gold);
+  color: #171005;
+}
+
 /* Seamless Vertical Webtoon Strip Container */
 .webtoon-canvas {
   max-width: var(--comic-strip-width);

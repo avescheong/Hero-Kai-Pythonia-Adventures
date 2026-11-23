@@ -60,6 +60,7 @@
              <span class="ep-card__thumb-code">${ep.code}</span>
            </div>`;
       const likes = ep.baseLikes + (state.likedEpisodes.includes(ep.episode) ? 1 : 0);
+      const epHeight = lang === 'zh-Hant' ? (ep.heightPxZh || ep.heightPx) : (ep.heightPxEn || ep.heightPx);
 
       return `
         <button type="button" class="ep-card ${isRead ? 'is-read' : ''}" data-open-ep="${ep.episode}">
@@ -76,7 +77,7 @@
             <div class="ep-card__spell">${ep.spellCode}</div>
             <div class="ep-card__foot">
               <span>♥ ${likes}</span>
-              <span>${isSealed ? '🏅 Seal Earned' : `800×${ep.heightPx.toLocaleString()}px`}</span>
+              <span>${isSealed ? '🏅 Seal Earned' : `800×${epHeight.toLocaleString()}px`}</span>
             </div>
           </div>
         </button>

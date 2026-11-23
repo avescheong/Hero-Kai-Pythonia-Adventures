@@ -30,9 +30,41 @@ Switch effortlessly between **English**, **Traditional Chinese (`繁體中文`)*
 - **Dual-Experience Music & SFX**:
   - **Learning Hub & 12 Sanctuaries**: Plays *Spinning in Three* (`assets/audio/spinning-in-three.mp3`) with a synced `🎵 Music: ON/OFF` toggle (`pythonia_piano_on`) that automatically pauses during Story Cinema MP4 playback.
   - **Storybook & Chapter Readers (`index.html` & `chapters/`)**: Plays scroll-reactive ambient audio (`assets/audio/peaceful.mp3` or synthesized Crystal Harp) and soft spell chimes (`assets/audio/spell-chime.mp3`).
+  - **Webtoon Comic (`comic.html`)**: Plays the same `assets/audio/peaceful.mp3` after the first tap, sharing the on/off and volume settings (`pythonia_music_on`, `pythonia_music_vol`) with the storybook.
 - **Take-Home Spellkeeper Certificate (`960×540` PNG) + Jing Si Aphorisms (靜思語)**: Students enter their name and kindness takeaway, draw a bilingual **Jing Si Aphorism**, and download a high-resolution keepsake certificate illustrated with **Hero Kai**.
 
-### 5. Kindness & Character First
+### 5. Kai's Pythonia Adventure Webtoon Comic (`comic.html`) — A Story Kids Can Remember
+Some kids remember a picture better than a paragraph, so every Python class also has a **comic version of the story**. The comic retells the whole adventure as a seamless, phone-friendly **vertical Webtoon** (swipe down to read), so a child can re-read "the day Kai learned `print()`" at home and recall the spell the next time they code.
+
+- **13 Episodes (`EP00` – `EP12`), 73 Pages** — Prologue, Spells 1–11 and the Grand Finale, each matching a class and a story chapter.
+- **Remember the Class Through the Story** — each episode is built around one spell, shown as part of the plot instead of a rule to memorize:
+
+  | Episode | Spell in the Story | What the Kids Remember |
+  | :--- | :--- | :--- |
+  | **EP00** | The Kind Pause | Pause first, care for others before rushing |
+  | **EP01** | SPEAK — `print()` | Breaking the hush of Silent Village |
+  | **EP02** | WEAVE — `print("Hello", "Pythonia!")` | Weaving two threads on Grandma Looma's loom |
+  | **EP03** | FUSE — `+` joins text | Forging "Iron" + "Sword" at the Iron Outpost |
+  | **EP04** | LISTEN — `input()` | Asking with care, then naming the pup **String** |
+  | **EP05** | VAULT — variables (`gold = ...`) | The Golden Vault that remembers things |
+  | **EP06** | MULTI-VAULT — `hp, mana, gold = ...` | Three chests opened at once |
+  | **EP07** | WHISPER — `#` comments | Walking softly past the Sleeping Dragon's Library |
+  | **EP08** | SHAPESHIFT — `type()` | Crystal Cave: every value has a type (text, numbers) |
+  | **EP09** | FORGE — `+ - * /` | Master Grimsby's Deep Dwarven Forge |
+  | **EP10** | SIGHT — `> < ==` | The Eye of Truth on the Twin Illusion Paths |
+  | **EP11** | FATE — `if / elif / else` | The Final Crossroads and the Golden Colon Gates |
+  | **EP12** | The Grand Finale | All 11 spells united — birth of the True Guardian |
+
+- **Live Spell Portal at the end of every episode** — kids tap the code pieces (or type), press **Cast Spell**, and see the spell work straight away. Each portal also offers **📖 Read Story Chapter** (`chapters/chapter-XX.html`) and **✨ Launch Interactive Sanctuary** (`sanctuaries/Scroll_XX_…`) to keep practising.
+- **Spell Passport (13 Seals)** — each spell cast earns a golden seal, giving kids a small goal to collect and a reason to come back.
+- **11 Spells Grimoire** — a one-page picture cheat sheet of all eleven spells, always one tap away.
+- **73-Page Printable PDF** — the full bilingual comic edition for printing or reading offline.
+- **Bilingual `EN` / `繁體中文` / `雙語`** — the same switcher as the main site, applied to episode titles, summaries and controls.
+- **Made for phones and quiet reading** — resumes where the child stopped, hands-free **Auto-Scroll**, backdrop themes (Forest, Cinema, Parchment), strip width and brightness controls, episode likes, and keyboard shortcuts on desktop (press `?`).
+- **Same soothing music as the storybook** — `assets/audio/peaceful.mp3` starts on the first tap, with one **Music: ON/OFF** switch whose setting is shared with the storybook.
+- **Three sites, one adventure** — the Storybook, the Learning Hub and the Comic link to each other on phone and desktop: buttons at the top of the comic hub, the Menu, the end-of-episode card, and "Webtoon Comic" links in every chapter page. Deep links like `comic.html#ep=02` open a specific episode.
+
+### 6. Kindness & Character First
 Pythonia was written around three timeless character pillars—**Love Yourself**, **Love Others**, and **Love the Earth**—teaching kids that rushing carelessly creates glitches (*The Bug King*), while patience, care, and thoughtful logic build software that genuinely helps others.
 
 ---
@@ -65,15 +97,19 @@ Pure static HTML / CSS / JavaScript — **no Node.js, no bundler, no backend dat
 Hero_Kai_Story_Website/
 ├── index.html                      # Storybook Home (5-act handscroll, 52-scene reader, Codex & Certificate)
 ├── hub.html                        # Learning Hub (Hero Spell Console, 12 NPC Cards, 12 Sanctuaries, Cinema, Teacher Mode)
+├── comic.html                      # Webtoon Comic Reader (13 episodes, Spell Portals, Spell Passport, Grimoire)
+├── webtoon_manifest.json           # Comic episode list, titles, sizes & image tiles
 ├── netlify.toml                    # Netlify static publish & cache headers for /assets/* and /sanctuaries/*
 ├── scrollcraft.css                 # Scrollytelling visual styles, responsive layout & reduced-motion support
 ├── scrollcraft.js                  # Scroll-driven video scrubbing, pan rails, cue reveals & motion engine
 ├── MODULAR_ARCHITECTURE_PLAN.md    # Modular CSS/JS architecture & maintenance reference
 ├── .nojekyll                       # Clean static hosting compatibility
 ├── css/
-│   └── 01-tokens-base.css .. 06-responsive.css     # Standalone domain-scoped stylesheets
+│   ├── 01-tokens-base.css .. 06-responsive.css     # Standalone domain-scoped stylesheets (storybook)
+│   └── 01-comic-tokens.css .. 06-comic-responsive.css # Comic reader stylesheets
 ├── js/
-│   ├── main.js                                     # Application bootstrapper
+│   ├── main.js                                     # Storybook application bootstrapper
+│   ├── app.js                                      # Comic reader bootstrapper (modules in js/modules/*.module.js)
 │   ├── core/                                       # Bilingual i18n dictionary, app state store & module registry
 │   ├── data/                                       # Offline file:// safe fallbacks (world & Jing Si)
 │   └── modules/                                    # Audio, scrollmap, Citadel VFX, reader, codex & PNG seal exporter
@@ -85,7 +121,9 @@ Hero_Kai_Story_Website/
 ├── data/
 │   ├── world.json                  # Canonical story, cast, 12 realms, 52 scenes & 11 Python spells
 │   └── jingsi_aphorisms.json       # Bilingual Jing Si Aphorisms (EN / 繁體中文) for the take-home certificate
+├── comics/                         # Comic cover, 13 full-episode strips (EP00–EP12) & Spell Grimoire poster
 └── assets/
+    ├── episodes/                   # Comic episodes sliced into fast-loading WebP tiles for phones
     ├── scenes/                     # 52 illustrated WebP storybook panels (01_PRO_S01.webp .. 52_CH11_S04.webp)
     ├── cast/                       # 8 character portraits (used in chapters, codex & certificate)
     ├── hub/                        # 16 cohesive painterly NPC portraits, exercise covers & spellbook banner
@@ -108,9 +146,13 @@ python -m http.server 8080
 Then open:
 - Storybook Home: `http://localhost:8080/index.html`
 - Learning Hub: `http://localhost:8080/hub.html`
+- Webtoon Comic: `http://localhost:8080/comic.html` (or a single episode, e.g. `comic.html#ep=02`)
+
+To test on a phone, connect it to the same Wi-Fi and open `http://<your-PC-IP>:8080/comic.html`.
 
 ### Live Deployment on Netlify
 Connected to `Hero-Kai-Pythonia-Adventures` and published at `https://kaipy.netlify.app/`:
 - Storybook Home: `https://kaipy.netlify.app/`
 - Learning Hub: `https://kaipy.netlify.app/hub.html`
+- Webtoon Comic: `https://kaipy.netlify.app/comic.html`
 - Interactive Sanctuaries: `https://kaipy.netlify.app/sanctuaries/Scroll_01_VOICE_Sanctuary.html` .. `Scroll_11_EPILOGUE_Sanctuary.html`

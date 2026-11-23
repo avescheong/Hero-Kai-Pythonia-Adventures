@@ -16,6 +16,7 @@
     unlockedSeals: [],       // Array of spell seals earned (1..11 + 12)
     scrollBookmarks: {},     // { [epNum]: scrollRatio (0..1) }
     lang: 'dual',            // 'en' | 'zh-Hant' | 'dual'
+    comicLang: 'en',         // 'en' | 'zh-Hant' (used when lang === 'dual')
     readerTheme: 'forest',   // 'forest' | 'cinema' | 'parchment'
     stripWidth: 800,         // 640 | 800 | 920
     brightness: 100,         // 65..100
@@ -47,6 +48,7 @@
         unlockedSeals: state.unlockedSeals,
         scrollBookmarks: state.scrollBookmarks,
         lang: state.lang,
+        comicLang: state.comicLang,
         readerTheme: state.readerTheme,
         stripWidth: state.stripWidth,
         brightness: state.brightness,
