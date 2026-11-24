@@ -1,9 +1,6 @@
 /* ============================================================================
- * js/modules/spell-portal.module.js  (v2.0 BOLD INNOVATION)
- * Live In-Comic Python Spell-Portal & Collectible 11-Seal Spell Passport!
- *
- * Plugs seamlessly into #reader-module-slot and #hub-passport-slot via the
- * KaiComic.registerModule() contract — proving the extensible architecture.
+ * js/modules/spell-portal.module.js  (v2.1 — Vol. 1 + Vol. 2 · 20-Seal Passport)
+ * Live In-Comic Python Spell-Portal & Collectible 20-Seal Spell Passport!
  * ============================================================================ */
 (function (global) {
   'use strict';
@@ -23,7 +20,7 @@
       sanctuaryPath: 'hub.html'
     },
     1: {
-      prompt_en: 'Restore voice to the Silent Village! Cast Spell 01 (SPEAK) with print("Hello, Pythonia!").',
+      prompt_en: 'Restore voice to the Silent Village! Cast Spell 01 (VOICE) with print("Hello, Pythonia!").',
       prompt_zh: '喚回寂靜之村的聲音！施展第一道咒語 print("Hello, Pythonia!")。',
       starter: 'print("Hello, Pythonia!")',
       runes: ['print(', '"Hello, Pythonia!"', ')'],
@@ -191,6 +188,106 @@
       },
       lessonPath: 'chapters/chapter-13.html',
       sanctuaryPath: 'sanctuaries/Scroll_11_EPILOGUE_Sanctuary.html'
+    },
+    // ---------------- VOLUME 2 SPELL PORTALS (EP13–EP19) ----------------
+    13: {
+      prompt_en: 'Name your baby red dragon Ember and clamp hunger so it never exceeds 100!',
+      prompt_zh: '為紅龍寶寶取名 Ember，並用數值保護限制飢餓度不超過 100！',
+      starter: 'pet_name = "Ember"; hunger = min(100, 50 + 20)',
+      runes: ['pet_name = "Ember"; ', 'hunger = ', 'min(100, 50 + 20)'],
+      validate(code) {
+        if (!/[a-zA-Z_]\w*\s*=\s*["'].+?["']/.test(code) || !/(min\s*\(|>\s*100|if\s+hunger)/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Set pet_name = "Ember" and clamp hunger with min(100, ...) or if hunger > 100!' };
+        }
+        return { ok: true, output: '🐉 Ember blinks happily! Stats clamped safely at <= 100.' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    14: {
+      prompt_en: 'Update Kai\'s Enchanted Piggy Bank balance using float decimals (+ reward, - potion)!',
+      prompt_zh: '用浮點數小數更新魔法撲滿餘額（加上任務獎勵、扣除藥水花費）！',
+      starter: 'balance = 10.0 + 5.0 - 3.5',
+      runes: ['balance = ', '10.0 + 5.0', ' - 3.5'],
+      validate(code) {
+        const m = code.match(/[a-zA-Z_]\w*\s*=\s*(\d+\.\d+)\s*([+\-])\s*(\d+\.\d+)(?:\s*([+\-])\s*(\d+\.\d+))?/);
+        if (!m) {
+          return { ok: false, hint: 'Bug Detective Hint: Use float decimals like balance = 10.0 + 5.0 - 3.5' };
+        }
+        return { ok: true, output: '🐷 Piggy Bank Updated: Balance = $11.50 (Float precision locked!)' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    15: {
+      prompt_en: 'Calculate Cosmic Scoops total price with multiplication and 10% tax (* 1.1)!',
+      prompt_zh: '用乘法與 10% 稅率 (* 1.1) 幫星空雪酪餐車結帳！',
+      starter: 'total = 3 * 2.5 * 1.1',
+      runes: ['total = ', '3 * 2.5', ' * 1.1'],
+      validate(code) {
+        if (!/\w+\s*=\s*.+\*.+/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Multiply scoops by price and 1.1 tax, e.g., total = 3 * 2.5 * 1.1' };
+        }
+        return { ok: true, output: '🍨 Order Served! 3 Cosmic Scoops + 10% tax = $8.25' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    16: {
+      prompt_en: 'Convert text from input() into a real integer using int(input(...)) for the Wizard\'s Arcade!',
+      prompt_zh: '在魔法遊樂場使用 int(input(...)) 把文字紙捲轉成可計算的整數！',
+      starter: 'ans = int(input("15 + 27 = ? "))',
+      runes: ['ans = ', 'int(', 'input("15 + 27 = ? ")', ')'],
+      validate(code) {
+        if (!/\w+\s*=\s*(?:int|float)\s*\(\s*input\s*\(.+\)\s*\)/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Wrap input("...") inside int(...) so "42" becomes 42!' };
+        }
+        return { ok: true, output: '🕹️ High Score Unlocked! String "42" cast cleanly to int 42.' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    17: {
+      prompt_en: 'Unchain Lock #2 of the Sealed Chamber using a Boolean and gate (no quotes around True/False)!',
+      prompt_zh: '用布林邏輯閘 (and / or / not) 解開封印密室的第二道翡翠鎖！',
+      starter: 'lock2 = has_key and knows_password',
+      runes: ['lock2 = ', 'has_key', ' and ', 'knows_password'],
+      validate(code) {
+        if (!/\w+\s*=\s*.+\b(and|or|not)\b.+/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Combine two Boolean switches using and / or / not, e.g., lock2 = has_key and knows_password' };
+        }
+        return { ok: true, output: '🔐 True and True -> UNCHAINED! The Sealed Chamber opens!' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    18: {
+      prompt_en: 'Test the boundary condition >= on Ember Peak (remember the colon and 4-space indent spirit)!',
+      prompt_zh: '在餘燼峰用大於等於 (>=) 與冒號 (:) 檢查黃金寶藏階級！',
+      starter: 'if treasure_points >= 50: rank = "Gold"',
+      runes: ['if ', 'treasure_points >= 50', ': ', 'rank = "Gold"'],
+      validate(code) {
+        if (!/if\s+.+(>=|<=|>|<).+:\s*.+/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Use >= and a colon (:), e.g., if treasure_points >= 50: rank = "Gold"' };
+        }
+        return { ok: true, output: '⛰️ Boundary Check Passed! Wise Red Dragon nods: Rank = Gold.' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
+    },
+    19: {
+      prompt_en: 'Volume 2 Finale! Log suspect clues on one line using multiple assignment!',
+      prompt_zh: '第二卷大結局！用一行多重賦值記錄嫌疑人線索，解開王冠失蹤之謎！',
+      starter: 'name, size, alibi = "Sir Cedric", 9, True',
+      runes: ['name, size, alibi = ', '"Sir Cedric"', ', 9, ', 'True'],
+      validate(code) {
+        if (!/\w+\s*,\s*\w+\s*,\s*\w+\s*=\s*.+,\s*.+,\s*.+/.test(code)) {
+          return { ok: false, hint: 'Bug Detective Hint: Assign 3 values at once: name, size, alibi = "Sir Cedric", 9, True' };
+        }
+        return { ok: true, output: '👑 Case Solved Fairly! All 3 Detective Locks verified — Crown Restored!' };
+      },
+      lessonPath: 'hub.html',
+      sanctuaryPath: 'hub.html'
     }
   };
 
@@ -243,16 +340,18 @@
   function renderPassportPill(ctx) {
     const slot = document.getElementById('hub-passport-slot');
     if (!slot) return;
+    const total = ctx.manifest.episodes.length;
     const count = ctx.store.getState().unlockedSeals.length;
     slot.innerHTML = `
       <button type="button" class="passport-pill" id="open-passport-btn">
-        🏅 Spell Passport: ${count} / 13 Seals
+        🏅 Spell Passport: ${count} / ${total} Seals
       </button>
     `;
     document.getElementById('open-passport-btn').addEventListener('click', () => openPassportModal(ctx));
   }
 
   function openPassportModal(ctx) {
+    const total = ctx.manifest.episodes.length;
     const unlocked = new Set(ctx.store.getState().unlockedSeals);
     const cards = ctx.manifest.episodes.map((ep) => {
       const done = unlocked.has(ep.episode);
@@ -266,10 +365,10 @@
     }).join('');
 
     const backdrop = document.getElementById('comic-modal-backdrop');
-    document.getElementById('comic-modal-title').textContent = `🏅 Kai's Collectible Spell Passport (${unlocked.size} / 13)`;
+    document.getElementById('comic-modal-title').textContent = `🏅 Kai's Collectible Spell Passport (${unlocked.size} / ${total})`;
     document.getElementById('comic-modal-body').innerHTML = `
       <p style="margin:0 0 8px;color:var(--sc-ink-soft);font-size:0.88rem;">
-        Cast the Live Python Spell at the end of each comic episode to stamp its Golden Seal! Tap any seal to jump directly to that episode.
+        Cast the Live Python Spell at the end of each comic episode (Vol. 1 &amp; Vol. 2) to stamp its Golden Seal! Tap any seal to jump directly to that episode.
       </p>
       <div class="passport-grid">${cards}</div>
     `;
@@ -287,6 +386,7 @@
     const slot = document.getElementById('reader-module-slot');
     if (!slot) return;
 
+    const total = ctx.manifest.episodes.length;
     const challenge = SPELL_CHALLENGES[ep.episode] || SPELL_CHALLENGES[0];
     const st = ctx.store.getState();
     const isUnlocked = st.unlockedSeals.includes(ep.episode);
@@ -294,6 +394,7 @@
     const baseSite = (global.KAI_COMIC_CONFIG && global.KAI_COMIC_CONFIG.parentBaseUrl) || ctx.manifest.parentSiteUrl;
     const lessonUrl = `${baseSite}${challenge.lessonPath}`;
     const sanctuaryUrl = `${baseSite}${challenge.sanctuaryPath || 'hub.html'}`;
+    const isVol2 = ep.volume === 2;
 
     slot.innerHTML = `
       <section class="spell-portal ${isUnlocked ? 'is-awakened' : ''}" id="live-spell-portal" aria-label="Interactive Python Spell Portal">
@@ -303,7 +404,7 @@
             ${isUnlocked ? `✓ SEAL AWAKENED · ${ep.spellName}` : `✨ LIVE IN-COMIC SPELL PORTAL · ${ep.spellName}`}
           </span>
           <button type="button" class="passport-pill" id="portal-passport-btn">
-            🏅 ${st.unlockedSeals.length} / 13 Seals
+            🏅 ${st.unlockedSeals.length} / ${total} Seals
           </button>
         </div>
         <h2 class="spell-portal__title">${ep.icon} Cast ${ep.code}'s Python Spell Yourself</h2>
@@ -320,14 +421,14 @@
         </div>
 
         <div class="spell-output ${isUnlocked ? 'spell-output--ok' : ''}" id="spell-output-box" role="status">
-          ${isUnlocked ? '✨ Golden Seal stamped into your Spell Passport! Experiment freely or jump to the full lesson.' : 'Tap the glowing runes above or type the spell, then click Cast Spell!'}
+          ${isUnlocked ? '✨ Golden Seal stamped into your Spell Passport! Experiment freely or jump to the Learning Hub.' : 'Tap the glowing runes above or type the spell, then click Cast Spell!'}
         </div>
 
         <div class="spell-portal__cta">
-          <span style="font-size:0.8rem;color:var(--sc-ink-soft);">Want the full interactive 52-scene sanctuary for ${ep.code}?</span>
+          <span style="font-size:0.8rem;color:var(--sc-ink-soft);">${isVol2 ? `Want more interactive Python quests after ${ep.code}?` : `Want the full interactive 52-scene sanctuary for ${ep.code}?`}</span>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <a class="hud-btn" href="${lessonUrl}">📖 Read Story Chapter →</a>
-            <a class="hud-btn hud-btn--primary" href="${sanctuaryUrl}">🏰 Launch Interactive Sanctuary →</a>
+            ${isVol2 ? '' : `<a class="hud-btn" href="${lessonUrl}">📖 Read Story Chapter →</a>`}
+            <a class="hud-btn hud-btn--primary" href="${sanctuaryUrl}">🏰 ${isVol2 ? 'Explore Learning Hub →' : 'Launch Interactive Sanctuary →'}</a>
           </div>
         </div>
       </section>
@@ -374,8 +475,8 @@
           badge.textContent = `✓ SEAL AWAKENED · ${ep.spellName}`;
         }
         const pbtn = document.getElementById('portal-passport-btn');
-        if (pbtn) pbtn.textContent = `🏅 ${totalSeals} / 13 Seals`;
-        ctx.toast(newlyUnlocked ? `🏅 Golden Seal #${ep.episode} stamped! (${totalSeals}/13)` : `✨ Spell cast! (${totalSeals}/13 Seals)`);
+        if (pbtn) pbtn.textContent = `🏅 ${totalSeals} / ${total} Seals`;
+        ctx.toast(newlyUnlocked ? `🏅 Golden Seal #${ep.episode} stamped! (${totalSeals}/${total})` : `✨ Spell cast! (${totalSeals}/${total} Seals)`);
       } else {
         outBox.className = 'spell-output spell-output--hint';
         outBox.textContent = res.hint;

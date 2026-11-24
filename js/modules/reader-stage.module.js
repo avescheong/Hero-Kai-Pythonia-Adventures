@@ -1,15 +1,15 @@
 /* ============================================================================
- * js/modules/reader-stage.module.js  (v1.1 Upgraded)
- * Fixes shipped:
- *   - Fix #1: Restores saved scroll bookmark with a non-intrusive "Resume at XX%" banner
- *   - Fix #2: Floating scroll percentage pill + Back-to-Top button + Spell Orb jump
- *   - Fix #6: Full keyboard ergonomics (J/K panel step, H HUD toggle, A auto-scroll, ? shortcuts)
- *   - Fix #8: 1-click Share Episode Link (sandbox-safe clipboard) + Next Episode tile preloader
+ * js/modules/reader-stage.module.js  (v1.2 — Vol. 1 + Vol. 2 Ready)
  * ============================================================================ */
 (function (global) {
   'use strict';
 
   const preloadedEps = new Set();
+
+  function findEpisodeIndex(episodes, epNum) {
+    const idx = episodes.findIndex((e) => e.episode === epNum);
+    return idx >= 0 ? idx : 0;
+  }
 
   function copyShareLink(ctx, ep) {
     const base = window.location.href.split('#')[0];
@@ -57,7 +57,9 @@
   }
 
   function preloadNextEpisode(ctx, curEpNum) {
-    const nextEp = ctx.manifest.episodes[curEpNum + 1];
+    const episodes = ctx.manifest.episodes;
+    const curIdx = findEpisodeIndex(episodes, curEpNum);
+    const nextEp = episodes[curIdx + 1];
     const comicLang = getActiveComicLang(ctx.store.getState());
     const key = nextEp ? `${nextEp.episode}:${comicLang}` : null;
     if (!nextEp || preloadedEps.has(key)) return;
@@ -90,22 +92,36 @@
     const readSet = new Set(state.readEpisodes);
     const sealSet = new Set(state.unlockedSeals);
 
-    list.innerHTML = ctx.manifest.episodes.map((ep) => {
-      const active = ep.episode === state.currentEpisode;
-      const read = readSet.has(ep.episode);
-      const sealed = sealSet.has(ep.episode);
-      const title = global.KaiComicI18n.formatEpTitle(ep, state.lang);
+    const renderGroup = (eps, label) => {
+      if (!eps.length) return '';
       return `
-        <button type="button" class="drawer-item ${active ? 'is-active' : ''} ${read ? 'is-read' : ''}" data-drawer-ep="${ep.episode}">
-          <span class="drawer-item__num">${String(ep.episode).padStart(2, '0')}</span>
-          <span class="drawer-item__info">
-            <div class="drawer-item__title">${title}</div>
-            <div class="drawer-item__spell">${ep.spellCode}</div>
-          </span>
-          <span style="font-size:0.8rem;color:${sealed ? 'var(--kc-gold)' : 'var(--sc-accent)'}">${sealed ? '🏅' : read ? '✓' : ''}</span>
-        </button>
+        <div style="padding:8px 10px 4px;font-family:var(--sc-font-mono);font-size:0.68rem;letter-spacing:0.06em;color:var(--kc-gold);opacity:0.9;">
+          ${label}
+        </div>
+        ${eps.map((ep) => {
+          const active = ep.episode === state.currentEpisode;
+          const read = readSet.has(ep.episode);
+          const sealed = sealSet.has(ep.episode);
+          const title = global.KaiComicI18n.formatEpTitle(ep, state.lang);
+          return `
+            <button type="button" class="drawer-item ${active ? 'is-active' : ''} ${read ? 'is-read' : ''}" data-drawer-ep="${ep.episode}">
+              <span class="drawer-item__num">${String(ep.episode).padStart(2, '0')}</span>
+              <span class="drawer-item__info">
+                <div class="drawer-item__title">${title}</div>
+                <div class="drawer-item__spell">${ep.spellCode}</div>
+              </span>
+              <span style="font-size:0.8rem;color:${sealed ? 'var(--kc-gold)' : 'var(--sc-accent)'}">${sealed ? '🏅' : read ? '✓' : ''}</span>
+            </button>
+          `;
+        }).join('')}
       `;
-    }).join('');
+    };
+
+    const v1 = ctx.manifest.episodes.filter((e) => (e.volume || 1) === 1);
+    const v2 = ctx.manifest.episodes.filter((e) => e.volume === 2);
+    list.innerHTML =
+      renderGroup(v1, 'VOLUME 1 · THE ELEVEN SPELLS (EP00–EP12)') +
+      renderGroup(v2, 'VOLUME 2 · SCROLLS OF PYTHONIA (EP13–EP19)');
 
     list.querySelectorAll('[data-drawer-ep]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -131,7 +147,8 @@
     const options = opts || {};
     const preserveRatio = typeof options.preserveRatio === 'number' ? options.preserveRatio : null;
     const episodes = ctx.manifest.episodes;
-    const ep = episodes[epNum] || episodes[0];
+    const curIdx = findEpisodeIndex(episodes, epNum);
+    const ep = episodes[curIdx] || episodes[0];
     const savedRatio = ctx.store.getState().scrollBookmarks[ep.episode] || 0;
 
     ctx.store.setState({
@@ -150,12 +167,13 @@
     const lang = stNow.lang;
     const comicLang = getActiveComicLang(stNow);
     const title = global.KaiComicI18n.formatEpTitle(ep, lang);
+    const volTag = `VOL. ${ep.volume || 1}`;
 
     // 1. Episode Header Banner + Edition Switcher + Share Button
     const banner = document.getElementById('reader-ep-banner');
     banner.innerHTML = `
       <div class="reader-ep-banner__meta">
-        <span class="reader-ep-banner__kicker">${ep.code} · ${ep.spellName} · ~${ep.readMinutes} MIN READ</span>
+        <span class="reader-ep-banner__kicker">${volTag} · ${ep.code} · ${ep.spellName} · ~${ep.readMinutes} MIN READ</span>
         <h1 class="reader-ep-banner__title">${title}</h1>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -186,7 +204,7 @@
       });
     });
 
-    // 2. Fix #1: Smart Resume Scroll Bookmark Banner
+    // 2. Smart Resume Scroll Bookmark Banner
     const resumeSlot = document.getElementById('reader-resume-banner');
     if (resumeSlot) {
       if (preserveRatio === null && savedRatio >= 0.08 && savedRatio <= 0.92) {
@@ -274,18 +292,10 @@
             <div style="font-size:2.4rem;margin-bottom:8px;">${ep.icon}</div>
             <h3>${ep.code} · ${title}</h3>
             <p>${global.KaiComicI18n.formatEpSummary(ep, lang)}</p>
-            <p style="font-size:0.8rem;color:var(--sc-ink-muted);">
-              For offline reading, place <code>${activeFilename}</code> inside <code>comics/</code> — or open the full strip on Google Drive, or cast this episode's Live Python Spell right below!
-            </p>
             <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
               <a class="btn-webtoon-primary" href="https://drive.google.com/file/d/${ep.driveId}/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">📖 Open Full Strip on Drive ↗</a>
-              <button type="button" class="btn-webtoon-secondary" data-fb-ep="0">Read EP 00 (Bundled)</button>
-              <button type="button" class="btn-webtoon-secondary" data-fb-ep="1">Read EP 01 (Bundled)</button>
             </div>
           `;
-          fb.querySelectorAll('[data-fb-ep]').forEach((b) => {
-            b.addEventListener('click', () => openEpisode(ctx, Number(b.getAttribute('data-fb-ep'))));
-          });
           canvas.appendChild(fb);
         }
       };
@@ -298,13 +308,13 @@
     const pctDisplay = preserveRatio !== null ? Math.round(preserveRatio * 100) : 0;
     document.getElementById('hud-ep-code').textContent = `${ep.code} · ${pctDisplay}%`;
     document.getElementById('hud-ep-title').textContent = comicLang === 'zh-Hant' ? ep.title_zh : ep.title_en;
-    document.getElementById('hud-btn-prev').disabled = ep.episode <= 0;
-    document.getElementById('hud-btn-next').disabled = ep.episode >= episodes.length - 1;
+    document.getElementById('hud-btn-prev').disabled = curIdx <= 0;
+    document.getElementById('hud-btn-next').disabled = curIdx >= episodes.length - 1;
     const pctPill = document.getElementById('float-pct-btn');
     if (pctPill) pctPill.textContent = `${pctDisplay}%`;
 
     // 5. Render End-of-Episode Card
-    renderEndCard(ctx, ep);
+    renderEndCard(ctx, ep, curIdx);
 
     if (preserveRatio !== null) {
       requestAnimationFrame(restoreScroll);
@@ -315,19 +325,26 @@
     if (!options.silent) ctx.bus.emit('audio:chime', 'tap');
   }
 
-  function renderEndCard(ctx, ep) {
+  function renderEndCard(ctx, ep, curIdx) {
     const endCard = document.getElementById('reader-end-card');
     const state = ctx.store.getState();
+    const episodes = ctx.manifest.episodes;
     const isLiked = state.likedEpisodes.includes(ep.episode);
     const likes = ep.baseLikes + (isLiked ? 1 : 0);
-    const nextEp = ctx.manifest.episodes[ep.episode + 1];
-    const baseSite = (global.KAI_COMIC_CONFIG && global.KAI_COMIC_CONFIG.parentBaseUrl) || ctx.manifest.parentSiteUrl;
+    const nextEp = episodes[curIdx + 1];
+    const totalEps = episodes.length;
+
+    const upNextText = nextEp
+      ? (ep.volume === 1 && nextEp.volume === 2
+          ? `Continue to Volume 2: ${nextEp.code} — ${nextEp.title_en}`
+          : `Up Next: ${nextEp.code} — ${nextEp.title_en}`)
+      : 'You Completed Volumes 1 & 2!';
 
     endCard.innerHTML = `
       <div class="reader-end-card__top">
         <div>
-          <span class="reader-ep-banner__kicker">END OF ${ep.code}</span>
-          <h2 class="reader-end-card__title">${nextEp ? `Up Next: ${nextEp.code} — ${nextEp.title_en}` : 'You Completed Volume 1!'}</h2>
+          <span class="reader-ep-banner__kicker">END OF VOL. ${ep.volume || 1} · ${ep.code}</span>
+          <h2 class="reader-end-card__title">${upNextText}</h2>
         </div>
         <div style="display:flex;gap:8px;">
           <button type="button" class="like-btn ${isLiked ? 'is-liked' : ''}" id="end-like-btn">
@@ -339,18 +356,18 @@
       </div>
       <div class="reader-end-actions">
         ${nextEp
-          ? `<button type="button" class="btn-webtoon-primary" id="end-next-btn">Next Episode: ${nextEp.code} →</button>`
+          ? `<button type="button" class="btn-webtoon-primary" id="end-next-btn">${ep.volume === 1 && nextEp.volume === 2 ? `🐉 Start Vol. 2: ${nextEp.code} →` : `Next Episode: ${nextEp.code} →`}</button>`
           : `<button type="button" class="btn-webtoon-primary" id="end-grimoire-btn">📜 View 11 Spells Grimoire</button>`}
-        <button type="button" class="btn-webtoon-secondary" id="end-hub-btn">← All 13 Episodes</button>
+        <button type="button" class="btn-webtoon-secondary" id="end-hub-btn">← All ${totalEps} Episodes</button>
         <a class="btn-webtoon-secondary" href="./hub.html">🏰 Practice in Learning Hub →</a>
-          <a class="btn-webtoon-secondary" href="./index.html">✨ Back to Storybook →</a>
+        <a class="btn-webtoon-secondary" href="./index.html">✨ Back to Storybook →</a>
       </div>
     `;
 
     document.getElementById('end-like-btn').addEventListener('click', () => {
       const liked = ctx.store.toggleLike(ep.episode);
       ctx.bus.emit('audio:chime', 'like');
-      renderEndCard(ctx, ep);
+      renderEndCard(ctx, ep, curIdx);
       ctx.toast(liked ? `Loved ${ep.code}! ♥` : `Removed heart from ${ep.code}`);
     });
     document.getElementById('end-share-btn').addEventListener('click', () => copyShareLink(ctx, ep));
@@ -377,24 +394,24 @@
       });
       document.getElementById('hud-btn-hub').addEventListener('click', () => openHub(ctx));
       document.getElementById('hud-btn-prev').addEventListener('click', () => {
-        const cur = ctx.store.getState().currentEpisode;
-        if (cur > 0) openEpisode(ctx, cur - 1);
+        const episodes = ctx.manifest.episodes;
+        const idx = findEpisodeIndex(episodes, ctx.store.getState().currentEpisode);
+        if (idx > 0) openEpisode(ctx, episodes[idx - 1].episode);
       });
       document.getElementById('hud-btn-next').addEventListener('click', () => {
-        const cur = ctx.store.getState().currentEpisode;
-        if (cur < ctx.manifest.episodes.length - 1) openEpisode(ctx, cur + 1);
+        const episodes = ctx.manifest.episodes;
+        const idx = findEpisodeIndex(episodes, ctx.store.getState().currentEpisode);
+        if (idx < episodes.length - 1) openEpisode(ctx, episodes[idx + 1].episode);
       });
       document.getElementById('hud-ep-switcher').addEventListener('click', () => openDrawer(ctx));
       document.getElementById('drawer-close-btn').addEventListener('click', closeDrawer);
       document.getElementById('drawer-backdrop').addEventListener('click', closeDrawer);
 
-      // Float Rail buttons (Fix #2 + v2.0 Spell Orb)
       const topBtn = document.getElementById('float-top-btn');
       if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       const spellOrb = document.getElementById('float-spell-btn');
       if (spellOrb) spellOrb.addEventListener('click', () => ctx.bus.emit('spell:jump-to-portal'));
 
-      // Tap comic strip to toggle auto-hide HUD
       document.getElementById('webtoon-canvas').addEventListener('click', (e) => {
         if (e.target.closest('a, button')) return;
         const hidden = !ctx.store.getState().hudHidden;
@@ -404,7 +421,6 @@
         if (hidden && pop) pop.hidden = true;
       });
 
-      // Scroll progress + mark read + preload next episode
       let scrollTimer = null;
       window.addEventListener('scroll', () => {
         const st = ctx.store.getState();
@@ -415,7 +431,7 @@
         const bar = document.getElementById('comic-progress-bar');
         if (bar) bar.style.width = `${pct}%`;
 
-        const ep = ctx.manifest.episodes[st.currentEpisode];
+        const ep = ctx.manifest.episodes.find((e) => e.episode === st.currentEpisode) || ctx.manifest.episodes[0];
         const hudCode = document.getElementById('hud-ep-code');
         if (hudCode && ep) hudCode.textContent = `${ep.code} · ${pct}%`;
         const pctBtn = document.getElementById('float-pct-btn');
@@ -430,7 +446,6 @@
         }, 350);
       }, { passive: true });
 
-      // Fix #6: Full Keyboard Ergonomics
       window.addEventListener('keydown', (e) => {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
         const st = ctx.store.getState();
@@ -445,10 +460,12 @@
           return;
         }
         if (st.view !== 'reader') return;
-        if (e.key === 'ArrowRight' && st.currentEpisode < ctx.manifest.episodes.length - 1) {
-          openEpisode(ctx, st.currentEpisode + 1);
-        } else if (e.key === 'ArrowLeft' && st.currentEpisode > 0) {
-          openEpisode(ctx, st.currentEpisode - 1);
+        const episodes = ctx.manifest.episodes;
+        const idx = findEpisodeIndex(episodes, st.currentEpisode);
+        if (e.key === 'ArrowRight' && idx < episodes.length - 1) {
+          openEpisode(ctx, episodes[idx + 1].episode);
+        } else if (e.key === 'ArrowLeft' && idx > 0) {
+          openEpisode(ctx, episodes[idx - 1].episode);
         } else if (e.key.toLowerCase() === 'j') {
           window.scrollBy({ top: Math.round(window.innerHeight * 0.75), behavior: 'smooth' });
         } else if (e.key.toLowerCase() === 'k') {

@@ -8,7 +8,7 @@
   const DICT = {
     en: {
       sealTitle: 'Hero Kai Webtoon',
-      sealSub: 'Vol. 1 · 13 Episodes',
+      sealSub: 'Vol. 1 & 2 · 20 Episodes',
       backToSite: '🏰 Pythonia Site',
       soundOn: 'Music: ON',
       soundOff: 'Music: OFF',
@@ -17,17 +17,17 @@
       navGrimoire: '📜 11 Spells Grimoire',
       navStorybook: '✨ Interactive Storybook ↗',
       navLearningHub: '🏰 Learning Hub & 12 Sanctuaries ↗',
-      navPdf: '📥 Download 73-Page PDF ↗',
+      navPdf: '📥 Download Vol. 1 PDF ↗',
       hubShort: 'Hub',
       nextShort: 'Next',
       themeLabel: 'Backdrop',
       widthLabel: 'Strip Width',
       brightLabel: 'Brightness',
-      drawerTitle: 'Volume 1 · 13 Episodes'
+      drawerTitle: 'Vol. 1 & 2 · 20 Episodes'
     },
     'zh-Hant': {
       sealTitle: '英雄凱條漫',
-      sealSub: '第一卷 · 13 話完結',
+      sealSub: '第一、二卷 · 20 話',
       backToSite: '🏰 派森尼亞主站',
       soundOn: '音樂：開',
       soundOff: '音樂：關',
@@ -36,17 +36,17 @@
       navGrimoire: '📜 十一咒語寶典',
       navStorybook: '✨ 互動故事書 ↗',
       navLearningHub: '🏰 學習中心與十二聖殿 ↗',
-      navPdf: '📥 下載 73 頁完整版 PDF ↗',
+      navPdf: '📥 下載第一卷完整版 PDF ↗',
       hubShort: '目錄',
       nextShort: '下一話',
       themeLabel: '背景色',
       widthLabel: '漫畫寬度',
       brightLabel: '亮度',
-      drawerTitle: '第一卷 · 全部 13 話'
+      drawerTitle: '第一、二卷 · 全部 20 話'
     },
     dual: {
       sealTitle: 'Hero Kai Webtoon · 條漫',
-      sealSub: 'Vol. 1 · 13 Episodes',
+      sealSub: 'Vol. 1 & 2 · 20 Episodes',
       backToSite: '🏰 Pythonia Site',
       soundOn: 'Music: ON',
       soundOff: 'Music: OFF',
@@ -55,13 +55,13 @@
       navGrimoire: '📜 11 Spells Grimoire · 咒語寶典',
       navStorybook: '✨ Interactive Storybook ↗',
       navLearningHub: '🏰 Learning Hub · 學習中心 ↗',
-      navPdf: '📥 73-Page Master PDF ↗',
+      navPdf: '📥 Vol. 1 Master PDF ↗',
       hubShort: 'Hub',
       nextShort: 'Next',
       themeLabel: 'Backdrop',
       widthLabel: 'Strip Width',
       brightLabel: 'Brightness',
-      drawerTitle: 'Volume 1 · 13 Episodes (雙語)'
+      drawerTitle: 'Vol. 1 & 2 · 20 Episodes (雙語)'
     }
   };
 

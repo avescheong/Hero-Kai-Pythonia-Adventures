@@ -54,12 +54,16 @@
 
   function applyComfort(state) {
     document.body.setAttribute('data-reader-theme', state.readerTheme || 'forest');
+    document.body.setAttribute('data-hyperframe', state.hyperframeMode || 'living');
     document.documentElement.style.setProperty('--comic-strip-width', `${state.stripWidth || 800}px`);
     const bright = Math.max(65, Math.min(100, Number(state.brightness) || 100));
     document.documentElement.style.setProperty('--comic-brightness', (bright / 100).toFixed(2));
 
     document.querySelectorAll('[data-theme-opt]').forEach((b) => {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-opt') === state.readerTheme));
+    });
+    document.querySelectorAll('[data-hyperframe-opt]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-hyperframe-opt') === (state.hyperframeMode || 'living')));
     });
     document.querySelectorAll('[data-width-opt]').forEach((b) => {
       b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-width-opt')) === state.stripWidth));
@@ -119,6 +123,15 @@
         b.addEventListener('click', () => {
           ctx.store.setState({ readerTheme: b.getAttribute('data-theme-opt') });
           applyComfort(ctx.store.getState());
+        });
+      });
+
+      document.querySelectorAll('[data-hyperframe-opt]').forEach((b) => {
+        b.addEventListener('click', () => {
+          const mode = b.getAttribute('data-hyperframe-opt');
+          ctx.store.setState({ hyperframeMode: mode }, 'hyperframe:changed');
+          applyComfort(ctx.store.getState());
+          ctx.toast(`Hyperframe: ${mode === 'living' ? '✨ Living' : mode === 'subtle' ? 'Subtle' : 'Off'}`);
         });
       });
 

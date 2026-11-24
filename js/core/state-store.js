@@ -20,9 +20,11 @@
     readerTheme: 'forest',   // 'forest' | 'cinema' | 'parchment'
     stripWidth: 800,         // 640 | 800 | 920
     brightness: 100,         // 65..100
+    hyperframeMode: 'living', // 'living' | 'subtle' | 'off'
     autoScrollSpeed: 0,      // 0 (off) | 1 | 2 | 3
     soundEnabled: true,
     hudHidden: false,
+    volumeFilter: 'all',     // 'all' | '1' | '2'
     filterMode: 'all',       // 'all' | 'unread' | 'read'
     searchQuery: ''
   };
@@ -52,6 +54,7 @@
         readerTheme: state.readerTheme,
         stripWidth: state.stripWidth,
         brightness: state.brightness,
+        hyperframeMode: state.hyperframeMode,
         soundEnabled: state.soundEnabled
       };
       global.localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));

@@ -80,6 +80,17 @@
         );
       };
 
+      const openVol2Cover = () => {
+        if (navPanel) navPanel.hidden = true;
+        const st = ctx.store.getState();
+        const isZh = st.lang === 'zh-Hant' || (st.lang === 'dual' && st.comicLang === 'zh-Hant');
+        const coverSrc = isZh ? (ctx.manifest.assets.vol2CoverZh || ctx.manifest.assets.vol2CoverEn) : (ctx.manifest.assets.vol2CoverEn || ctx.manifest.assets.frontCover);
+        openModal(
+          isZh ? '🐉 第二卷 — 2× Retina HD 封面預覽' : '🐉 Volume 2 — 2× Retina HD Cover Showcase',
+          `<img class="comic-modal__img" src="${coverSrc}" alt="Volume 2 HD Cover" />`
+        );
+      };
+
       const openShortcuts = () => {
         if (navPanel) navPanel.hidden = true;
         openModal(
@@ -108,6 +119,7 @@
 
       ctx.bus.on('modal:open-grimoire', openGrimoire);
       ctx.bus.on('modal:open-backcover', openBackCover);
+      ctx.bus.on('modal:open-vol2cover', openVol2Cover);
       ctx.bus.on('modal:open-shortcuts', openShortcuts);
 
       ctx.bus.on('episode:opened', ({ episode }) => {

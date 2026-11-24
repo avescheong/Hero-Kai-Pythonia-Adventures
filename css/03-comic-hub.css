@@ -317,6 +317,37 @@
   min-width: 0;
 }
 
+.vol-divider {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-top: 8px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(140, 240, 189, 0.12), rgba(255, 210, 133, 0.08));
+  border: 1px solid var(--kc-border);
+}
+
+.vol-divider:first-child {
+  margin-top: 0;
+}
+
+.vol-divider__title {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.05rem;
+  color: var(--kc-gold);
+}
+
+.vol-divider__meta {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-ink-soft);
+}
+
 .ep-card {
   position: relative;
   display: flex;

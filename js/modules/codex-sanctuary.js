@@ -25,13 +25,13 @@
 
       const CAST_SHOWCASE = {
         "hero-kai": { img: "assets/scenes/01_PRO_S01.webp", pos: "62% 28%", partIdx: 0 },
-        "string": { img: "assets/scenes/20_CH04_S04.webp", pos: "74% 72%", partIdx: 4 },
-        "great-wizard": { img: "assets/scenes/03_PRO_S03.webp", pos: "70% 25%", partIdx: 0 },
-        "grandma-looma": { img: "assets/scenes/11_CH02_S03.webp", pos: "64% 28%", partIdx: 2 },
-        "blacksmith": { img: "assets/scenes/14_CH03_S02.webp", pos: "72% 28%", partIdx: 3 },
-        "master-grimsby": { img: "assets/scenes/38_CH08_S02.webp", pos: "82% 35%", partIdx: 9 },
-        "bug-king": { img: "assets/scenes/49_CH11_S01.webp", pos: "72% 24%", partIdx: 12 },
-        "spell-guardian": { img: "assets/scenes/52_CH11_S04.webp", pos: "50% 62%", partIdx: 12 }
+        "string": { img: "assets/scenes/20_CH04_S04.webp", pos: "42% 72%", partIdx: 4 },
+        "great-wizard": { img: "assets/scenes/03_PRO_S03.webp", pos: "68% 28%", partIdx: 0 },
+        "grandma-looma": { img: "assets/scenes/11_CH02_S03.webp", pos: "28% 32%", partIdx: 2 },
+        "blacksmith": { img: "assets/scenes/14_CH03_S02.webp", pos: "25% 28%", partIdx: 3 },
+        "master-grimsby": { img: "assets/scenes/37_CH08_S01.webp", pos: "22% 25%", partIdx: 9 },
+        "bug-king": { img: "assets/scenes/49_CH11_S01.webp", pos: "74% 24%", partIdx: 12 },
+        "spell-guardian": { img: "assets/scenes/52_CH11_S04.webp", pos: "75% 75%", partIdx: 12 }
       };
 
       const realmModal = document.getElementById("kc-realm-modal");

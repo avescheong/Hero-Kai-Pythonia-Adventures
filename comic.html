@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Hero Kai · Pythonia Webtoon Comic — The Eleven Spells of Kindness</title>
-  <meta name="description" content="Read Kai's Pythonia Adventure: The Eleven Spells of Kindness (Vol. 1 Manga v5.3) in seamless vertical Webtoon format, bilingual EN & 繁體中文, with live interactive Python Spell Portals." />
+  <meta name="description" content="Read Kai's Pythonia Adventure (Vol. 1 & Vol. 2 Manga v5.3 · 20 Episodes) in seamless vertical Webtoon format, bilingual EN & 繁體中文, with live interactive Python Spell Portals." />
 
   <!-- Modular Standalone Stylesheets (Story_Website Pythonia Theme) -->
   <link rel="stylesheet" href="css/01-comic-tokens.css" />
@@ -13,8 +13,24 @@
   <link rel="stylesheet" href="css/04-comic-reader.css" />
   <link rel="stylesheet" href="css/05-comic-modules.css" />
   <link rel="stylesheet" href="css/06-comic-responsive.css" />
+  <link rel="stylesheet" href="css/07-comic-hyperframe.css" />
 </head>
-<body class="view-hub" data-reader-theme="forest">
+<body class="view-hub" data-reader-theme="forest" data-hyperframe="living">
+  <!-- Living Multi-Plane Biome Hyperframe (Comic Page Only) -->
+  <div id="comic-hyperframe" class="comic-hyperframe" aria-hidden="true">
+    <div class="hf-backdrop">
+      <img class="hf-backdrop__img is-active" id="hf-bg-a" src="assets/hero-whispering-forest.webp" alt="" decoding="async" />
+      <img class="hf-backdrop__img" id="hf-bg-b" src="assets/citadel-sanctuary.webp" alt="" decoding="async" />
+    </div>
+    <div class="hf-aura" id="hf-aura"></div>
+    <div class="hf-scrim"></div>
+    <canvas class="hf-particles" id="hf-particles"></canvas>
+    <div class="hf-arch-layer" id="hf-arch-layer">
+      <img class="hf-arch hf-arch--left" src="assets/plane3-arch.png" alt="" decoding="async" />
+      <img class="hf-arch hf-arch--right" src="assets/plane3-arch.png" alt="" decoding="async" />
+    </div>
+    <div class="hf-bezel-lines"></div>
+  </div>
   <div class="comic-progress-bar" id="comic-progress-bar" aria-hidden="true"></div>
   <div class="sc-grain" aria-hidden="true"></div>
   <!-- Same soothing background music as the main storybook site -->
@@ -25,7 +41,7 @@
     <span class="kc-seal__stamp" aria-hidden="true">11</span>
     <span class="kc-seal__meta">
       <span class="kc-seal__title" data-i18n="sealTitle">Hero Kai Webtoon</span>
-      <span class="kc-seal__sub" data-i18n="sealSub">Vol. 1 · 13 Episodes</span>
+      <span class="kc-seal__sub" data-i18n="sealSub">Vol. 1 &amp; 2 · 20 Episodes</span>
     </span>
   </a>
 
@@ -50,7 +66,7 @@
     <nav class="kc-nav__panel" id="kc-nav-panel" aria-label="Comic Navigation" hidden>
       <button class="kc-nav__link kc-nav__link--hub" type="button" id="nav-go-hub">
         <span data-i18n="navComicHub">📖 Series Hub &amp; Episodes</span>
-        <span class="kc-nav__idx">13 EP</span>
+        <span class="kc-nav__idx">20 EP</span>
       </button>
       <button class="kc-nav__link" type="button" id="nav-open-passport">
         <span>🏅 Collectible Spell Passport</span>
@@ -89,6 +105,9 @@
 
     <div id="reader-end-card" class="reader-end-card"></div>
 
+    <!-- Desktop Left-Flank Realm Companion Rail -->
+    <aside class="hf-companion-rail" id="hf-companion-rail" aria-label="Realm reading companion"></aside>
+
     <!-- Floating Right Rail: Scroll %, Jump to Spell Portal, Back to Top -->
     <div class="reader-float-rail" aria-label="Quick Reader Actions">
       <button type="button" class="float-pill-btn float-pill-btn--spell" id="float-spell-btn" title="Jump to Live Python Spell Portal">✨</button>
@@ -126,6 +145,14 @@
         </div>
       </div>
       <div class="comfort-row">
+        <span class="comfort-row__label">Hyperframe</span>
+        <div class="comfort-pills" role="group" aria-label="Background hyperframe intensity">
+          <button class="comfort-pill" type="button" data-hyperframe-opt="living" aria-pressed="true">✨ Living</button>
+          <button class="comfort-pill" type="button" data-hyperframe-opt="subtle" aria-pressed="false">Subtle</button>
+          <button class="comfort-pill" type="button" data-hyperframe-opt="off" aria-pressed="false">Off</button>
+        </div>
+      </div>
+      <div class="comfort-row">
         <span class="comfort-row__label" data-i18n="widthLabel">Strip Width</span>
         <div class="comfort-pills" role="group" aria-label="Comic strip width">
           <button class="comfort-pill" type="button" data-width-opt="640" aria-pressed="false">640px</button>
@@ -148,7 +175,7 @@
   <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
   <aside class="episode-drawer" id="episode-drawer" aria-label="All Episodes" hidden>
     <div class="drawer-header">
-      <h3 data-i18n="drawerTitle">Volume 1 · 13 Episodes</h3>
+      <h3 data-i18n="drawerTitle">Vol. 1 &amp; 2 · 20 Episodes</h3>
       <button class="drawer-close" type="button" id="drawer-close-btn" aria-label="Close drawer">✕</button>
     </div>
     <div class="drawer-list" id="drawer-list"></div>
@@ -183,6 +210,7 @@
   <script src="js/modules/autoscroll-comfort.module.js"></script>
   <script src="js/modules/integration-bridge.module.js"></script>
   <script src="js/modules/spell-portal.module.js"></script>
+  <script src="js/modules/hyperframe-stage.module.js"></script>
 
   <!-- Bootstrap -->
   <script src="js/app.js"></script>

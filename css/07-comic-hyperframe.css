@@ -1,0 +1,444 @@
+/* ============================================================================
+ * 07-comic-hyperframe.css
+ * Comic Page Only — Living Multi-Plane Biome Hyperframe & Realm Companion Rail
+ * Uses 100% existing local assets (plane3-arch.png, scenes/*.webp, backdrops).
+ * ============================================================================ */
+
+:root {
+  --hf-accent: 140, 240, 189;
+  --hf-accent-2: 255, 210, 133;
+  --hf-px: 0px;
+  --hf-py: 0px;
+  --hf-scroll-y: 0px;
+}
+
+/* ---- Fixed Full-Viewport Hyperframe Stage -------------------------------- */
+.comic-hyperframe {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--sc-canvas);
+  contain: layout paint style;
+}
+
+.hf-backdrop {
+  position: absolute;
+  inset: -4%;
+  overflow: hidden;
+  transform: translate3d(calc(var(--hf-px) * 0.5), calc(var(--hf-py) * 0.5), 0);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hf-backdrop__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(4px) saturate(1.14) brightness(0.56);
+  transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+  will-change: opacity, transform;
+}
+
+.hf-backdrop__img.is-active {
+  opacity: 1;
+  animation: hfBreathe 24s ease-in-out infinite alternate;
+}
+
+body.view-reader .hf-backdrop__img {
+  filter: blur(5px) saturate(1.18) brightness(0.62);
+}
+
+@keyframes hfBreathe {
+  0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+  100% { transform: scale(1.10) translate3d(0, -1%, 0); }
+}
+
+/* Dual-lobe peripheral biome aura */
+.hf-aura {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 35%, rgba(var(--hf-accent), 0.24) 0%, transparent 46%),
+    radial-gradient(circle at 88% 68%, rgba(var(--hf-accent-2), 0.18) 0%, transparent 48%),
+    radial-gradient(circle at 50% 0%, rgba(var(--hf-accent), 0.10) 0%, transparent 40%);
+  transition: background 650ms ease, opacity 350ms ease;
+}
+
+/* Center dark reading corridor + rich peripheral flanks */
+.hf-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      rgba(7, 15, 12, 0.42) 0%,
+      rgba(7, 15, 12, 0.72) 24%,
+      rgba(7, 15, 12, 0.84) 50%,
+      rgba(7, 15, 12, 0.72) 76%,
+      rgba(7, 15, 12, 0.42) 100%),
+    linear-gradient(180deg,
+      rgba(7, 15, 12, 0.56) 0%,
+      rgba(7, 15, 12, 0.24) 45%,
+      rgba(7, 15, 12, 0.68) 100%);
+  transition: background 320ms ease;
+}
+
+body.view-hub .hf-scrim {
+  background:
+    linear-gradient(180deg,
+      rgba(8, 17, 13, 0.42) 0%,
+      rgba(8, 17, 13, 0.62) 45%,
+      rgba(8, 17, 13, 0.86) 100%);
+}
+
+/* Cinema & Parchment reader theme harmony */
+body[data-reader-theme="cinema"] .hf-scrim {
+  background:
+    linear-gradient(90deg,
+      rgba(4, 6, 7, 0.62) 0%,
+      rgba(4, 6, 7, 0.88) 28%,
+      rgba(4, 6, 7, 0.94) 50%,
+      rgba(4, 6, 7, 0.88) 72%,
+      rgba(4, 6, 7, 0.62) 100%);
+}
+
+body.view-reader[data-reader-theme="parchment"] .hf-scrim {
+  background:
+    linear-gradient(90deg,
+      rgba(232, 221, 198, 0.68) 0%,
+      rgba(237, 227, 207, 0.88) 28%,
+      rgba(237, 227, 207, 0.94) 50%,
+      rgba(237, 227, 207, 0.88) 72%,
+      rgba(232, 221, 198, 0.68) 100%);
+}
+
+body.view-reader[data-reader-theme="parchment"] .hf-aura {
+  opacity: 0.42;
+}
+
+/* Peripheral-flank canvas particles (masked away from center reading strip) */
+.hf-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 22%, transparent 32%, transparent 68%, #000 78%, #000 100%);
+          mask-image: linear-gradient(90deg, #000 0%, #000 22%, transparent 32%, transparent 68%, #000 78%, #000 100%);
+}
+
+/* Illustrated stone arch & botanical foreground parallax planes */
+.hf-arch-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: none;
+  transform: translate3d(calc(var(--hf-px) * -0.9), calc(var(--hf-py) * -0.6 + var(--hf-scroll-y)), 0);
+  transition: opacity 420ms ease;
+}
+
+@media (min-width: 1180px) {
+  .hf-arch-layer {
+    display: block;
+  }
+}
+
+.hf-arch {
+  position: absolute;
+  top: -3%;
+  height: 108%;
+  width: auto;
+  max-width: none;
+  opacity: 0.44;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.65)) saturate(0.95) brightness(0.84);
+}
+
+.hf-arch--left {
+  left: -4%;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 42%, transparent 72%);
+          mask-image: linear-gradient(90deg, #000 0%, #000 42%, transparent 72%);
+}
+
+.hf-arch--right {
+  right: -4%;
+  transform: scaleX(-1);
+  opacity: 0.34;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 32%, transparent 62%);
+          mask-image: linear-gradient(90deg, #000 0%, #000 32%, transparent 62%);
+}
+
+body.view-reader[data-reader-theme="parchment"] .hf-arch {
+  opacity: 0.24;
+  filter: sepia(0.18) brightness(0.96);
+}
+
+/* Ornamental manuscript bezel hairline rails */
+.hf-bezel-lines {
+  position: absolute;
+  inset: 14px;
+  z-index: 4;
+  border-radius: 18px;
+  border: 1px solid rgba(var(--hf-accent-2), 0.14);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35);
+}
+
+.hf-bezel-lines::before,
+.hf-bezel-lines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--hf-accent), 0.22) 25%, rgba(var(--hf-accent-2), 0.22) 75%, transparent 100%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.hf-bezel-lines::before { left: max(18px, calc(50% - var(--comic-strip-width) / 2 - 28px)); }
+.hf-bezel-lines::after  { right: max(18px, calc(50% - var(--comic-strip-width) / 2 - 28px)); }
+
+@media (min-width: 1180px) {
+  body.view-reader .hf-bezel-lines::before,
+  body.view-reader .hf-bezel-lines::after {
+    opacity: 0.85;
+  }
+}
+
+/* ---- Transparent Stage Integration & Illuminated Scroll Bezel ------------ */
+body:not([data-hyperframe="off"]) .comic-reader {
+  background: transparent;
+}
+
+body:not([data-hyperframe="off"]) .hub-hero {
+  background: transparent;
+}
+
+body:not([data-hyperframe="off"]) .hub-hero__bg {
+  opacity: 0.48;
+  transition: opacity 350ms ease;
+}
+
+body:not([data-hyperframe="off"]) .hub-hero__scrim {
+  background:
+    linear-gradient(180deg, rgba(11, 22, 18, 0.42) 0%, rgba(11, 22, 18, 0.28) 42%, rgba(11, 22, 18, 0.72) 84%, transparent 100%),
+    linear-gradient(90deg, rgba(11, 22, 18, 0.78) 0%, rgba(11, 22, 18, 0.38) 58%, rgba(11, 22, 18, 0.14) 100%);
+}
+
+body[data-hyperframe="living"].view-reader .webtoon-canvas {
+  border: 1px solid rgba(var(--hf-accent-2), 0.34);
+  box-shadow:
+    0 0 64px rgba(var(--hf-accent), 0.16),
+    0 28px 80px rgba(0, 0, 0, 0.74);
+}
+
+body:not([data-hyperframe="off"]) .reader-ep-banner,
+body:not([data-hyperframe="off"]) .reader-end-card,
+body:not([data-hyperframe="off"]) .progress-strip,
+body:not([data-hyperframe="off"]) .ep-card,
+body:not([data-hyperframe="off"]) .bonus-card {
+  background: rgba(15, 29, 24, 0.84);
+  backdrop-filter: blur(10px);
+}
+
+body:not([data-hyperframe="off"]) .ep-card:hover {
+  background: rgba(23, 44, 36, 0.92);
+  box-shadow: 0 12px 30px rgba(var(--hf-accent), 0.12);
+}
+
+/* ---- Hyperframe Modes: Subtle & Off -------------------------------------- */
+body[data-hyperframe="subtle"] .hf-particles,
+body[data-hyperframe="subtle"] .hf-bezel-lines {
+  display: none;
+}
+
+body[data-hyperframe="subtle"] .hf-backdrop__img.is-active {
+  opacity: 0.45;
+  animation: none;
+}
+
+body[data-hyperframe="subtle"] .hf-arch {
+  opacity: 0.2;
+}
+
+body[data-hyperframe="subtle"] .hf-aura {
+  opacity: 0.55;
+}
+
+body[data-hyperframe="off"] .comic-hyperframe {
+  display: none;
+}
+
+/* ---- Desktop Left-Flank Realm Companion Rail (Reader Only, >= 1360px) ---- */
+.hf-companion-rail {
+  display: none;
+}
+
+@media (min-width: 1360px) {
+  body.view-reader:not([data-hyperframe="off"]) .hf-companion-rail {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 176px;
+    z-index: 88;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 14px 13px;
+    border-radius: 16px;
+    background: rgba(11, 22, 18, 0.86);
+    border: 1px solid rgba(var(--hf-accent-2), 0.3);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.52), 0 0 28px rgba(var(--hf-accent), 0.1);
+    backdrop-filter: blur(12px);
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+
+  body.view-reader.hud-hidden .hf-companion-rail {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-18px);
+    pointer-events: none;
+  }
+}
+
+.hf-rail__biome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(var(--hf-accent));
+}
+
+.hf-rail__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+  background: rgb(var(--hf-accent));
+  box-shadow: 0 0 10px rgba(var(--hf-accent), 0.9);
+  animation: hfPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hfPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50%      { transform: scale(1.3); opacity: 1; }
+}
+
+.hf-rail__realm {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: 0.94rem;
+  line-height: 1.25;
+  color: #fff8eb;
+}
+
+.hf-rail__ep {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--sc-ink-soft);
+}
+
+.hf-rail__meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hf-rail__track {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.hf-rail__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(var(--hf-accent)), rgb(var(--hf-accent-2)));
+  transition: width 90ms linear;
+}
+
+.hf-rail__pct {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+  min-width: 30px;
+  text-align: right;
+}
+
+.hf-rail__btn {
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--hf-accent), 0.34);
+  background: rgba(var(--hf-accent), 0.12);
+  color: #f4efe4;
+  font-family: var(--sc-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: left;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.hf-rail__btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--kc-gold);
+  background: rgba(var(--hf-accent-2), 0.18);
+}
+
+.hf-rail__btn.is-ready {
+  border-color: var(--kc-gold);
+  background: linear-gradient(135deg, rgba(255, 210, 133, 0.24), rgba(140, 240, 189, 0.2));
+  color: var(--kc-gold);
+  box-shadow: 0 0 18px rgba(255, 210, 133, 0.24);
+}
+
+.hf-rail__next {
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--sc-ink-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+
+.hf-rail__next:hover {
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hf-backdrop__img.is-active,
+  .hf-rail__dot {
+    animation: none !important;
+  }
+  .hf-particles {
+    display: none !important;
+  }
+  .hf-backdrop,
+  .hf-arch-layer {
+    transform: none !important;
+  }
+}
