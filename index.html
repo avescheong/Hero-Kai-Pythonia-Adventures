@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/04-storybook-reader.css" />
   <link rel="stylesheet" href="css/05-codex-modals.css" />
   <link rel="stylesheet" href="css/06-responsive.css" />
+  <link rel="stylesheet" href="css/08-intro-briefing.css" />
 </head>
 <body>
   <audio id="kc-bgm-audio" src="assets/audio/peaceful.mp3" loop preload="auto"></audio>
@@ -54,6 +55,7 @@
       <a class="kc-nav__link kc-nav__link--hub" href="hub.html"><span data-i18n="navHub">🏰 Learning Hub &amp; 12 Sanctuaries</span><span class="kc-nav__idx">HUB</span></a>
       <a class="kc-nav__link kc-nav__link--hub" href="comic.html"><span data-i18n="navComic">📖 Webtoon Comic (Vol. 1 &amp; 2 · 20 Ep)</span><span class="kc-nav__idx">COMIC</span></a>
       <a class="kc-nav__link" href="#act-arrival"><span data-i18n="navAct1">Act I · The Emerald Glitch</span><span class="kc-nav__idx">01</span></a>
+      <a class="kc-nav__link" href="#act-briefing"><span data-i18n="navBriefing">&#9654; Opening Hook Trailer (2:36)</span><span class="kc-nav__idx">VIDEO</span></a>
       <a class="kc-nav__link" href="#act-rail"><span data-i18n="navAct2">Act II · Realms Trail</span><span class="kc-nav__idx">02</span></a>
       <a class="kc-nav__link" href="#story-reader"><span data-i18n="navReader">52-Scene Storybook Reader</span><span class="kc-nav__idx">52</span></a>
       <a class="kc-nav__link" href="chapters/chapter-01.html"><span data-i18n="navChapters">Beginner Chapters (1–13) ↗</span><span class="kc-nav__idx">🌱</span></a>
@@ -115,6 +117,7 @@
             When Kai pauses mid-game to help a stuck classmate, an emerald portal carries him into Pythonia. Scroll to hear soothing music and read all 13 parts of his adventure!
           </p>
           <div class="kc-hero-actions">
+            <button class="kc-btn-trailer-mobile" type="button" data-kc-open-cinema data-i18n="heroTrailerBtn">&#9654; Watch Opening Hook (2:36)</button>
             <a class="kc-btn-primary" href="chapters/chapter-01.html" data-sc-magnet="0.22" data-sc-rise="0" data-i18n="heroChapterBtn">🌱 Start Ch 1 (Beginner) &rarr;</a>
             <a class="kc-btn-advance" href="chapters/chapter-01-advance.html" data-sc-magnet="0.22" data-sc-rise="0" data-i18n="heroAdvanceBtn">📚 Complete Story (Advance) &rarr;</a>
             <a class="kc-btn-hub" href="hub.html" data-sc-magnet="0.22" data-sc-rise="0" data-i18n="heroHubBtn">🏰 Learning Hub &amp; Sanctuaries &rarr;</a>
@@ -130,6 +133,67 @@
             Kai kneels to comfort a frightened child instead of drawing his sword, and his golden Spellbook glows with the very first spell: print("Hello!").
           </p>
           <code class="kc-code-pill">print("Hello!")</code>
+        </div>
+
+        <button class="kc-hero-hook" type="button" data-sc-cue="0 0.50 0 0.22" data-kc-open-cinema aria-label="Watch Opening Hook video trailer">
+          <span class="kc-hero-hook__thumb">
+            <img id="kc-hero-hook-img" src="assets/introvideo/intro-poster-en-portal.webp" alt="Kai entering the emerald portal of Pythonia" />
+            <span class="kc-hero-hook__tag" data-i18n="heroHookTag">CASE FILE &middot; EN / 繁體中文</span>
+            <span class="kc-hero-hook__play" aria-hidden="true">&#9654;</span>
+            <span class="kc-hero-hook__dur" id="kc-hero-hook-dur">2:36</span>
+          </span>
+          <span class="kc-hero-hook__foot">
+            <span class="kc-hero-hook__title" data-i18n="heroHookTitle">Watch Opening Hook</span>
+            <span class="kc-hero-hook__sub" data-i18n="heroHookSub">Click for Cinema Mode &middot; Auto-pauses BGM</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================================================= PROLOGUE BRIEFING BAND -->
+    <section id="act-briefing" data-sc-act="flow" data-sc-drift="#0c1713" aria-label="Case File Pythonia Opening Hook Briefing">
+      <div class="kc-briefing__wrap">
+        <div class="kc-briefing__card">
+          <div class="kc-briefing__stage">
+            <video id="kc-briefing-video" class="kc-briefing__video" controls playsinline preload="none"
+                   poster="assets/introvideo/intro-poster-en-briefing.webp"></video>
+            <div class="kc-briefing__poster-overlay" id="kc-briefing-poster-overlay" role="button" tabindex="0" aria-label="Play Opening Hook trailer inline">
+              <img id="kc-briefing-poster-img" src="assets/introvideo/intro-poster-en-briefing.webp" alt="Evidence board preview of Kai and String in Pythonia" />
+              <span class="kc-briefing__badge-tl" data-i18n="briefingBadgeTop">CASE FILE: PYTHONIA &middot; OFFICIAL INTRO</span>
+              <span class="kc-briefing__play" aria-hidden="true">&#9654;</span>
+              <span class="kc-briefing__badge-bl" data-i18n="briefingBadgeBgm">&#9834; Auto-pauses BGM on play</span>
+              <span class="kc-briefing__badge-br" id="kc-briefing-dur">02:36 &middot; HD</span>
+            </div>
+            <button class="kc-briefing__popout" id="kc-briefing-popout" type="button" data-kc-open-cinema hidden>&#9974; Cinema</button>
+          </div>
+
+          <div class="kc-briefing__info">
+            <p class="kc-eyebrow" data-i18n="briefingEyebrow">Prologue Briefing &middot; 2.5 Min Trailer</p>
+            <h2 class="kc-briefing__title" data-i18n="briefingTitle">Before You Enter Pythonia</h2>
+            <p class="kc-briefing__desc" data-i18n="briefingDesc">
+              Not a sword. Not brute force. Watch how Kai's kindness and Python code awaken a frozen kingdom.
+            </p>
+
+            <div class="kc-briefing__langwrap">
+              <div class="kc-briefing__langrow" role="group" aria-label="Intro video language">
+                <button class="kc-briefing__langpill" type="button" data-kc-video-lang="en" aria-pressed="true">English &middot; 2:36</button>
+                <button class="kc-briefing__langpill" type="button" data-kc-video-lang="zh" aria-pressed="false">繁體中文 &middot; 2:27</button>
+              </div>
+              <span class="kc-briefing__sync" data-i18n="briefingSyncNote">Auto-syncs with top-right language switcher</span>
+            </div>
+
+            <div class="kc-briefing__cta">
+              <button class="kc-btn-primary" id="kc-briefing-play-btn" type="button" data-kc-inline-play data-i18n="briefingPlayBtn">&#9654; Play Here</button>
+              <button class="kc-btn-secondary" type="button" data-kc-open-cinema data-i18n="briefingCinemaBtn">&#9974; Cinema Lightbox</button>
+            </div>
+
+            <div class="kc-briefing__next" id="kc-briefing-next">
+              <span class="kc-briefing__next-label" data-i18n="briefingNextLabel">Ready to dive in?</span>
+              <a href="chapters/chapter-01.html" data-i18n="briefingNextCh1">&#127793; Start Ch 1</a>
+              <a href="comic.html" data-i18n="briefingNextComic">&#128214; 20-Ep Comic</a>
+              <a href="#act-rail" data-i18n="briefingNextRealms">&darr; Realms Trail</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -479,8 +543,33 @@
     </div>
   </div>
 
+  <div class="kc-cinema-modal" id="kc-cinema-modal" hidden role="dialog" aria-modal="true" aria-labelledby="kc-cinema-title">
+    <div class="kc-cinema-dialog">
+      <div class="kc-cinema-dialog__head">
+        <h3 class="kc-cinema-dialog__title" id="kc-cinema-title" data-i18n="cinemaTitle">Opening Hook &middot; Case File: Pythonia</h3>
+        <div class="kc-cinema-dialog__controls">
+          <button class="kc-briefing__langpill" type="button" data-kc-video-lang="en" aria-pressed="true">English &middot; 2:36</button>
+          <button class="kc-briefing__langpill" type="button" data-kc-video-lang="zh" aria-pressed="false">繁體中文 &middot; 2:27</button>
+          <span class="kc-cinema-bgm-pill" id="kc-cinema-bgm-pill" data-i18n="cinemaBgmPaused" hidden>&#9834; Background music paused</span>
+          <button class="kc-cinema-close" id="kc-cinema-close" type="button" data-i18n="cinemaClose">&times; Close</button>
+        </div>
+      </div>
 
-  <!-- ========================================================================
+      <div class="kc-cinema-stage">
+        <video id="kc-cinema-video" controls playsinline preload="none"
+               poster="assets/introvideo/intro-poster-en-portal.webp"></video>
+      </div>
+
+      <div class="kc-cinema-dialog__foot" id="kc-cinema-foot">
+        <span class="kc-cinema-dialog__foot-lead" data-i18n="cinemaFootLead">Ready to begin Kai's adventure?</span>
+        <div class="kc-cinema-dialog__foot-links">
+          <a class="kc-btn-primary" href="chapters/chapter-01.html" data-i18n="heroChapterBtn">&#127793; Start Ch 1 (Beginner) &rarr;</a>
+          <a class="kc-btn-advance" href="chapters/chapter-01-advance.html" data-i18n="heroAdvanceBtn">&#128218; Complete Story (Advance) &rarr;</a>
+          <a class="kc-btn-hub" href="comic.html" data-i18n="heroComicBtn">&#128214; Read Webtoon Comic (20 Ep) &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
        MODULAR JAVASCRIPT ARCHITECTURE
        1. ScrollCraft Engine
        2. Offline-Safe Data Fallbacks (world.json & jingsi_aphorisms.json)
@@ -505,6 +594,7 @@
   <script defer src="js/modules/storybook-reader.js"></script>
   <script defer src="js/modules/codex-sanctuary.js"></script>
   <script defer src="js/modules/certificate-exporter.js"></script>
+  <script defer src="js/modules/intro-briefing.js"></script>
   <!-- Future modules: <script defer src="js/modules/your-new-module.js"></script> -->
 
   <!-- Bootstrapper -->

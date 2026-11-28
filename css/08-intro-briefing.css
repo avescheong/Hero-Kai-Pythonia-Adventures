@@ -1,0 +1,651 @@
+/* ============================================================================
+ * 08-intro-briefing.css
+ * Hero Kai · Pythonia: Option A Bilingual Opening Hook Trailer Integration
+ * ============================================================================
+ * Covers:
+ *   1. Act I Desktop Floating Opening Hook Preview Card (.kc-hero-hook)
+ *   2. Act I Mobile/Tablet Inline Trailer CTA Button (.kc-btn-trailer-mobile)
+ *   3. Dedicated "Case File Briefing" Theater Band (#act-briefing)
+ *   4. Bilingual Cinema Modal Dialog (#kc-cinema-modal)
+ *   5. Responsive Rules & Reduced-Motion Overrides
+ * ============================================================================ */
+
+/* ---- 1. Act I Desktop Floating Mini-Preview Card ------------------------- */
+.kc-hero-hook {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  position: absolute;
+  right: 92px;
+  bottom: 34px;
+  width: 292px;
+  padding: 0;
+  z-index: 6;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(9, 20, 15, 0.92);
+  border: 1px solid rgba(255, 210, 133, 0.44);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.62), 0 0 28px rgba(140, 240, 189, 0.14);
+  backdrop-filter: blur(14px);
+  color: var(--sc-ink);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.kc-hero-hook:hover,
+.kc-hero-hook:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 210, 133, 0.85);
+  box-shadow: 0 26px 58px rgba(0, 0, 0, 0.72), 0 0 34px rgba(255, 210, 133, 0.24);
+  outline: none;
+}
+
+.kc-hero-hook__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #07110d;
+  overflow: hidden;
+}
+
+.kc-hero-hook__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 340ms ease;
+}
+
+.kc-hero-hook:hover .kc-hero-hook__thumb img {
+  transform: scale(1.05);
+}
+
+.kc-hero-hook__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 16, 12, 0.16) 0%, rgba(7, 16, 12, 0.56) 100%);
+  pointer-events: none;
+}
+
+.kc-hero-hook__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ffd285, #8cf0bd);
+  color: #0b1612;
+  font-size: 1.05rem;
+  padding-left: 3px;
+  box-shadow: 0 0 0 7px rgba(255, 210, 133, 0.22), 0 10px 26px rgba(0, 0, 0, 0.55);
+  transition: transform 200ms ease;
+}
+
+.kc-hero-hook:hover .kc-hero-hook__play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.kc-hero-hook__tag {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  z-index: 2;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.88);
+  border: 1px solid rgba(140, 240, 189, 0.36);
+  font-family: var(--sc-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--sc-accent);
+}
+
+.kc-hero-hook__dur {
+  position: absolute;
+  bottom: 8px;
+  right: 9px;
+  z-index: 2;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(8, 17, 13, 0.90);
+  border: 1px solid rgba(255, 210, 133, 0.36);
+  font-family: var(--sc-font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+}
+
+.kc-hero-hook__foot {
+  padding: 11px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-top: 1px solid rgba(140, 240, 189, 0.16);
+}
+
+.kc-hero-hook__title {
+  font-family: var(--sc-font-display);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #fbf7ef;
+  line-height: 1.2;
+}
+
+.kc-hero-hook__sub {
+  font-family: var(--sc-font-mono);
+  font-size: 0.64rem;
+  color: var(--sc-ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ---- 2. Mobile/Tablet Inline Hero Trailer CTA ----------------------------- */
+.kc-btn-trailer-mobile {
+  display: none;
+  appearance: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 210, 133, 0.78);
+  background: linear-gradient(135deg, rgba(22, 46, 35, 0.96), rgba(38, 49, 22, 0.96));
+  color: #ffd285;
+  font-weight: 700;
+  font-size: 0.86rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42), 0 0 18px rgba(255, 210, 133, 0.22);
+}
+
+.kc-btn-trailer-mobile:hover {
+  filter: brightness(1.1);
+}
+
+/* ---- 3. Dedicated "Case File Briefing" Theater Band (#act-briefing) ------ */
+#act-briefing {
+  position: relative;
+  background:
+    radial-gradient(60% 80% at 22% 35%, rgba(28, 76, 54, 0.28) 0%, transparent 70%),
+    radial-gradient(50% 70% at 85% 70%, rgba(255, 210, 133, 0.09) 0%, transparent 70%),
+    #0c1713;
+  border-top: 1px solid rgba(255, 210, 133, 0.22);
+  border-bottom: 1px solid rgba(140, 240, 189, 0.18);
+}
+
+.kc-briefing__wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(54px, 7vh, 84px) 32px;
+}
+
+.kc-briefing__card {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 28px;
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(14, 27, 22, 0.94);
+  border: 1px solid rgba(255, 210, 133, 0.28);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+  align-items: center;
+}
+
+.kc-briefing__stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #08120e;
+  border: 1px solid rgba(140, 240, 189, 0.26);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+
+.kc-briefing__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #050a08;
+}
+
+.kc-briefing__poster-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.kc-briefing__poster-overlay[hidden] {
+  display: none;
+}
+
+.kc-briefing__poster-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kc-briefing__poster-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 15, 11, 0.36) 0%, rgba(6, 15, 11, 0.12) 45%, rgba(6, 15, 11, 0.62) 100%);
+  pointer-events: none;
+}
+
+.kc-briefing__play {
+  appearance: none;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 244, 219, 0.85);
+  background: linear-gradient(135deg, #ffd285, #8cf0bd);
+  color: #0b1612;
+  display: grid;
+  place-items: center;
+  font-size: 1.55rem;
+  padding-left: 4px;
+  box-shadow: 0 0 0 12px rgba(255, 210, 133, 0.18), 0 18px 42px rgba(0, 0, 0, 0.65);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.kc-briefing__poster-overlay:hover .kc-briefing__play,
+.kc-briefing__play:focus-visible {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 0 0 16px rgba(255, 210, 133, 0.24), 0 22px 46px rgba(0, 0, 0, 0.72);
+  outline: none;
+}
+
+.kc-briefing__popout {
+  appearance: none;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.88);
+  border: 1px solid rgba(255, 210, 133, 0.44);
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--kc-gold);
+  backdrop-filter: blur(8px);
+}
+
+.kc-briefing__popout[hidden] {
+  display: none;
+}
+
+.kc-briefing__badge-tl {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.88);
+  border: 1px solid rgba(255, 210, 133, 0.42);
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--kc-gold);
+  max-width: calc(100% - 24px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kc-briefing__badge-bl {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 3;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(8, 17, 13, 0.86);
+  border: 1px solid rgba(140, 240, 189, 0.34);
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  color: var(--sc-accent);
+}
+
+.kc-briefing__badge-br {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: rgba(8, 17, 13, 0.90);
+  border: 1px solid rgba(255, 210, 133, 0.34);
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fbf7ef;
+}
+
+.kc-briefing__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kc-briefing__info .kc-eyebrow {
+  margin-bottom: 0;
+}
+
+.kc-briefing__title {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.05rem);
+  line-height: 1.12;
+  color: #fbf7ef;
+}
+
+.kc-briefing__desc {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--sc-ink-soft);
+  line-height: 1.55;
+}
+
+.kc-briefing__langwrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kc-briefing__langrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kc-briefing__langpill {
+  appearance: none;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 240, 189, 0.32);
+  background: #102019;
+  color: var(--sc-ink);
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.kc-briefing__langpill[aria-pressed="true"] {
+  background: var(--kc-gold);
+  color: #161006;
+  border-color: #fff3da;
+  font-weight: 700;
+}
+
+.kc-briefing__sync {
+  font-family: var(--sc-font-mono);
+  font-size: 0.66rem;
+  color: var(--sc-ink-soft);
+  opacity: 0.88;
+}
+
+.kc-briefing__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.kc-briefing__next {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(140, 240, 189, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  transition: background 240ms ease, padding 240ms ease;
+}
+
+.kc-briefing__next.is-finished {
+  padding: 10px 12px;
+  background: rgba(255, 210, 133, 0.10);
+  border: 1px solid rgba(255, 210, 133, 0.38);
+}
+
+.kc-briefing__next-label {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--kc-gold);
+}
+
+.kc-briefing__next a {
+  color: var(--sc-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.kc-briefing__next a:hover {
+  text-decoration: underline;
+}
+
+/* ---- 4. Bilingual Cinema Modal Dialog (#kc-cinema-modal) ----------------- */
+.kc-cinema-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 11, 9, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.kc-cinema-modal[hidden] {
+  display: none !important;
+}
+
+.kc-cinema-dialog {
+  width: min(960px, 100%);
+  max-height: 94svh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0b1612;
+  border: 1px solid rgba(255, 210, 133, 0.42);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.78);
+}
+
+.kc-cinema-dialog__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  padding: 13px 18px;
+  background: #0f1e18;
+  border-bottom: 1px solid rgba(140, 240, 189, 0.18);
+}
+
+.kc-cinema-dialog__title {
+  font-family: var(--sc-font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #fbf7ef;
+  margin: 0;
+}
+
+.kc-cinema-dialog__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.kc-cinema-bgm-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(140, 240, 189, 0.12);
+  border: 1px solid rgba(140, 240, 189, 0.34);
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  color: var(--sc-accent);
+}
+
+.kc-cinema-bgm-pill[hidden] {
+  display: none;
+}
+
+.kc-cinema-close {
+  appearance: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #13251d;
+  border: 1px solid rgba(255, 210, 133, 0.36);
+  color: var(--kc-gold);
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.kc-cinema-close:hover {
+  border-color: var(--kc-gold);
+}
+
+.kc-cinema-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #050a08;
+  overflow: hidden;
+  flex: 0 1 auto;
+}
+
+.kc-cinema-stage video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #050a08;
+}
+
+.kc-cinema-dialog__foot {
+  padding: 13px 18px;
+  background: #0e1a15;
+  border-top: 1px solid rgba(140, 240, 189, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: background 240ms ease;
+}
+
+.kc-cinema-dialog__foot.is-finished {
+  background: rgba(28, 42, 22, 0.96);
+  border-top-color: rgba(255, 210, 133, 0.48);
+}
+
+.kc-cinema-dialog__foot-lead {
+  font-size: 0.84rem;
+  color: var(--sc-ink-soft);
+}
+
+.kc-cinema-dialog__foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---- 5. Responsive & Reduced-Motion Overrides ---------------------------- */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .kc-hero-hook {
+    width: 248px;
+    right: 84px;
+    bottom: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .kc-hero-hook {
+    display: none;
+  }
+  .kc-btn-trailer-mobile {
+    display: inline-flex;
+    max-width: 100%;
+    order: -1;
+  }
+}
+
+@media (max-width: 960px) {
+  .kc-briefing__wrap {
+    padding: 36px 20px;
+  }
+  .kc-briefing__card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kc-briefing__wrap {
+    padding: 24px 14px 32px;
+  }
+  .kc-briefing__card {
+    padding: 13px;
+    gap: 15px;
+  }
+  .kc-briefing__play {
+    width: 54px;
+    height: 54px;
+    font-size: 1.2rem;
+  }
+  .kc-briefing__title {
+    font-size: 1.36rem;
+  }
+  .kc-briefing__desc {
+    font-size: 0.84rem;
+  }
+  .kc-cinema-modal {
+    padding: 10px;
+  }
+  .kc-cinema-dialog__head,
+  .kc-cinema-dialog__foot {
+    padding: 10px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-hero-hook,
+  .kc-hero-hook__thumb img,
+  .kc-hero-hook__play,
+  .kc-briefing__play,
+  .kc-briefing__langpill,
+  .kc-briefing__next,
+  .kc-cinema-dialog__foot {
+    transition: none;
+  }
+}

@@ -34,6 +34,8 @@
         let volumePct = Number(localStorage.getItem("pythonia_music_vol") || 35);
         let volume = Math.min(1, Math.max(0, volumePct / 100));
         let isRunning = false;
+        let mediaDucking = false;
+        let resumeAfterMedia = false;
         let lastScrollNoteAt = 0;
         let stepIdx = 0;
 
@@ -146,7 +148,7 @@
         };
 
         const start = () => {
-          if (!userEnabled) return;
+          if (!userEnabled || mediaDucking) return;
           if (musicMode === "mp3" && bgmAudio) {
             if (ctx && master) master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.3);
             bgmAudio.volume = volume;
@@ -173,6 +175,25 @@
           }
           isRunning = false;
           syncButtonUI();
+        };
+
+        const pauseForMedia = () => {
+          if (!mediaDucking) {
+            resumeAfterMedia = isRunning;
+          }
+          mediaDucking = true;
+          pause();
+        };
+
+        const resumeFromMedia = () => {
+          mediaDucking = false;
+          if (resumeAfterMedia && userEnabled) {
+            resumeAfterMedia = false;
+            start();
+          } else {
+            resumeAfterMedia = false;
+            syncButtonUI();
+          }
         };
 
         const toggle = () => {
@@ -242,14 +263,38 @@
           }
         };
 
-        return { start, toggle, switchTrack, setVolume, playChime, onScrollChime, syncButtonUI };
+        return {
+          start,
+          pause,
+          pauseForMedia,
+          resumeFromMedia,
+          isMediaDucking: () => mediaDucking,
+          toggle,
+          switchTrack,
+          setVolume,
+          playChime,
+          onScrollChime,
+          syncButtonUI
+        };
       })();
 
       if (musicBtn) musicBtn.addEventListener("click", () => MusicEngine.toggle());
       if (trackBtn) trackBtn.addEventListener("click", () => MusicEngine.switchTrack());
       if (volSlider) volSlider.addEventListener("input", (e) => MusicEngine.setVolume(e.target.value));
       // Arm soothing music cleanly on first user interaction or scroll
-      const armOnGesture = () => {
+      const armOnGesture = (e) => {
+        if (
+          e &&
+          e.target &&
+          typeof e.target.closest === "function" &&
+          e.target.closest("[data-kc-open-cinema], [data-kc-inline-play], #act-briefing video, #kc-cinema-modal")
+        ) {
+          window.removeEventListener("pointerdown", armOnGesture);
+          window.removeEventListener("keydown", armOnGesture);
+          window.removeEventListener("wheel", armOnGesture);
+          window.removeEventListener("touchstart", armOnGesture);
+          return;
+        }
         MusicEngine.start();
         window.removeEventListener("pointerdown", armOnGesture);
         window.removeEventListener("keydown", armOnGesture);
